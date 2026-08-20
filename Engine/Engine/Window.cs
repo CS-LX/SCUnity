@@ -468,7 +468,15 @@ namespace Engine {
             Activity.Destroyed += DestroyedHandler;
             Activity.NewIntent += NewIntentHandler;
 #elif IOS
-            ViewOptions options = ViewOptions.Default with { API = api };
+            // iOS 的 SDL 驱动未实现 GL_SetSwapInterval，Silk 每帧调用 SwapInterval 会留下粘性错误，
+            // 导致后续任何带 ThrowError 的 SDL 调用（如 FramebufferSize）抛出 SdlException 杀死帧循环。
+            // IsContextControlDisabled 让 Silk 不做每帧 MakeCurrent/SwapInterval；
+            // 上下文在 Initialize 时已显式 MakeCurrent，缓冲区交换由引擎自己调用 SwapBuffers 完成。
+            ViewOptions options = ViewOptions.Default with { API = api, IsContextControlDisabled = true };
+            // Silk 以 SDL_WINDOW_RESIZABLE 创建窗口，SDL 的视图控制器会因此声明支持所有方向，
+            // 在 LiveContainer 等宿主环境中场景不会随设备转到横屏。
+            // 通过 SDL_HINT_ORIENTATIONS 显式声明横屏，与 Info.plist 的横屏声明保持一致。
+            Silk.NET.SDL.SdlProvider.SDL.Value.SetHint(Silk.NET.SDL.Sdl.HintOrientations, "LandscapeLeft LandscapeRight");
             m_view = Silk.NET.Windowing.Window.GetView(options);
 #elif BROWSER
             Title = title;
@@ -518,7 +526,14 @@ namespace Engine {
 #endif // !MOBILE
             finally {
                 GLWrapper.GL?.Dispose();
-                m_view?.Dispose();
+                try {
+                    m_view?.Dispose();
+                }
+                catch (Exception ex) {
+                    // 帧循环中抛出异常时，此处 Dispose 会因 Reset inside render loop 再次抛异常，
+                    // 掩盖真正的原始异常。必须吞掉并记录，保证原始异常能传播到日志。
+                    Log.Error($"Error disposing view: {ex}");
+                }
             }
 #endif // !BROWSER
         }
