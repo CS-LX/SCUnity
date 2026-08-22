@@ -308,7 +308,14 @@ namespace Engine {
             if (Path.DirectorySeparatorChar != '\\') {
                 path = path.Replace('\\', Path.DirectorySeparatorChar);
             }
-            if (path.StartsWith("app:") || path.StartsWith("data:")) {
+            if (path.StartsWith("app:")) {
+                isApp = false;
+                return Path.Combine(
+                    System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),
+                    path.Substring(4).TrimStart(Path.DirectorySeparatorChar)
+                );
+            }
+            if (path.StartsWith("data:")) {
                 isApp = false;
                 return Path.Combine(
                     System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments),

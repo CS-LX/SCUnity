@@ -351,3 +351,6 @@ CLAUDE.md
 .mcp.json
 .code-review-graph/
 docs/superpowers/
+
+# macOS
+.DS_Store

@@ -3,6 +3,9 @@ using System.Diagnostics;
 #if BROWSER
 using Engine.Browser;
 #endif
+#if IOS
+using System.Runtime.InteropServices;
+#endif
 #if DEBUG && !IOS
 using System.Runtime.InteropServices;
 #endif
@@ -132,6 +135,13 @@ namespace Engine.Graphics {
             TrampolineFuncs.ApplyWorkaroundFixingInvocations();
 #endif
             GL = GL.GetApi(Egl.GetProcAddress);
+#elif IOS
+            // iOS 上不能依赖 SDL_GL_GetProcAddress（其内部实现是 dlsym(RTLD_DEFAULT, proc)）。
+            // 在 PlayCover（macOS 运行 iOS 应用）环境下，进程内同时存在桌面版 libGL.dylib，
+            // RTLD_DEFAULT 会把 glGetIntegerv 等符号错误解析到桌面 OpenGL，
+            // 在没有当前 CGL 上下文时调用即崩溃（EXC_BAD_ACCESS 0x348）。
+            // 因此直接从 OpenGLES.framework 解析符号，兜底再走 SDL。
+            GL = GL.GetApi(GetGlesProcAddress);
 #else
             GL = GL.GetApi(Window.m_view);
 #endif
@@ -164,6 +174,26 @@ namespace Engine.Graphics {
             GL_KHR_texture_compression_astc_ldr = extensions?.Contains("GL_KHR_texture_compression_astc_ldr") ?? false;
             GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = GL.GetInteger(GetPName.MaxCombinedTextureImageUnits);
         }
+
+#if IOS
+        static IntPtr m_glesLibrary;
+
+        /// <summary>
+        /// 从 OpenGLES.framework 显式解析 GL 函数地址，避免 PlayCover 下
+        /// dlsym(RTLD_DEFAULT) 把符号解析到桌面版 libGL.dylib 导致崩溃。
+        /// </summary>
+        static IntPtr GetGlesProcAddress(string proc) {
+            if (m_glesLibrary == IntPtr.Zero) {
+                NativeLibrary.TryLoad("/System/Library/Frameworks/OpenGLES.framework/OpenGLES", out m_glesLibrary);
+            }
+            if (m_glesLibrary != IntPtr.Zero
+                && NativeLibrary.TryGetExport(m_glesLibrary, proc, out IntPtr address)) {
+                return address;
+            }
+            // 兜底：走 SDL 的解析路径（真机上 RTLD_DEFAULT 不会冲突）
+            return Window.m_view.GLContext?.GetProcAddress(proc) ?? IntPtr.Zero;
+        }
+#endif
 
 #if ANGLE
         /// <summary>
