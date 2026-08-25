@@ -28,6 +28,9 @@
 直接构建相应的 `Survivalcraft.Browser` 项目即可  
 如果要生成最终用于发布的网页版，请在解决方案根目录运行 `.\scripts\PublishSurvivalcraftBrowser.bat`
 
+**iOS**：  
+另见 [BuildIOS.md](BuildIOS.md)
+
 **nupkg 引用包**：  
 在解决方案根目录运行 `.\scripts\PackNugetPackages.bat`
 

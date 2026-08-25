@@ -104,7 +104,7 @@ public class ManageContentScreen : Screen {
                     playerModelWidget.PlayerClass = PlayerClass.Male;
                     playerModelWidget.CharacterSkinTexture = texture2;
                     labelWidget5.Text = listItem.DisplayName;
-                    labelWidget6.Text = string.Format(LanguageControl.Get(fName, 4), texture2.Width, texture2.Height);
+                    labelWidget6.Text = string.Format(LanguageControl.Get(fName, 4), texture2?.Width ?? 0, texture2?.Height ?? 0);
                     if (!listItem.IsBuiltIn) {
                         labelWidget6.Text += $" | {listItem.CreationTime.ToLocalTime():dd MMM yyyy HH:mm}";
                         if (listItem.UseCount > 0) {

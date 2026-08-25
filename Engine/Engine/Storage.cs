@@ -31,6 +31,8 @@ namespace Engine {
         const bool m_isAndroidPlatform = true;
 #endif
 
+        static Random m_random = new ();
+
         /// <summary>
         /// Content 加载回调
         /// 参数：ContentManager 中绝对路径
@@ -147,11 +149,77 @@ namespace Engine {
             stream.CopyTo(destination);
         }
 
+        /// <summary>
+        /// 移动文件<br/>
+        /// 建议改用更加安全的 MoveFileSafely 方法
+        /// </summary>
         public static void MoveFile(string sourcePath, string destinationPath) {
             string sourceFileName = ProcessPath(sourcePath, true, m_isAndroidPlatform);
             string text = ProcessPath(destinationPath, true, m_isAndroidPlatform);
             File.Delete(text);
             File.Move(sourceFileName, text);
+        }
+
+        public static void MoveFileSafely(string sourcePath, string destinationPath) {
+            sourcePath = ProcessPath(sourcePath, true, m_isAndroidPlatform);
+            destinationPath = ProcessPath(destinationPath, true, m_isAndroidPlatform);
+
+            string sourceFullPath = Path.GetFullPath(sourcePath);
+            string destinationFullPath = Path.GetFullPath(destinationPath);
+            StringComparison pathComparison = OperatingSystem.IsWindows()
+                ? StringComparison.OrdinalIgnoreCase
+                : StringComparison.Ordinal;
+            if (string.Equals(sourceFullPath, destinationFullPath, pathComparison)
+                && File.Exists(sourcePath)) {
+                return;
+            }
+
+            if (File.Exists(destinationPath)) {
+                string backupPath = destinationPath + m_random.UInt();
+                while (File.Exists(backupPath)) {
+                    backupPath = destinationPath + m_random.UInt();
+                }
+
+                File.Move(destinationPath, backupPath);
+                try {
+                    File.Move(sourcePath, destinationPath);
+                }
+                catch {
+                    try {
+                        if (!File.Exists(destinationPath) && File.Exists(backupPath)) {
+                            File.Move(backupPath, destinationPath);
+                        }
+                    }
+                    catch {
+                        // Preserve the original move exception. The backup remains available for recovery.
+                    }
+                    throw;
+                }
+
+                File.Delete(backupPath);
+            }
+            else {
+                File.Move(sourcePath, destinationPath);
+            }
+        }
+
+        /// <summary>
+        /// 将流追加到文件末尾。文件不存在时创建文件；不会自动创建父目录。
+        /// </summary>
+        public static void Append(string path, Stream source) {
+            ArgumentNullException.ThrowIfNull(source);
+            using Stream destination = OpenFile(path, OpenFileMode.CreateOrOpen);
+            destination.Seek(0L, SeekOrigin.End);
+            source.CopyTo(destination);
+        }
+
+        /// <summary>
+        /// 将字节追加到文件末尾。文件不存在时创建文件；不会自动创建父目录。
+        /// </summary>
+        public static void Append(string path, byte[] bytes) {
+            ArgumentNullException.ThrowIfNull(bytes);
+            using MemoryStream source = new(bytes, writable: false);
+            Append(path, source);
         }
 
         public static void CreateDirectory(string path) {
