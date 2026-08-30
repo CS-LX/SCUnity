@@ -33,6 +33,11 @@ namespace Game {
             set => m_labelWidget.TextAnchor = value;
         }
 
+        public TextOrientation TextOrientation {
+            get => m_labelWidget.TextOrientation;
+            set => m_labelWidget.TextOrientation = value;
+        }
+
         public BitmapFont Font {
             get => m_labelWidget.Font;
             set => m_labelWidget.Font = value;
@@ -46,6 +51,16 @@ namespace Game {
         public bool DropShadow {
             get => m_labelWidget.DropShadow;
             set => m_labelWidget.DropShadow = value;
+        }
+
+        public bool WordWrap {
+            get => m_labelWidget.WordWrap;
+            set => m_labelWidget.WordWrap = value;
+        }
+
+        public bool Ellipsis {
+            get => m_labelWidget.Ellipsis;
+            set => m_labelWidget.Ellipsis = value;
         }
 
         public string Url { get; set; }

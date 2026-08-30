@@ -221,6 +221,43 @@ namespace Game {
 
         public float CalculateLineHeight() => (Font.GlyphHeight + Font.Spacing.Y + FontSpacing.Y) * FontScale * Font.Scale;
 
+        // 在 text 的前 fitCount 个字符超出可用宽度时，寻找合适的换行位置（返回值为换行点，即下一行首字符下标）。
+        // 拉丁文本按原有规则回退到最近的空白或标点处；CJK 文本字间即可断行，并遵守行首/行尾禁则
+        public static int FindLineBreakPosition(string text, int fitCount) {
+            if (CanBreakBeforeCjk(text, fitCount)) {
+                return fitCount;
+            }
+            int index = fitCount - 2;
+            while (index >= 0
+                && !char.IsWhiteSpace(text[index])
+                && !char.IsPunctuation(text[index])
+                && !CanBreakBeforeCjk(text, index + 1)) {
+                index--;
+            }
+            return index < 0 ? fitCount - 1 : index + 1;
+        }
+
+        // 判断是否可以在 text 的 position 处（下一行首字符下标）断行：下一行首字符须为 CJK 字符，
+        // 且不是行首禁则标点（如 ，。」…），其前一字符也不是行尾禁则标点（如 （「“）
+        public static bool CanBreakBeforeCjk(string text, int position) {
+            if (position <= 0 || position >= text.Length) {
+                return false;
+            }
+            char next = text[position];
+            char previous = text[position - 1];
+            return IsCjkChar(next)
+                && !IsCjkForbiddenLineStart(next)
+                && !IsCjkForbiddenLineEnd(previous);
+        }
+
+        public static bool IsCjkChar(char c) => c is >= '\u2e80' and <= '\u9fff' // 部首、假名、注音、CJK 统一表意文字
+            or >= '\uac00' and <= '\ud7af' // 谚文
+            or >= '\uf900' and <= '\ufaff'; // CJK 兼容表意文字
+
+        public static bool IsCjkForbiddenLineStart(char c) => "、。，．：；？！〉》」』】〕）｝ー・»”’‥…,:;!?)]}".Contains(c);
+
+        public static bool IsCjkForbiddenLineEnd(char c) => "（《「『〈【〔｛“‘([{".Contains(c);
+
         public virtual void UpdateLines(float availableWidth, float availableHeight) {
             if (m_linesAvailableHeight.HasValue
                 && m_linesAvailableHeight == availableHeight
@@ -258,17 +295,7 @@ namespace Game {
                             num4 = MathUtils.Max(num4, 1);
                             flag = false;
                             if (num4 < text2.Length) {
-                                int num5 = num4;
-                                int num6 = num5 - 2;
-                                while (num6 >= 0
-                                    && !char.IsWhiteSpace(text2[num6])
-                                    && !char.IsPunctuation(text2[num6])) {
-                                    num6--;
-                                }
-                                if (num6 < 0) {
-                                    num6 = num5 - 1;
-                                }
-                                num4 = num6 + 1;
+                                num4 = FindLineBreakPosition(text2, num4);
                             }
                         }
                         string text3;

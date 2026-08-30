@@ -555,10 +555,11 @@ namespace Game {
                     }
                     else {
                         PropertyInfo propertyInfo = runtimeProperties.FirstOrDefault(pi => pi.Name == attribute.Name.LocalName);
-                        if (!(propertyInfo != null)) {
-                            throw new InvalidOperationException(
+                        if (propertyInfo == null) {
+                            Log.Warning(
                                 $"Property \"{attribute.Name.LocalName}\" not found in widget of type \"{GetType().FullName}\"."
                             );
+                            continue;
                         }
                         if (attribute.Value.StartsWith('{')
                             && attribute.Value.EndsWith('}')) {
