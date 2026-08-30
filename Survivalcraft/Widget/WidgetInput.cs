@@ -89,6 +89,8 @@ namespace Game {
 
         public Vector3? Scroll { get; set; }
 
+        public float? ScrollX { get; set; }
+
         public Key? LastKey {
             get {
                 if (m_isCleared) {
@@ -222,6 +224,16 @@ namespace Game {
                     if (((uint)Devices & (uint)(64 << i)) != 0u) {
                         return MultiMouse.MouseWheelMovement(i);
                     }
+                }
+                return 0;
+            }
+        }
+
+        public int MouseWheelMovementX {
+            get {
+                if (!m_isCleared
+                    && (Devices & WidgetInputDevice.Mouse) != WidgetInputDevice.None) {
+                    return Mouse.MouseWheelMovementX;
                 }
                 return 0;
             }
@@ -745,6 +757,7 @@ namespace Game {
             Hold = null;
             HoldTime = 0f;
             Scroll = null;
+            ScrollX = null;
         }
 
         public virtual void UpdateInputFromKeyboard() {
@@ -807,6 +820,9 @@ namespace Game {
                 }
                 if (MouseWheelMovement != 0) {
                     Scroll = new Vector3(value, MouseWheelMovement / 120f);
+                }
+                if (MouseWheelMovementX != 0) {
+                    ScrollX = MouseWheelMovementX / 120f;
                 }
                 if (m_mouseHoldInProgress && m_mouseDownPoint.HasValue) {
                     Hold = m_mouseDownPoint.Value;

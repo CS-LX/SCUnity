@@ -122,7 +122,8 @@ namespace Engine.Browser {
                     Mouse.m_queuedMouseMovement += new Vector2(e->X, e->Y);
                     break;
                 case InputEventType.MouseWheel:
-                    Mouse.m_queuedMouseWheelMovement -= (e->Y);
+                    Mouse.m_queuedMouseWheelMovement -= e->Y;
+                    Mouse.m_queuedMouseWheelMovementX += e->X;
                     break;
                 case InputEventType.TouchDown:
                     Touch.ProcessTouchPressed(e->Header.Param, new Point2((int)e->X, (int)e->Y));

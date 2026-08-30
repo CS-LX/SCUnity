@@ -26,16 +26,15 @@ namespace Engine.Input {
         }
 
         public static ConcurrentQueue<MouseButtonInfo> m_cachedMouseButtonEvents = [];
-
         static Vector2 m_queuedMouseMovement;
-
         static float m_queuedMouseWheelMovement;
-
+        static float m_queuedMouseWheelMovementX;
         static bool m_pointerCaptureRequested;
 #elif BROWSER
         internal static Point2 m_currentMousePosition;
         internal static Vector2 m_queuedMouseMovement;
         internal static float m_queuedMouseWheelMovement;
+        internal static float m_queuedMouseWheelMovementX;
         static bool m_pointerCaptureRequested;
 #elif !IOS
         public static IMouse m_mouse;
@@ -54,7 +53,15 @@ namespace Engine.Input {
 
         public static Point2 MouseMovement { get; private set; }
 
+        /// <summary>
+        /// 鼠标滚轮纵向滚动
+        /// </summary>
         public static int MouseWheelMovement { get; private set; }
+
+        /// <summary>
+        /// 鼠标滚轮横向滚动
+        /// </summary>
+        public static int MouseWheelMovementX { get; private set; }
 
         public static Point2? MousePosition { get; private set; }
 
@@ -117,6 +124,8 @@ namespace Engine.Input {
             }
             MouseWheelMovement = (int)MathUtils.Round(m_queuedMouseWheelMovement) * 120;
             m_queuedMouseWheelMovement = 0f;
+            MouseWheelMovementX = (int)MathUtils.Round(m_queuedMouseWheelMovementX) * 120;
+            m_queuedMouseWheelMovementX = 0f;
             while (!m_cachedMouseButtonEvents.IsEmpty) {
                 if (m_cachedMouseButtonEvents.TryDequeue(out MouseButtonInfo buttonInfo)) {
                     if (buttonInfo.Press) {
@@ -158,6 +167,8 @@ namespace Engine.Input {
             }
             MouseWheelMovement = (int)MathUtils.Round(m_queuedMouseWheelMovement) * 120;
             m_queuedMouseWheelMovement = 0f;
+            MouseWheelMovementX = (int)MathUtils.Round(m_queuedMouseWheelMovementX) * 120;
+            m_queuedMouseWheelMovementX = 0f;
 #elif !IOS
             if (Window.IsActive) {
                 Point2 position = new((int)m_mouse.Position.X, (int)m_mouse.Position.Y);
@@ -209,8 +220,10 @@ namespace Engine.Input {
                 case MotionEventActions.PointerIdShift: {
                     for (int num2 = e.HistorySize - 1; num2 >= 0; num2--) {
                         m_queuedMouseWheelMovement += MathUtils.Sign(e.GetHistoricalAxisValue(Axis.Vscroll, num2));
+                        m_queuedMouseWheelMovementX += MathUtils.Sign(e.GetHistoricalAxisValue(Axis.Hscroll, num2));
                     }
                     m_queuedMouseWheelMovement += MathUtils.Sign(e.GetAxisValue(Axis.Vscroll));
+                    m_queuedMouseWheelMovementX += MathUtils.Sign(e.GetAxisValue(Axis.Hscroll));
                     break;
                 }
             }
@@ -278,7 +291,7 @@ namespace Engine.Input {
             ProcessMouseMove(new Point2((int)position.X, (int)position.Y));
         }
 
-        static void MouseWheelHandler(IMouse mouse, ScrollWheel scrollWheel) => ProcessMouseWheel(scrollWheel.Y);
+        static void MouseWheelHandler(IMouse mouse, ScrollWheel scrollWheel) => ProcessMouseWheelXY(new Vector2(scrollWheel.X, scrollWheel.Y));
 
         public static MouseButton TranslateMouseButton(Silk.NET.Input.MouseButton mouseButton) => mouseButton switch {
             Silk.NET.Input.MouseButton.Left => MouseButton.Left,
@@ -404,10 +417,19 @@ namespace Engine.Input {
             }
         }
 
+        [Obsolete("Use ProcessMouseWheelXY instead.")]
         public static void ProcessMouseWheel(float value) {
             if (Window.IsActive
                 && !Keyboard.IsKeyboardVisible) {
                 MouseWheelMovement += (int)(120 * value);
+            }
+        }
+
+        public static void ProcessMouseWheelXY(Vector2 value) {
+            if (Window.IsActive
+                && !Keyboard.IsKeyboardVisible) {
+                MouseWheelMovement += (int)(120 * value.Y);
+                MouseWheelMovementX += (int)(120 * value.X);
             }
         }
 
