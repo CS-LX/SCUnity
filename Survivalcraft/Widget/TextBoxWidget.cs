@@ -795,6 +795,27 @@ namespace Game {
         /// </summary>
         public bool DragStartedInsideTextBox { get; set; }
 
+        private string m_lastText;
+
+        private int m_lastCaret = -1;
+
+        /// <summary>
+        ///     <para>
+        ///         把屏幕坐标转换为 Update 内 CalculateClickedCharacterIndex 所使用的控件内文本坐标
+        ///         （补偿水平/垂直滚动与多行顶部对齐的绘制原点偏移）。
+        ///     </para>
+        ///     <para>
+        ///         Converts a screen position into the in-widget text coordinates expected by the
+        ///         CalculateClickedCharacterIndex local function of <see cref="Update" />
+        ///         (compensating horizontal/vertical scrolling and the multi-line top-aligned draw origin).
+        ///     </para>
+        /// </summary>
+        private Vector2 ScreenToTextPosition(Vector2 screenPosition) {
+            Vector2 position = ScreenToWidget(screenPosition) + new Vector2(Scroll, VerticalScroll);
+            position.Y -= GetTextDrawOriginY() - ActualSize.Y / 2f;
+            return position;
+        }
+
         public override void UpdateCeases() {
             if (HasFocus) {
                 CloseInputMethod();
@@ -830,7 +851,7 @@ namespace Game {
                     Caret = CalculateClickedCharacterIndex(
                         Font,
                         PasswordMode ? new string('*', Text.Length) : Text,
-                        ScreenToWidget(Input.Click.Value.Start) + new Vector2(Scroll, 0),
+                        ScreenToTextPosition(Input.Click.Value.Start),
                         FontScale,
                         FontSpacing,
                         ActualSize
@@ -849,6 +870,11 @@ namespace Game {
                 && HitTestGlobal(Input.MousePosition.Value) == this) {
                 float scroll = Input.Scroll.Value.X * Input.Scroll.Value.Z / 92;
                 Scroll -= scroll;
+                if (GetMaxVerticalScroll() > 0f) {
+                    // 多行（可垂直滚动）状态下滚轮改为纵向滚动；单行状态保持横向滚动。
+                    VerticalScroll -= 40f * Input.Scroll.Value.Z;
+                    LimitVerticalScrollValue();
+                }
             }
             if (Input.Drag.HasValue) {
                 if (DragStartTime < 0) {
@@ -862,7 +888,7 @@ namespace Game {
                         Caret = CalculateClickedCharacterIndex(
                             Font,
                             PasswordMode ? new string('*', Text.Length) : Text,
-                            ScreenToWidget(Input.Drag.Value) + new Vector2(Scroll, 0),
+                            ScreenToTextPosition(Input.Drag.Value),
                             FontScale,
                             FontSpacing,
                             ActualSize
@@ -880,7 +906,7 @@ namespace Game {
                     int caret2 = CalculateClickedCharacterIndex(
                         Font,
                         PasswordMode ? new string('*', Text.Length) : Text,
-                        ScreenToWidget(Input.Drag.Value) + new Vector2(Scroll, 0),
+                        ScreenToTextPosition(Input.Drag.Value),
                         FontScale,
                         FontSpacing,
                         ActualSize
@@ -1017,6 +1043,14 @@ namespace Game {
                         EnterText(ClipboardManager.ClipboardString);
                     }
                 }
+            }
+
+            // 文本或光标变化后滚动到光标可见的位置。
+            // 放在 Update 末尾按帧比对而非 setter 中触发：setter 阶段布局尺寸（ActualSize）可能尚未就绪。
+            if (!string.Equals(Text, m_lastText, StringComparison.Ordinal) || Caret != m_lastCaret) {
+                EnsureCaretVisible();
+                m_lastText = Text;
+                m_lastCaret = Caret;
             }
             return;
 #endif
@@ -1267,6 +1301,30 @@ namespace Game {
         }
 
         /// <summary>
+        ///     <para>
+        ///         垂直滚动偏移量（像素）。文本总高度超过 <see cref="Widget.ActualSize" />.Y 时生效，
+        ///         单行文本框恒为 0，行为与旧版一致。
+        ///     </para>
+        ///     <para>
+        ///         Vertical scroll offset (in pixels). Takes effect when the total text height exceeds
+        ///         <see cref="Widget.ActualSize" />.Y; single-line text boxes keep it at 0 and behave as before.
+        ///     </para>
+        /// </summary>
+        public float VerticalScroll { get; set; }
+
+        /// <summary>
+        ///     <para>
+        ///         多行（可垂直滚动）状态下的顶部内边距，同时参与垂直滚动范围与点击定位的计算；
+        ///         单行（不可垂直滚动）状态下不生效。
+        ///     </para>
+        ///     <para>
+        ///         Top padding used in the multi-line (vertically scrollable) state; participates in
+        ///         the vertical scroll range and click hit-testing. Not applied in the single-line state.
+        ///     </para>
+        /// </summary>
+        public float VerticalPadding { get; set; }
+
+        /// <summary>
         ///     限制 <see cref="Scroll" /> 属性的值。
         /// </summary>
         public void LimitScrollValue() {
@@ -1283,6 +1341,86 @@ namespace Game {
                     TasksQueue.Enqueue(new SetCursorPositionTask());
                 }
             }
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         单行文本的高度（字形高×字体缩放×控件缩放 + 垂直间距）。
+        ///     </para>
+        ///     <para>
+        ///         Height of a single text line (glyph height × font scale × widget scale + vertical spacing).
+        ///     </para>
+        /// </summary>
+        public float GetLineHeight() {
+            return Font.GlyphHeight * Font.Scale * FontScale + FontSpacing.Y;
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         垂直滚动的最大偏移量；小于等于 0 表示内容未超出控件，处于单行（不可垂直滚动）状态。
+        ///     </para>
+        ///     <para>
+        ///         Maximum vertical scroll offset; values &lt;= 0 mean the content fits the widget,
+        ///         i.e. the single-line (not vertically scrollable) state.
+        ///     </para>
+        /// </summary>
+        public float GetMaxVerticalScroll() {
+            int lineCount = Math.Max(1, Text.Count(c => c == '\n') + 1);
+            return Math.Max(0f, VerticalPadding * 2f + lineCount * GetLineHeight() - ActualSize.Y);
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         限制 <see cref="VerticalScroll" /> 属性的值。
+        ///     </para>
+        ///     <para>
+        ///         Clamps the <see cref="VerticalScroll" /> property value.
+        ///     </para>
+        /// </summary>
+        public void LimitVerticalScrollValue() {
+            VerticalScroll = Math.Clamp(VerticalScroll, 0f, GetMaxVerticalScroll());
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         首行文本中心的 Y 坐标（控件空间）。可垂直滚动时从顶部内边距开始排布，否则垂直居中。
+        ///     </para>
+        ///     <para>
+        ///         Y coordinate of the first text line's center (widget space). Vertically scrollable
+        ///         content is laid out from the top padding; otherwise it is vertically centered.
+        ///     </para>
+        /// </summary>
+        public float GetTextDrawOriginY() {
+            return GetMaxVerticalScroll() > 0f
+                ? VerticalPadding + GetLineHeight() / 2f
+                : ActualSize.Y / 2f;
+        }
+
+        /// <summary>
+        ///     滚动 <see cref="VerticalScroll" />，使 <see cref="Caret" /> 所在行保持可见。
+        /// </summary>
+        public void EnsureCaretVisible() {
+            int line = GetCaretLine();
+            float lineHeight = GetLineHeight();
+            float caretTop = VerticalPadding + line * lineHeight;
+            float caretBottom = caretTop + lineHeight;
+            if (caretTop < VerticalScroll) {
+                VerticalScroll = caretTop;
+            }
+            else if (caretBottom > VerticalScroll + ActualSize.Y) {
+                VerticalScroll = caretBottom - ActualSize.Y;
+            }
+            LimitVerticalScrollValue();
+        }
+
+        private int GetCaretLine() {
+            int line = 0;
+            for (int i = 0; i < Math.Min(Caret, Text.Length); i++) {
+                if (Text[i] == '\n') {
+                    line++;
+                }
+            }
+            return line;
         }
 
         /// <summary>
@@ -1715,7 +1853,8 @@ namespace Game {
             }
             FlatBatch2D flatBatch = dc.PrimitivesRenderer2D.FlatBatch(blendState: BlendState.NonPremultiplied);
             FlatBatch2D outlineFlatBatch = dc.PrimitivesRenderer2D.FlatBatch(1);
-            Vector2 currentDrawPosition = (0, ActualSize.Y / 2);
+            // 可垂直滚动（多行）时从顶部内边距开始排布；否则保持原有的垂直居中。
+            Vector2 currentDrawPosition = (0, GetTextDrawOriginY());
             List<TextDrawItem> drawItems = new(3);
             FontBatch2D fontBatch = dc.PrimitivesRenderer2D.FontBatch(Font);
             FlatBatch2D underlineFlatBatch = dc.PrimitivesRenderer2D.FlatBatch(1);
@@ -1808,7 +1947,7 @@ namespace Game {
             foreach (TextDrawItem drawItem in drawItems) {
                 drawItem.Draw(ref currentDrawPosition);
             }
-            Matrix scrollTransform = Matrix.CreateTranslation(new Vector3(-Scroll, 0, 0));
+            Matrix scrollTransform = Matrix.CreateTranslation(new Vector3(-Scroll, -VerticalScroll, 0f));
             flatBatch.TransformTriangles(scrollTransform);
             fontBatch.TransformTriangles(scrollTransform);
             underlineFlatBatch.TransformLines(scrollTransform);
