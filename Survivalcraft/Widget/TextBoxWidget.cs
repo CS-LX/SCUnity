@@ -54,14 +54,7 @@ namespace Game {
             set {
                 if (field != value
                     && value != null) {
-                    if (value.StartsWith('[')
-                        && value.EndsWith(']')) {
-                        string[] xp = value.Substring(1, value.Length - 2).Split(':');
-                        field = xp.Length == 2 ? LanguageControl.GetContentWidgets(xp[0], xp[1]) : LanguageControl.Get("Usual", value);
-                    }
-                    else {
-                        field = value;
-                    }
+                    field = GetLocalizedText(value);
                 }
             }
         }
@@ -85,14 +78,7 @@ namespace Game {
             set {
                 if (field != value
                     && value != null) {
-                    if (value.StartsWith('[')
-                        && value.EndsWith(']')) {
-                        string[] xp = value.Substring(1, value.Length - 2).Split(':');
-                        field = xp.Length == 2 ? LanguageControl.GetContentWidgets(xp[0], xp[1]) : LanguageControl.Get("Usual", value);
-                    }
-                    else {
-                        field = value;
-                    }
+                    field = GetLocalizedText(value);
                 }
             }
         }
@@ -390,7 +376,7 @@ namespace Game {
                         TasksQueue.Enqueue(new SetCursorPositionTask());
                     }
                 }
-                else {
+                else if (FocusedTextBox == this) {
                     FocusedTextBox = null;
                 }
                 if (originValue && !value) {
@@ -400,6 +386,23 @@ namespace Game {
                     OnFocus?.Invoke(this);
                 }
             }
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         解析 “[Content:Name]” 形式的本地化文本，非该格式时原样返回。
+        ///     </para>
+        ///     <para>
+        ///         Resolves localized text in the “[Content:Name]” form, returns it as is otherwise.
+        ///     </para>
+        /// </summary>
+        private static string GetLocalizedText(string value) {
+            if (value.StartsWith('[')
+                && value.EndsWith(']')) {
+                string[] xp = value.Substring(1, value.Length - 2).Split(':');
+                return xp.Length == 2 ? LanguageControl.GetContentWidgets(xp[0], xp[1]) : LanguageControl.Get("Usual", value);
+            }
+            return value;
         }
 
         /// <summary>
@@ -484,8 +487,10 @@ namespace Game {
                 else {
                     str = value.ToString();
                 }
-                if (str.Length + Text.Length > MaximumLength) {
-                    str = str[..(MaximumLength - Text.Length)];
+                // 覆盖范围不得超出文本末尾（光标可位于末尾，此时无字符可覆盖）。
+                int maxOverwriteLength = Math.Max(0, Math.Min(MaximumLength - Text.Length, Text.Length - position));
+                if (str.Length > maxOverwriteLength) {
+                    str = str[..maxOverwriteLength];
                 }
                 Text = Text.Remove(position, str.Length);
                 Text = Text.Insert(position, str);
@@ -542,6 +547,10 @@ namespace Game {
         ///     </para>
         /// </summary>
         public void EnterText(string value) {
+            // 先删除选区，使光标落在选区起点，后续插入从光标处开始。
+            if (SelectionLength != 0) {
+                DeleteSelection();
+            }
             EnterText(value, Caret);
         }
 
@@ -706,7 +715,7 @@ namespace Game {
                         break;
                     }
                     case (char)1: {
-                        // Ctrl + V
+                        // Ctrl + A
                         if (FocusedTextBox == null) {
                             break;
                         }
@@ -865,15 +874,18 @@ namespace Game {
                 SelectionLength = 0;
             }
 #if !ANDROID
-            if (Input.Scroll.HasValue
-                && Input.MousePosition.HasValue
+            if (Input.MousePosition.HasValue
                 && HitTestGlobal(Input.MousePosition.Value) == this) {
-                float scroll = Input.Scroll.Value.X * Input.Scroll.Value.Z / 92;
-                Scroll -= scroll;
                 if (GetMaxVerticalScroll() > 0f) {
-                    // 多行（可垂直滚动）状态下滚轮改为纵向滚动；单行状态保持横向滚动。
-                    VerticalScroll -= 40f * Input.Scroll.Value.Z;
-                    LimitVerticalScrollValue();
+                    // 多行（可垂直滚动）状态下滚轮改为纵向滚动。
+                    if (Input.Scroll.HasValue) {
+                        VerticalScroll -= 40f * Input.Scroll.Value.Z;
+                        LimitVerticalScrollValue();
+                    }
+                }
+                else if (Input.ScrollX.HasValue) {
+                    // 单行状态下滚轮横向滚动（正值向右）。
+                    Scroll += Input.ScrollX.Value * 40f;
                 }
             }
             if (Input.Drag.HasValue) {
@@ -988,8 +1000,9 @@ namespace Game {
             // 如果输入法已开启，就跳过。
             if (!InputMethodEnabled && HasFocus) {
                 // 处理 BackSpace 键。
+                // 注意不要把 Delete 键混入此条件，否则与上方的 Delete 键处理在同帧各删一个字符。
                 if (Caret != 0
-                    && (Keyboard.IsKeyDownRepeat(Key.Delete) || Keyboard.IsKeyDownRepeat(Key.BackSpace))) {
+                    && Keyboard.IsKeyDownRepeat(Key.BackSpace)) {
                     if (Keyboard.IsKeyDown(Key.Control)) {
                         BackSpace(count: -1, character: Text[Caret - 1]);
                     }
@@ -1022,7 +1035,8 @@ namespace Game {
                 }
                 List<TextBoxWidget> textBoxes = FindTextBoxWidgets(rootWidget);
                 int thisIndex = textBoxes.IndexOf(this);
-                FocusedTextBox = textBoxes[(thisIndex + 1) % textBoxes.Count];
+                // 通过 HasFocus 属性切换焦点，确保 FocusLost/OnFocus 事件与输入法状态正确更新。
+                textBoxes[(thisIndex + 1) % textBoxes.Count].HasFocus = true;
             }
             if (HasFocus
                 && SelectionLength != 0
@@ -1087,10 +1101,12 @@ namespace Game {
                 float currentHeight = widgetActualSize.Y / 2f - font.LineHeight * scale / 2;
                 int i = 0;
                 while (currentHeight + font.LineHeight * scale + spacing.Y < clickPosition.Y) {
-                    i = text.IndexOf('\n', i) + 1;
-                    if (i == -1) {
+                    int nextLineStart = text.IndexOf('\n', i);
+                    if (nextLineStart == -1) {
+                        // 点击位置在所有行之下，光标置于文本末尾。
                         return text.Length;
                     }
+                    i = nextLineStart + 1;
                     currentHeight += font.LineHeight * scale + spacing.Y;
                 }
                 for (; i < text.Length; i++) {
@@ -1233,11 +1249,26 @@ namespace Game {
             get => m_maximumLinesCount;
             set {
                 if (value < 0) {
-                    throw new InvalidOperationException($"{nameof(MaximumLength)} 必须大于或等于 0.");
+                    throw new InvalidOperationException($"{nameof(MaximumLinesCount)} 必须大于或等于 0.");
                 }
                 if (m_maximumLinesCount > value) {
-                    if (Text.Sum(x => x == '\n' ? 1 : 0) > value) {
-                        Text = Text[..Text.IndexOf('\n', 0, value)];
+                    if (value == 0) {
+                        Text = string.Empty;
+                    }
+                    else if (Text.Count(c => c == '\n') > value) {
+                        // 截断至第 value 个换行符之前，保留前 value 行。
+                        int newlineCount = 0;
+                        int cutIndex = -1;
+                        for (int i = 0; i < Text.Length; i++) {
+                            if (Text[i] == '\n'
+                                && ++newlineCount == value) {
+                                cutIndex = i;
+                                break;
+                            }
+                        }
+                        if (cutIndex >= 0) {
+                            Text = Text[..cutIndex];
+                        }
                     }
                     Caret = Math.Clamp(Caret, 0, value);
                 }
@@ -1775,9 +1806,12 @@ namespace Game {
             );
 
             // 绘制候选词文字。
-            for (int i = CandidatesSelection / CandidatesPageSize; i < CandidatesSelection / CandidatesPageSize + CandidatesPageSize; i++) {
-                // 获取候选词文字，并在前面加上序号。
-                string candidate = $"{i + 1} {CandidatesList[i]}";
+            string[] candidates = CandidatesList;
+            int pageStart = CandidatesSelection / CandidatesPageSize * CandidatesPageSize;
+            for (int i = pageStart; i < pageStart + CandidatesPageSize
+                && i < candidates.Length; i++) {
+                // 获取候选词文字，并在前面加上每页内的序号。
+                string candidate = $"{i - pageStart + 1} {candidates[i]}";
 
                 // 遍历计算当前文本长度
                 float width = 0;
@@ -1904,7 +1938,7 @@ namespace Game {
                                 flatBatch,
                                 1,
                                 Font.GlyphHeight * FontScale * Font.Scale,
-                                CompositionText,
+                                CompositionText ?? "",
                                 CompositionTextCaret,
                                 Font,
                                 FontSpacing,
@@ -1931,8 +1965,8 @@ namespace Game {
                 else {
                     drawItems.Add(
                         new NormalDrawItem(
-                            textToDraw,
-                            charIndex,
+                            line,
+                            0,
                             line.Length,
                             fontBatch,
                             FontScale,
@@ -2057,8 +2091,9 @@ namespace Game {
 
             public override void Draw(ref Vector2 position) {
                 if (m_relativeCaretPosition < 0) {
-                    m_relativeCaretPosition = 0;
+                    // 起点为负时，先把负偏移并入选区长度，再把起点归零。
                     m_selectionLength += m_relativeCaretPosition;
+                    m_relativeCaretPosition = 0;
                 }
                 if (m_relativeCaretPosition + m_selectionLength + 1 > text.Length) {
                     m_selectionLength = text.Length - m_relativeCaretPosition;
