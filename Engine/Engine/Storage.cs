@@ -85,9 +85,10 @@ namespace Engine {
                 }
 #else
                 string fullPath = Path.GetFullPath(ProcessPath("data:", false, false));
-                if (fullPath.Length > 0) {
+                string rootPath = Path.GetPathRoot(fullPath);
+                if (!string.IsNullOrEmpty(rootPath)) {
                     try {
-                        return new DriveInfo(fullPath.Substring(0, 1)).AvailableFreeSpace;
+                        return new DriveInfo(rootPath).AvailableFreeSpace;
                     }
                     catch {
                         // ignored
