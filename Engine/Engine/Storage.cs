@@ -313,16 +313,33 @@ namespace Engine {
             return num >= 0 ? path.Substring(0, num).TrimEnd('/', '\\') : string.Empty;
         }
 
+        static string TrimTrailingSeparators(string path) {
+            int end = path.Length;
+            while (end > 0 && (path[end - 1] == '/' || path[end - 1] == '\\')) {
+                end--;
+            }
+            return path.Substring(0, end);
+        }
+
         public static string CombinePaths(params string[] paths) {
             StringBuilder stringBuilder = new();
             for (int i = 0; i < paths.Length; i++) {
-                if (paths[i].Length > 0) {
-                    stringBuilder.Append(paths[i]);
-                    if (i < paths.Length - 1
-                        && (stringBuilder.Length == 0 || stringBuilder[^1] != '/')) {
+                string path = paths[i] ?? throw new ArgumentException("paths");
+                string trimmed = TrimTrailingSeparators(path);
+                if (trimmed.Length == 0) {
+                    // 段为空:跳过;段原非空(全为分隔符)且输出为空时视为根
+                    if (path.Length > 0 && stringBuilder.Length == 0) {
                         stringBuilder.Append('/');
                     }
+                    continue;
                 }
+                if (stringBuilder.Length > 0) {
+                    if (stringBuilder[^1] != '/') {
+                        stringBuilder.Append('/');
+                    }
+                    trimmed = trimmed.TrimStart('/', '\\');
+                }
+                stringBuilder.Append(trimmed);
             }
             return stringBuilder.ToString();
         }
