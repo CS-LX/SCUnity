@@ -323,6 +323,7 @@ namespace Engine {
         }
 
         public static string CombinePaths(params string[] paths) {
+            ArgumentNullException.ThrowIfNull(paths);
             StringBuilder stringBuilder = new();
             for (int i = 0; i < paths.Length; i++) {
                 string path = paths[i] ?? throw new ArgumentException("paths");
