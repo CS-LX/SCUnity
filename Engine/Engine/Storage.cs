@@ -309,8 +309,8 @@ namespace Engine {
             if (string.IsNullOrEmpty(path)) {
                 return string.Empty;
             }
-            int num = path.LastIndexOf('/');
-            return num >= 0 ? path.Substring(0, num).TrimEnd('/') : string.Empty;
+            int num = Math.Max(path.LastIndexOf('/'), path.LastIndexOf('\\'));
+            return num >= 0 ? path.Substring(0, num).TrimEnd('/', '\\') : string.Empty;
         }
 
         public static string CombinePaths(params string[] paths) {
