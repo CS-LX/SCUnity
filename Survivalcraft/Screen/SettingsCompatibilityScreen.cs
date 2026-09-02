@@ -1,6 +1,5 @@
 using System.Xml.Linq;
 using Engine;
-using Engine.Graphics;
 #if !ANDROID
 #endif
 
@@ -126,7 +125,6 @@ namespace Game {
             if (m_forceThirtyTwoBitsIndexButton.IsClicked) {
                 m_descriptionLabel.Text = LanguageControl.Get(fName, "20");
                 SettingsManager.ForceThirtyTwoBitsIndexFormat = !SettingsManager.ForceThirtyTwoBitsIndexFormat;
-                IndexBuffer.ForceThirtyTwoBits = SettingsManager.ForceThirtyTwoBitsIndexFormat;
             }
             if (m_resetDefaultsButton.IsClicked) {
                 SettingsManager.MultithreadedTerrainUpdate = true;

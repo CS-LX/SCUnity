@@ -58,18 +58,20 @@ namespace Engine.Graphics {
                 UploadDirect(source, sourceStartIndex, sourceCount, targetStartIndex);
                 return;
             }
-            if (typeof(T) == typeof(int) && size == 2) {
-                // int 索引写入 16 位缓冲：收窄并检查溢出，全部校验通过才写 GPU，失败时缓冲内容不受影响
+            if ((typeof(T) == typeof(int) || typeof(T) == typeof(uint)) && size == 2) {
+                // 有符号/无符号 32 位索引写入 16 位缓冲：收窄并检查溢出，全部校验通过才写 GPU，失败时缓冲内容不受影响
                 if (targetStartIndex + sourceCount > IndicesCount) {
                     throw new ArgumentException("Range is out of target bounds.");
                 }
                 var converted = new ushort[sourceCount];
                 for (int i = 0; i < sourceCount; i++) {
-                    int value = Unsafe.As<T, int>(ref source[sourceStartIndex + i]);
+                    long value = typeof(T) == typeof(int)
+                        ? Unsafe.As<T, int>(ref source[sourceStartIndex + i])
+                        : Unsafe.As<T, uint>(ref source[sourceStartIndex + i]);
                     if (value < 0
                         || value > 65535) {
                         throw new OverflowException(
-                            $"Index value {value} at position {sourceStartIndex + i} does not fit in a SixteenBits index buffer."
+                            $"Index value {value} at position {sourceStartIndex + i} does not fit in a {IndexFormat} index buffer."
                         );
                     }
                     converted[i] = (ushort)value;
@@ -90,7 +92,7 @@ namespace Engine.Graphics {
                 return;
             }
             throw new InvalidOperationException(
-                $"Cannot upload an array of {typeof(T).Name} into an index buffer with format {IndexFormat}."
+                $"Cannot upload an array of {typeof(T).Name} into a {IndexFormat} index buffer."
             );
         }
 

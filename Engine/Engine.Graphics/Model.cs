@@ -376,13 +376,20 @@ namespace Engine.Graphics {
                 int indexCount = modelBuffersData.Indices.Length / 4;
                 array2[i] = new IndexBuffer(IndexBuffer.FormatForVertexCount(vertexCount), indexCount);
                 if (array2[i].IndexFormat == IndexFormat.SixteenBits) {
-                    // 16 位缓冲：将 4 字节小端索引流收窄为 ushort 上传；顶点数不超过 65535 时索引值必然合法
+                    // 16 位缓冲：将 4 字节小端索引流收窄为 ushort 上传，畸形索引（超出 16 位范围）直接报错而非静默回绕
                     var indices16 = new ushort[indexCount];
                     for (int j = 0; j < indexCount; j++) {
-                        indices16[j] = (ushort)(modelBuffersData.Indices[j * 4]
+                        int value = modelBuffersData.Indices[j * 4]
                             | (modelBuffersData.Indices[j * 4 + 1] << 8)
                             | (modelBuffersData.Indices[j * 4 + 2] << 16)
-                            | (modelBuffersData.Indices[j * 4 + 3] << 24));
+                            | (modelBuffersData.Indices[j * 4 + 3] << 24);
+                        if (value < 0
+                            || value > 65535) {
+                            throw new OverflowException(
+                                $"Index value {value} at position {j} does not fit in a SixteenBits index buffer."
+                            );
+                        }
+                        indices16[j] = (ushort)value;
                     }
                     array2[i].SetData(indices16, 0, indexCount);
                 }

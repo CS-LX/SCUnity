@@ -453,7 +453,8 @@ namespace Game {
         public static void ShiftIndices(int[] source, ushort[] destination, int shift, int count) {
             for (int i = 0; i < count; i++) {
                 int num = source[i] + shift;
-                if (num > 65535) {
+                if (num < 0
+                    || num > 65535) {
                     throw new OverflowException($"Shifted index value {num} does not fit in a SixteenBits index buffer.");
                 }
                 destination[i] = (ushort)num;

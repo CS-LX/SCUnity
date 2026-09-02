@@ -1293,7 +1293,6 @@
     "3": "After enabling safe mode, API will stop loading any mod.",
     "4": "Restart game to take effect ",
     "5": "Please open Console in the browser DevTools manually.",
-    "19": "Force 32-bit indices:",
     "20": "When enabled, all index buffers use the 32-bit format (legacy behavior) for compatibility with mods that rely on 32-bit indices, at the cost of increased index bandwidth. Restart the game to take effect."
   },
   "JsInterface": {
@@ -3388,7 +3387,8 @@
       "15": "Share Log File",
       "16": "Safe Mode",
       "17": "Mod Compatibility:",
-      "18": "Manage Class Replacement"
+      "18": "Manage Class Replacement",
+      "19": "Force 32-bit indices:"
     },
     "SettingsControlsScreen": [
       "Adjust Controls Settings",
