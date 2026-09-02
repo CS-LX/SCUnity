@@ -372,10 +372,26 @@ namespace Engine.Graphics {
                     modelBuffersData.Vertices.Length / modelBuffersData.VertexDeclaration.VertexStride
                 );
                 array[i].SetData(modelBuffersData.Vertices, 0, modelBuffersData.Vertices.Length);
-                array2[i] = new IndexBuffer(IndexFormat.ThirtyTwoBits, modelBuffersData.Indices.Length / 4);
-                array2[i].SetData(modelBuffersData.Indices, 0, modelBuffersData.Indices.Length);
+                int vertexCount = modelBuffersData.Vertices.Length / modelBuffersData.VertexDeclaration.VertexStride;
+                int indexCount = modelBuffersData.Indices.Length / 4;
+                array2[i] = new IndexBuffer(IndexBuffer.FormatForVertexCount(vertexCount), indexCount);
+                if (array2[i].IndexFormat == IndexFormat.SixteenBits) {
+                    // 16 位缓冲：将 4 字节小端索引流收窄为 ushort 上传；顶点数不超过 65535 时索引值必然合法
+                    var indices16 = new ushort[indexCount];
+                    for (int j = 0; j < indexCount; j++) {
+                        indices16[j] = (ushort)(modelBuffersData.Indices[j * 4]
+                            | (modelBuffersData.Indices[j * 4 + 1] << 8)
+                            | (modelBuffersData.Indices[j * 4 + 2] << 16)
+                            | (modelBuffersData.Indices[j * 4 + 3] << 24));
+                    }
+                    array2[i].SetData(indices16, 0, indexCount);
+                }
+                else {
+                    array2[i].SetData(modelBuffersData.Indices, 0, modelBuffersData.Indices.Length);
+                }
                 if (keepSourceVertexDataInTags) {
                     array[i].Tag = modelBuffersData.Vertices;
+                    // Tag 保持原始 int 字节流，与 GPU 格式无关，GetIndexData<int> 读回语义不变
                     array2[i].Tag = modelBuffersData.Indices;
                 }
             }
