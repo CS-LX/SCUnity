@@ -9,6 +9,9 @@ using System.Runtime.InteropServices;
 #if DEBUG && !IOS
 using System.Runtime.InteropServices;
 #endif
+#if WINDOWS && !DEBUG
+using System.Runtime.InteropServices;
+#endif
 
 namespace Engine.Graphics {
     public static class GLWrapper {
@@ -79,6 +82,19 @@ namespace Engine.Graphics {
 #elif WINDOWS
             if (UsingAngle) {
                 try {
+                    // libEGL 初始化时会自行加载 libGLESv2，缺失时 libEGL 会在原生侧直接终止进程，
+                    // 托管代码无法拦截。且按裸文件名加载可能命中 PATH 上其他程序（如 VR 运行时）
+                    // 携带的同名异版 ANGLE DLL，导致 libEGL 在游戏目录找不到配套 libGLESv2 而终止。
+                    // 因此用绝对路径锁定游戏目录预加载，预加载后模块按文件名驻留进程，
+                    // libEGL 内部与后续 DllImport 都会命中这份。
+                    if (!NativeLibrary.TryLoad(Path.Combine(AppContext.BaseDirectory, "libGLESv2.dll"), out _)
+                        || !NativeLibrary.TryLoad(Path.Combine(AppContext.BaseDirectory, "libEGL.dll"), out _)) {
+                        Log.Error("Failed to load ANGLE libraries (libEGL.dll / libGLESv2.dll) from the game directory");
+                        ShowAngleFatalError(
+                            "Failed to load \"libEGL.dll\" / \"libGLESv2.dll\" from the game directory. The game directory may be incomplete, or your antivirus software may have removed the files."
+                            + "\n从游戏目录加载 libEGL.dll / libGLESv2.dll 失败，游戏目录可能不完整，或文件已被杀毒软件删除。"
+                            + AngleMarkerHint());
+                    }
                     IntPtr hwnd = Window.Handle;
                     if (hwnd == IntPtr.Zero) {
                         throw new Exception("Failed to get window handle");
@@ -90,17 +106,10 @@ namespace Engine.Graphics {
                     // InitializeAll 会吞掉所有异常，ANGLE 失败必须在这里直接弹窗退出，
                     // 否则游戏会带着空的 GL 状态继续运行。
                     Log.Error($"Failed to initialize ANGLE: {ex}");
-                    // 标记文件会把后续启动固定在 ANGLE 模式，若该模式因 DLL 缺失等原因不可用，
-                    // 必须告诉用户删除标记文件即可恢复原生模式，否则游戏无法启动。
-                    string hint = File.Exists(AngleMarkerPath)
-                        ? "\nIf the problem persists, delete the \"UsingAngle\" file in the game directory and restart the game.\n如果问题持续，可删除游戏目录下的 UsingAngle 文件后重新启动游戏。"
-                        : string.Empty;
-                    string str =
+                    ShowAngleFatalError(
                         "Failed to initialize the ANGLE-based compatible mode. Please try updating your graphics card driver."
-                        + hint
-                        + "\nANGLE 兼容模式初始化失败，请尝试更新显卡驱动。" + hint;
-                    Window.MessageBox(IntPtr.Zero, str, null, 0x10u);
-                    Environment.Exit(1);
+                        + "\nANGLE 兼容模式初始化失败，请尝试更新显卡驱动。"
+                        + AngleMarkerHint());
                 }
             }
             else {
@@ -200,6 +209,23 @@ namespace Engine.Graphics {
 
 #if WINDOWS
         static string AngleMarkerPath => Path.Combine(AppContext.BaseDirectory, "UsingAngle");
+
+        /// <summary>
+        /// 标记文件存在时给出删除指引，用户删掉即可恢复原生模式，避免游戏无法启动
+        /// </summary>
+        static string AngleMarkerHint() {
+            return File.Exists(AngleMarkerPath)
+                ? "\nIf the problem persists, delete the \"UsingAngle\" file in the game directory and restart the game.\n如果问题持续，可删除游戏目录下的 UsingAngle 文件后重新启动游戏。"
+                : string.Empty;
+        }
+
+        /// <summary>
+        /// ANGLE 致命错误统一出口：InitializeAll 会吞掉所有异常，必须在弹窗告知用户后退出进程
+        /// </summary>
+        static void ShowAngleFatalError(string str) {
+            Window.MessageBox(IntPtr.Zero, str, null, 0x10u);
+            Environment.Exit(1);
+        }
 
         /// <summary>
         /// 启动时读取游戏目录的 UsingAngle 标记文件，存在则直接使用 ANGLE 兼容模式；删除该文件即重置为自动检测
