@@ -285,7 +285,7 @@ namespace Game {
 
             InstancedModelData data = new() {
                 VertexBuffer = new VertexBuffer(InstancedModelData.VertexDeclaration, vertices.Count),
-                IndexBuffer = new IndexBuffer(IndexFormat.ThirtyTwoBits, indices.Count)
+                IndexBuffer = new IndexBuffer(IndexBuffer.FormatForVertexCount(vertices.Count), indices.Count)
             };
             data.VertexBuffer.SetData(vertices.Array, 0, vertices.Count);
             data.IndexBuffer.SetData(indices.Array, 0, indices.Count);
@@ -351,7 +351,7 @@ namespace Game {
             }
             InstancedModelData instancedModelData = new() {
                 VertexBuffer = new VertexBuffer(InstancedModelData.VertexDeclaration, dynamicArray.Count),
-                IndexBuffer = new IndexBuffer(IndexFormat.ThirtyTwoBits, dynamicArray2.Count)
+                IndexBuffer = new IndexBuffer(IndexBuffer.FormatForVertexCount(dynamicArray.Count), dynamicArray2.Count)
             };
             instancedModelData.VertexBuffer.SetData(dynamicArray.Array, 0, dynamicArray.Count);
             instancedModelData.IndexBuffer.SetData(dynamicArray2.Array, 0, dynamicArray2.Count);
