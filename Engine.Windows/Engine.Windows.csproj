@@ -1,9 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\Engine\Engine.props" />
     <Import Project="..\build\Windows.props" />
-    <PropertyGroup>
-        <DefineConstants Condition="'$(UseAngle)' == 'true'">$(DefineConstants);ANGLE</DefineConstants>
-    </PropertyGroup>
     <ItemGroup>
         <EmbeddedResource Include="..\Engine\Resources\icon.png" Link="Resources\icon.png" />
     </ItemGroup>
@@ -15,15 +12,12 @@
     <ItemGroup>
         <Compile Include="VR\*.cs" Link="VR\%(Filename).cs" />
     </ItemGroup>
-    <ItemGroup Condition="'$(UseAngle)' == 'true'">
+    <ItemGroup>
         <Compile Include="..\Engine\Engine.Graphics\EGL.cs" Link="Engine.Graphics\EGL.cs" />
         <None Update="libEGL.dll">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Update="libGLESv2.dll">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Compatible Patch Note 兼容补丁使用说明.txt">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
