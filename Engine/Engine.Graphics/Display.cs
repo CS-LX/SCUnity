@@ -209,7 +209,7 @@ namespace Engine.Graphics {
             Resize();
         }
 
-#if ANGLE
+#if WINDOWS
         /// <summary>
         /// 初始化无头显示设备（用于测试和离屏渲染）
         /// 不需要窗口，使用 PBuffer 进行离屏渲染

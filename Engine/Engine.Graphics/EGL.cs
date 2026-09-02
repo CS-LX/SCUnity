@@ -44,11 +44,9 @@ namespace Engine.Graphics {
         [DefaultDllImportSearchPaths(DllImportSearchPath.SafeDirectories)]
         public static extern IntPtr CreateWindowSurface(IntPtr dpy, IntPtr config, IntPtr nativeWindow, int[] attribList);
 
-#if ANGLE
         [DllImport(LibEgl, EntryPoint = "eglCreatePbufferSurface", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.SafeDirectories)]
         public static extern IntPtr CreatePbufferSurface(IntPtr dpy, IntPtr config, int[] attribList);
-#endif
 
         [DllImport(LibEgl, EntryPoint = "eglCreateContext", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.SafeDirectories)]

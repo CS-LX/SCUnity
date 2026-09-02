@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 namespace Engine.Graphics {
     public static class GLWrapper {
         public static GL GL;
-#if ANGLE || BROWSER
+#if BROWSER || WINDOWS
         public static IntPtr m_eglDisplay;
         public static IntPtr m_eglSurface;
         public static IntPtr m_eglContext;
@@ -70,71 +70,35 @@ namespace Engine.Graphics {
         public static int GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS;
         public static int GL_MAX_TEXTURE_SIZE;
         public static int GL_MAX_VERTEX_UNIFORM_VECTORS;
-#if ANGLE
-        public static bool UsingAngle = true;
-#else
+        /// <summary>是否使用 ANGLE（EGL）兼容模式。Windows 端运行时检测/回退决定，其他平台恒为 false。</summary>
         public static bool UsingAngle = false;
-#endif
 
         public static void Initialize() {
-#if ANGLE || BROWSER
-#if ANGLE
-            IntPtr hwnd = Window.Handle;
-            if (hwnd == IntPtr.Zero) {
-                throw new Exception("Failed to get window handle");
-            }
-#endif
-            m_eglDisplay = Egl.GetDisplay(IntPtr.Zero);
-            if (m_eglDisplay == IntPtr.Zero) {
-                throw new Exception("eglGetDisplay failed");
-            }
-            if (!Egl.Initialize(m_eglDisplay, out _, out _)) {
-                throw new Exception("eglInitialize failed");
-            }
-            int[] configAttribs = [
-                Egl.RedSize,
-                8,
-                Egl.GreenSize,
-                8,
-                Egl.BlueSize,
-                8,
-                Egl.AlphaSize,
-                8,
-                Egl.DepthSize,
-                24,
-                Egl.StencilSize,
-                8,
-                Egl.SurfaceType,
-                Egl.WindowBit,
-                Egl.RenderableType,
-                Egl.OpenglEs3Bit,
-                Egl.None
-            ];
-            IntPtr[] configs = new IntPtr[1];
-            if (!Egl.ChooseConfig(m_eglDisplay, configAttribs, configs, 1, out int numConfigs)) {
-                throw new Exception("eglChooseConfig failed");
-            }
-            IntPtr config = configs[0];
-#if ANGLE
-            m_eglSurface = Egl.CreateWindowSurface(m_eglDisplay, config, hwnd, [Egl.None]);
-#else
-            m_eglSurface = Egl.CreateWindowSurface(m_eglDisplay, config, IntPtr.Zero, [Egl.None]);
-#endif
-            if (m_eglSurface == IntPtr.Zero) {
-                throw new Exception("eglCreateWindowSurface failed");
-            }
-            int[] contextAttribs = [Egl.ContextClientVersion, 3, Egl.None];
-            m_eglContext = Egl.CreateContext(m_eglDisplay, config, IntPtr.Zero, contextAttribs);
-            if (m_eglContext == IntPtr.Zero) {
-                throw new Exception("eglCreateContext failed");
-            }
-            if (!Egl.MakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext)) {
-                throw new Exception("eglMakeCurrent failed");
-            }
 #if BROWSER
-            TrampolineFuncs.ApplyWorkaroundFixingInvocations();
-#endif
-            GL = GL.GetApi(Egl.GetProcAddress);
+            InitializeEgl(IntPtr.Zero);
+#elif WINDOWS
+            if (UsingAngle) {
+                try {
+                    IntPtr hwnd = Window.Handle;
+                    if (hwnd == IntPtr.Zero) {
+                        throw new Exception("Failed to get window handle");
+                    }
+                    InitializeEgl(hwnd);
+                    SaveAngleMarker();
+                }
+                catch (Exception ex) {
+                    // InitializeAll 会吞掉所有异常，ANGLE 失败必须在这里直接弹窗退出，
+                    // 否则游戏会带着空的 GL 状态继续运行。
+                    Log.Error($"Failed to initialize ANGLE: {ex}");
+                    const string str =
+                        "Failed to initialize the ANGLE-based compatible mode. Please try updating your graphics card driver.\nANGLE 兼容模式初始化失败，请尝试更新显卡驱动。";
+                    Window.MessageBox(IntPtr.Zero, str, null, 0x10u);
+                    Environment.Exit(1);
+                }
+            }
+            else {
+                GL = GL.GetApi(Window.m_view);
+            }
 #elif IOS
             // iOS 上不能依赖 SDL_GL_GetProcAddress（其内部实现是 dlsym(RTLD_DEFAULT, proc)）。
             // 在 PlayCover（macOS 运行 iOS 应用）环境下，进程内同时存在桌面版 libGL.dylib，
@@ -175,6 +139,84 @@ namespace Engine.Graphics {
             GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = GL.GetInteger(GetPName.MaxCombinedTextureImageUnits);
         }
 
+        /// <summary>
+        /// 通过 EGL 初始化 OpenGL ES 上下文（BROWSER 由浏览器宿主提供 EGL，WINDOWS 使用随游戏分发的 ANGLE libEGL.dll）
+        /// </summary>
+        /// <param name="hwnd">原生窗口句柄，BROWSER 下传 IntPtr.Zero（目标 surface 由宿主决定）</param>
+        static void InitializeEgl(IntPtr hwnd) {
+            m_eglDisplay = Egl.GetDisplay(IntPtr.Zero);
+            if (m_eglDisplay == IntPtr.Zero) {
+                throw new Exception("eglGetDisplay failed");
+            }
+            if (!Egl.Initialize(m_eglDisplay, out _, out _)) {
+                throw new Exception("eglInitialize failed");
+            }
+            int[] configAttribs = [
+                Egl.RedSize, 8,
+                Egl.GreenSize, 8,
+                Egl.BlueSize, 8,
+                Egl.AlphaSize, 8,
+                Egl.DepthSize, 24,
+                Egl.StencilSize, 8,
+                Egl.SurfaceType, Egl.WindowBit,
+                Egl.RenderableType, Egl.OpenglEs3Bit,
+                Egl.None
+            ];
+            IntPtr[] configs = new IntPtr[1];
+            if (!Egl.ChooseConfig(m_eglDisplay, configAttribs, configs, 1, out int numConfigs)) {
+                throw new Exception("eglChooseConfig failed");
+            }
+            IntPtr config = configs[0];
+#if BROWSER
+            m_eglSurface = Egl.CreateWindowSurface(m_eglDisplay, config, IntPtr.Zero, [Egl.None]);
+#else
+            m_eglSurface = Egl.CreateWindowSurface(m_eglDisplay, config, hwnd, [Egl.None]);
+#endif
+            if (m_eglSurface == IntPtr.Zero) {
+                throw new Exception("eglCreateWindowSurface failed");
+            }
+            int[] contextAttribs = [Egl.ContextClientVersion, 3, Egl.None];
+            m_eglContext = Egl.CreateContext(m_eglDisplay, config, IntPtr.Zero, contextAttribs);
+            if (m_eglContext == IntPtr.Zero) {
+                throw new Exception("eglCreateContext failed");
+            }
+            if (!Egl.MakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext)) {
+                throw new Exception("eglMakeCurrent failed");
+            }
+#if BROWSER
+            TrampolineFuncs.ApplyWorkaroundFixingInvocations();
+#endif
+            GL = GL.GetApi(Egl.GetProcAddress);
+        }
+
+        static string AngleMarkerPath => Path.Combine(AppContext.BaseDirectory, "UsingAngle");
+
+        /// <summary>
+        /// 启动时读取游戏目录的 UsingAngle 标记文件，存在则直接使用 ANGLE 兼容模式；删除该文件即重置为自动检测
+        /// </summary>
+        public static void LoadAngleMarker() {
+            try {
+                if (File.Exists(AngleMarkerPath)) {
+                    UsingAngle = true;
+                }
+            }
+            catch (Exception ex) {
+                Log.Error($"Failed to read ANGLE marker file: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// ANGLE 初始化成功后写入标记文件，下次启动直接使用 ANGLE；写入失败不影响本次运行
+        /// </summary>
+        static void SaveAngleMarker() {
+            try {
+                File.WriteAllText(AngleMarkerPath, string.Empty);
+            }
+            catch (Exception ex) {
+                Log.Error($"Failed to write ANGLE marker file: {ex}");
+            }
+        }
+
 #if IOS
         static IntPtr m_glesLibrary;
 
@@ -195,7 +237,7 @@ namespace Engine.Graphics {
         }
 #endif
 
-#if ANGLE
+#if WINDOWS
         /// <summary>
         /// 初始化无头 OpenGL ES 上下文（用于测试和离屏渲染）
         /// 使用 PBuffer Surface 代替 Window Surface，不需要窗口
