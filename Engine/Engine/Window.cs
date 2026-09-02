@@ -325,8 +325,13 @@ namespace Engine {
                 }
                 value = Math.Clamp(value, 0, 4);
                 if (value != PresentationInterval) {
-#if ANGLE
-                    Egl.SwapInterval(GLWrapper.m_eglDisplay, value);
+#if WINDOWS
+                    if (GLWrapper.UsingAngle) {
+                        Egl.SwapInterval(GLWrapper.m_eglDisplay, value);
+                    }
+                    else {
+                        m_view.GLContext?.SwapInterval(value);
+                    }
 #else
                     m_view.GLContext?.SwapInterval(value);
 #endif
@@ -439,8 +444,25 @@ namespace Engine {
             Silk.NET.Windowing.Window.ShouldLoadFirstPartyPlatforms(false);
             Silk.NET.Windowing.Window.TryAdd(WindowingLibrary);
 #endif
-#if ANGLE
-            GraphicsAPI api = GraphicsAPI.None;
+#if WINDOWS
+            GLWrapper.LoadAngleMarker();
+            try {
+                RunCore(width, height, windowMode, title);
+            }
+            catch (GlfwException e) when (CanFallbackToAngle(e)) {
+                Log.Error($"Native OpenGL ES is not supported, falling back to ANGLE.\n{e}");
+                GLWrapper.UsingAngle = true;
+                DisposeFailedView();
+                RunCore(width, height, windowMode, title);
+            }
+#else
+            RunCore(width, height, windowMode, title);
+#endif
+        }
+
+        static void RunCore(int width, int height, WindowMode windowMode, string title) {
+#if WINDOWS
+            GraphicsAPI api = GLWrapper.UsingAngle ? GraphicsAPI.None : new GraphicsAPI(ContextAPI.OpenGLES, new APIVersion(3, 2));
 #elif IOS
             GraphicsAPI api = new(ContextAPI.OpenGLES, ContextProfile.Core, ContextFlags.Default, new APIVersion(3, 0));
 #elif BROWSER
@@ -506,11 +528,16 @@ namespace Engine {
                 m_view.Run(); //会阻塞，不要放置在前边
             }
 #if !MOBILE
-            catch (GlfwException e) {
+            catch (GlfwException e) when (!CanFallbackToAngle(e)) {
                 if (e.ErrorCode is ErrorCode.VersionUnavailable or ErrorCode.ApiUnavailable) {
+#if WINDOWS
+                    const string str =
+                        "Your graphics card driver does not support the graphics API used by the current program (the built-in ANGLE compatible mode has also failed). Please try updating your graphics card driver.\n你的显卡驱动不支持当前程序使用的图形API（已自动尝试内置 ANGLE 兼容模式仍失败），请尝试更新显卡驱动。";
+#else
                     const string str =
                         "Your graphics card driver does not support the graphics API used by the current program. Please try updating your graphics card driver or using the compatible patch.\n你的显卡驱动不支持当前程序使用的图形API，请尝试更新显卡驱动，或使用兼容补丁。";
-                    Log.Error($"str\n{e}");
+#endif
+                    Log.Error($"{str}\n{e}");
 #if WINDOWS
                     new Thread(() => { MessageBox(IntPtr.Zero, str, null, 0x10u); }).Start();
 #else
@@ -537,6 +564,38 @@ namespace Engine {
             }
 #endif // !BROWSER
         }
+
+#if WINDOWS
+        /// <summary>
+        /// 判断该 GLFW 异常是否为"原生 OpenGL ES 不受支持且尚未回退"，即可以切换到 ANGLE 重试
+        /// </summary>
+        static bool CanFallbackToAngle(GlfwException e) {
+            return !GLWrapper.UsingAngle
+                && e.ErrorCode is ErrorCode.VersionUnavailable or ErrorCode.ApiUnavailable;
+        }
+
+        /// <summary>
+        /// 原生上下文创建失败后清理窗口相关静态状态，以便用 ANGLE 重建窗口
+        /// </summary>
+        static void DisposeFailedView() {
+            GLWrapper.GL?.Dispose();
+            GLWrapper.GL = null;
+            try {
+                m_view?.Dispose();
+            }
+            catch (Exception ex) {
+                Log.Error($"Error disposing view: {ex}");
+            }
+            m_view = null;
+            m_gameWindow = null;
+            m_state = State.Uncreated;
+            m_swapInterval = null;
+        }
+#else
+        static bool CanFallbackToAngle(GlfwException e) {
+            return false;
+        }
+#endif
 
         public static void Close() {
             VerifyWindowOpened();
@@ -642,8 +701,13 @@ namespace Engine {
             AfterFrameAll();
 
             if (!m_closing) {
-#if ANGLE
-                Egl.SwapBuffers(GLWrapper.m_eglDisplay, GLWrapper.m_eglSurface);
+#if WINDOWS
+                if (GLWrapper.UsingAngle) {
+                    Egl.SwapBuffers(GLWrapper.m_eglDisplay, GLWrapper.m_eglSurface);
+                }
+                else {
+                    m_view.SwapBuffers();
+                }
 #elif !BROWSER
                 m_view.SwapBuffers();
 #endif
