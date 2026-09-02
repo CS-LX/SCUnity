@@ -462,7 +462,11 @@ namespace Engine {
 
         static void RunCore(int width, int height, WindowMode windowMode, string title) {
 #if WINDOWS
+#if DEBUG
+            GraphicsAPI api = GLWrapper.UsingAngle ? GraphicsAPI.None : new GraphicsAPI(ContextAPI.OpenGLES, ContextProfile.Compatability, ContextFlags.Debug, new APIVersion(3, 2));
+#else
             GraphicsAPI api = GLWrapper.UsingAngle ? GraphicsAPI.None : new GraphicsAPI(ContextAPI.OpenGLES, new APIVersion(3, 2));
+#endif
 #elif IOS
             GraphicsAPI api = new(ContextAPI.OpenGLES, ContextProfile.Core, ContextFlags.Default, new APIVersion(3, 0));
 #elif BROWSER
@@ -535,7 +539,7 @@ namespace Engine {
                         "Your graphics card driver does not support the graphics API used by the current program (the built-in ANGLE compatible mode has also failed). Please try updating your graphics card driver.\n你的显卡驱动不支持当前程序使用的图形API（已自动尝试内置 ANGLE 兼容模式仍失败），请尝试更新显卡驱动。";
 #else
                     const string str =
-                        "Your graphics card driver does not support the graphics API used by the current program. Please try updating your graphics card driver or using the compatible patch.\n你的显卡驱动不支持当前程序使用的图形API，请尝试更新显卡驱动，或使用兼容补丁。";
+                        "Your graphics card driver does not support the graphics API used by the current program. Please try updating your graphics card driver.\n你的显卡驱动不支持当前程序使用的图形API，请尝试更新显卡驱动。";
 #endif
                     Log.Error($"{str}\n{e}");
 #if WINDOWS
@@ -567,10 +571,13 @@ namespace Engine {
 
 #if WINDOWS
         /// <summary>
-        /// 判断该 GLFW 异常是否为"原生 OpenGL ES 不受支持且尚未回退"，即可以切换到 ANGLE 重试
+        /// 判断该 GLFW 异常是否为"原生 OpenGL ES 不受支持且尚未回退"，即可以切换到 ANGLE 重试。
+        /// 仅限 GL 尚未初始化的阶段（窗口/上下文创建失败时 GL 为 null）；
+        /// 运行期出现同类错误码时回退会销毁正在运行的窗口并重复整个游戏初始化，因此不回退。
         /// </summary>
         static bool CanFallbackToAngle(GlfwException e) {
-            return !GLWrapper.UsingAngle
+            return GLWrapper.GL == null
+                && !GLWrapper.UsingAngle
                 && e.ErrorCode is ErrorCode.VersionUnavailable or ErrorCode.ApiUnavailable;
         }
 

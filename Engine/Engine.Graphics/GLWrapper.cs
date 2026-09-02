@@ -90,8 +90,15 @@ namespace Engine.Graphics {
                     // InitializeAll 会吞掉所有异常，ANGLE 失败必须在这里直接弹窗退出，
                     // 否则游戏会带着空的 GL 状态继续运行。
                     Log.Error($"Failed to initialize ANGLE: {ex}");
-                    const string str =
-                        "Failed to initialize the ANGLE-based compatible mode. Please try updating your graphics card driver.\nANGLE 兼容模式初始化失败，请尝试更新显卡驱动。";
+                    // 标记文件会把后续启动固定在 ANGLE 模式，若该模式因 DLL 缺失等原因不可用，
+                    // 必须告诉用户删除标记文件即可恢复原生模式，否则游戏无法启动。
+                    string hint = File.Exists(AngleMarkerPath)
+                        ? "\nIf the problem persists, delete the \"UsingAngle\" file in the game directory and restart the game.\n如果问题持续，可删除游戏目录下的 UsingAngle 文件后重新启动游戏。"
+                        : string.Empty;
+                    string str =
+                        "Failed to initialize the ANGLE-based compatible mode. Please try updating your graphics card driver."
+                        + hint
+                        + "\nANGLE 兼容模式初始化失败，请尝试更新显卡驱动。" + hint;
                     Window.MessageBox(IntPtr.Zero, str, null, 0x10u);
                     Environment.Exit(1);
                 }
@@ -244,7 +251,9 @@ namespace Engine.Graphics {
 #if WINDOWS
         /// <summary>
         /// 初始化无头 OpenGL ES 上下文（用于测试和离屏渲染）
-        /// 使用 PBuffer Surface 代替 Window Surface，不需要窗口
+        /// 使用 PBuffer Surface 代替 Window Surface，不需要窗口。
+        /// 注意：本方法会创建独立的 EGL 上下文并覆盖 m_eglSurface，不可在 Window 帧循环运行期间调用，
+        /// 否则原生（WGL）模式下两套上下文不共享资源，ANGLE 模式下 SwapBuffers 会呈现到离屏表面。
         /// </summary>
         /// <param name="width">PBuffer 宽度（默认 256）</param>
         /// <param name="height">PBuffer 高度（默认 256）</param>

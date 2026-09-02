@@ -26,15 +26,15 @@
 > 由于 iOS、iPadOS 系统不支持 JIT 编译（参阅[此处](https://learn.microsoft.com/zh-cn/previous-versions/xamarin/ios/internals/limitations)），因此<font color="red">任何带`dll`文件的模组都不可用！</font>可等待后续完善的 Javascript 方式运行模组的更新
 
 ### Windows 系统看这里
-> 需要 x64 架构 CPU，最低 Windows 10 版本 1607，显卡驱动需要支持OpenGL ES 3.2 图形 API（对于兼容补丁，需要支持 Direct3D 9 图形 API）
+> 需要 x64 架构 CPU，最低 Windows 10 版本 1607，显卡驱动需要支持OpenGL ES 3.2 图形 API（若不支持，游戏会自动改用基于 Direct3D 的内置 ANGLE 兼容模式，需要支持 Direct3D 11 图形 API）
 
-1. 从 [发布页](https://gitee.com/SC-SPM/SurvivalcraftApi/releases/latest) 下载前缀为`[Windows]`，后缀为`.7z`，名称不带`兼容补丁`的压缩包
+1. 从 [发布页](https://gitee.com/SC-SPM/SurvivalcraftApi/releases/latest) 下载前缀为`[Windows]`，后缀为`.7z`的压缩包
 2. 使用您喜欢的解压缩软件进行解压
 3. 运行<font color="red">解压后</font>的`.exe`文件
 4. 第一次启动游戏，系统可能会提示您安装 [.NET 桌面运行时 10.0](https://dotnet.microsoft.com/zh-cn/download/dotnet/10.0)，请按提示完成安装并重启您的电脑
 5. 如果启动没有任何反应，可能是因为您的 Windows 系统不完整，请尝试手动安装 [.NET 桌面运行时 10.0](https://dotnet.microsoft.com/zh-cn/download/dotnet/10.0)；如果安装后仍然启动没有任何反应，请尝试运行游戏目录中的`Launch Game 启动游戏.bat`
-6. 如果弹窗提示`你的显卡驱动不支持当前程序使用的图形API，请尝试更新显卡驱动，或使用兼容补丁。`，如果显卡驱动更新后仍然弹窗，请尝试下载名称中有`兼容补丁`的压缩包，然后解压到之前解压到的目录，重新运行游戏    
-如果使用兼容补丁后仍然弹窗，建议为您的电脑购买并装上五年内发布的显卡
+6. 如果显卡驱动不支持 OpenGL ES，游戏会自动改用内置的 ANGLE 兼容模式运行，并在游戏目录生成`UsingAngle`标记文件以便下次启动直接使用该模式；如果 ANGLE 模式初始化失败弹窗提示`ANGLE 兼容模式初始化失败`，请先尝试更新显卡驱动，若问题持续可删除游戏目录下的`UsingAngle`文件后重新启动游戏    
+如果更新显卡驱动后仍然弹窗，建议为您的电脑购买并装上五年内发布的显卡
 7. 如果弹窗提示`GLFW 窗口平台无法使用。请安装 Microsoft Visual C++ Redistributable，点击"确定"来打开下载页面。`，请按提示完成下载和安装。或者[点击此处](https://learn.microsoft.com/zh-cn/cpp/windows/latest-supported-vc-redist?view=msvc-170#latest-microsoft-visual-c-redistributable-version)打开下载页面
 
 ### Linux 系统看这里

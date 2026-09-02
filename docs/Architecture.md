@@ -216,7 +216,7 @@ using NativeFileDialogCore;
 | `IOS` | iOS/iPadOS 系统，不支持模组中的程序集（`.dll`） |
 | `MOBILE` | 等价于 `ANDROID \|\| IOS` |
 
-Windows 端内置了基于 [ANGLE](https://github.com/google/angle) 的兼容模式：启动时若显卡驱动不支持 `OpenGL ES`（原生上下文创建失败），会自动回退到随游戏分发的 `libEGL.dll`/`libGLESv2.dll`（ANGLE，GL-on-D3D）渲染，并在游戏目录写入 `UsingAngle` 标记文件，下次启动直接使用 ANGLE；删除该文件即可重置为自动检测
+Windows 端内置了基于 [ANGLE](https://github.com/google/angle) 的兼容模式：启动时若显卡驱动不支持 `OpenGL ES`（原生上下文创建失败），会自动回退到随游戏分发的 `libEGL.dll`/`libGLESv2.dll`（ANGLE，GL-on-D3D）渲染，并在游戏目录写入 `UsingAngle` 标记文件，下次启动直接使用 ANGLE；删除该文件即可重置为自动检测。注意：ANGLE 模式下 GL 上下文来自 EGL 而非 WGL，依赖 `wglGetCurrentContext` 的 VR（OpenXR）功能不可用
 
 ## 7. 资源管线
 
