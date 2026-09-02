@@ -1,4 +1,5 @@
 using Silk.NET.OpenGLES;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Engine.Graphics {
@@ -23,6 +24,21 @@ namespace Engine.Graphics {
 
         public object Tag { get; set; }
 
+        /// <summary>
+        /// 强制所有索引缓冲使用 32 位格式（旧行为）。
+        /// 用于兼容依赖 32 位索引的模组，或排查 16 位索引相关问题时的一键回退。
+        /// </summary>
+        public static bool ForceThirtyTwoBits { get; set; }
+
+        /// <summary>
+        /// 按顶点池大小选择索引格式：顶点数不超过 65535 用 16 位（索引带宽减半），否则 32 位。
+        /// </summary>
+        public static IndexFormat FormatForVertexCount(int vertexCount) {
+            return ForceThirtyTwoBits || vertexCount > 65535
+                ? IndexFormat.ThirtyTwoBits
+                : IndexFormat.SixteenBits;
+        }
+
         public IndexBuffer(IndexFormat indexFormat, int indicesCount) {
             InitializeIndexBuffer(indexFormat, indicesCount);
             AllocateBuffer();
@@ -35,6 +51,50 @@ namespace Engine.Graphics {
 
         public void SetData<T>(T[] source, int sourceStartIndex, int sourceCount, int targetStartIndex = 0) where T : unmanaged {
             VerifyParametersSetData(source, sourceStartIndex, sourceCount, targetStartIndex);
+            int num = Utilities.SizeOf<T>();
+            int size = IndexFormat.GetSize();
+            if (num == size || (num == 1 && size == 4)) {
+                // 元素宽度与索引宽度一致（或旧式 byte 流写入 32 位缓冲）：直接上传
+                UploadDirect(source, sourceStartIndex, sourceCount, targetStartIndex);
+                return;
+            }
+            if (typeof(T) == typeof(int) && size == 2) {
+                // int 索引写入 16 位缓冲：收窄并检查溢出，全部校验通过才写 GPU，失败时缓冲内容不受影响
+                if (targetStartIndex + sourceCount > IndicesCount) {
+                    throw new ArgumentException("Range is out of target bounds.");
+                }
+                var converted = new ushort[sourceCount];
+                for (int i = 0; i < sourceCount; i++) {
+                    int value = Unsafe.As<T, int>(ref source[sourceStartIndex + i]);
+                    if (value < 0
+                        || value > 65535) {
+                        throw new OverflowException(
+                            $"Index value {value} at position {sourceStartIndex + i} does not fit in a SixteenBits index buffer."
+                        );
+                    }
+                    converted[i] = (ushort)value;
+                }
+                UploadDirect(converted, 0, sourceCount, targetStartIndex);
+                return;
+            }
+            if (typeof(T) == typeof(ushort) && size == 4) {
+                // 16 位索引写入 32 位缓冲：加宽
+                if (targetStartIndex + sourceCount > IndicesCount) {
+                    throw new ArgumentException("Range is out of target bounds.");
+                }
+                var converted = new int[sourceCount];
+                for (int i = 0; i < sourceCount; i++) {
+                    converted[i] = Unsafe.As<T, ushort>(ref source[sourceStartIndex + i]);
+                }
+                UploadDirect(converted, 0, sourceCount, targetStartIndex);
+                return;
+            }
+            throw new InvalidOperationException(
+                $"Cannot upload an array of {typeof(T).Name} into an index buffer with format {IndexFormat}."
+            );
+        }
+
+        private void UploadDirect<T>(T[] source, int sourceStartIndex, int sourceCount, int targetStartIndex) where T : unmanaged {
             GCHandle gCHandle = GCHandle.Alloc(source, GCHandleType.Pinned);
             try {
                 int num = Utilities.SizeOf<T>();
