@@ -1292,7 +1292,9 @@
     "2": "After enabling file association, you can open associated files with API to import them.",
     "3": "After enabling safe mode, API will stop loading any mod.",
     "4": "Restart game to take effect ",
-    "5": "Please open Console in the browser DevTools manually."
+    "5": "Please open Console in the browser DevTools manually.",
+    "19": "Force 32-bit indices:",
+    "20": "When enabled, all index buffers use the 32-bit format (legacy behavior) for compatibility with mods that rely on 32-bit indices, at the cost of increased index bandwidth. Restart the game to take effect."
   },
   "JsInterface": {
     "1": "There is already a script running.",

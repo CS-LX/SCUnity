@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using Engine;
+using Engine.Graphics;
 #if !ANDROID
 #endif
 
@@ -15,6 +16,7 @@ namespace Game {
         public ButtonWidget m_fileAssociationEnabledButton;
         public ButtonWidget m_manageClassSubstitutesButton;
         public ButtonWidget m_safeModeButton;
+        public ButtonWidget m_forceThirtyTwoBitsIndexButton;
         public ButtonWidget m_resetDefaultsButton;
         public LabelWidget m_descriptionLabel;
         public const string fName = "SettingsCompatibilityScreen";
@@ -31,6 +33,7 @@ namespace Game {
             m_fileAssociationEnabledButton = Children.Find<ButtonWidget>("FileAssociationEnabledButton");
             m_manageClassSubstitutesButton = Children.Find<ButtonWidget>("ManageClassSubstitutesButton");
             m_safeModeButton = Children.Find<ButtonWidget>("SafeModeButton");
+            m_forceThirtyTwoBitsIndexButton = Children.Find<ButtonWidget>("ForceThirtyTwoBitsIndexButton");
             m_resetDefaultsButton = Children.Find<ButtonWidget>("ResetDefaultsButton");
             m_descriptionLabel = Children.Find<LabelWidget>("Description");
 #if !WINDOWS
@@ -40,6 +43,7 @@ namespace Game {
             m_shareGameLogButtonPanel.IsVisible = true;
 #endif
             m_safeModeButton.Text = SettingsManager.SafeMode ? LanguageControl.Enable : LanguageControl.Disable;
+            m_forceThirtyTwoBitsIndexButton.Text = SettingsManager.ForceThirtyTwoBitsIndexFormat ? LanguageControl.Enable : LanguageControl.Disable;
         }
 
         public override void Enter(object[] parameters) {
@@ -119,10 +123,16 @@ namespace Game {
                     new MessageDialog(LanguageControl.Warning, LanguageControl.Get(fName, "4"), LanguageControl.Ok, null, null)
                 );
             }
+            if (m_forceThirtyTwoBitsIndexButton.IsClicked) {
+                m_descriptionLabel.Text = LanguageControl.Get(fName, "20");
+                SettingsManager.ForceThirtyTwoBitsIndexFormat = !SettingsManager.ForceThirtyTwoBitsIndexFormat;
+                IndexBuffer.ForceThirtyTwoBits = SettingsManager.ForceThirtyTwoBitsIndexFormat;
+            }
             if (m_resetDefaultsButton.IsClicked) {
                 SettingsManager.MultithreadedTerrainUpdate = true;
             }
             m_fileAssociationEnabledButton.Text = SettingsManager.FileAssociationEnabled ? LanguageControl.Enable : LanguageControl.Disable;
+            m_forceThirtyTwoBitsIndexButton.Text = SettingsManager.ForceThirtyTwoBitsIndexFormat ? LanguageControl.Enable : LanguageControl.Disable;
             //m_singlethreadedTerrainUpdateButton.Text = "已弃用";
             m_resetDefaultsButton.IsEnabled = !SettingsManager.MultithreadedTerrainUpdate;
             if (Input.Back
