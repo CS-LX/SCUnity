@@ -531,7 +531,7 @@ namespace Engine {
             try {
                 m_view.Run(); //会阻塞，不要放置在前边
             }
-#if !MOBILE
+#if !MOBILE && !BROWSER
             catch (GlfwException e) when (!CanFallbackToAngle(e)) {
                 if (e.ErrorCode is ErrorCode.VersionUnavailable or ErrorCode.ApiUnavailable) {
 #if WINDOWS
@@ -554,7 +554,7 @@ namespace Engine {
                     Log.Error($"Unhandled exception.\n{e}");
                 }
             }
-#endif // !MOBILE
+#endif // !MOBILE && !BROWSER
             finally {
                 GLWrapper.GL?.Dispose();
                 try {
@@ -598,7 +598,7 @@ namespace Engine {
             m_state = State.Uncreated;
             m_swapInterval = null;
         }
-#else
+#elif !MOBILE && !BROWSER
         static bool CanFallbackToAngle(GlfwException e) {
             return false;
         }
