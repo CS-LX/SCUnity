@@ -29,6 +29,7 @@ namespace Game {
         public DynamicArray<TerrainChunk> m_chunksToDraw = [];
 
         public static DynamicArray<int> m_tmpIndices = [];
+        public static DynamicArray<ushort> m_tmpIndices16 = [];
         public static DynamicArray<TerrainVertex> m_tmpVertices = [];
 
         public static bool DrawChunksMap;
@@ -312,7 +313,7 @@ namespace Game {
                     continue;
                 }
                 TerrainChunkGeometry.Buffer buffer = new();
-                buffer.IndexBuffer = new IndexBuffer(IndexFormat.ThirtyTwoBits, statItem.Value.totalIndexCount);
+                buffer.IndexBuffer = new IndexBuffer(IndexBuffer.FormatForVertexCount(statItem.Value.totalVertextCount), statItem.Value.totalIndexCount);
                 buffer.VertexBuffer = new VertexBuffer(TerrainVertex.VertexDeclaration, statItem.Value.totalVertextCount);
                 buffer.Texture = statItem.Key;
                 statItem.Value.Buffer = buffer;
@@ -353,19 +354,18 @@ namespace Game {
                             TerrainGeometryDynamicArray<TerrainVertex> vertices = subGeometry.Subsets[i].Vertices;
                             if (indices.Count > 0) {
                                 TerrainChunkGeometry.Buffer buffer = subsetStat.Buffer;
-                                m_tmpIndices.Count = indices.Count;
-                                ShiftIndices(
-                                    indices.Array,
-                                    m_tmpIndices.Array,
-                                    buffer.SubsetVertexBufferStarts[i] + subsetStat.subsetSettedVertexCount[i],
-                                    indices.Count
-                                );
-                                buffer.IndexBuffer.SetData(
-                                    m_tmpIndices.Array,
-                                    0,
-                                    indices.Count,
-                                    buffer.SubsetIndexBufferStarts[i] + subsetStat.subsetSettedIndexCount[i]
-                                );
+                                int shift = buffer.SubsetVertexBufferStarts[i] + subsetStat.subsetSettedVertexCount[i];
+                                int subsetStart = buffer.SubsetIndexBufferStarts[i] + subsetStat.subsetSettedIndexCount[i];
+                                if (buffer.IndexBuffer.IndexFormat == IndexFormat.SixteenBits) {
+                                    m_tmpIndices16.Count = indices.Count;
+                                    ShiftIndices(indices.Array, m_tmpIndices16.Array, shift, indices.Count);
+                                    buffer.IndexBuffer.SetData(m_tmpIndices16.Array, 0, indices.Count, subsetStart);
+                                }
+                                else {
+                                    m_tmpIndices.Count = indices.Count;
+                                    ShiftIndices(indices.Array, m_tmpIndices.Array, shift, indices.Count);
+                                    buffer.IndexBuffer.SetData(m_tmpIndices.Array, 0, indices.Count, subsetStart);
+                                }
                                 if (vertexTransform != null) {
                                     m_tmpVertices.Count = vertices.Count;
                                     for (int j = 0; j < vertices.Count; j++) {
@@ -447,6 +447,16 @@ namespace Game {
         public static void ShiftIndices(int[] source, int[] destination, int shift, int count) {
             for (int i = 0; i < count; i++) {
                 destination[i] = source[i] + shift;
+            }
+        }
+
+        public static void ShiftIndices(int[] source, ushort[] destination, int shift, int count) {
+            for (int i = 0; i < count; i++) {
+                int num = source[i] + shift;
+                if (num > 65535) {
+                    throw new OverflowException($"Shifted index value {num} does not fit in a SixteenBits index buffer.");
+                }
+                destination[i] = (ushort)num;
             }
         }
     }
