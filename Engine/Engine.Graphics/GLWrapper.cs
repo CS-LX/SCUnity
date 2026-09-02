@@ -139,6 +139,7 @@ namespace Engine.Graphics {
             GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = GL.GetInteger(GetPName.MaxCombinedTextureImageUnits);
         }
 
+#if BROWSER || WINDOWS
         /// <summary>
         /// 通过 EGL 初始化 OpenGL ES 上下文（BROWSER 由浏览器宿主提供 EGL，WINDOWS 使用随游戏分发的 ANGLE libEGL.dll）
         /// </summary>
@@ -188,7 +189,9 @@ namespace Engine.Graphics {
 #endif
             GL = GL.GetApi(Egl.GetProcAddress);
         }
+#endif
 
+#if WINDOWS
         static string AngleMarkerPath => Path.Combine(AppContext.BaseDirectory, "UsingAngle");
 
         /// <summary>
@@ -216,6 +219,7 @@ namespace Engine.Graphics {
                 Log.Error($"Failed to write ANGLE marker file: {ex}");
             }
         }
+#endif
 
 #if IOS
         static IntPtr m_glesLibrary;
