@@ -161,10 +161,11 @@ namespace Game {
             return null;
         }
 
-        public static void InvokeFromMod(string methodName, params object[] parameters) {//用于模组在不引用Jint的前提下调用JS方法，勿删
-            Invoke(methodName, parameters);//由于Invoke方法有使用JsValue类型参数的重载，因此无法被不引用Jint的mod直接调用，故增加此方法作为中转
+        public static void InvokeFor阳三疯(string methodName, params object[] parameters) {//用于不规范模组在不引用Jint的前提下调用JS方法，勿删
+            Invoke(methodName, parameters);//由于Invoke方法有使用JsValue类型参数的重载，因此无法被不引用Jint的不规范模组直接调用，故增加此方法作为中转
         }
-        public static bool TryInvokeFromMod(string str, out string message, params object[] arguments) {//勿改名字及参数，mod需要一个可获取异常信息的Invoke方法
+
+        public static bool TryInvokeFor阳三疯(string str, out string message, params object[] arguments) {//勿改名字及参数，不规范模组需要一个可获取异常信息的Invoke方法
             try {
                 message = engine.Invoke(str, arguments).ToString();
                 return true;
@@ -174,14 +175,17 @@ namespace Game {
                 return false;
             }
         }
-        public static bool InvokeAsBool(string methodName, params object[] parameters) {//用于模组在不引用Jint的前提下调用JS方法，勿删
+
+        public static bool InvokeAsBoolFor阳三疯(string methodName, params object[] parameters) {//用于不规范模组在不引用Jint的前提下调用JS方法，勿删
             return Invoke(methodName, parameters).AsBoolean();
         }
-        public static void ExecuteFromMod(string methodName) {//用于模组在不引用Jint的前提下调用JS方法，勿删
-            Execute(methodName);//由于Execute方法有使用Prepared<Script>类型参数的重载，因此无法被不引用Jint的mod直接调用，故增加此方法作为中转
+
+        public static void ExecuteFor阳三疯(string methodName) {//用于不规范模组在不引用Jint的前提下调用JS方法，勿删
+            Execute(methodName);//由于Execute方法有使用Prepared<Script>类型参数的重载，因此无法被不引用Jint的不规范模组直接调用，故增加此方法作为中转
         }
-        public static string EvaluateFromMod(string str) {//用于模组在不引用Jint的前提下调用JS方法，勿删
-            return Evaluate(str);//由于Evaluate方法有使用Prepared<Script>类型参数的重载，因此无法被不引用Jint的mod直接调用，故增加此方法作为中转
+
+        public static string EvaluateFor阳三疯(string str) {//用于模组在不引用Jint的前提下调用JS方法，勿删
+            return Evaluate(str);//由于Evaluate方法有使用Prepared<Script>类型参数的重载，因此无法被不引用Jint的不规范模组直接调用，故增加此方法作为中转
         }
 
         public static List<Function> GetHandlers(string str) {
