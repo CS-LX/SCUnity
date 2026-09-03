@@ -450,7 +450,7 @@ namespace Engine {
                 RunCore(width, height, windowMode, title);
             }
             catch (GlfwException e) when (CanFallbackToAngle(e)) {
-                Log.Error($"Native OpenGL ES is not supported, falling back to ANGLE.\n{e}");
+                Log.Warning($"Native OpenGL ES is not supported, falling back to ANGLE.\n{e}");
                 GLWrapper.UsingAngle = true;
                 DisposeFailedView();
                 RunCore(width, height, windowMode, title);

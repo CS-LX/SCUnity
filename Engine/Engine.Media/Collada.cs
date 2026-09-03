@@ -400,13 +400,14 @@ namespace Engine.Media {
                 ReadOnlyList<VertexElement> vertexElements = vertexDeclaration.VertexElements;
                 fixed (byte* ptr = &modelBuffersData.Indices[0]) {
                     fixed (byte* ptr2 = &modelBuffersData.Vertices[0]) {
-                        Dictionary<ushort, ushort> dictionary = new();
+                        Dictionary<int, int> dictionary = new();
                         for (int i = 0; i < modelMeshPartData.IndicesCount; i++) {
                             int num = i % 3 == 0 ? i :
                                 i % 3 != 1 ? i - 1 : i + 1;
-                            ushort key = *(ushort*)(ptr + (num + modelMeshPartData.StartIndex) * (nint)2);
-                            if (!dictionary.TryGetValue(key, out ushort value)) {
-                                value = (ushort)dictionary.Count;
+                            // Indices 为 4 字节小端索引流，按 4 字节步长读取完整索引值
+                            int key = *(int*)(ptr + (num + modelMeshPartData.StartIndex) * (nint)4);
+                            if (!dictionary.TryGetValue(key, out int value)) {
+                                value = dictionary.Count;
                                 dictionary.Add(key, value);
                             }
                             for (int j = 0; j < vertexElements.Count; j++) {
@@ -423,7 +424,7 @@ namespace Engine.Media {
                             if (item.SemanticName == "POSITION") {
                                 colladaAccessor.Stride = 3;
                                 colladaFloatArray.Array = new float[3 * dictionary.Count];
-                                foreach (KeyValuePair<ushort, ushort> item2 in dictionary) {
+                                foreach (KeyValuePair<int, int> item2 in dictionary) {
                                     int num2 = item2.Key * vertexDeclaration.VertexStride + item.Offset;
                                     colladaFloatArray.Array[3 * item2.Value] = *(float*)(ptr2 + num2);
                                     colladaFloatArray.Array[3 * item2.Value + 1] = *(float*)(ptr2 + num2 + 4);
@@ -434,7 +435,7 @@ namespace Engine.Media {
                             else if (item.SemanticName == "NORMAL") {
                                 colladaAccessor.Stride = 3;
                                 colladaFloatArray.Array = new float[3 * dictionary.Count];
-                                foreach (KeyValuePair<ushort, ushort> item3 in dictionary) {
+                                foreach (KeyValuePair<int, int> item3 in dictionary) {
                                     int num3 = item3.Key * vertexDeclaration.VertexStride + item.Offset;
                                     colladaFloatArray.Array[3 * item3.Value] = *(float*)(ptr2 + num3);
                                     colladaFloatArray.Array[3 * item3.Value + 1] = *(float*)(ptr2 + num3 + 4);
@@ -444,7 +445,7 @@ namespace Engine.Media {
                             else if (item.SemanticName == "TEXCOORD") {
                                 colladaAccessor.Stride = 2;
                                 colladaFloatArray.Array = new float[2 * dictionary.Count];
-                                foreach (KeyValuePair<ushort, ushort> item4 in dictionary) {
+                                foreach (KeyValuePair<int, int> item4 in dictionary) {
                                     int num4 = item4.Key * vertexDeclaration.VertexStride + item.Offset;
                                     colladaFloatArray.Array[2 * item4.Value] = *(float*)(ptr2 + num4);
                                     colladaFloatArray.Array[2 * item4.Value + 1] = *(float*)(ptr2 + num4 + 4);
@@ -453,7 +454,7 @@ namespace Engine.Media {
                             else if (item.SemanticName == "COLOR") {
                                 colladaAccessor.Stride = 4;
                                 colladaFloatArray.Array = new float[4 * dictionary.Count];
-                                foreach (KeyValuePair<ushort, ushort> item5 in dictionary) {
+                                foreach (KeyValuePair<int, int> item5 in dictionary) {
                                     int num5 = item5.Key * vertexDeclaration.VertexStride + item.Offset;
                                     colladaFloatArray.Array[4 * item5.Value] = ptr2[num5] / 255f;
                                     colladaFloatArray.Array[4 * item5.Value + 1] = (ptr2 + num5)[1] / 255f;
