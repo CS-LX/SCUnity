@@ -161,6 +161,29 @@ namespace Game {
             return null;
         }
 
+        public static void InvokeFromMod(string methodName, params object[] parameters) {//用于模组在不引用Jint的前提下调用JS方法，勿删
+            Invoke(methodName, parameters);//由于Invoke方法有使用JsValue类型参数的重载，因此无法被不引用Jint的mod直接调用，故增加此方法作为中转
+        }
+        public static bool TryInvokeFromMod(string str, out string message, params object[] arguments) {//勿改名字及参数，mod需要一个可获取异常信息的Invoke方法
+            try {
+                message = engine.Invoke(str, arguments).ToString();
+                return true;
+            }
+            catch (Exception ex) {
+                message = ex.Message;
+                return false;
+            }
+        }
+        public static bool InvokeAsBool(string methodName, params object[] parameters) {//用于模组在不引用Jint的前提下调用JS方法，勿删
+            return Invoke(methodName, parameters).AsBoolean();
+        }
+        public static void ExecuteFromMod(string methodName) {//用于模组在不引用Jint的前提下调用JS方法，勿删
+            Execute(methodName);//由于Execute方法有使用Prepared<Script>类型参数的重载，因此无法被不引用Jint的mod直接调用，故增加此方法作为中转
+        }
+        public static string EvaluateFromMod(string str) {//用于模组在不引用Jint的前提下调用JS方法，勿删
+            return Evaluate(str);//由于Evaluate方法有使用Prepared<Script>类型参数的重载，因此无法被不引用Jint的mod直接调用，故增加此方法作为中转
+        }
+
         public static List<Function> GetHandlers(string str) {
             JsArray array = engine.GetValue(str).AsArray();
             if (array.IsNull()) {

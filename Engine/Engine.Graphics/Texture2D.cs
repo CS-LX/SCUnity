@@ -411,6 +411,11 @@ namespace Engine.Graphics {
             return texture2D;
         }
 
+        /// <summary>
+        /// 由于Load方法有使用Image&lt;Rgba32&gt;类型参数的重载，因此无法被不引用SixLabors.ImageSharp的mod直接调用，故增加此方法作为中转
+        /// </summary>
+        public static Texture2D LoadFromMod(Image image, int mipLevelsCount = 1) => Load(image, mipLevelsCount);
+
         public virtual void InitializeTexture2D(int width, int height, int mipLevelsCount, ColorFormat colorFormat) {
             if (width < 1) {
                 throw new ArgumentOutOfRangeException(nameof(width));
