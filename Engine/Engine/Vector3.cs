@@ -1,4 +1,6 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.X86;
 
 namespace Engine {
     public struct Vector3 : IEquatable<Vector3> {
@@ -217,12 +219,38 @@ namespace Engine {
             );
         }
 
+        // x86 SSE：shufps 四次把四列转置成四行；加法顺序与标量版一致，结果逐位相同
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void TransformRows(ref Matrix m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4) {
+            Vector128<float> c1 = Vector128.LoadUnsafe(ref m.M11);
+            Vector128<float> c2 = Vector128.LoadUnsafe(ref m.M12);
+            Vector128<float> c3 = Vector128.LoadUnsafe(ref m.M13);
+            Vector128<float> c4 = Vector128.LoadUnsafe(ref m.M14);
+            Vector128<float> t01 = Sse.Shuffle(c1, c2, 0x44);
+            Vector128<float> t23 = Sse.Shuffle(c1, c2, 0xEE);
+            Vector128<float> u01 = Sse.Shuffle(c3, c4, 0x44);
+            Vector128<float> u23 = Sse.Shuffle(c3, c4, 0xEE);
+            row1 = Sse.Shuffle(t01, u01, 0x88);
+            row2 = Sse.Shuffle(t01, u01, 0xDD);
+            row3 = Sse.Shuffle(t23, u23, 0x88);
+            row4 = Sse.Shuffle(t23, u23, 0xDD);
+        }
+
         public static void Transform(Vector3[] sourceArray,
             int sourceIndex,
             ref Matrix m,
             Vector3[] destinationArray,
             int destinationIndex,
             int count) {
+            if (Sse.IsSupported) {
+                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4);
+                for (int i = 0; i < count; i++) {
+                    Vector3 vector = sourceArray[sourceIndex + i];
+                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z) + row4;
+                    destinationArray[destinationIndex + i] = new Vector3(r[0], r[1], r[2]);
+                }
+                return;
+            }
             for (int i = 0; i < count; i++) {
                 Vector3 vector = sourceArray[sourceIndex + i];
                 destinationArray[destinationIndex + i] = new Vector3(
@@ -253,6 +281,15 @@ namespace Engine {
             Vector3[] destinationArray,
             int destinationIndex,
             int count) {
+            if (Sse.IsSupported) {
+                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out _);
+                for (int i = 0; i < count; i++) {
+                    Vector3 vector = sourceArray[sourceIndex + i];
+                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z);
+                    destinationArray[destinationIndex + i] = new Vector3(r[0], r[1], r[2]);
+                }
+                return;
+            }
             for (int i = 0; i < count; i++) {
                 Vector3 vector = sourceArray[sourceIndex + i];
                 destinationArray[destinationIndex + i] = new Vector3(

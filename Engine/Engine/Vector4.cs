@@ -1,4 +1,6 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
+using System.Runtime.Intrinsics.X86;
 
 namespace Engine {
     public struct Vector4 : IEquatable<Vector4> {
@@ -71,11 +73,20 @@ namespace Engine {
 
         public float LengthSquared() => X * X + Y * Y + Z * Z;
 
-        public static Vector4 Floor(Vector4 v) => new(MathF.Floor(v.X), MathF.Floor(v.Y), MathF.Floor(v.Z), MathF.Floor(v.W));
+        public static Vector4 Floor(Vector4 v) {
+            Vector128<float> r = Vector128.Floor(Vector128.LoadUnsafe(ref v.X));
+            return new Vector4(r[0], r[1], r[2], r[3]);
+        }
 
-        public static Vector4 Ceiling(Vector4 v) => new(MathF.Ceiling(v.X), MathF.Ceiling(v.Y), MathF.Ceiling(v.Z), MathF.Ceiling(v.W));
+        public static Vector4 Ceiling(Vector4 v) {
+            Vector128<float> r = Vector128.Ceiling(Vector128.LoadUnsafe(ref v.X));
+            return new Vector4(r[0], r[1], r[2], r[3]);
+        }
 
-        public static Vector4 Round(Vector4 v) => new(MathF.Round(v.X), MathF.Round(v.Y), MathF.Round(v.Z), MathF.Round(v.W));
+        public static Vector4 Round(Vector4 v) {
+            Vector128<float> r = Vector128.Round(Vector128.LoadUnsafe(ref v.X));
+            return new Vector4(r[0], r[1], r[2], r[3]);
+        }
 
         public static Vector4 Min(Vector4 v, float f) => new(MathF.Min(v.X, f), MathF.Min(v.Y, f), MathF.Min(v.Z, f), MathF.Min(v.W, f));
 
@@ -133,20 +144,39 @@ namespace Engine {
             return num > maxLength * maxLength ? v * (maxLength / MathF.Sqrt(num)) : v;
         }
 
-        public static Vector4 Transform(Vector4 v, Matrix m) => new(
-            v.X * m.M11 + v.Y * m.M21 + v.Z * m.M31 + m.M41,
-            v.X * m.M12 + v.Y * m.M22 + v.Z * m.M32 + m.M42,
-            v.X * m.M13 + v.Y * m.M23 + v.Z * m.M33 + m.M43,
-            v.X * m.M14 + v.Y * m.M24 + v.Z * m.M34 + m.M44
-        );
+        // x86 SSE：shufps 四次把四列转置成四行；加法顺序与标量版一致，结果逐位相同
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void TransformRows(ref Matrix m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4) {
+            Vector128<float> c1 = Vector128.LoadUnsafe(ref m.M11);
+            Vector128<float> c2 = Vector128.LoadUnsafe(ref m.M12);
+            Vector128<float> c3 = Vector128.LoadUnsafe(ref m.M13);
+            Vector128<float> c4 = Vector128.LoadUnsafe(ref m.M14);
+            Vector128<float> t01 = Sse.Shuffle(c1, c2, 0x44);
+            Vector128<float> t23 = Sse.Shuffle(c1, c2, 0xEE);
+            Vector128<float> u01 = Sse.Shuffle(c3, c4, 0x44);
+            Vector128<float> u23 = Sse.Shuffle(c3, c4, 0xEE);
+            row1 = Sse.Shuffle(t01, u01, 0x88);
+            row2 = Sse.Shuffle(t01, u01, 0xDD);
+            row3 = Sse.Shuffle(t23, u23, 0x88);
+            row4 = Sse.Shuffle(t23, u23, 0xDD);
+        }
 
-        public static void Transform(ref Vector4 v, ref Matrix m, out Vector4 result) {
-            result = new Vector4(
+        public static Vector4 Transform(Vector4 v, Matrix m) {
+            if (Sse.IsSupported) {
+                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4);
+                Vector128<float> r = row1 * Vector128.Create(v.X) + row2 * Vector128.Create(v.Y) + row3 * Vector128.Create(v.Z) + row4;
+                return new Vector4(r[0], r[1], r[2], r[3]);
+            }
+            return new Vector4(
                 v.X * m.M11 + v.Y * m.M21 + v.Z * m.M31 + m.M41,
                 v.X * m.M12 + v.Y * m.M22 + v.Z * m.M32 + m.M42,
                 v.X * m.M13 + v.Y * m.M23 + v.Z * m.M33 + m.M43,
                 v.X * m.M14 + v.Y * m.M24 + v.Z * m.M34 + m.M44
             );
+        }
+
+        public static void Transform(ref Vector4 v, ref Matrix m, out Vector4 result) {
+            result = Transform(v, m);
         }
 
         public static void Transform(Vector4[] sourceArray,
@@ -155,6 +185,15 @@ namespace Engine {
             Vector4[] destinationArray,
             int destinationIndex,
             int count) {
+            if (Sse.IsSupported) {
+                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4);
+                for (int i = 0; i < count; i++) {
+                    Vector4 vector = sourceArray[sourceIndex + i];
+                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z) + row4;
+                    destinationArray[destinationIndex + i] = new Vector4(r[0], r[1], r[2], r[3]);
+                }
+                return;
+            }
             for (int i = 0; i < count; i++) {
                 Vector4 vector = sourceArray[sourceIndex + i];
                 destinationArray[destinationIndex + i] = new Vector4(

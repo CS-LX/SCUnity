@@ -1,3 +1,5 @@
+using System.Runtime.Intrinsics;
+
 namespace Engine {
     public struct Matrix(float m11,
         float m12,
@@ -758,42 +760,37 @@ namespace Engine {
         }
 
         public static Matrix Lerp(Matrix m1, Matrix m2, float f) {
-            m1.M11 += (m2.M11 - m1.M11) * f;
-            m1.M12 += (m2.M12 - m1.M12) * f;
-            m1.M13 += (m2.M13 - m1.M13) * f;
-            m1.M14 += (m2.M14 - m1.M14) * f;
-            m1.M21 += (m2.M21 - m1.M21) * f;
-            m1.M22 += (m2.M22 - m1.M22) * f;
-            m1.M23 += (m2.M23 - m1.M23) * f;
-            m1.M24 += (m2.M24 - m1.M24) * f;
-            m1.M31 += (m2.M31 - m1.M31) * f;
-            m1.M32 += (m2.M32 - m1.M32) * f;
-            m1.M33 += (m2.M33 - m1.M33) * f;
-            m1.M34 += (m2.M34 - m1.M34) * f;
-            m1.M41 += (m2.M41 - m1.M41) * f;
-            m1.M42 += (m2.M42 - m1.M42) * f;
-            m1.M43 += (m2.M43 - m1.M43) * f;
-            m1.M44 += (m2.M44 - m1.M44) * f;
+            Vector128<float> vf = Vector128.Create(f);
+            Vector128<float> c1 = Vector128.LoadUnsafe(ref m1.M11);
+            Vector128<float> d1 = Vector128.LoadUnsafe(ref m2.M11);
+            Vector128.StoreUnsafe(c1 + (d1 - c1) * vf, ref m1.M11);
+            Vector128<float> c2 = Vector128.LoadUnsafe(ref m1.M12);
+            Vector128<float> d2 = Vector128.LoadUnsafe(ref m2.M12);
+            Vector128.StoreUnsafe(c2 + (d2 - c2) * vf, ref m1.M12);
+            Vector128<float> c3 = Vector128.LoadUnsafe(ref m1.M13);
+            Vector128<float> d3 = Vector128.LoadUnsafe(ref m2.M13);
+            Vector128.StoreUnsafe(c3 + (d3 - c3) * vf, ref m1.M13);
+            Vector128<float> c4 = Vector128.LoadUnsafe(ref m1.M14);
+            Vector128<float> d4 = Vector128.LoadUnsafe(ref m2.M14);
+            Vector128.StoreUnsafe(c4 + (d4 - c4) * vf, ref m1.M14);
             return m1;
         }
 
+        // 列主序：M11/M12/M13/M14 各落在连续 4 float 的列起点；乘加顺序与标量版一致，结果逐位相同
         public static void MultiplyRestricted(ref Matrix m1, ref Matrix m2, out Matrix result) {
-            result.M11 = m1.M11 * m2.M11 + m1.M12 * m2.M21 + m1.M13 * m2.M31 + m1.M14 * m2.M41;
-            result.M12 = m1.M11 * m2.M12 + m1.M12 * m2.M22 + m1.M13 * m2.M32 + m1.M14 * m2.M42;
-            result.M13 = m1.M11 * m2.M13 + m1.M12 * m2.M23 + m1.M13 * m2.M33 + m1.M14 * m2.M43;
-            result.M14 = m1.M11 * m2.M14 + m1.M12 * m2.M24 + m1.M13 * m2.M34 + m1.M14 * m2.M44;
-            result.M21 = m1.M21 * m2.M11 + m1.M22 * m2.M21 + m1.M23 * m2.M31 + m1.M24 * m2.M41;
-            result.M22 = m1.M21 * m2.M12 + m1.M22 * m2.M22 + m1.M23 * m2.M32 + m1.M24 * m2.M42;
-            result.M23 = m1.M21 * m2.M13 + m1.M22 * m2.M23 + m1.M23 * m2.M33 + m1.M24 * m2.M43;
-            result.M24 = m1.M21 * m2.M14 + m1.M22 * m2.M24 + m1.M23 * m2.M34 + m1.M24 * m2.M44;
-            result.M31 = m1.M31 * m2.M11 + m1.M32 * m2.M21 + m1.M33 * m2.M31 + m1.M34 * m2.M41;
-            result.M32 = m1.M31 * m2.M12 + m1.M32 * m2.M22 + m1.M33 * m2.M32 + m1.M34 * m2.M42;
-            result.M33 = m1.M31 * m2.M13 + m1.M32 * m2.M23 + m1.M33 * m2.M33 + m1.M34 * m2.M43;
-            result.M34 = m1.M31 * m2.M14 + m1.M32 * m2.M24 + m1.M33 * m2.M34 + m1.M34 * m2.M44;
-            result.M41 = m1.M41 * m2.M11 + m1.M42 * m2.M21 + m1.M43 * m2.M31 + m1.M44 * m2.M41;
-            result.M42 = m1.M41 * m2.M12 + m1.M42 * m2.M22 + m1.M43 * m2.M32 + m1.M44 * m2.M42;
-            result.M43 = m1.M41 * m2.M13 + m1.M42 * m2.M23 + m1.M43 * m2.M33 + m1.M44 * m2.M43;
-            result.M44 = m1.M41 * m2.M14 + m1.M42 * m2.M24 + m1.M43 * m2.M34 + m1.M44 * m2.M44;
+            Vector128<float> a1 = Vector128.LoadUnsafe(ref m1.M11);
+            Vector128<float> a2 = Vector128.LoadUnsafe(ref m1.M12);
+            Vector128<float> a3 = Vector128.LoadUnsafe(ref m1.M13);
+            Vector128<float> a4 = Vector128.LoadUnsafe(ref m1.M14);
+            Vector128<float> b1 = Vector128.LoadUnsafe(ref m2.M11);
+            Vector128<float> b2 = Vector128.LoadUnsafe(ref m2.M12);
+            Vector128<float> b3 = Vector128.LoadUnsafe(ref m2.M13);
+            Vector128<float> b4 = Vector128.LoadUnsafe(ref m2.M14);
+            result = default;
+            Vector128.StoreUnsafe(a1 * Vector128.Create(b1[0]) + a2 * Vector128.Create(b1[1]) + a3 * Vector128.Create(b1[2]) + a4 * Vector128.Create(b1[3]), ref result.M11);
+            Vector128.StoreUnsafe(a1 * Vector128.Create(b2[0]) + a2 * Vector128.Create(b2[1]) + a3 * Vector128.Create(b2[2]) + a4 * Vector128.Create(b2[3]), ref result.M12);
+            Vector128.StoreUnsafe(a1 * Vector128.Create(b3[0]) + a2 * Vector128.Create(b3[1]) + a3 * Vector128.Create(b3[2]) + a4 * Vector128.Create(b3[3]), ref result.M13);
+            Vector128.StoreUnsafe(a1 * Vector128.Create(b4[0]) + a2 * Vector128.Create(b4[1]) + a3 * Vector128.Create(b4[2]) + a4 * Vector128.Create(b4[3]), ref result.M14);
         }
 
         public static bool operator ==(Matrix m1, Matrix m2) => m1.Equals(m2);
@@ -802,145 +799,58 @@ namespace Engine {
 
         public static Matrix operator +(Matrix m) => m;
 
-        public static Matrix operator -(Matrix m) => new(
-            0f - m.M11,
-            0f - m.M12,
-            0f - m.M13,
-            0f - m.M14,
-            0f - m.M21,
-            0f - m.M22,
-            0f - m.M23,
-            0f - m.M24,
-            0f - m.M31,
-            0f - m.M32,
-            0f - m.M33,
-            0f - m.M34,
-            0f - m.M41,
-            0f - m.M42,
-            0f - m.M43,
-            0f - m.M44
-        );
+        public static Matrix operator -(Matrix m) {
+            Vector128<float> zero = Vector128.Create(0f);
+            Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M11), ref m.M11);
+            Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M12), ref m.M12);
+            Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M13), ref m.M13);
+            Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M14), ref m.M14);
+            return m;
+        }
 
-        public static Matrix operator +(Matrix m1, Matrix m2) => new(
-            m1.M11 + m2.M11,
-            m1.M12 + m2.M12,
-            m1.M13 + m2.M13,
-            m1.M14 + m2.M14,
-            m1.M21 + m2.M21,
-            m1.M22 + m2.M22,
-            m1.M23 + m2.M23,
-            m1.M24 + m2.M24,
-            m1.M31 + m2.M31,
-            m1.M32 + m2.M32,
-            m1.M33 + m2.M33,
-            m1.M34 + m2.M34,
-            m1.M41 + m2.M41,
-            m1.M42 + m2.M42,
-            m1.M43 + m2.M43,
-            m1.M44 + m2.M44
-        );
+        public static Matrix operator +(Matrix m1, Matrix m2) {
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M11) + Vector128.LoadUnsafe(ref m2.M11), ref m1.M11);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M12) + Vector128.LoadUnsafe(ref m2.M12), ref m1.M12);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M13) + Vector128.LoadUnsafe(ref m2.M13), ref m1.M13);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M14) + Vector128.LoadUnsafe(ref m2.M14), ref m1.M14);
+            return m1;
+        }
 
-        public static Matrix operator -(Matrix m1, Matrix m2) => new(
-            m1.M11 - m2.M11,
-            m1.M12 - m2.M12,
-            m1.M13 - m2.M13,
-            m1.M14 - m2.M14,
-            m1.M21 - m2.M21,
-            m1.M22 - m2.M22,
-            m1.M23 - m2.M23,
-            m1.M24 - m2.M24,
-            m1.M31 - m2.M31,
-            m1.M32 - m2.M32,
-            m1.M33 - m2.M33,
-            m1.M34 - m2.M34,
-            m1.M41 - m2.M41,
-            m1.M42 - m2.M42,
-            m1.M43 - m2.M43,
-            m1.M44 - m2.M44
-        );
+        public static Matrix operator -(Matrix m1, Matrix m2) {
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M11) - Vector128.LoadUnsafe(ref m2.M11), ref m1.M11);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M12) - Vector128.LoadUnsafe(ref m2.M12), ref m1.M12);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M13) - Vector128.LoadUnsafe(ref m2.M13), ref m1.M13);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M14) - Vector128.LoadUnsafe(ref m2.M14), ref m1.M14);
+            return m1;
+        }
 
         public static Matrix operator *(Matrix m1, Matrix m2) {
             MultiplyRestricted(ref m1, ref m2, out Matrix result);
             return result;
         }
 
-        public static Matrix operator *(Matrix m, float s) => new(
-            m.M11 * s,
-            m.M12 * s,
-            m.M13 * s,
-            m.M14 * s,
-            m.M21 * s,
-            m.M22 * s,
-            m.M23 * s,
-            m.M24 * s,
-            m.M31 * s,
-            m.M32 * s,
-            m.M33 * s,
-            m.M34 * s,
-            m.M41 * s,
-            m.M42 * s,
-            m.M43 * s,
-            m.M44 * s
-        );
+        public static Matrix operator *(Matrix m, float s) {
+            Vector128<float> vs = Vector128.Create(s);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M11) * vs, ref m.M11);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M12) * vs, ref m.M12);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M13) * vs, ref m.M13);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M14) * vs, ref m.M14);
+            return m;
+        }
 
-        public static Matrix operator *(float s, Matrix m) => new(
-            m.M11 * s,
-            m.M12 * s,
-            m.M13 * s,
-            m.M14 * s,
-            m.M21 * s,
-            m.M22 * s,
-            m.M23 * s,
-            m.M24 * s,
-            m.M31 * s,
-            m.M32 * s,
-            m.M33 * s,
-            m.M34 * s,
-            m.M41 * s,
-            m.M42 * s,
-            m.M43 * s,
-            m.M44 * s
-        );
+        public static Matrix operator *(float s, Matrix m) => m * s;
 
-        public static Matrix operator /(Matrix m1, Matrix m2) => new(
-            m1.M11 / m2.M11,
-            m1.M12 / m2.M12,
-            m1.M13 / m2.M13,
-            m1.M14 / m2.M14,
-            m1.M21 / m2.M21,
-            m1.M22 / m2.M22,
-            m1.M23 / m2.M23,
-            m1.M24 / m2.M24,
-            m1.M31 / m2.M31,
-            m1.M32 / m2.M32,
-            m1.M33 / m2.M33,
-            m1.M34 / m2.M34,
-            m1.M41 / m2.M41,
-            m1.M42 / m2.M42,
-            m1.M43 / m2.M43,
-            m1.M44 / m2.M44
-        );
+        public static Matrix operator /(Matrix m1, Matrix m2) {
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M11) / Vector128.LoadUnsafe(ref m2.M11), ref m1.M11);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M12) / Vector128.LoadUnsafe(ref m2.M12), ref m1.M12);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M13) / Vector128.LoadUnsafe(ref m2.M13), ref m1.M13);
+            Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m1.M14) / Vector128.LoadUnsafe(ref m2.M14), ref m1.M14);
+            return m1;
+        }
 
         public static Matrix operator /(Matrix m, float d) {
             float num = 1f / d;
-            return new Matrix(
-                m.M11 * num,
-                m.M12 * num,
-                m.M13 * num,
-                m.M14 * num,
-                m.M21 * num,
-                m.M22 * num,
-                m.M23 * num,
-                m.M24 * num,
-                m.M31 * num,
-                m.M32 * num,
-                m.M33 * num,
-                m.M34 * num,
-                m.M41 * num,
-                m.M42 * num,
-                m.M43 * num,
-                m.M44 * num
-            );
+            return m * num;
         }
 
         public static implicit operator System.Numerics.Matrix4x4(Matrix m) {
