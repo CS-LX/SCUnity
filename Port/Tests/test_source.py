@@ -5,14 +5,30 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "Build"))
 import baseline as b
 import source_api
 import source_guard
+import source
 
 
 class SourceApi(unittest.TestCase):
+    def test_content_archive_matches_across_json_checkout_line_endings(self):
+        with tempfile.TemporaryDirectory(dir=b.PORT / ".artifacts") as folder:
+            root = Path(folder); content = root / "content"; content.mkdir()
+            (content / "settings.json").write_bytes(b'{\r\n"value": 7\r\n}\r\n')
+            (content / "data.bin").write_bytes(b'\x00\r\n\xff')
+            (content / "settings.json.meta").write_text("editor metadata")
+            source.pack_content(content, root / "first.zip")
+            (content / "settings.json").write_bytes(b'{\n"value": 7\n}\n')
+            source.pack_content(content, root / "second.zip")
+            self.assertEqual((root / "first.zip").read_bytes(), (root / "second.zip").read_bytes())
+            with zipfile.ZipFile(root / "first.zip") as archive:
+                self.assertEqual(archive.read("data.bin"), b'\x00\r\n\xff')
+                self.assertNotIn("settings.json.meta", archive.namelist())
+
     def test_compiler_metadata_does_not_hide_a_signature_change(self):
         with tempfile.TemporaryDirectory(dir=b.PORT / ".artifacts") as folder:
             original, candidate = Path(folder) / "old.txt", Path(folder) / "new.txt"

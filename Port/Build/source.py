@@ -60,6 +60,20 @@ def dependencies(workspace: Path, unity: Path, refresh_lock: bool = False) -> Pa
     return output
 
 
+def pack_content(directory: Path, target: Path) -> None:
+    with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as archive:
+        for file in sorted(directory.rglob("*")):
+            if not file.is_file() or file.suffix == ".meta": continue
+            data = file.read_bytes()
+            # The source package declares JSON as LF. Git can consider an older
+            # CRLF working copy clean; canonicalize JSON whitespace at packaging
+            # so the first migration and a fresh checkout produce identical ZIPs.
+            if file.suffix == ".json": data = data.replace(b"\r\n", b"\n")
+            info = zipfile.ZipInfo(file.relative_to(directory).as_posix(), (2000, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            archive.writestr(info, data)
+
+
 def install(output: Path, unity: Path) -> dict:
     plugins = b.ROOT / "Assets/SCUnity/Plugins/Generated"
     supplied = mono.UNITY_FRAMEWORK_ASSEMBLIES | {p.name for p in foundation.framework_path(unity).rglob("*.dll")}
@@ -79,12 +93,7 @@ def install(output: Path, unity: Path) -> dict:
     if unexpected: raise ValueError("Review unexpected plugins: " + str(sorted(unexpected)))
     content = b.ROOT / "Assets/StreamingAssets/Survivalcraft"
     content.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(content / "Content.zip", "w", zipfile.ZIP_DEFLATED) as archive:
-        for file in sorted((b.UPSTREAM / "Survivalcraft/Content").rglob("*")):
-            if file.is_file() and file.suffix != ".meta":
-                info = zipfile.ZipInfo(file.relative_to(b.UPSTREAM / "Survivalcraft/Content").as_posix(), (2000, 1, 1, 0, 0, 0))
-                info.compress_type = zipfile.ZIP_DEFLATED
-                archive.writestr(info, file.read_bytes())
+    pack_content(b.UPSTREAM / "Survivalcraft/Content", content / "Content.zip")
     shutil.copyfile(b.UPSTREAM / "Survivalcraft/init.js", content / "init.js")
     for name in ("Content.zip", "init.js"):
         file = content / name; files[file.relative_to(b.ROOT).as_posix()] = b.digest(file.read_bytes())

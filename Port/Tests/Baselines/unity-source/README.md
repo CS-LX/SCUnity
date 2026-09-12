@@ -7,9 +7,9 @@ settings (including managed stripping). Source commit is recorded in `evidence.j
 - Unity CompilationPipeline: Engine **336**, EntitySystem **20**, Survivalcraft
   **1062** source inputs. No precompiled core DLL in Assets.
 - Two independent Players: **14 source + 17 community + 17 world/GPU/save-reload
-  + 12 audio** checks each, with **44,036 / 45,123** executed draws.
+  + 12 audio** checks each, with **44,732 / 42,991** executed draws.
 - Two Editor Play/Stop cycles with Domain Reload passed.
-- **62** Python guard/metadata/profile tests passed.
+- **63** Python guard/metadata/profile tests passed.
 - **48,215** API records match the Desktop reference after the explicitly reviewed
   compiler/Debug metadata normalization in `Port/Build/source_api.py`.
 
@@ -20,10 +20,17 @@ tested project/source snapshot. `world.png` is the final saved/reloaded world an
 server replies are fixtures; networking/account actions were not sent to the service.
 
 Detailed logs, linked Player binaries, API snapshots and isolated data remain in
-`Port/.artifacts/source-ru4or8yn`. Source-related documentation was finalized after
-the runtime snapshot; no runtime or project-setting change followed acceptance.
-Third-party dependencies were rebuilt with the independent locked dependency
-project before this run. Core compilation used only Unity's bundled compiler.
+`Port/.artifacts/clean-final-dzp4sho5`. This final acceptance uses a fresh local
+Git checkout, initially containing no core DLLs. All third-party dependencies
+were restored from locks and rebuilt, and all 61 installed files match the main
+project. JSON line endings are canonicalized when packaging content; generated
+source-folder archives are excluded from tracked source snapshots. The previous
+main-project acceptance also passed (44,036 / 45,123 executed draws), and is
+recorded in `evidence.json`. Core compilation used only Unity's bundled compiler.
+
+The final validation snapshot uses the same main-project Assets, Packages and
+ProjectSettings, with source commit 841aafd. Documentation and acceptance
+artifacts were finalized after the runtime snapshot.
 
 The scope is source migration plus the established core-loop baseline, not full
 world rendering equivalence, all mod compatibility, or other platform support.

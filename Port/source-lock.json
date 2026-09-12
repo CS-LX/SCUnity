@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
-  "sourceCommit": "faec7b78ea3709b5e3b3b0c374360c8181ac1296",
+  "sourceCommit": "841aafd2d13295c0e0cc07200e11cdd7a09f542c",
   "url": "https://github.com/CS-LX/SCUnity.git",
   "branch": "feature/unity-source-runtime",
   "unity": "6000.3.12f1",

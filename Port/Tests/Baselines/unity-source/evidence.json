@@ -13,12 +13,12 @@
       "returnedWithEscape": true,
       "isMono": true,
       "isEditor": false,
-      "frames": 4027,
+      "frames": 4170,
       "pointerSize": 8,
-      "executedDraws": 44036,
-      "draws": 44059,
+      "executedDraws": 44732,
+      "draws": 44755,
       "uploads": 861,
-      "audioBlocks": 832,
+      "audioBlocks": 842,
       "audioChecks": [
         "Unity DSP callback is active",
         "Static PCM reached the Unity listener (RMS 0.09965976)",
@@ -99,12 +99,12 @@
       "returnedWithEscape": true,
       "isMono": true,
       "isEditor": false,
-      "frames": 4166,
+      "frames": 3890,
       "pointerSize": 8,
-      "executedDraws": 45123,
-      "draws": 45146,
+      "executedDraws": 42991,
+      "draws": 43014,
       "uploads": 861,
-      "audioBlocks": 833,
+      "audioBlocks": 831,
       "audioChecks": [
         "Unity DSP callback is active",
         "Static PCM reached the Unity listener (RMS 0.09965976)",
@@ -187,30 +187,30 @@
     "unityVersion": "6000.3.12f1"
   },
   "files": {
-    "smoke-1/community-search.png": "89d79f712774be78a525dd041829d0ab346b097dfe1726cf6c5f4b2a53e8d289",
-    "smoke-1/main-menu.png": "ea3d4e579949eb3302c492f8daafba7af7feefe1debad8ab1f4b8765aa45928f",
-    "smoke-1/player.log": "1cff97e4f7609e914755ed893e1157b4880dc7a7473282eb95bfcff3e874e63d",
+    "smoke-1/community-search.png": "b9190c2f7d3cfa3c9f9b60372c49f5706afef49611e0084df2ace06c4232551e",
+    "smoke-1/main-menu.png": "bf49e9d67fbfef1360389aa98fc63971c4ae215aebe69deb041393d424070bde",
+    "smoke-1/player.log": "23bde6be0a4a1aaf71ee229dfb7ad65920c5a37c17db6bf154cc19b1766cfef2",
     "smoke-1/process.log": "2157d3a496a39e613fc51cdff0756d69b3b70dfb31f4de46aee546b601383944",
     "smoke-1/render-probe.png": "885d27222d5a3c3a88d02aa0e4e6755ddbe5460e16c363f229fc54b6ca4b8e9e",
-    "smoke-1/result.json": "15d6c8383e3bbefe8f3d7b2a55932275ad255d675b72ba862fb59abfb1319e76",
-    "smoke-1/world-after-reload.png": "33cecfba5c61012b5bf8bb06bd6233ad43de037d0dbbd7a9fec16b15a3afa438",
-    "smoke-1/world-before-reload.png": "a7ab0d3f43cbb3f7eb2479a494cfa54af8f43f3cee9b414d6c9a48fbb577d68c",
-    "smoke-1/world.scworld": "bc21ba9fe50552c1583cf7acd1a21bfd2d3c7776ead365ad66a0ddf0595be34d",
-    "smoke-2/community-search.png": "28860a0f50d3e0e1a517af15187ba34ee5629e4a46a31102828ddcc7cb226614",
-    "smoke-2/main-menu.png": "9447bf3a12a316063d7e43f277f9c29bff7a0e7c881b03dafe82639fabce98dd",
-    "smoke-2/player.log": "e804ffddc0317e40be119dfed4d6da384735b11a6c8448ec00dc71e6855b9a13",
+    "smoke-1/result.json": "b5774c227461b6d529725d06446ada7d2f4d84d3eacef063a0931e66bcae806a",
+    "smoke-1/world-after-reload.png": "e6eac4942b6e96c96e17c9f2041c5b1b406518f9a09d0acd2ab440e329cd8fd1",
+    "smoke-1/world-before-reload.png": "2c1b2bfb8cc593963652004a57ed2407d28dbf61e4bd35799dac6fdcf74cb203",
+    "smoke-1/world.scworld": "73f3d0a43a6c3ec6543e02fd4998aac1558d486728430a706c73cddafa56d6c1",
+    "smoke-2/community-search.png": "abb024896f2a3d4a8ad61d14ff7e394ca2a9953c1de470ee58534cf9bcfbd7e8",
+    "smoke-2/main-menu.png": "67a185d857e6ba69e8db996c4b3c00857cd70d202e67b1c8e980cccf1a0bd053",
+    "smoke-2/player.log": "e42c0c6a63c3c0c7f71c2e248da988948bac35fa1d4c5d69e9f90f65d6872b8b",
     "smoke-2/process.log": "2157d3a496a39e613fc51cdff0756d69b3b70dfb31f4de46aee546b601383944",
     "smoke-2/render-probe.png": "885d27222d5a3c3a88d02aa0e4e6755ddbe5460e16c363f229fc54b6ca4b8e9e",
-    "smoke-2/result.json": "8a3e2468a627cf37b588445d23e48421a5cccb282e408e2206b74b6be43fcec8",
-    "smoke-2/world-after-reload.png": "5a35daada0ead91acfeeb8864e39a39951d6e3ec27be2b5679bb4be487c05ee7",
-    "smoke-2/world-before-reload.png": "cb9f383b3131d9377c368219b3b2624726b9fe1e65344739feeefc13b5749722",
-    "smoke-2/world.scworld": "7b87f9bb634ae48a87d09fe5d19880b1b30975cb919649ce11b2521c5f8a7a61"
+    "smoke-2/result.json": "922090629b00a6a6dca9e9a9cc2e373465b581ec4fdc9e6532cb052ce396d2c2",
+    "smoke-2/world-after-reload.png": "1e794fafe0940df3764711e850c18ca133ebfcdc3562ecb4436b4cb8b4e28f58",
+    "smoke-2/world-before-reload.png": "7cf4f8560b8f1657ca198f29458bc1f09102cbc6dd7451836d03a8ba249ed59a",
+    "smoke-2/world.scworld": "e7ddbefd1011e66f74c6fc8dbded382c97693febb65c97d2799f6cc692c4f1cb"
   },
   "scope": "Unity source compilation of all three core assemblies; Windows Mono; 14 source, 17 community, 17 initial world/GPU/save-reload and 12 audio checks in each of two Players; two Editor Play/Stop cycles; public API comparison. Full world/mod/platform acceptance remains incomplete.",
   "source": {
     "schemaVersion": 1,
     "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
-    "sourceCommit": "faec7b78ea3709b5e3b3b0c374360c8181ac1296",
+    "sourceCommit": "841aafd2d13295c0e0cc07200e11cdd7a09f542c",
     "url": "https://github.com/CS-LX/SCUnity.git",
     "branch": "feature/unity-source-runtime",
     "unity": "6000.3.12f1",
@@ -226,29 +226,22 @@
     "candidateSha256": "4fdb6460e4a6014a73683568308f53d1eb4a0efe0420c817ad49c76572ecdacc",
     "policy": "source_api.py: explicit Roslyn, Debug and MSBuild metadata differences only; public signatures and layouts retained",
     "unityAssemblies": {
-      "Engine.dll": "6056383686beb8cf9fb14f3ab743fb76285681092f5e670d0648806c293ecdfe",
-      "EntitySystem.dll": "895aba6f0b2fd35169995389eb22fd3cc0ceb85dd654f71cc15b7340e03ebca5",
-      "Survivalcraft.dll": "399933feee3dc70ed560744005222ccdb64cd11af8afdece100d10ea2c278a45"
+      "Engine.dll": "094efcc3d8bbb53c39af7ad9d254995b3874a3311080b6d93266e8884580398e",
+      "EntitySystem.dll": "5297e14ef39f9bb51dc57b752c5bcc2ea5dea6a8f4b73152d2aebcb55d5800ea",
+      "Survivalcraft.dll": "3b7e6aaf8750221d9be30d900e622d2f92a5e39be258c9ca5b5541159940d2d7"
     },
     "sourceCompilation": "Engine: 336 source files; Library/ScriptAssemblies/Engine.dll\nEntitySystem: 20 source files; Library/ScriptAssemblies/EntitySystem.dll\nSurvivalcraft: 1062 source files; Library/ScriptAssemblies/Survivalcraft.dll\n"
   },
-  "projectSnapshotSha256": "8aa1d3913c8df8e102bfc8ad2ba0ee384df7c244ed88a9e8cd03763df3914af7",
+  "projectSnapshotSha256": "26f5050ed2401c598f221d3c3af846a3d2cb2aa513f55dab3a1565b4be0f1520",
   "pythonTests": {
     "passed": true,
-    "count": 62,
-    "logSha256": "966b3aa1f5239a46680b8f0d2ea9225bbde6a7f471483ddc9bf8e7b2efeb3153"
+    "count": 63,
+    "logSha256": "e8e856d6042901299af442d08a3acdf30d607ea244a257bbb7195f5a6078124b"
   },
   "desktopReferenceAssemblies": {
     "Engine.dll": "4b522f82cc8286f8668ddadc3e8eb69ad14362b9216d614072667a5b6c367b9c",
     "EntitySystem.dll": "8a537d78200b5db809fd74ba02d900167f49fd258e01af5b8e8872c9be25be32",
     "Survivalcraft.dll": "55eb385e235d391ead98e22dc5c90486f7b7f23fae7eec9c64c17234bcd51f14"
-  },
-  "artifactHashes": {
-    "community-search.png": "89d79f712774be78a525dd041829d0ab346b097dfe1726cf6c5f4b2a53e8d289",
-    "desktop-api.txt.gz": "602bff408f23437f3712193eb731b22ed69ad4ce71339a0bc668298f2bbf1a19",
-    "project-files.json.gz": "e9524b67886d074cde487bdeea44ce4661e4088e50458ad76754534ff6ff46ea",
-    "python-tests.txt": "966b3aa1f5239a46680b8f0d2ea9225bbde6a7f471483ddc9bf8e7b2efeb3153",
-    "world.png": "ea3d4e579949eb3302c492f8daafba7af7feefe1debad8ab1f4b8765aa45928f"
   },
   "dependencyInstall": {
     "files": {
@@ -311,9 +304,43 @@
       "Assets/SCUnity/Plugins/Generated/TextCopy.dll": "88513a0aba065dcf35d8a14b7d4d733c50cbd39536c375988fd01adea4b0f6e1",
       "Assets/SCUnity/Plugins/Generated/Ultz.Bcl.Half.dll": "21893285bc94e006a7792d4317daa72664ba6878ce3d6171f0c05e151cdf4ebe",
       "Assets/SCUnity/Plugins/Generated/wrap_oal.dll": "5379373cf3eff41cdd8c912c65e27e1bd492bd84238d19a093aa846c9b1ce909",
-      "Assets/StreamingAssets/Survivalcraft/Content.zip": "f7f7cea32af2f4b674a0bedbc32313defa28340ac936aaf4d1a2b8818911adb1",
+      "Assets/StreamingAssets/Survivalcraft/Content.zip": "32324bc840241452f0b8c81b44c3a9fd8d0d9a9ad710c40771020115db50a8c3",
       "Assets/StreamingAssets/Survivalcraft/init.js": "b5cdd87a01cdb0250fef690e5dca2aeb63a07abfb4fe78b1eb064896d602e465"
     },
     "coreCompiler": "Unity Editor"
+  },
+  "artifactHashes": {
+    "community-search.png": "b9190c2f7d3cfa3c9f9b60372c49f5706afef49611e0084df2ace06c4232551e",
+    "desktop-api.txt.gz": "602bff408f23437f3712193eb731b22ed69ad4ce71339a0bc668298f2bbf1a19",
+    "project-files.json.gz": "eff13b774c986915b5eac36c274008f34598ae84c0a87bf53366c5e7b4fa69f8",
+    "python-tests.txt": "e8e856d6042901299af442d08a3acdf30d607ea244a257bbb7195f5a6078124b",
+    "world.png": "e6eac4942b6e96c96e17c9f2041c5b1b406518f9a09d0acd2ab440e329cd8fd1"
+  },
+  "cleanCheckout": {
+    "passed": true,
+    "startingCoreDllCount": 0,
+    "bootstrap": "source.py --install; third-party dependency rebuild from locked NuGet packages",
+    "sourceFetch": "Fresh local shared clone for offline reproducibility; remote publication verified separately",
+    "contentPackaging": "Canonical JSON line endings; all 61 installed files match the original project",
+    "validationWorkspace": "Port/.artifacts/clean-final-dzp4sho5"
+  },
+  "previousMainProjectAcceptance": {
+    "sourceCommit": "faec7b78ea3709b5e3b3b0c374360c8181ac1296",
+    "build": {
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0
+    },
+    "executedDraws": [
+      44036,
+      45123
+    ],
+    "checksPerPlayer": 60,
+    "editor": {
+      "passed": true,
+      "playStopCycles": 2,
+      "error": "",
+      "unityVersion": "6000.3.12f1"
+    }
   }
 }

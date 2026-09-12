@@ -92,7 +92,7 @@ python -X utf8 -m unittest discover -s Port/Tests
 - 17 项初始世界、模型、保存重载与 GPU 状态检查。
 - 12 项实际 Listener 输出的音频检查。
 
-另有两次 Editor Play/Stop、公开 API 元数据比对和 62 项 Python 工具检查。
+另有两次 Editor Play/Stop、公开 API 元数据比对和 63 项 Python 工具检查。
 API 门禁保留公开签名及布局，仅登记具体的编译器/Debug 元数据差异。
 本次证据见 `Port/Tests/Baselines/unity-source`，详细日志在 `Port/.artifacts`。
 

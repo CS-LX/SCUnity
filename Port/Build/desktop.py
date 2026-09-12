@@ -119,17 +119,26 @@ def snapshot_roots() -> tuple[str, ...]:
 
 
 def main_snapshot() -> dict:
-    return {p.relative_to(b.ROOT).as_posix(): b.digest(p.read_bytes())
-            for name in snapshot_roots()
-            for p in sorted((b.ROOT / name).rglob("*")) if p.is_file()}
+    files = [p for name in ("Assets", "Packages", "ProjectSettings")
+             for p in (b.ROOT / name).rglob("*") if p.is_file()]
+    if len(snapshot_roots()) > 3:
+        # The source guard requires a clean committed checkout. Ignore old build
+        # products such as Content.zip that may remain in an existing checkout.
+        tracked = b.run(["git", "-C", b.UPSTREAM, "ls-files", "-z", "--", *b.ASSEMBLIES])
+        files.extend(b.UPSTREAM / name for name in tracked.split("\0") if name)
+    return {p.relative_to(b.ROOT).as_posix(): b.digest(p.read_bytes()) for p in sorted(files)}
 
 
 def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test: bool = False, community_test: bool = False) -> dict:
     shaders.generate(check=True)
     before = main_snapshot()
     project = workspace / "main-project"
-    for name in snapshot_roots():
+    for name in ("Assets", "Packages", "ProjectSettings"):
         shutil.copytree(b.ROOT / name, project / name)
+    for relative in before:
+        if relative.startswith("External/SurvivalcraftApi/"):
+            target = project / relative; target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(b.ROOT / relative, target)
     player = workspace / "player/SCUnity.exe"; player.parent.mkdir()
     print("Building a complete main-project snapshot; the open Editor stays in place...", flush=True)
     mono.execute([unity, "-batchmode", "-nographics", "-projectPath", project, "-buildTarget", "Win64",
