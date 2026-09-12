@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETFramework,Version=v4.8": {
+      "System.Runtime.CompilerServices.Unsafe": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg=="
+      },
+      "Engine": {
+        "type": "Project",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "[6.0.0, )"
+        }
+      },
+      "entitysystem": {
+        "type": "Project",
+        "dependencies": {
+          "Engine": "[1.0.0, )"
+        }
+      },
+      "SCUnity.Foundation.Runner": {
+        "type": "Project",
+        "dependencies": {
+          "EntitySystem": "[1.0.0, )"
+        }
+      }
+    }
+  }
+}

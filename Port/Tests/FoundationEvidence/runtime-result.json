@@ -1,0 +1,100 @@
+{
+    "schema": "scunity-foundation-v1",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "isEditor": false,
+    "isMono": true,
+    "pointerSize": 8,
+    "passed": true,
+    "error": "",
+    "checks": [
+        {
+            "name": "default-interface-method",
+            "passed": true
+        },
+        {
+            "name": "math-corpus-completed",
+            "passed": true
+        },
+        {
+            "name": "matrix-column-layout",
+            "passed": true
+        },
+        {
+            "name": "typecache-payload-not-preloaded",
+            "passed": true
+        },
+        {
+            "name": "typecache-assembly-load-rescan",
+            "passed": true
+        },
+        {
+            "name": "typecache-short-names",
+            "passed": true
+        },
+        {
+            "name": "typecache-cache-identity",
+            "passed": true
+        },
+        {
+            "name": "typecache-required-missing-rejected",
+            "passed": true
+        },
+        {
+            "name": "entity-component-reflection-load",
+            "passed": true
+        },
+        {
+            "name": "entity-add-id-and-find",
+            "passed": true
+        },
+        {
+            "name": "entity-component-save",
+            "passed": true
+        },
+        {
+            "name": "entity-remove-and-dispose",
+            "passed": true
+        },
+        {
+            "name": "entity-event-order",
+            "passed": true
+        },
+        {
+            "name": "binary-integer-boundaries",
+            "passed": true
+        },
+        {
+            "name": "binary-string-interning",
+            "passed": true
+        },
+        {
+            "name": "binary-serializer-discovery",
+            "passed": true
+        },
+        {
+            "name": "binary-consumed-exactly",
+            "passed": true
+        },
+        {
+            "name": "values-xml-roundtrip",
+            "passed": true
+        },
+        {
+            "name": "human-readable-null-guard",
+            "passed": true
+        },
+        {
+            "name": "human-readable-invalid-input",
+            "passed": true
+        },
+        {
+            "name": "unity-dictionary-apis",
+            "passed": true
+        },
+        {
+            "name": "default-object-info-behavior-recorded",
+            "passed": true
+        }
+    ]
+}

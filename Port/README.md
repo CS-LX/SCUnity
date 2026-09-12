@@ -1,6 +1,6 @@
 # Survivalcraft Unity 迁移基线
 
-本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**；阶段 1 已完成首个模块：源码生成、外部 `net48` 测试程序集和真正的 Unity Mono Player 运行能力验证。完整的三个兼容程序集和游戏宿主尚未实现。阶段 0 运行方法见 [运行基线说明](Tests/RuntimeProbe/README.md)，阶段 1 运行方法和范围见 [兼容构建说明](Compatibility/README.md)。
+本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**；阶段 1 已完成源码生成/Mono 能力验证，以及数学/序列化/完整 EntitySystem 基础模块。完整 Engine、Survivalcraft 和游戏宿主尚未实现。阶段 0 运行方法见 [运行基线说明](Tests/RuntimeProbe/README.md)，阶段 1 见 [Mono 能力验证](Compatibility/README.md) 和 [基础模块对照验收](Compatibility/Foundation.md)。
 
 ## 运行
 
@@ -57,7 +57,7 @@ python Port/Build/baseline.py verify --static-only
 - 快照保留外部类型的程序集作用域、成员访问级别、可选参数、custom modifier、特性值和布局。常量与特性负载使用元数据类型及十六进制字节保存，避免区域设置影响。
 - 对顺序/显式布局类型，也保存非公开实例字段；顺序布局另外保留实例字段的声明次序，防止仅比较 public 字段或排序后的名称漏掉 ABI 变化。
 - 不将方法体、DLL 时间戳或本机绝对路径作为 API。测试确认只修改方法体不会产生 API 差异，也确认快照读取不会执行模块初始化器。
-- 当前门禁验证**同一上游 Windows 基线可重现**。它不是已经完成的 `net10.0 → net48` API 兼容判断器。后续跨框架比较要对 BCL 程序集重定向制定明确规则，并登记无法保留的低层平台类型。
+- `baseline.py` 验证**同一上游 Windows 基线可重现**。基础模块另外建立了显式 BCL 重定向政策下的 `net10.0 → net48` API 比较，覆盖 Engine 子集及完整 EntitySystem 的 153 个类型；完整三程序集和低层平台类型仍待验收。
 - 原版 Windows 基线保留上游 VR 代码，便于完整记录现有 API；迁移目标仍为非 VR。分类排除不自动授权删除公开 API。
 
 ## 验证证据和当前边界
@@ -66,4 +66,4 @@ python Port/Build/baseline.py verify --static-only
 
 每次运行的 `restore.log`、`build.log`、`api-tool-build.log`、`api-snapshot.log`、`result.json` 和 DLL 保存在终端打印的 `.artifacts` 目录，不提交 Git。工具不自动清理这些目录，便于审计。
 
-原版现已实际运行：生成模组与真实存档联合场景通过 42 项断言、605 个完整帧及 279 次采样 ECS 调用；5 个社区模组同时加载及 RealmEX 两个 Shader 变体编译通过。新增 9 项运行证据校验测试通过。用户原始样本保持不变；完整结果与限制见 [运行基线说明](Tests/RuntimeProbe/README.md) 和 [兼容报告](../Docs/PortCompatibilityReport.md)。阶段 1 的 Unity Mono 能力探针已验证动态加载、Jint 和 HarmonyX；完整模组链路仍待接通。
+原版现已实际运行：生成模组与真实存档联合场景通过 42 项断言、605 个完整帧及 279 次采样 ECS 调用；5 个社区模组同时加载及 RealmEX 两个 Shader 变体编译通过。用户原始样本保持不变；结果与限制见 [运行基线说明](Tests/RuntimeProbe/README.md) 和 [兼容报告](../Docs/PortCompatibilityReport.md)。Unity Mono 已验证动态加载、Jint、HarmonyX，并运行真实 TypeCache/实体组件生命周期及与原版逐字节一致的选定数学/序列化测试；完整模组链路仍待接通。

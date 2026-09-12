@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>EntitySystem</AssemblyName></PropertyGroup>
+  <Import Project="$(GeneratedSources)/Sources.props" />
+  <ItemGroup>
+    <Compile Remove="$(GeneratedSources)/src/Engine/**/*.cs" />
+    <ProjectReference Include="../Engine.Core/Engine.Core.csproj" />
+  </ItemGroup>
+</Project>

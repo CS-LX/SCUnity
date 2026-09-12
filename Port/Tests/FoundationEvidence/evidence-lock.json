@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "hashBasis": "UTF-8 LF for text; exact bytes for .gz and .bin",
+  "recorderSha256": "8384181dbeada4539834aab13dc572055f44851e6d483325fae32d9f67289517",
+  "files": {
+    "api-comparison.json": "4d3475f9bb7835d42c47fbe57e7afefcf85c43d163b83fbeaa18b5a899c50c10",
+    "archive.bin": "28c3f40dd558910cc21e5e9855a33f1f02dd3a2a086cc77848b8dc87b30af594",
+    "build-summary.json": "5bdda2641b6a9b6fa321e9fd9dd653d11bf4cef16e6ee73589eb0815a7e85b06",
+    "foundation-api.txt.gz": "9547679558852dc687b63e3fd1ea7c5608110c6630e48ff6c0598ad4f1c764ae",
+    "generation-summary.json": "828502b3cfd1c0c0ae517001a84ccf2b13e92b76b980c0eac29f0102aa25c5cc",
+    "object-info.txt": "4e7c06dacfd2b81506511a048aba23abc18d46074d957e1a1f0d935b45e8e995",
+    "provenance.json": "f542b190dcbfa91388bcc05b4f23276989bde1e67182654391f5196d6f5cc8a3",
+    "reproducibility.json": "1c40ed604fac80dad1110ad7cf9749004e58c83bb96eec2a527ecb9706edc291",
+    "rounding-edges.bin": "f36b51f862bb53eded11e217ffd6e6943ffd7fae1e3afa8cdbfe810d913cd9bd",
+    "runtime-result.json": "90a218777eae937a86a3177338aab469b879f97c969ee9d7880df9af695d1a5e",
+    "values.xml": "a7c313a54ce0cc96617476a3083384f64bce8c2a78db107cbdfd8af5d5981602"
+  }
+}

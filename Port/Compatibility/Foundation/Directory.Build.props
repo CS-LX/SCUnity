@@ -1,0 +1,21 @@
+<Project>
+  <PropertyGroup>
+    <FoundationTargetFramework Condition="'$(FoundationTargetFramework)' == ''">net48</FoundationTargetFramework>
+    <TargetFramework>$(FoundationTargetFramework)</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>CS0067</NoWarn>
+  </PropertyGroup>
+  <ItemGroup><Using Include="System.Collections" /></ItemGroup>
+  <Target Name="RequireUnityFramework" BeforeTargets="GetReferenceAssemblyPaths" Condition="'$(TargetFramework)' == 'net48'">
+    <Error Condition="!Exists('$(FrameworkPathOverride)/mscorlib.dll')" Text="Use foundation.py with the pinned Unity Editor: its Framework reference profile is required." />
+  </Target>
+</Project>

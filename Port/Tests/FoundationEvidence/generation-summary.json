@@ -1,0 +1,850 @@
+{
+  "schemaVersion": 1,
+  "profile": "foundation-core-and-complete-entitysystem",
+  "scope": "probe",
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "profileSha256": "c0ee7f11786ad41e04310acba290dabdab122a90a7069fb609d3dd9f1ab25249",
+  "complete": false,
+  "counts": {
+    "exclude-platform": 23,
+    "patch": 12,
+    "pending": 1265,
+    "preserve": 127
+  },
+  "selectedSources": [
+    {
+      "path": "Engine/Engine/BoundingBox.cs",
+      "status": "patch",
+      "inputSha256": "b4373853059a7773016b47386cc4354345817f06693f04f9b76258008d09af68",
+      "outputSha256": "133a4cd2f2e5ef1a10d637825a87754437aa03480dbe4031ffda894935c43ae7"
+    },
+    {
+      "path": "Engine/Engine/BoundingCircle.cs",
+      "status": "preserve",
+      "inputSha256": "6ce01cc0eb0cd974c2d6adea3c41dd64a1f04baa08f90202962300a35114f996",
+      "outputSha256": "6ce01cc0eb0cd974c2d6adea3c41dd64a1f04baa08f90202962300a35114f996"
+    },
+    {
+      "path": "Engine/Engine/BoundingFrustum.cs",
+      "status": "preserve",
+      "inputSha256": "58791aae0f1b49112d04720f21ea186653174019db0a2a0c8ae86538487d33b9",
+      "outputSha256": "58791aae0f1b49112d04720f21ea186653174019db0a2a0c8ae86538487d33b9"
+    },
+    {
+      "path": "Engine/Engine/BoundingRectangle.cs",
+      "status": "patch",
+      "inputSha256": "7f0642f35ffdcf7116176f6bc442a54a58b6344fe496a1f0d5cc8b1a4b66b467",
+      "outputSha256": "b817dbf0d73a8fcdfc0b02aeb61e20d49aba2cda8512199812f456f9a1fb3fb7"
+    },
+    {
+      "path": "Engine/Engine/BoundingSphere.cs",
+      "status": "preserve",
+      "inputSha256": "215320173828ea05d12de223fad063e7d1c145244d3641f46b03d77a895ae5d1",
+      "outputSha256": "215320173828ea05d12de223fad063e7d1c145244d3641f46b03d77a895ae5d1"
+    },
+    {
+      "path": "Engine/Engine/Box.cs",
+      "status": "preserve",
+      "inputSha256": "338ebca6ec9d93c3951590f000cd8bee96c90b6bfc4b663013f562f16efa3e2b",
+      "outputSha256": "338ebca6ec9d93c3951590f000cd8bee96c90b6bfc4b663013f562f16efa3e2b"
+    },
+    {
+      "path": "Engine/Engine/Color.cs",
+      "status": "preserve",
+      "inputSha256": "7893f6a9b5e229dcb668c1590b32b05950eb757a711f5477db4123acc3b6d431",
+      "outputSha256": "7893f6a9b5e229dcb668c1590b32b05950eb757a711f5477db4123acc3b6d431"
+    },
+    {
+      "path": "Engine/Engine/ConsoleLogSink.cs",
+      "status": "preserve",
+      "inputSha256": "28d9c62260d8d67121f2acab7057db5cdb4eaa7027b31753aea55e49a6146fbb",
+      "outputSha256": "28d9c62260d8d67121f2acab7057db5cdb4eaa7027b31753aea55e49a6146fbb"
+    },
+    {
+      "path": "Engine/Engine/DynamicArray.cs",
+      "status": "patch",
+      "inputSha256": "acc39aaef4caa1b81588b58b1244bee9df12eca1ebefd664d71c9547d2e96050",
+      "outputSha256": "7a90bb3561f03a517f8edffc28e081b382a872519562df27bacc4e4590638507"
+    },
+    {
+      "path": "Engine/Engine/ILogSink.cs",
+      "status": "preserve",
+      "inputSha256": "590e5a6627b4da9b213b2c7e8501319ad8ae661488768e11b8c6d1475d867c92",
+      "outputSha256": "590e5a6627b4da9b213b2c7e8501319ad8ae661488768e11b8c6d1475d867c92"
+    },
+    {
+      "path": "Engine/Engine/Log.cs",
+      "status": "patch",
+      "inputSha256": "e483bb0e027108e49e55fc1631297603049b7f3070e23d8221690ee77170c0e4",
+      "outputSha256": "c1753539bd7126caf79d152325fac2c5d96b77074d6e792afdf344be4db3564e"
+    },
+    {
+      "path": "Engine/Engine/LogType.cs",
+      "status": "preserve",
+      "inputSha256": "b1208414614b142639832c5998c118b92deb3894d8bb7a1defd6a197c896b385",
+      "outputSha256": "b1208414614b142639832c5998c118b92deb3894d8bb7a1defd6a197c896b385"
+    },
+    {
+      "path": "Engine/Engine/MathUtils.cs",
+      "status": "preserve",
+      "inputSha256": "7c9b27adfb8680166bc20647588368e4346b842cf18c4cf285b1494b56e660a9",
+      "outputSha256": "7c9b27adfb8680166bc20647588368e4346b842cf18c4cf285b1494b56e660a9"
+    },
+    {
+      "path": "Engine/Engine/Matrix.cs",
+      "status": "patch",
+      "inputSha256": "a6e3c30084214d97b8eaede5f71dfc306882410a80273db94fc2f449f5a9dc97",
+      "outputSha256": "698765ac537249e71e86e1c294ac99a7e79e1f84930744a70859dc59254c97cb"
+    },
+    {
+      "path": "Engine/Engine/Plane.cs",
+      "status": "preserve",
+      "inputSha256": "35b2d5d9e1b531d375565779ef92d9b2c123e6ad176bfe4df9f4f3752950dfdd",
+      "outputSha256": "35b2d5d9e1b531d375565779ef92d9b2c123e6ad176bfe4df9f4f3752950dfdd"
+    },
+    {
+      "path": "Engine/Engine/Point2.cs",
+      "status": "preserve",
+      "inputSha256": "616eb2edab332cd06041dda9de5efa2f1bac8358b46eff84dbb2f9bb3d59071e",
+      "outputSha256": "616eb2edab332cd06041dda9de5efa2f1bac8358b46eff84dbb2f9bb3d59071e"
+    },
+    {
+      "path": "Engine/Engine/Point3.cs",
+      "status": "preserve",
+      "inputSha256": "301e9bae5f7b6703979a8cde16a009769f61462225cf2fc7728acf075f4b3dce",
+      "outputSha256": "301e9bae5f7b6703979a8cde16a009769f61462225cf2fc7728acf075f4b3dce"
+    },
+    {
+      "path": "Engine/Engine/Quaternion.cs",
+      "status": "preserve",
+      "inputSha256": "bab50601e5fa91bd00ef26fd9a7975ae43c1f931a95d6d58e45e3ec4094377ec",
+      "outputSha256": "bab50601e5fa91bd00ef26fd9a7975ae43c1f931a95d6d58e45e3ec4094377ec"
+    },
+    {
+      "path": "Engine/Engine/Ray2.cs",
+      "status": "preserve",
+      "inputSha256": "3d3850509f46f03fb6a8280bd1373c16063d2abf903254c45db606aeee1306f5",
+      "outputSha256": "3d3850509f46f03fb6a8280bd1373c16063d2abf903254c45db606aeee1306f5"
+    },
+    {
+      "path": "Engine/Engine/Ray3.cs",
+      "status": "preserve",
+      "inputSha256": "2b0301996994137cd5a095e37efe8a3298087e2486e28ff2a8592bdf8758173b",
+      "outputSha256": "2b0301996994137cd5a095e37efe8a3298087e2486e28ff2a8592bdf8758173b"
+    },
+    {
+      "path": "Engine/Engine/ReadOnlyList.cs",
+      "status": "preserve",
+      "inputSha256": "278815c26524673730c30e1288404bdcaf8e62002aa769fab2f0fb46b47a97cd",
+      "outputSha256": "278815c26524673730c30e1288404bdcaf8e62002aa769fab2f0fb46b47a97cd"
+    },
+    {
+      "path": "Engine/Engine/Rectangle.cs",
+      "status": "preserve",
+      "inputSha256": "4562e17b2d165809226d69bcb3606784c63d34c20351b2a45ac573cd837f75b6",
+      "outputSha256": "4562e17b2d165809226d69bcb3606784c63d34c20351b2a45ac573cd837f75b6"
+    },
+    {
+      "path": "Engine/Engine/Utilities.cs",
+      "status": "preserve",
+      "inputSha256": "23d4774fe78c3311ef9f3af1f2e86f795c304c7524575f19b3b0515b6a858dc4",
+      "outputSha256": "23d4774fe78c3311ef9f3af1f2e86f795c304c7524575f19b3b0515b6a858dc4"
+    },
+    {
+      "path": "Engine/Engine/Vector2.cs",
+      "status": "patch",
+      "inputSha256": "f88a08b8f3a16169f86492fd56723d9f025afacbd449142e5b4502baeb0e2130",
+      "outputSha256": "3a8d49f767385c9a42c5df2368e30629c136a3e735685f67d758083dd8a5bb5c"
+    },
+    {
+      "path": "Engine/Engine/Vector3.cs",
+      "status": "patch",
+      "inputSha256": "a86d4ee51f3871318429f9493609b51236c975b1df1bce16801ed9342932ed89",
+      "outputSha256": "9a5cf7814b8a9cb4fa01c1e9b5618bbbdf5fb0c3ba54185ef915fc06a6dac0a9"
+    },
+    {
+      "path": "Engine/Engine/Vector4.cs",
+      "status": "patch",
+      "inputSha256": "b8a1cd633ee23fcdc66a696eb8ab7a4bfcb8e6f9fd56c6e1a48ca968da977f87",
+      "outputSha256": "52e4e7cb327119ac7deda5d1b7d38bb4de6fb9ff351087f977716ec2eea794f3"
+    },
+    {
+      "path": "Engine/Engine.Graphics/Blend.cs",
+      "status": "preserve",
+      "inputSha256": "c006889e528435fd5524f004dc7f6ed66874c4235a272d40c38f73416cee7229",
+      "outputSha256": "c006889e528435fd5524f004dc7f6ed66874c4235a272d40c38f73416cee7229"
+    },
+    {
+      "path": "Engine/Engine.Graphics/BlendFunction.cs",
+      "status": "preserve",
+      "inputSha256": "9fec5ba01dea6b4a088012b3a96cb4f359cc13fcaeb5e3263ffbd3c527850126",
+      "outputSha256": "9fec5ba01dea6b4a088012b3a96cb4f359cc13fcaeb5e3263ffbd3c527850126"
+    },
+    {
+      "path": "Engine/Engine.Graphics/BlendState.cs",
+      "status": "preserve",
+      "inputSha256": "6ced54645173ff7e47c65858dd0c419440b1ad985c15198a06f7e1b9e6287882",
+      "outputSha256": "6ced54645173ff7e47c65858dd0c419440b1ad985c15198a06f7e1b9e6287882"
+    },
+    {
+      "path": "Engine/Engine.Graphics/LockOnFirstUse.cs",
+      "status": "preserve",
+      "inputSha256": "555a9296dd93239aca61e8663335a6b6c8bd736916671a4e9cb1beae249952b5",
+      "outputSha256": "555a9296dd93239aca61e8663335a6b6c8bd736916671a4e9cb1beae249952b5"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Archive.cs",
+      "status": "preserve",
+      "inputSha256": "3a87cb58a5e83173aa6cc2fdb5441f905246b183f76e958263b29de7df2a7345",
+      "outputSha256": "3a87cb58a5e83173aa6cc2fdb5441f905246b183f76e958263b29de7df2a7345"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ArraySerializer.cs",
+      "status": "preserve",
+      "inputSha256": "04a8a11f50ed20994d9dce1f981b687bac7f8d72deeb38c75e6ba45cb7205d40",
+      "outputSha256": "04a8a11f50ed20994d9dce1f981b687bac7f8d72deeb38c75e6ba45cb7205d40"
+    },
+    {
+      "path": "Engine/Engine.Serialization/AutoConstructMode.cs",
+      "status": "preserve",
+      "inputSha256": "2d9928073b72c50ee81fc5f2d83642960e5b9dc8bd26081291093c67a87183fd",
+      "outputSha256": "2d9928073b72c50ee81fc5f2d83642960e5b9dc8bd26081291093c67a87183fd"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BinaryInputArchive.cs",
+      "status": "preserve",
+      "inputSha256": "a770222b71adb2644e098b1d43e3b3c021630b1106b25ac72402a56694c376c1",
+      "outputSha256": "a770222b71adb2644e098b1d43e3b3c021630b1106b25ac72402a56694c376c1"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BinaryOutputArchive.cs",
+      "status": "preserve",
+      "inputSha256": "3f0ea8fe35350d5a4d1ee226994c912c956bc50d35673d9b6e15b63a876ed438",
+      "outputSha256": "3f0ea8fe35350d5a4d1ee226994c912c956bc50d35673d9b6e15b63a876ed438"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BlendStateHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "4aa6d97d07323c6e57c4f670dfca4c13c008fd5b0b938a180c8a1100d7218d25",
+      "outputSha256": "4aa6d97d07323c6e57c4f670dfca4c13c008fd5b0b938a180c8a1100d7218d25"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BooleanHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "4956ef54bbdc7620be5b7426c235f99b080130f213f9b84057aa1cb8b4c6ab26",
+      "outputSha256": "4956ef54bbdc7620be5b7426c235f99b080130f213f9b84057aa1cb8b4c6ab26"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BooleanSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "5507e02ed3d756309369db495ee7abc2fb9b23a83abea5765912352f391e59f6",
+      "outputSha256": "5507e02ed3d756309369db495ee7abc2fb9b23a83abea5765912352f391e59f6"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BoundingBoxHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "10ee97e6ac4ab9c31b8b1b0e0da9391483e5ca5cc9e8c47ccef8c8013301fa8d",
+      "outputSha256": "10ee97e6ac4ab9c31b8b1b0e0da9391483e5ca5cc9e8c47ccef8c8013301fa8d"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BoundingCircleHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "d5ac70c8ec3865977d363bed686c2646f99cfc43bdff29a52cdd7e056e736e86",
+      "outputSha256": "d5ac70c8ec3865977d363bed686c2646f99cfc43bdff29a52cdd7e056e736e86"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BoundingRectangleHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "dfade3e02a07ac977410c106510c06020e9b339680403477984caba380174119",
+      "outputSha256": "dfade3e02a07ac977410c106510c06020e9b339680403477984caba380174119"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BoundingSphereHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "475b7766c9a8f3eee260be76d3d46a79f44261ec8fef9afac926345fb08bf17e",
+      "outputSha256": "475b7766c9a8f3eee260be76d3d46a79f44261ec8fef9afac926345fb08bf17e"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BoxHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "bc82c574ea483ba5789ea2ecc19603e19c929ea4548a9e35f3b310716614afa1",
+      "outputSha256": "bc82c574ea483ba5789ea2ecc19603e19c929ea4548a9e35f3b310716614afa1"
+    },
+    {
+      "path": "Engine/Engine.Serialization/BoxSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "fa2ed3ddcb88464f2d6e134709f1b152ddb18a4c88e2ce405d0dba815ce4a7a6",
+      "outputSha256": "fa2ed3ddcb88464f2d6e134709f1b152ddb18a4c88e2ce405d0dba815ce4a7a6"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ByteHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "cd1f4ea17c7d6e6eab90b172aede4ce81c59663a6aa216ff0694f280a88a2734",
+      "outputSha256": "cd1f4ea17c7d6e6eab90b172aede4ce81c59663a6aa216ff0694f280a88a2734"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ByteSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "8be8eb58ca3a40d3ef6fa7009ec4eee8de81e57f27d7b7bd493969a7f2ac8788",
+      "outputSha256": "8be8eb58ca3a40d3ef6fa7009ec4eee8de81e57f27d7b7bd493969a7f2ac8788"
+    },
+    {
+      "path": "Engine/Engine.Serialization/CharHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "96151ea20bdc2272a73655d2a14a248e49b3b9a4286f6bfc71f5f8303f8b4462",
+      "outputSha256": "96151ea20bdc2272a73655d2a14a248e49b3b9a4286f6bfc71f5f8303f8b4462"
+    },
+    {
+      "path": "Engine/Engine.Serialization/CharSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "23ed8cce3ddf6b5dadead33b7d4014790c1b030f9367f747ddec977386df2bf0",
+      "outputSha256": "23ed8cce3ddf6b5dadead33b7d4014790c1b030f9367f747ddec977386df2bf0"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ColorHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "83d829ba5a473605d264932bb9079e8248415839b5a0963be1ebab47f4516e31",
+      "outputSha256": "83d829ba5a473605d264932bb9079e8248415839b5a0963be1ebab47f4516e31"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ColorSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "0c87904fcf74b9f0fca8180857d0988a627ddb374a4fc9eb7552a791c9ad6327",
+      "outputSha256": "0c87904fcf74b9f0fca8180857d0988a627ddb374a4fc9eb7552a791c9ad6327"
+    },
+    {
+      "path": "Engine/Engine.Serialization/DateTimeHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "858ac82f8bfeeb141d01a0f250ce2e0caf425df136a27d521ab1397f1137948c",
+      "outputSha256": "858ac82f8bfeeb141d01a0f250ce2e0caf425df136a27d521ab1397f1137948c"
+    },
+    {
+      "path": "Engine/Engine.Serialization/DecimalHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "aa76222cc37d5eb84ffbeea5fd0b9117b136d7d8acdcbd57bfc4cdc25da0ad7c",
+      "outputSha256": "aa76222cc37d5eb84ffbeea5fd0b9117b136d7d8acdcbd57bfc4cdc25da0ad7c"
+    },
+    {
+      "path": "Engine/Engine.Serialization/DictionarySerializer.cs",
+      "status": "preserve",
+      "inputSha256": "3335cfa6ae0b96d3008ea5a667d37c9ea95756a07225d70501b95886a3303600",
+      "outputSha256": "3335cfa6ae0b96d3008ea5a667d37c9ea95756a07225d70501b95886a3303600"
+    },
+    {
+      "path": "Engine/Engine.Serialization/DoubleHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "4fdc28109ad4aa8a71e7bd2dab54cd680522b3781e7098e9a121c31f5ba97b64",
+      "outputSha256": "4fdc28109ad4aa8a71e7bd2dab54cd680522b3781e7098e9a121c31f5ba97b64"
+    },
+    {
+      "path": "Engine/Engine.Serialization/DoubleSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "cf9e8db57ed27cce435346020a8d869c2afaa67e2ae31df63ff0d21a3d485938",
+      "outputSha256": "cf9e8db57ed27cce435346020a8d869c2afaa67e2ae31df63ff0d21a3d485938"
+    },
+    {
+      "path": "Engine/Engine.Serialization/DynamicArraySerializer.cs",
+      "status": "preserve",
+      "inputSha256": "a90c3fe124792e1c0849ec9caa0dac9427ce47749dcee4224ebf9b583d3ff966",
+      "outputSha256": "a90c3fe124792e1c0849ec9caa0dac9427ce47749dcee4224ebf9b583d3ff966"
+    },
+    {
+      "path": "Engine/Engine.Serialization/EngineBinaryReader.cs",
+      "status": "preserve",
+      "inputSha256": "f8dd2671b99a4f9040ff61927c08eb0a1ebc8de66c4b7ab15d491fd2187d2445",
+      "outputSha256": "f8dd2671b99a4f9040ff61927c08eb0a1ebc8de66c4b7ab15d491fd2187d2445"
+    },
+    {
+      "path": "Engine/Engine.Serialization/EngineBinaryWriter.cs",
+      "status": "preserve",
+      "inputSha256": "0d8bd0b8824f5545e77254985bc4b6e56f204ca45fe83323bf43263d2d900593",
+      "outputSha256": "0d8bd0b8824f5545e77254985bc4b6e56f204ca45fe83323bf43263d2d900593"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Enum32Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "559283e4f5e8f3b225d9eb8b8774e87f0fb4c5414785000fdfa0786d58fe69a5",
+      "outputSha256": "559283e4f5e8f3b225d9eb8b8774e87f0fb4c5414785000fdfa0786d58fe69a5"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Enum64Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "db1a5779fb71b86216c86873dab0227d19a3bee90573e6a378f97e9c65d466a5",
+      "outputSha256": "db1a5779fb71b86216c86873dab0227d19a3bee90573e6a378f97e9c65d466a5"
+    },
+    {
+      "path": "Engine/Engine.Serialization/EnumHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "02043cb5eea410e7831f76c94402a03bdd8a65d36f4d27f3ed606d2718a60da8",
+      "outputSha256": "02043cb5eea410e7831f76c94402a03bdd8a65d36f4d27f3ed606d2718a60da8"
+    },
+    {
+      "path": "Engine/Engine.Serialization/GuidHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "b92f5031ea1dfdc9674a0dd4493dc5f6c668051cde426cf5ce84720d2c3d6a5e",
+      "outputSha256": "b92f5031ea1dfdc9674a0dd4493dc5f6c668051cde426cf5ce84720d2c3d6a5e"
+    },
+    {
+      "path": "Engine/Engine.Serialization/GuidSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "1839c9b8bbdd53c6953970b2c9a6605f449c07edc17e3117a27eccdbdf6d762f",
+      "outputSha256": "1839c9b8bbdd53c6953970b2c9a6605f449c07edc17e3117a27eccdbdf6d762f"
+    },
+    {
+      "path": "Engine/Engine.Serialization/HashSetSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "bd79c8f3d76865c321373ade6155279446e3b430327bf384e8d2426bc7a16fad",
+      "outputSha256": "bd79c8f3d76865c321373ade6155279446e3b430327bf384e8d2426bc7a16fad"
+    },
+    {
+      "path": "Engine/Engine.Serialization/HumanReadableConverter.cs",
+      "status": "patch",
+      "inputSha256": "3dc78cdc3fdcba7bf040f075214ca9d7c2c586db42eeaee9437b5b7e9a1fd9fe",
+      "outputSha256": "6d185654e658644e57b5f051ce514f5d8d71b978e4c04dbca72e6354e5b2563c"
+    },
+    {
+      "path": "Engine/Engine.Serialization/HumanReadableConverterAttribute.cs",
+      "status": "preserve",
+      "inputSha256": "5aec2af76e2445be177d7b47b00308865a178383aee09f7a7ef8c1730c27ab4e",
+      "outputSha256": "5aec2af76e2445be177d7b47b00308865a178383aee09f7a7ef8c1730c27ab4e"
+    },
+    {
+      "path": "Engine/Engine.Serialization/IHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "40b38b26797d5ce697a78d4319f1e690312817b3d2b8275bb4ec082b6224c320",
+      "outputSha256": "40b38b26797d5ce697a78d4319f1e690312817b3d2b8275bb4ec082b6224c320"
+    },
+    {
+      "path": "Engine/Engine.Serialization/InputArchive.cs",
+      "status": "preserve",
+      "inputSha256": "5fdb5a649557e60af8d21f2afd1dab5402de222a4a725540fec860d443e67803",
+      "outputSha256": "5fdb5a649557e60af8d21f2afd1dab5402de222a4a725540fec860d443e67803"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Int16HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "2502f106a1931ed0a88d5edefb4affc559b8ed556785d2910b0d0950014f2bfd",
+      "outputSha256": "2502f106a1931ed0a88d5edefb4affc559b8ed556785d2910b0d0950014f2bfd"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Int16Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "f9914cedf0ee6e9a23008fbfdd940bd7220fc28e59e3364e0e1462efe18ff3f8",
+      "outputSha256": "f9914cedf0ee6e9a23008fbfdd940bd7220fc28e59e3364e0e1462efe18ff3f8"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Int32HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "f740fbfc94d3ab2baf4dce2ccec115d5c70d14c6e00da061bbb52fb867cdd10a",
+      "outputSha256": "f740fbfc94d3ab2baf4dce2ccec115d5c70d14c6e00da061bbb52fb867cdd10a"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Int32Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "a78727332034c1b0b344d8aecad2c1ff582a3e0a353ff7399de05fd007a421be",
+      "outputSha256": "a78727332034c1b0b344d8aecad2c1ff582a3e0a353ff7399de05fd007a421be"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Int64HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "78ee790f6410eb5a73d8771066f457fe10ba0667f28825045b59de1f8fa570ad",
+      "outputSha256": "78ee790f6410eb5a73d8771066f457fe10ba0667f28825045b59de1f8fa570ad"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Int64Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "4508b2d4bb06a2e0f9736fd71a6e9194db83e0c1e26bd979c4d9809ae3b4ca23",
+      "outputSha256": "4508b2d4bb06a2e0f9736fd71a6e9194db83e0c1e26bd979c4d9809ae3b4ca23"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ISerializable.cs",
+      "status": "preserve",
+      "inputSha256": "a789340d1b40ee57b8be37b9af8b61b2222bf5f21a1a67afd6911e92387e3427",
+      "outputSha256": "a789340d1b40ee57b8be37b9af8b61b2222bf5f21a1a67afd6911e92387e3427"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ISerializer.cs",
+      "status": "preserve",
+      "inputSha256": "eb1a196da32315304f8fc4107081a6181d2a9f4b6428ac74fbbe2bcf7efdd962",
+      "outputSha256": "eb1a196da32315304f8fc4107081a6181d2a9f4b6428ac74fbbe2bcf7efdd962"
+    },
+    {
+      "path": "Engine/Engine.Serialization/KeyValuePairSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "60dd77c25f3c86e73bd66e826e1fbb734eadc2fb55b765c6544b5e80751ac420",
+      "outputSha256": "60dd77c25f3c86e73bd66e826e1fbb734eadc2fb55b765c6544b5e80751ac420"
+    },
+    {
+      "path": "Engine/Engine.Serialization/ListSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "837700c33d3c7ae93f005853c065f8feb2bd5753bb01a8bde90e66d8bf8dee84",
+      "outputSha256": "837700c33d3c7ae93f005853c065f8feb2bd5753bb01a8bde90e66d8bf8dee84"
+    },
+    {
+      "path": "Engine/Engine.Serialization/MatrixHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "f7bc73c4267ec568caabfe72952be31eac1c21ede88d024fe04ad1f53d1dcc20",
+      "outputSha256": "f7bc73c4267ec568caabfe72952be31eac1c21ede88d024fe04ad1f53d1dcc20"
+    },
+    {
+      "path": "Engine/Engine.Serialization/MatrixSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "a79a4b68132cdb7a0def3c7f5d21907cd787eaf9d61a8961400e69362f275fd8",
+      "outputSha256": "a79a4b68132cdb7a0def3c7f5d21907cd787eaf9d61a8961400e69362f275fd8"
+    },
+    {
+      "path": "Engine/Engine.Serialization/NullableSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "a12c5014c76038a433f016e84e6cb58dfbffe5fe827ad7610ced432ea2d6b08d",
+      "outputSha256": "a12c5014c76038a433f016e84e6cb58dfbffe5fe827ad7610ced432ea2d6b08d"
+    },
+    {
+      "path": "Engine/Engine.Serialization/OutputArchive.cs",
+      "status": "preserve",
+      "inputSha256": "c9e6642f8c4c91525e794dd8d137c2e1231e8c4bf14bff0627b43d22f62843d1",
+      "outputSha256": "c9e6642f8c4c91525e794dd8d137c2e1231e8c4bf14bff0627b43d22f62843d1"
+    },
+    {
+      "path": "Engine/Engine.Serialization/PlaneHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "f28dbe0c5f379436a3ce882076c4ed4b6c4e11b07fab3c722efd15e1d5b66e61",
+      "outputSha256": "f28dbe0c5f379436a3ce882076c4ed4b6c4e11b07fab3c722efd15e1d5b66e61"
+    },
+    {
+      "path": "Engine/Engine.Serialization/PlaneSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "fa24c88df4b45b4e678ab7380998f99d75f03f304352896eca0c3a4e862744e1",
+      "outputSha256": "fa24c88df4b45b4e678ab7380998f99d75f03f304352896eca0c3a4e862744e1"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Point2HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "49e314204a198fd02262d27fd88561c383589260a5b26d4d51f244ebd27999a6",
+      "outputSha256": "49e314204a198fd02262d27fd88561c383589260a5b26d4d51f244ebd27999a6"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Point2Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "257aef204b3071adc69abdf15ded54b993660b1ccfe03e0160e46c96ee8ba889",
+      "outputSha256": "257aef204b3071adc69abdf15ded54b993660b1ccfe03e0160e46c96ee8ba889"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Point3HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "93763f59b8df974d76cbad8694ef5984aafc91b48a65dd56043f3e9a0481b360",
+      "outputSha256": "93763f59b8df974d76cbad8694ef5984aafc91b48a65dd56043f3e9a0481b360"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Point3Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "8d99a533f1a99053cf224f5a378148a7ae9a806d65b44c3f2081cba2ad9bba12",
+      "outputSha256": "8d99a533f1a99053cf224f5a378148a7ae9a806d65b44c3f2081cba2ad9bba12"
+    },
+    {
+      "path": "Engine/Engine.Serialization/QuaternionHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "b71d3c84ed7272a06e417623dfc746a634dd954247de288fad3eef00c18ee60e",
+      "outputSha256": "b71d3c84ed7272a06e417623dfc746a634dd954247de288fad3eef00c18ee60e"
+    },
+    {
+      "path": "Engine/Engine.Serialization/QuaternionSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "bf9ed873d7c2d6e3c5b9119f5bc81593f13b0054d924978a16ef9bac11e5041c",
+      "outputSha256": "bf9ed873d7c2d6e3c5b9119f5bc81593f13b0054d924978a16ef9bac11e5041c"
+    },
+    {
+      "path": "Engine/Engine.Serialization/RectangleHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "732811304e875976f6d8012746f0daa9d7c6191ac3fa62068a83a166f6c4531b",
+      "outputSha256": "732811304e875976f6d8012746f0daa9d7c6191ac3fa62068a83a166f6c4531b"
+    },
+    {
+      "path": "Engine/Engine.Serialization/RectangleSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "6799fb5f4ef227bfd205e475faf81388ef28949d3a8631857b026817b8d97bbe",
+      "outputSha256": "6799fb5f4ef227bfd205e475faf81388ef28949d3a8631857b026817b8d97bbe"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SByteSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "9e6f3581467bbb9afc73dad2f1c7656bea8ad716d9f1447f4412a7b44d15eb63",
+      "outputSha256": "9e6f3581467bbb9afc73dad2f1c7656bea8ad716d9f1447f4412a7b44d15eb63"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SerializationOptionsAttribute.cs",
+      "status": "preserve",
+      "inputSha256": "6754445cd79c7383fad6543177bb0b40d170dee591f25426fc0c62cd73e551d3",
+      "outputSha256": "6754445cd79c7383fad6543177bb0b40d170dee591f25426fc0c62cd73e551d3"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SingleHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "edd6a5936731b85dea4740b04d3efc7e45f8db411f60211cdb4cfe25b432dd4a",
+      "outputSha256": "edd6a5936731b85dea4740b04d3efc7e45f8db411f60211cdb4cfe25b432dd4a"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SingleSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "8b928a01281c49bea32d865c9f5d63a73232b24f770a23beeea18aae58dec0aa",
+      "outputSha256": "8b928a01281c49bea32d865c9f5d63a73232b24f770a23beeea18aae58dec0aa"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SortedDictionarySerializer.cs",
+      "status": "preserve",
+      "inputSha256": "bcebfa027d59eb3762c54f02eddef895ec2dce187055571d7951201986f0f08d",
+      "outputSha256": "bcebfa027d59eb3762c54f02eddef895ec2dce187055571d7951201986f0f08d"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SortedListSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "3ae48f2175243ec5577304480cd39de413f72fc5b7bac8d008599153ee463918",
+      "outputSha256": "3ae48f2175243ec5577304480cd39de413f72fc5b7bac8d008599153ee463918"
+    },
+    {
+      "path": "Engine/Engine.Serialization/StringHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "72f83227c54665f738009f865b52e49ff10b596005b9c3f3f6fe5d2b258fd91d",
+      "outputSha256": "72f83227c54665f738009f865b52e49ff10b596005b9c3f3f6fe5d2b258fd91d"
+    },
+    {
+      "path": "Engine/Engine.Serialization/StringSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "32b10d7a00a1777dc49522efd4c3dc2103c3c813df7e8f910cc375ac21395e08",
+      "outputSha256": "32b10d7a00a1777dc49522efd4c3dc2103c3c813df7e8f910cc375ac21395e08"
+    },
+    {
+      "path": "Engine/Engine.Serialization/SystemDrawingTypesConverters.cs",
+      "status": "preserve",
+      "inputSha256": "7e43f55f4d9a351552fb630a8827bbc8c742d6ac0079afc2a8cdb962f03c41a4",
+      "outputSha256": "7e43f55f4d9a351552fb630a8827bbc8c742d6ac0079afc2a8cdb962f03c41a4"
+    },
+    {
+      "path": "Engine/Engine.Serialization/TypeCache.cs",
+      "status": "preserve",
+      "inputSha256": "8afde548f6a06c04bd7e2b92fde72ce96042881b63af2d62e4da4d4273835d09",
+      "outputSha256": "8afde548f6a06c04bd7e2b92fde72ce96042881b63af2d62e4da4d4273835d09"
+    },
+    {
+      "path": "Engine/Engine.Serialization/UInt16HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "4cf5b86d808b09c5e6b970a5424382fd379e94f9bbc6cb23ce3879f6374a1a6b",
+      "outputSha256": "4cf5b86d808b09c5e6b970a5424382fd379e94f9bbc6cb23ce3879f6374a1a6b"
+    },
+    {
+      "path": "Engine/Engine.Serialization/UInt16Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "8e82dac6b6cc08aa7f0b12e5c6f27732ac0aed3ff4820dc18cefad1504327bcf",
+      "outputSha256": "8e82dac6b6cc08aa7f0b12e5c6f27732ac0aed3ff4820dc18cefad1504327bcf"
+    },
+    {
+      "path": "Engine/Engine.Serialization/UInt32HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "cdd395d8ad29332ac75baea1c8b806a6aaaa4eefa9d1cf1007d89e675206caa4",
+      "outputSha256": "cdd395d8ad29332ac75baea1c8b806a6aaaa4eefa9d1cf1007d89e675206caa4"
+    },
+    {
+      "path": "Engine/Engine.Serialization/UInt32Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "5551faa71dd53e605e51c5e6a6a4246e21f0408b756c4e49b950a289c967f140",
+      "outputSha256": "5551faa71dd53e605e51c5e6a6a4246e21f0408b756c4e49b950a289c967f140"
+    },
+    {
+      "path": "Engine/Engine.Serialization/UInt64HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "e7a15fe86d959b7eb1fdc424ba6ec818547d0d27a53ce50732605e31e01425ff",
+      "outputSha256": "e7a15fe86d959b7eb1fdc424ba6ec818547d0d27a53ce50732605e31e01425ff"
+    },
+    {
+      "path": "Engine/Engine.Serialization/UInt64Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "a1e56a631fa5022233ab516bcc32c4638a0cdd2f237fbb8c72b2f70bc6362ac1",
+      "outputSha256": "a1e56a631fa5022233ab516bcc32c4638a0cdd2f237fbb8c72b2f70bc6362ac1"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Vector2HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "8d612b16e9c00b8c240aa56dbbec2f257ac84625437f1040737fbfad678abd1f",
+      "outputSha256": "8d612b16e9c00b8c240aa56dbbec2f257ac84625437f1040737fbfad678abd1f"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Vector2Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "7cdb85283478a6d5dfbf3dd8115160a1a2e5473354e3dccf1b0859d7d6ad5910",
+      "outputSha256": "7cdb85283478a6d5dfbf3dd8115160a1a2e5473354e3dccf1b0859d7d6ad5910"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Vector3HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "84509d731a6db28579930070c9d7eb5426677f1df6fa5edc37748ac944aa2cd3",
+      "outputSha256": "84509d731a6db28579930070c9d7eb5426677f1df6fa5edc37748ac944aa2cd3"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Vector3Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "35e6260022b2920d52ef01b86adbb8d88c16d8c07d249a539ae358a8bfc6d87e",
+      "outputSha256": "35e6260022b2920d52ef01b86adbb8d88c16d8c07d249a539ae358a8bfc6d87e"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Vector4HumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "3d54875289e2876dad35ca79ad4253fdffd82d880f2661db8b873d47690acf4c",
+      "outputSha256": "3d54875289e2876dad35ca79ad4253fdffd82d880f2661db8b873d47690acf4c"
+    },
+    {
+      "path": "Engine/Engine.Serialization/Vector4Serializer.cs",
+      "status": "preserve",
+      "inputSha256": "d21e9179a0b51b76e724e7e88a7c06eaf8322bc3ad6ec5db95fc78bb52e2684d",
+      "outputSha256": "d21e9179a0b51b76e724e7e88a7c06eaf8322bc3ad6ec5db95fc78bb52e2684d"
+    },
+    {
+      "path": "Engine/Engine.Serialization/VersionHumanReadableConverter.cs",
+      "status": "preserve",
+      "inputSha256": "a051e4ba14cd6850b55af9df6de18973ac0fab7ca17b6a3dbaece80a5ae8c6b0",
+      "outputSha256": "a051e4ba14cd6850b55af9df6de18973ac0fab7ca17b6a3dbaece80a5ae8c6b0"
+    },
+    {
+      "path": "Engine/Engine.Serialization/XElementSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "bf70294dbda047214e7fd71fb17da0bfff38034cd04cc498fa6573301bb72c0d",
+      "outputSha256": "bf70294dbda047214e7fd71fb17da0bfff38034cd04cc498fa6573301bb72c0d"
+    },
+    {
+      "path": "Engine/Engine.Serialization/XmlInputArchive.cs",
+      "status": "patch",
+      "inputSha256": "3f44590d454d9d1ff371ce226445ed12165bfa517a60baff3909705e1b33c076",
+      "outputSha256": "df834884373854cd909a7fdfd02e6c90982149cd89289da86ee1ba2a1b3b756b"
+    },
+    {
+      "path": "Engine/Engine.Serialization/XmlOutputArchive.cs",
+      "status": "patch",
+      "inputSha256": "d4c0f28a8d763f89d7b5c53cc4e36d761e6493e0a3e21e27d1f0cdd5aea87a15",
+      "outputSha256": "7cbd65c429ac2814bf945fd061f279cde3bfcbb0f01efb432b50b1d0d861b8c1"
+    },
+    {
+      "path": "Engine/Properties/AssemblyInfo.cs",
+      "status": "preserve",
+      "inputSha256": "e6a9dac4934d4ca4ec1c1d65a07e5dd71126c0fcef048dac982429a4aab57c3f",
+      "outputSha256": "e6a9dac4934d4ca4ec1c1d65a07e5dd71126c0fcef048dac982429a4aab57c3f"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/Component.cs",
+      "status": "preserve",
+      "inputSha256": "fbfe5e4826a2f7c741c0d54dd729272739f48eb763f7123e06e66ea8033511ef",
+      "outputSha256": "fbfe5e4826a2f7c741c0d54dd729272739f48eb763f7123e06e66ea8033511ef"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/Entity.cs",
+      "status": "preserve",
+      "inputSha256": "75c917cdbcfb0d1cf7be97219751e408ef3f8142749207afaaa8460a30dbb40d",
+      "outputSha256": "75c917cdbcfb0d1cf7be97219751e408ef3f8142749207afaaa8460a30dbb40d"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/EntityAddRemoveEventArgs.cs",
+      "status": "preserve",
+      "inputSha256": "8b01d200221a1773095956c60a5a28cb25a33880d60c53079603994a625b6827",
+      "outputSha256": "8b01d200221a1773095956c60a5a28cb25a33880d60c53079603994a625b6827"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/EntityData.cs",
+      "status": "preserve",
+      "inputSha256": "fea0fbf2825ecb4f350e375112d051153b03865eb93fd38d0e90ff650418c951",
+      "outputSha256": "fea0fbf2825ecb4f350e375112d051153b03865eb93fd38d0e90ff650418c951"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/EntityDataList.cs",
+      "status": "preserve",
+      "inputSha256": "6e47033fddc7de0ac72b6ebddb7abd451410769624ad97f5c3b9cd1372082278",
+      "outputSha256": "6e47033fddc7de0ac72b6ebddb7abd451410769624ad97f5c3b9cd1372082278"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/EntityToIdMap.cs",
+      "status": "preserve",
+      "inputSha256": "d41a82ae15c8b4ea6463d9abdded31f40f865d84a3daaeecdbba84ea4023a9d1",
+      "outputSha256": "d41a82ae15c8b4ea6463d9abdded31f40f865d84a3daaeecdbba84ea4023a9d1"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/GameDatabase.cs",
+      "status": "preserve",
+      "inputSha256": "a0fa08f18c97abba15cb82c6efdbb4953777493f5f90206e02c428ff8b7a2b9c",
+      "outputSha256": "a0fa08f18c97abba15cb82c6efdbb4953777493f5f90206e02c428ff8b7a2b9c"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/IdToEntityMap.cs",
+      "status": "preserve",
+      "inputSha256": "1c338a6e27c24f959a6677f952827a5e746566aa4df73d3b52ffd99c8d503b5c",
+      "outputSha256": "1c338a6e27c24f959a6677f952827a5e746566aa4df73d3b52ffd99c8d503b5c"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/Project.cs",
+      "status": "patch",
+      "inputSha256": "a8d9eaa53640ef8cf0db8f405a6e63e53e8c21e2e8d068c15364fa5052a82430",
+      "outputSha256": "3ec6d616adfd1ff6e474d75ec8e0fa758733fb61f1730e240d5b90ccbea1bdf1"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/ProjectData.cs",
+      "status": "preserve",
+      "inputSha256": "769c2fa75c67f79e24f72b460e515be9c6ff1b7468bc724e460b6d63a764ec74",
+      "outputSha256": "769c2fa75c67f79e24f72b460e515be9c6ff1b7468bc724e460b6d63a764ec74"
+    },
+    {
+      "path": "EntitySystem/GameEntitySystem/Subsystem.cs",
+      "status": "preserve",
+      "inputSha256": "3abc0ab74f09e6da21ae20498e4314a6871624ee1e9f0976f06289f0b18bca5f",
+      "outputSha256": "3abc0ab74f09e6da21ae20498e4314a6871624ee1e9f0976f06289f0b18bca5f"
+    },
+    {
+      "path": "EntitySystem/Properties/AssemblyInfo.cs",
+      "status": "preserve",
+      "inputSha256": "492867171d0fc10694d5d445a4767c2f3cbc892b85c52b1c6a1afc85baef7007",
+      "outputSha256": "492867171d0fc10694d5d445a4767c2f3cbc892b85c52b1c6a1afc85baef7007"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/Database.cs",
+      "status": "preserve",
+      "inputSha256": "01b6060f4a13ecf5bc762404434f3e3a70f58f8634e2b92262d8e3b57fdd70d6",
+      "outputSha256": "01b6060f4a13ecf5bc762404434f3e3a70f58f8634e2b92262d8e3b57fdd70d6"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/DatabaseObject.cs",
+      "status": "preserve",
+      "inputSha256": "b7dabce63211174719d7bb922b570e2299f64aa4d9eced524169cedeffc498a4",
+      "outputSha256": "b7dabce63211174719d7bb922b570e2299f64aa4d9eced524169cedeffc498a4"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/DatabaseObjectType.cs",
+      "status": "preserve",
+      "inputSha256": "4779df9e6f395e6231ebdb6f2a06259a0311997f2019388170fc75e91d11e14e",
+      "outputSha256": "4779df9e6f395e6231ebdb6f2a06259a0311997f2019388170fc75e91d11e14e"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/ProceduralValue.cs",
+      "status": "preserve",
+      "inputSha256": "7847d4af23bdc76c532068301649f07cbac6e22cb16eabe93e493b01fe1a67f0",
+      "outputSha256": "7847d4af23bdc76c532068301649f07cbac6e22cb16eabe93e493b01fe1a67f0"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/ProceduralValueStringConverter.cs",
+      "status": "preserve",
+      "inputSha256": "e6ed50e309d0004a54b4c8ddb9bf8823ae57aeff7b1bf57d455931ee1bda8b7a",
+      "outputSha256": "e6ed50e309d0004a54b4c8ddb9bf8823ae57aeff7b1bf57d455931ee1bda8b7a"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/ValuesDictionary.cs",
+      "status": "preserve",
+      "inputSha256": "e95972db49d7404125bde4c19cdc611c76a774f886c338725953c4d166f36caf",
+      "outputSha256": "e95972db49d7404125bde4c19cdc611c76a774f886c338725953c4d166f36caf"
+    },
+    {
+      "path": "EntitySystem/TemplatesDatabase/XmlDatabaseSerializer.cs",
+      "status": "preserve",
+      "inputSha256": "feacafcffc57d915a35bd6191eb22f07fe6a0c1cfe96b190e47776f298dbb933",
+      "outputSha256": "feacafcffc57d915a35bd6191eb22f07fe6a0c1cfe96b190e47776f298dbb933"
+    },
+    {
+      "path": "EntitySystem/XmlUtilities/XmlUtils.cs",
+      "status": "preserve",
+      "inputSha256": "1015056c2605497cffda11bc84bbdbc169172637c5e047be87ec0d8ffce2cb5e",
+      "outputSha256": "1015056c2605497cffda11bc84bbdbc169172637c5e047be87ec0d8ffce2cb5e"
+    }
+  ]
+}

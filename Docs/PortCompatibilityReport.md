@@ -2,7 +2,7 @@
 
 更新日期：2026-09-12。目标：Windows x86-64 桌面非 VR Unity Player。
 
-当前里程碑：**阶段 0 已建立参考基线；阶段 1 首个源码生成/Unity Mono 能力验证模块完成。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表单独记录真正 Unity Player 的结果。完整游戏尚未迁移完成。
+当前里程碑：**阶段 0 已建立参考基线；阶段 1 已完成 Mono 能力验证，以及数学/序列化/完整 EntitySystem 基础模块。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表记录真正 Unity Player 的结果。完整 Engine、Survivalcraft、游戏宿主和画面仍未完成。
 
 ## 已建立的基线
 
@@ -26,7 +26,7 @@ API 工具统计 Engine 413、EntitySystem 22、Survivalcraft 1,290 个外部可
 
 - `EntitySystem/**`、`Survivalcraft/Block/**`、`Component/**`、`Subsystem/**`、`Widget/**`、`Screen/**`、`Managers/**`、`ModsManager/**` 及内容数据保持原行为。
 - 主循环、ECS 更新/绘制、模组钩子、资源合并、存档格式和世界生成顺序均为受保护契约。
-- 当前只有工具、清单、依赖锁、测试和文档发生变化。阶段 1 探针原样编译三个上游工具类文件；没有业务补丁，也没有修改上游子模块。
+- 上游子模块保持不变。阶段 1 探针原样编译三个工具类；基础模块在独立生成目录应用 12 个文件的显式兼容补丁，保留数值运算顺序、异常参数名和查询默认值。具体变化及原版对照见 [基础模块](../Port/Compatibility/Foundation.md)。
 - SourceManifest 中的 `patch` / `replace-backend` 仅登记后续工作的责任范围。每项实际变更仍需可重放的最小补丁或独立实现及对照证据，不能以分类理由代替业务等价验证。
 
 ## 待完成与兼容差异
@@ -36,9 +36,9 @@ API 工具统计 Engine 413、EntitySystem 22、Survivalcraft 1,290 个外部可
 | 启动与逐帧事件 trace | 已采集并验证原版 19 个帧边界调用、加载动作和采样 ECS/钩子顺序 | Unity 侧重跑同一契约；完整浮点状态和跨运行同优先级对象排序尚未承诺确定性 |
 | 存档样本 | 已生成新建、游玩后和重载存档；7 个真实用户样本通过导入/升级/备份恢复，其中包含真正的 2.3 → 2.4 | 后续在 Unity 重跑；尚未逐个游玩全部真实世界，未覆盖缺失 Project.bak 时的所有恢复分支 |
 | 模组样本 | 4 个可重建 `.scmod` 覆盖资源、CSV/XML、JS、动态 DLL、Reader、Block、Harmony 和错误样本；另采集 5 个实际社区模组 | 在 Unity 验证重新编译的模组；社区模组全部玩法仍需阶段 5 回归 |
-| `net48` 与 BCL/依赖 | 已建立锁定依赖的探针工程，三个上游文件原样编译；完整三个程序集尚未实现 | 三程序集可编译并在 Unity Mono Player 中加载 |
-| 动态加载、Jint、HarmonyX | 原版完整 `.scmod` 基线已通过；Unity Mono 探针的基础运行能力已通过 | 接通真正的 `TypeCache` / `ModLoader` / `.scmod` 发现、初始化与钩子链路 |
-| 跨框架 API 对比 | 当前只有原版快照重现门禁；框架程序集作用域已记录 | 建立经审查的 BCL 重定向比较规则，不自动忽略低层平台类型变化 |
+| `net48` 与 BCL/依赖 | 完整 EntitySystem 及 Engine 基础子集共 139 个源文件已编译并在 Unity Mono Player 运行；使用 Unity 实际 Framework 引用程序集 | 完整 Engine/Survivalcraft 及媒体/平台依赖继续适配 |
+| 动态加载、Jint、HarmonyX | Mono 能力探针通过；真实 TypeCache 动态重扫与真实 Component 反射创建/加载/保存/销毁也已通过 | 接通 Game.ModLoader/.scmod 发现、初始化与完整钩子链路 |
+| 跨框架 API 对比 | 已按显式 BCL 重定向政策验证 Engine 子集 131、完整 EntitySystem 22 个类型，无未登记差异 | 扩展到完整三程序集；低层平台类型变化仍需逐项登记 |
 | 原 OpenGL/Silk 公开表面 | 快照保留低层平台类型；后端替换的 API 等价性未验证 | 针对每个外泄类型确定同 API 实现或有证据的例外；不能静默删除 |
 | 内容运行时解码与渲染 | 原版实际加载主菜单和标准世界；自定义 Reader/资源覆盖通过，实际社区 GLSL 两变体编译通过 | Unity 运行时 Reader、媒体、URP 与像素输出仍待对照；编译通过不代表自定义画面等价 |
 | Unity 生命周期、输入、音频、桌面服务 | 未实现 | 分阶段接入，并在 Windows Player 验证 |
@@ -57,6 +57,22 @@ API 工具统计 Engine 413、EntitySystem 22、Survivalcraft 1,290 个外部可
 | 证据 | [实际结果和指纹](../Port/Tests/MonoEvidence/evidence-lock.json)、[命令与范围](../Port/Compatibility/README.md) |
 
 这里的动态派生类型是测试契约 `ProbeExtension`，未模拟或替代 `Game.ModLoader`；Harmony 的真实上游目标是未改动的 `Game.StateMachine.Update`。泛型覆盖封闭的 `int` 实例。独立测试工程未使用图形设备，没有验证主菜单、游戏画面、完整 API 或社区模组。完整三个程序集和主工程宿主接入仍是后续模块。
+
+## 阶段 1：已完成的基础模块
+
+| 项目 | 自验收结果 |
+|---|---|
+| 编译范围 | 139 个源文件：127 原样、12 补丁；Engine 数学/序列化子集，EntitySystem 全部 20 个源文件；1,265 个其他源文件待适配明确列出 |
+| 实际运行 | Windows x64 Unity 6000.3.12f1、Mono/Framework、非 Development；构建 0 警告/0 错误，22 项断言通过 |
+| 原版数值对照 | 4,096 组矩阵/向量输入，共 4,308,992 字节；取整边界值另 672 字节，与未修改原版 DLL 结果逐字节一致 |
+| 序列化与真实实体 | 二进制、嵌套 XML 对照一致；真实 TypeCache 和组件生命周期通过；默认接口方法、Unity Dictionary API 通过 |
+| API 与重建 | 153 个类型、4,339 条规范化记录，无未登记差异；四个工程 DLL 独立重建字节一致 |
+| 工具回归 | 新增 9 项证据/API/数值漂移检查通过，连同已有测试共 40 项通过 |
+| 证据 | [实际 Player 结果](../Port/Tests/FoundationEvidence/runtime-result.json)、[证据锁](../Port/Tests/FoundationEvidence/evidence-lock.json)、[命令和精确范围](../Port/Compatibility/Foundation.md) |
+
+两个 Vector2/3 标量变换在初次 Mono 对照中存在舍入差异，已用登记补丁固定为原版 float 运算顺序并重新通过逐字节验证。此结果不代表全部数学函数或世界模拟已实现跨运行时确定性，也没有代替真实存档和完整模组验收。
+
+原版默认对象信息序列化首次 `int[]` 的读回结果为 null，迁移版保持相同行为，已单独记录；正常数组回环测试关闭对象信息。这一上游行为未在迁移中修复。直接退回 ImageSharp 2 会失去原版部分格式/API 能力，诊断尝试没有纳入正式兼容产物；媒体后端仍需继续处理。
 
 ## 重现证据
 

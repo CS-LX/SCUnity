@@ -1,0 +1,12 @@
+{
+  "independentDirectories": true,
+  "sourceGenerationIdentical": true,
+  "framework": "net48",
+  "configuration": "Release",
+  "byteIdenticalDlls": {
+    "Engine.dll": "8180a94759361c15a900e3d1324cfb8d86eab25472bf897a2c7792942860ff0d",
+    "EntitySystem.dll": "0d5ead07f16fdae21676a35b8d3175fc9e1ec5a5b662b069179764a23640a1f2",
+    "SCUnity.Foundation.Runner.dll": "3cd43df57d0d9889de314a415afbccc40b1a80402d4739236490575ebaf333f6",
+    "SCUnity.Foundation.Payload.dll": "2694b7f886f469d972b37150a5781f7b9d160c339c7fdaa082a6f3fb62d1a67e"
+  }
+}

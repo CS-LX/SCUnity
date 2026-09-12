@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><AssemblyName>SCUnity.Foundation.Oracle</AssemblyName></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Runner/Runner.csproj" /></ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>SCUnity.Foundation.Runner</AssemblyName></PropertyGroup>
+  <ItemGroup Condition="'$(OriginalAssemblies)' == ''">
+    <ProjectReference Include="../EntitySystem/EntitySystem.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(OriginalAssemblies)' != ''">
+    <Reference Include="Engine"><HintPath>$(OriginalAssemblies)/Engine.dll</HintPath></Reference>
+    <Reference Include="EntitySystem"><HintPath>$(OriginalAssemblies)/EntitySystem.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

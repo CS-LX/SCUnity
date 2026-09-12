@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>Engine</AssemblyName></PropertyGroup>
+  <Import Project="$(GeneratedSources)/Sources.props" />
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    <Compile Remove="$(GeneratedSources)/src/EntitySystem/**/*.cs" />
+    <Compile Include="$(CompatibilitySupport)/Float4.cs" />
+    <Compile Include="$(CompatibilitySupport)/CoreDiagnostics.cs" />
+  </ItemGroup>
+</Project>

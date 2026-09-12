@@ -1,6 +1,6 @@
 # 阶段 1：源码生成与 Unity Mono 运行能力验证
 
-本模块建立了从固定上游生成源码、外部 Roslyn 编译 `net48`、构建独立 Unity Windows Player、自动验收并保存证据的链路。**它是阶段 1 的首个完成模块，完整的三个兼容程序集仍待实现。**
+本模块建立了从固定上游生成源码、外部 Roslyn 编译 `net48`、构建独立 Unity Windows Player、自动验收并保存证据的链路。**它是阶段 1 的首个完成模块。第二个基础模块现已完成，见 [数学、序列化和完整 EntitySystem](Foundation.md)；完整的三个兼容程序集仍待实现。**
 
 ## 已验证的范围
 
@@ -51,4 +51,4 @@ Unity 配置依据：[PlayerSettings.SetApiCompatibilityLevel](https://docs.unit
 
 完整 Editor 日志、Player、临时项目及 DLL 保存在终端打印的 `.artifacts/mono-probe-*` 中，不提交二进制构建产物。此模块没有图像验收：图形设备为 Null，尚不涉及主菜单、世界画面或 URP 输出。
 
-接下来的阶段 1 模块仍需完成 `Engine`/`EntitySystem`/`Survivalcraft` 三个完整 `net48` 程序集、现代 BCL/媒体依赖适配、平台后端替换、跨框架 API 比较，以及真正的 `TypeCache`、`ModLoader` 和 `.scmod` 在 Player 中的联合验证。当前结果证明这些运行时基础能力可行，不能代替完整游戏或社区模组验收。
+后续 [基础模块](Foundation.md) 已完成完整 EntitySystem、Engine 数学/序列化子集、真实 TypeCache 和对应跨框架 API 对照。阶段 1 仍需完整 Engine/Survivalcraft、媒体与平台后端，以及 ModLoader/.scmod 在 Player 中的联合验证。当前结果不能代替完整游戏或社区模组验收。
