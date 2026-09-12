@@ -1,0 +1,4 @@
+[submodule "External/SurvivalcraftApi"]
+	path = External/SurvivalcraftApi
+	url = https://gitee.com/SC-SPM/SurvivalcraftApi.git
+	branch = SCAPI1.9
