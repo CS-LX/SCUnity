@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SixLabors.ImageSharp</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(ImageSources)/shared/SixLabors.snk</AssemblyOriginatorKeyFile>
+    <NoWarn>CS8604;CS8777</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(ImageSources)/source/src/ImageSharp/**/*.cs" />
+    <Compile Include="$(ImageSources)/shared/src/SharedInfrastructure/*.cs" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+    <!-- Unity owns these BCL types and their facades. -->
+  </ItemGroup>
+</Project>

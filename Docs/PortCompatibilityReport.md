@@ -2,7 +2,7 @@
 
 更新日期：2026-09-12。目标：Windows x86-64 桌面非 VR Unity Player。
 
-当前里程碑：**阶段 0 已建立参考基线；阶段 1 已完成 Mono 能力验证、数学/序列化/完整 EntitySystem 和 FLAC 解码依赖适配。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表记录真正 Unity Player 的结果。完整 Engine、Survivalcraft、游戏宿主和画面仍未完成。
+当前里程碑：**阶段 0 已建立参考基线；阶段 1 已完成 Mono 能力验证、数学/序列化/完整 EntitySystem 、FLAC 和 ImageSharp 解码依赖适配。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表记录真正 Unity Player 的结果。完整 Engine、Survivalcraft、游戏宿主和画面仍未完成。
 
 ## 已建立的基线
 
@@ -93,3 +93,11 @@ Windows x64 Unity 6000.3.12f1 Mono Player 的 9 项检查组通过，构建 0 �
 测试配置显式禁用在线更新、文件关联、MOTD 和 VR 初始化；窗口隐藏、输入固定为空、声音静音，数据位于独立目录。为避免 JIT 内联漏掉观测点，仅采集进程关闭内联/预编译/分层编译。3 条损坏 DLL/错误依赖诊断为有断言的预期错误，其他错误均会失败。配置和重现命令见 [RuntimeProbe 说明](../Port/Tests/RuntimeProbe/README.md)。
 
 仓库内样本的独立复现运行 `runtime-xgb2i5t0/evidence` 通过 38 项断言、600 帧检查、279 次 ECS 调用；无需访问 E 盘原始样本。纳入版本控制范围的全部运行证据与小型存档合计约 694 KB。
+
+## 阶段 1 新增：ImageSharp 图像依赖
+
+固定原始包源码重新编译为 net48，1,251 个 C# 文件中 31 个应用 BCL/后端兼容补丁，全部 467 个公开类型、15,332 条规范化元数据记录保持。程序集名称、版本和签名身份保持，没有回退到 ImageSharp 2。
+
+实际 Windows x64 Unity Mono Player 通过 6 组检查：全部 171 个内置 WebP 和 12 个跨格式样本的像素、缩放、编码、异步文件读写及半精度转换，共 211 个文件、76,157,987 字节对照一致。构建 0 警告/0 错误，两个 DLL 独立重建字节相同。新增 9 项回归门禁。
+
+内存池改用 Windows 物理内存报告，不能等同于 CoreCLR 的 GC 负载估计；这一差异及软件解码路径、未覆盖的格式边界见 [图像说明](../Port/Compatibility/Images.md)。[实际证据](../Port/Tests/ImageEvidence/evidence.json) 保留运行配置、接口快照和全部输出指纹。本模块尚未接入 Engine 包装层、纹理上传或游戏画面。

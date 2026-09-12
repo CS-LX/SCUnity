@@ -1,0 +1,17 @@
+{
+  "generator": "original SixLabors.ImageSharp 3.1.12 package via ImageSharp/Runner/Entry.Generate",
+  "files": {
+    "00-BmpEncoder.image": "ad15d8ee23862a7819479329d537cfd77bc9cc8e1dbf6780175f6eac1f278073",
+    "01-BmpEncoder.image": "d4c5262b02318ca6d49945a9f5a0577660f8ddfe5f6f3707fb0ea6f69a6aa0f7",
+    "02-PngEncoder.image": "16c1bc0a77ad0c0c3041502f35037a61837f23e1149b6ef357a08b5de7d673e6",
+    "03-PngEncoder.image": "20494f9b180a2b5e10d13cf5abb27b1a58fca00de5745d787b234bd5b4df5ab8",
+    "04-JpegEncoder.image": "921fe7dd8a490ccbcccf34c39873bddbbb6ebc507e186be9fd4f98ed0a7420bc",
+    "05-GifEncoder.image": "2a0d88a70863d4cb81abf66f4625b0d32b2736eb000a57db280a03e332950719",
+    "06-PbmEncoder.image": "4cefa985a8a1ff79df4c51fa6e3bcb431133b4b9860c01ee56474acf1cf9ec10",
+    "07-QoiEncoder.image": "6b0b83622bf063a0877f375c436d22042a6a749f599ff1983b27b9d2fe59764c",
+    "08-TiffEncoder.image": "93c17fe681f5dd8b270809f156bf1d048b8f7ff2f158f0ef0c69c195de3af431",
+    "09-TgaEncoder.image": "31f7cb660d111ff8cad214a740e6b287000a446659e882861f15db640d890376",
+    "10-WebpEncoder.image": "558ec3d326be76b1c84c30e5f6c63ed994e104679f6855dd6c420f6595ecf3a1",
+    "11-WebpEncoder.image": "76550797c1b58d2cc3181e64bb0bd94931bf176f06bb13836d9e287aece2605f"
+  }
+}

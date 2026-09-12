@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <ImageTargetFramework Condition="'$(ImageTargetFramework)' == ''">net48</ImageTargetFramework>
+    <TargetFramework>$(ImageTargetFramework)</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+    <EnableSourceLink>false</EnableSourceLink>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="System.Memory" Version="4.5.4" ExcludeAssets="all" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" ExcludeAssets="all" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" ExcludeAssets="all" />
+    <Reference Include="netstandard"><HintPath>$(FrameworkPathOverride)/Facades/netstandard.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="System.Numerics.Vectors"><HintPath>$(FrameworkPathOverride)/Facades/System.Numerics.Vectors.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

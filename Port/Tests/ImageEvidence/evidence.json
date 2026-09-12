@@ -1,0 +1,1250 @@
+{
+  "schemaVersion": 1,
+  "sources": {
+    "Port/Build/baseline.py": "7529873d7df4b591908c21facc2e162d27a0cc6de2ead2f8837910683a826897",
+    "Port/Build/foundation_api.py": "964a37d2b3d5ee7990ab99e75d54200dabb74f3f5e8dd40a0565e90708cff753",
+    "Port/Build/images.py": "271c98707a8b8580e88cfe4693e5e8c4daa5d89e20dd1587f59c16795a83cf64",
+    "Port/Build/mono_probe.py": "e18604d4e3c212b1bec701ca6ec1a5aae983dbf3da82a420f929fafcd1f041d8",
+    "Port/Compatibility/ImageSharp/Backend/AssemblyInfo.cs": "94feadbd54a520bced1d6f9409b7308f61af2bfc3fec39969da167c562f6cea6",
+    "Port/Compatibility/ImageSharp/Backend/Attributes.cs": "8b8e88ab86c72a35776040d1ffe5c779db98c25aaa8a6fc11a1fda9cf843f5d4",
+    "Port/Compatibility/ImageSharp/Backend/Backend.csproj": "40a07e616d47ea7fde5676d30f0495049ee935745fc945ce46d572eb0eccc974",
+    "Port/Compatibility/ImageSharp/Backend/Bcl.cs": "4b141942b91ef0eef794da04345d060da40886e5360a791a774f683ec38954d9",
+    "Port/Compatibility/ImageSharp/Backend/Intrinsics.cs": "1676d3a062f3d43763fc73e066413ca3090ef0fb9865d749ea020da2dd05f8a0",
+    "Port/Compatibility/ImageSharp/Backend/packages.lock.json": "d2418b4a22fc992990c27e58846e82e96dacd355812e11bf1286e4fcd6e33d2a",
+    "Port/Compatibility/ImageSharp/Directory.Build.props": "6f2afa0082df80725e0ec54131e1ba6c2dcebad05f91fb666fcbbc8202f1aa7f",
+    "Port/Compatibility/ImageSharp/Oracle/Oracle.csproj": "89f1f6e1a3ff8d212ee6a5eb644e9061135138443012873986e99b60db19946c",
+    "Port/Compatibility/ImageSharp/Runner/Entry.cs": "c73e41cd24912ad85d823d91503bf44f8cb3f5d1d6c11253463130c7049519f6",
+    "Port/Compatibility/ImageSharp/Runner/packages.lock.json": "2b54f341bc6852586a28fdd30fd00d8be419848dccf416605866c176a953459c",
+    "Port/Compatibility/ImageSharp/Runner/Runner.csproj": "3b80535388740d7e4b55fd920a1f3ea048c8b40acc3849abbe09ac83ebf413ea",
+    "Port/Dependencies/ImageSharp/LICENSE": "fdb7f24db8a6838eba1477242d2457bf6db2f3682b7cb3a16824e9f2f07936c2",
+    "Port/Dependencies/ImageSharp/source-lock.json": "a2636f41121c9f5373e5ab9ad2cdd4d002bc3f8d60492b608516f1be76b6a7d8",
+    "Port/Dependencies/ImageSharp/source.zip": "dad4a780643ce3908256dc0369db48992779e3d2a6988ac5ad42c99ae83bb03a",
+    "Port/Tests/ImageFixtures/00-BmpEncoder.image": "ad15d8ee23862a7819479329d537cfd77bc9cc8e1dbf6780175f6eac1f278073",
+    "Port/Tests/ImageFixtures/01-BmpEncoder.image": "d4c5262b02318ca6d49945a9f5a0577660f8ddfe5f6f3707fb0ea6f69a6aa0f7",
+    "Port/Tests/ImageFixtures/02-PngEncoder.image": "16c1bc0a77ad0c0c3041502f35037a61837f23e1149b6ef357a08b5de7d673e6",
+    "Port/Tests/ImageFixtures/03-PngEncoder.image": "20494f9b180a2b5e10d13cf5abb27b1a58fca00de5745d787b234bd5b4df5ab8",
+    "Port/Tests/ImageFixtures/04-JpegEncoder.image": "921fe7dd8a490ccbcccf34c39873bddbbb6ebc507e186be9fd4f98ed0a7420bc",
+    "Port/Tests/ImageFixtures/05-GifEncoder.image": "2a0d88a70863d4cb81abf66f4625b0d32b2736eb000a57db280a03e332950719",
+    "Port/Tests/ImageFixtures/06-PbmEncoder.image": "4cefa985a8a1ff79df4c51fa6e3bcb431133b4b9860c01ee56474acf1cf9ec10",
+    "Port/Tests/ImageFixtures/07-QoiEncoder.image": "6b0b83622bf063a0877f375c436d22042a6a749f599ff1983b27b9d2fe59764c",
+    "Port/Tests/ImageFixtures/08-TiffEncoder.image": "93c17fe681f5dd8b270809f156bf1d048b8f7ff2f158f0ef0c69c195de3af431",
+    "Port/Tests/ImageFixtures/09-TgaEncoder.image": "31f7cb660d111ff8cad214a740e6b287000a446659e882861f15db640d890376",
+    "Port/Tests/ImageFixtures/10-WebpEncoder.image": "558ec3d326be76b1c84c30e5f6c63ed994e104679f6855dd6c420f6595ecf3a1",
+    "Port/Tests/ImageFixtures/11-WebpEncoder.image": "76550797c1b58d2cc3181e64bb0bd94931bf176f06bb13836d9e287aece2605f",
+    "Port/Tests/ImageFixtures/fixtures.json": "00047587b158ffbacd4c91d9d327092da1a8cd874c507ceeb68c715199b5d918",
+    "Port/Tests/ImageUnity/Editor/BuildImage.cs": "0d4e5d4eeab7dab75feaaf94c5eb02da14b792c3649e2f19f701ab9f41daf481",
+    "Port/Tests/ImageUnity/Runtime/ImageBehaviour.cs": "f16ee714ad378579ec55d278f5477b08b053af061c2f509f1e992949cbc3aeed"
+  },
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "inputs": {
+    "upstream/Atlases/AtlasTexture.webp": "1d813dae1c45a01b8b1ea69e35058400472a4252fb7b9c432b785d0cb9338156",
+    "upstream/Fonts/Pericles.webp": "70f583616e95d6d0f8aac6912170a587a47c5454d25c00533242360875b0d325",
+    "upstream/Textures/Blocks.webp": "1f1f071a557ca8dcdedf3239d89817c9ce394a1373368533ad5cafecc717cfd7",
+    "upstream/Textures/Boat.webp": "24595c2a91406c5c64f1ce827d46523f72be5f471064478f141c9c0838821fc2",
+    "upstream/Textures/Clothing/CavalryBoots.webp": "80cb0ab37ce12b5860b0b76bcfc1add3d118a133f27296fc12898fa0bde07b4a",
+    "upstream/Textures/Clothing/ChainMail.webp": "2f17437965d1b1e7dadfd35ab47531496a592f267a2e138e2ccfd283a0cc9772",
+    "upstream/Textures/Clothing/CopperBoots.webp": "83a41a39b0dff2819dbf727fa217fd8657671fd05d04ad9a5af81dbd6cec5d64",
+    "upstream/Textures/Clothing/CopperChestPlate.webp": "34aee7a3b761b9eed2f86675e70582038157503fc653b3c4e01352e1b67b176c",
+    "upstream/Textures/Clothing/CopperHelmet.webp": "fc672be034bfc2a733e456797ba0f88061437c866421f97ef85419dc139ae527",
+    "upstream/Textures/Clothing/CopperLeggings.webp": "7e8683315ca4f86a265b59d6122c06b65fa1e19a78cc2a08dd02447acf82fb6d",
+    "upstream/Textures/Clothing/CottonFedora.webp": "a2efb0f37ac922a115653e3f3261fb1ccae70d96602f47952a5d1149e9ac4869",
+    "upstream/Textures/Clothing/CottonLongJohns.webp": "bb11c1208dc995561dc636e70d9160a967ab3f5682153766c1f319e38ccbb8b3",
+    "upstream/Textures/Clothing/CottonPants.webp": "ff732ccdbc83a31d4ba13ec64cb0adf4a3208cbc4be276e6d3b7a552f6eab7d6",
+    "upstream/Textures/Clothing/CottonShirt.webp": "2ea816c01d8419b7154602f1289b423fc95a6285f619f272ad16ff903eba9776",
+    "upstream/Textures/Clothing/CottonShorts.webp": "a2317ec9245aa814cbcb06217377a23ca464f77aec6faf49c1dcd5379cc5f383",
+    "upstream/Textures/Clothing/CottonSocks.webp": "d876f471a54bc042c3a4120efca30fcc41baa0d5f4c873e558c535d00d4de576",
+    "upstream/Textures/Clothing/CottonSweater.webp": "e74415c6d960d384ab1d8d53c50f89024849bb476f81e59c07db40ef39183fba",
+    "upstream/Textures/Clothing/CottonTankTop.webp": "0070ec7d2d2c2cac081f160f4f313106598918868c254df8fab17f10c1284241",
+    "upstream/Textures/Clothing/CottonTShirt.webp": "2162c09e06d36cddb4cb7c42ee6b3cf5ababb45459c72803468079145e9733eb",
+    "upstream/Textures/Clothing/DiamondBoots.webp": "2c4e4ca0893d2adfbc7504a9d6b4b9dd52282fd8580a79c43bd6b45266ee8355",
+    "upstream/Textures/Clothing/DiamondChestPlate.webp": "dbf6c2a1f14534a75dd7af64328cbf8d56dc86511a9c279834b5cc8c564e0952",
+    "upstream/Textures/Clothing/DiamondHelmet.webp": "ef69cec79f70e37c23c4aaa13d354d2e1541f57ae086357879fa28cff7f5ed27",
+    "upstream/Textures/Clothing/DiamondLeggings.webp": "d3b742da661f4103cc34bcdb5f63cf8a74101f7272ca27bddeda3b9ab210b5bb",
+    "upstream/Textures/Clothing/FurCoat.webp": "aa900f65c833cb691e6f9f0df20ede3f1e6f493ae1cb1217cc8208f49c9f694d",
+    "upstream/Textures/Clothing/FurHat.webp": "c338eb2f6c0dea210ca0132bf838ed6c9d384f2e8ba5afa7c97d9b0d81239876",
+    "upstream/Textures/Clothing/FurLeggings.webp": "f2b85b26f80625e918fbf83bb8796d0314bc8d527d36b7d9a4c5b3e5bb775b34",
+    "upstream/Textures/Clothing/IronBoots.webp": "7c5869524c6b462d334f71cac259a8fdc0dccbeec680597f55f37a57081327f9",
+    "upstream/Textures/Clothing/IronChestPlate.webp": "7d42df2d5dc1a336cc30ac26a25936336f2c7108c38f53d894c8fc9115fc6930",
+    "upstream/Textures/Clothing/IronHelmet.webp": "6cd48cb1047b6bd021b64e680e05fcca4736dfc98bb52f36ed704fb75c46031a",
+    "upstream/Textures/Clothing/IronLeggings.webp": "fddf17032e406cdef6a048255818febd7ead0b3a881566051bdd7a1c203c5492",
+    "upstream/Textures/Clothing/LeatherBoots.webp": "ccc4d430f5e69902fc09e0832f29360d93cf033e1a395102c7591c73740cc270",
+    "upstream/Textures/Clothing/LeatherCowboyHat.webp": "1107b6826fc13aa14d5c5e422314eec185961a38d1bf9e55739878307a695fd0",
+    "upstream/Textures/Clothing/LeatherHat.webp": "5bec0dc2993deb1dc5cb7a0d6b30ed7a6e3d7864eaf48a02331a37c5c859e857",
+    "upstream/Textures/Clothing/LeatherJerkin.webp": "b009f5c0fea168fa7cbf952c2a36c541e249c45540b8d48dd145c84b7b482dec",
+    "upstream/Textures/Clothing/LeatherPants.webp": "b2bc27caea34777eb1b43fcfc905dc3effa1146cad691d5b01f6a90f340671b5",
+    "upstream/Textures/Clothing/LeatherSandals.webp": "306144381d477dbecf811ca9769aac8dc163a2ee8ff9d8eb0467bcd7c51fab79",
+    "upstream/Textures/Clothing/OldHat.webp": "1b269d23fcdd7954302eb4353ab66d5de52aca6be709bfc390fa327508dcb5c5",
+    "upstream/Textures/Clothing/OldPants.webp": "3bc529cee3927f4d36be78b7175015bb4a53f798d0d635be259c5b7c164fcb7d",
+    "upstream/Textures/Clothing/OldShirt.webp": "17ea325baa169b0447cd57398d1b46a207e2ae7995b0d16eb260b62c58dda03d",
+    "upstream/Textures/Clothing/OldTankTop.webp": "5555ece720217e0c285cd3c570af23c981b50f0c169e06b06f1c4234d2c690be",
+    "upstream/Textures/Clothing/WoodenChestPlate.webp": "4fa1bf36fb2510a0bb291314698f64f729db1ca5f64d69d9e3f6cbaa0a9409ef",
+    "upstream/Textures/Clothing/WoodenLeggings.webp": "dcd9042838a5d26be11e097f5dd47ab07088115a3a53fa1018b30d91e1444a1c",
+    "upstream/Textures/Clouds.webp": "a06508f24dcebaeaa5909f2f9df7812d84f80dccc7af136e1d4fb87135cb9662",
+    "upstream/Textures/Cracks1.webp": "af1053afdd1c49c741b05ee73193e221896fb5948cb516ead0dc56c589263fae",
+    "upstream/Textures/Cracks2.webp": "269ba458c2867463260ed701d043924e9a72422bb0772e14cc1f5c61c7c90d47",
+    "upstream/Textures/Cracks3.webp": "b8b44dafe883c10a68ef354d02abeb648cc78766dbb953cf7027ee5c4a0235f8",
+    "upstream/Textures/Cracks4.webp": "6e47fdbd1dad49fa29edf12aac43be048543fdb01b1837ea3e639c01ac7988fa",
+    "upstream/Textures/Cracks5.webp": "af5b291a4b1ecd20b5907f5b544a83f1ec9ac1317ec409c5bf82d24ebf591325",
+    "upstream/Textures/Cracks6.webp": "d8a42e5069efa437f882c866bd193921d98ac7a6ff40ec4547d6c8acdaadfc33",
+    "upstream/Textures/Cracks7.webp": "0e8098dec7ff0926ccf763c4e3732abcccf30ced2090e3ae8d73a8334d19f6ec",
+    "upstream/Textures/Cracks8.webp": "3795eeb20d9201fbd399cc00ad401df4947588c8139c01f526cd43e958e4434e",
+    "upstream/Textures/Creatures/Barracuda.webp": "411043a313c8ec25f6429e9521752851adb85db5e153fe2df42f34974942e420",
+    "upstream/Textures/Creatures/Bass_Freshwater.webp": "2abaf065b3976881342fe72bd5e841d6b571fc735564e1c6529dfd353408a278",
+    "upstream/Textures/Creatures/Bass_Sea.webp": "7b28bf48e0d9e553ec60190ff0493086cbc1951c7a0810facae7917d9f099e0b",
+    "upstream/Textures/Creatures/Bear_Black.webp": "2e1a287fba66e1f1e42369e65dc77c1be47b272e603815aa6a4eadcdfe2fa2d4",
+    "upstream/Textures/Creatures/Bear_Brown.webp": "b00b1b1872e0ec67bceec1ef4fecb7dd157b51ee35fc9e0509575be24a0cda26",
+    "upstream/Textures/Creatures/Bear_Polar.webp": "ae483a4175986a5b602397187ff74fd90acf51d997e2dca5543455dc0ee7c3c8",
+    "upstream/Textures/Creatures/Beluga.webp": "9305d1f32ce555ab50bea129aec0f5e10e6b442a28c32472aab25a9646d0fe19",
+    "upstream/Textures/Creatures/Bison.webp": "bf772abb71382675e8c12a87a3208bd7b4de848c2cf2247efe64f9460719f72c",
+    "upstream/Textures/Creatures/Bull_Black.webp": "6f602263f28b8559b359b3d5fdd94dda1ee4b1eeaab3bd0224d7f271645080a4",
+    "upstream/Textures/Creatures/Bull_Brown.webp": "34528d984fc4229c652b42d4a11566fb73b97bbfbe8ad44f8da4c58301dc5680",
+    "upstream/Textures/Creatures/Bull_White.webp": "4993b6317da610b3a696920a15f0db1493aabcd981b2f5c16337a12ba316ec6e",
+    "upstream/Textures/Creatures/Camel.webp": "f06065270ee7c8349d4f783b30a499a0103859d59004203ec5e6e02022313bbc",
+    "upstream/Textures/Creatures/Camel_Saddled.webp": "be260611889d21a13933ed2ef21ac9ca9f167a61101369f1825bcb6b7d6fd718",
+    "upstream/Textures/Creatures/Cassowary.webp": "ec565d3e96ad598c28e39695346decd8d342bd2af867185c819d39a493d0863d",
+    "upstream/Textures/Creatures/Cow_Black.webp": "660aabb826e3d59ad5188a37f3b8261bfb8df6a3c3be1cb7b36444b6c447f665",
+    "upstream/Textures/Creatures/Cow_Brown.webp": "2f1708843fae51a4cc00f1cd2c99f8c41b16465784f70a0a2c7acb08bc6768f4",
+    "upstream/Textures/Creatures/Donkey.webp": "b013e3486840de4c59c6f779ce53bf706429c550b4b57b9b910cd5bb88d90e1e",
+    "upstream/Textures/Creatures/Donkey_Saddled.webp": "d41b875b7f6eb4ca242804e2208ab654aa041ea544b05219cc4ceb853cd9910e",
+    "upstream/Textures/Creatures/Duck.webp": "c860c74cb83a2d67509fb0d9d422d98c3c270123782a4d608e199032eed2a2d3",
+    "upstream/Textures/Creatures/Giraffe.webp": "53e571e8519257a61da868481a29cf4e98938e39a8ec26f4de925035efa33e2f",
+    "upstream/Textures/Creatures/Gnu.webp": "aa8c34e33cfbab1c3ebb424d847bb516bccac2f1abb6233f6fb3c09ce2b5bca9",
+    "upstream/Textures/Creatures/Horse_Bay.webp": "75ef7a5be00f63f2be32c952ee69b9daa09818196b75b44108b6c1f9ce52d8f4",
+    "upstream/Textures/Creatures/Horse_Bay_Saddled.webp": "3759b60913492b5cf8791114d75eba38cef809f0d9f4b633a7632242be73f7c6",
+    "upstream/Textures/Creatures/Horse_Black.webp": "da61bf80343b8fa6276bb17df9eabb9563bc4afec187bdd9a1adb66e9acd62cf",
+    "upstream/Textures/Creatures/Horse_Black_Saddled.webp": "2fcdeb9585a11c05177f02dec914639970a81eaf8e07e89493ce336e115eca21",
+    "upstream/Textures/Creatures/Horse_Chestnut.webp": "4b3c7919c6eccffc1c1aa19dc325076358f9a2a050a2ea0443e618ac5fdb4136",
+    "upstream/Textures/Creatures/Horse_Chestnut_Saddled.webp": "8dbc5d31bd9b094f79d796cc55ddcf7e66b55e90c725fd4f0ff0d3c91268686d",
+    "upstream/Textures/Creatures/Horse_Palomino.webp": "8b243f494f92e728cadfccff3125d0196c1b3baec80e1b6298d2213560eff814",
+    "upstream/Textures/Creatures/Horse_Palomino_Saddled.webp": "0516237c78bf28dd8218df0f17d677abc5f0bfc1ba60ecdbf0512d077eb7ddac",
+    "upstream/Textures/Creatures/Horse_White.webp": "f0020774604f022221d5a0a1cc5f55b243345a29fe075c0a4606b1642da6e30e",
+    "upstream/Textures/Creatures/Horse_White_Saddled.webp": "6ce39ec79fdc93b95ca90a23073e9ebffb7af44b73fbcc2abd8b4b138b224e67",
+    "upstream/Textures/Creatures/HumanFemale1.webp": "a0ba7c4793f5300ce63ffe0cafa46de80084fe4d6c9fc65ea55219e5658e0974",
+    "upstream/Textures/Creatures/HumanFemale2.webp": "3b3909ed2951ce432627cacda89ae7651f426e4cbd9397debba74a316d78b164",
+    "upstream/Textures/Creatures/HumanFemale3.webp": "7a826a3b49cb68cabfc4a6b21b488f9c3740b3ec930f3a4b4d5570de7fdcd500",
+    "upstream/Textures/Creatures/HumanFemale4.webp": "0f2d3f68b1e47d10a8b44de276bc71a755d9d00c69461856d217f4126fa2d3e2",
+    "upstream/Textures/Creatures/HumanMale1.webp": "da84d128a0d00c48ac0a42141581f90a6f4921d19259252d49fb89fd63e9fdf4",
+    "upstream/Textures/Creatures/HumanMale2.webp": "f29ca604668454f9a32d25ad9361f986e5205e38008a8390c804aa78de748635",
+    "upstream/Textures/Creatures/HumanMale3.webp": "ad92c03e064741ffe71e98529893c3004e0142bde8547d938924635da40df73b",
+    "upstream/Textures/Creatures/HumanMale4.webp": "b827fb6743bf13b2d66e479e80247182e789f02a64c4bbdae279d303923bd41f",
+    "upstream/Textures/Creatures/Hyena.webp": "8418941cb6ae64f108fb96926967a49d41ab28787137568c3295a8a76979f8b1",
+    "upstream/Textures/Creatures/Jaguar.webp": "22ebaadabaa3ddaa405c001838d84181700d1868a25a6a61aaf49d8ebf621283",
+    "upstream/Textures/Creatures/Leopard.webp": "a21f772020b31035d52eae5b312a6feae659f5f7f647321beff9f846a26d2adf",
+    "upstream/Textures/Creatures/Lion.webp": "1895135b125152b21ab251ebab98f827a4e3f2da0d38df27423c5fb39b811b36",
+    "upstream/Textures/Creatures/Moose.webp": "44ef924cb1b64f87a25654bfbe2a847f2c17e2a7be255795c509459896da4900",
+    "upstream/Textures/Creatures/Orca.webp": "74d07b73262a2cd82e4adc9acda7689ee7e3443aca4d90c2d6fdcd8c39d94a88",
+    "upstream/Textures/Creatures/Ostrich.webp": "1e205aed5ff4cd8ae2fd6edb94bdfdf3ec35c7757f1681e3a4e444560515e3f8",
+    "upstream/Textures/Creatures/Pigeon.webp": "a1c4cac0c59b3e2d3ae02105d5a3e2fc5d4c60c72a9ffdd41669405598613d7d",
+    "upstream/Textures/Creatures/Piranha.webp": "e87a44a24654fd1df1f079f4e7a5cf60d02aab85cf87d6a98dd24b2c6afd73ef",
+    "upstream/Textures/Creatures/Raven.webp": "9386435e2756643d95b945ac966bf2774d505826f78ace3d2ab9136ff1d66bbe",
+    "upstream/Textures/Creatures/Ray_Brown.webp": "39fa1ba7cca534a648a9b8820a7a54b79ae68c6a35a93305919c8eb2d2354b68",
+    "upstream/Textures/Creatures/Ray_Yellow.webp": "7937aa55fe5035dc924f95bfb9591c1f39f3cf89c435ca9090f68d1b59a51ec2",
+    "upstream/Textures/Creatures/Reindeer.webp": "4dd0a71f33ef538d0a2685b3ec3559d56e0fcd3de44fe61f3cfa7b7090df4b09",
+    "upstream/Textures/Creatures/Rhino.webp": "562bad9e4eba32567b32a61e95c7310a8e3a936b0a606eb5f5558858c7cc21cd",
+    "upstream/Textures/Creatures/Seagull.webp": "8114fc1effb5d6c029219b0623e9dd760af135968618c919a155b0232562b115",
+    "upstream/Textures/Creatures/Shark_Bull.webp": "7dce1c722aa5b29d42d95506d987705166c413d520f048669d201479d145a5d9",
+    "upstream/Textures/Creatures/Shark_GreatWhite.webp": "34a959056d49c7b57187c7ccebfa67b658c7c262617823852b7e8a2ccdacd249",
+    "upstream/Textures/Creatures/Shark_Tiger.webp": "6d35c66782a10ef4edc99fa07ceb92db59f7d61383488641593372870c3d4651",
+    "upstream/Textures/Creatures/Sparrow.webp": "caddc137309a14a4a4277f9cddbb62740b616912a4a18aac42541b216cac59a9",
+    "upstream/Textures/Creatures/Tiger.webp": "ecb4be202c39ebda5e2a9c3804dceb5e7d2634505ad7293089a4bbcb600ec4ac",
+    "upstream/Textures/Creatures/Tiger_White.webp": "2058338ffb70ba937712db740fb3abdde0437493918fb244372cb6b280613496",
+    "upstream/Textures/Creatures/Werewolf.webp": "f6d087cdea4807e2402f2ad5f559d2174d6a00c4c7c3555cc2aeaf7e93ed9da8",
+    "upstream/Textures/Creatures/Wildboar.webp": "7e682ea148bcaaa48a4ba0bf87d76d7cab833288ac61937204fe0c63cae9a3ac",
+    "upstream/Textures/Creatures/Wolf_Coyote.webp": "6f1826633fee44c57d39ac2fbfea9b6fcfbcde112d7a300c3a3ecf6e3b905fd3",
+    "upstream/Textures/Creatures/Wolf_Gray.webp": "6ed11ef70e8af15128f94cc1c3fb3d0b32751f6389545df452868db892ca81d2",
+    "upstream/Textures/Creatures/Zebra.webp": "998b9d0df732b9203491bd72446759d6abbeccf6fb3f3a9532360339c6d216c0",
+    "upstream/Textures/Experience.webp": "8ff98bb271616cba084a1e406b6ee4db58c92ad3e2ba657819db50915ba07606",
+    "upstream/Textures/FireParticle.webp": "a69cc5c6bc0b6231309ba128cbdf4d4acc7d8425656b8d19a4075e7d0eb29e19",
+    "upstream/Textures/FireworksParticle.webp": "9b89685d9cdd72bc3679dba5ed8c0aa7544864b55616e46b3adaf434d5591d2a",
+    "upstream/Textures/Gui/BugReport.webp": "5d077686cf67844e74d700ebe4e8b2258e7e07c30637d074fce88be88c9d88d1",
+    "upstream/Textures/Gui/Bulletin.webp": "7b874f402c2b4c5195a30780c6747c240d1203ae2e5344ca7f8a653e21cee2a3",
+    "upstream/Textures/Gui/CandyRufusLogo.webp": "260cd3da0e27ba8adb1bc02c853e418f2e9d17c4db38f06d27561337796ecd50",
+    "upstream/Textures/Gui/DefaultModIcon.webp": "216aa87ab0f56d27512e0993850572937092d0b9e247f9fcf0ca3fd3f3c7f1c8",
+    "upstream/Textures/Gui/DisabledOverlay.webp": "1df35d16a4ec23fad201afe9cb7dc1b20e6ba3ec1e2c41f66b74fd83dad3486a",
+    "upstream/Textures/Gui/EngineLogo.webp": "0ed6d8d2209d5f394694fd5f7d1ad6a1610e0890bfa26e3a50a1cf60384e4699",
+    "upstream/Textures/Gui/Fullscreen.webp": "209608f9a4a106dbcb0cb1137d4f8e886c18daffdbe4191d6d12fd67128e7e8e",
+    "upstream/Textures/Gui/Language.webp": "ed10e239dca6fd5dbbb8786d4f6aedede765687550abe1b04271fabc3c606a17",
+    "upstream/Textures/Gui/Logo.webp": "320d62763abab22d85e01415231db92ff02dc238093f293e6cc53c9a6a8eb0de",
+    "upstream/Textures/Gui/NeedToUpdate.webp": "556ffaf56ddd63343c69aa89494b0f4afb935aa31ecfb3255f5b64fd97d93d8d",
+    "upstream/Textures/Gui/PadCursor.webp": "a1ecebf13000005ab6999cb6cb2c6b0a4feb6f0c8fd5474ac77121d784ecbfae",
+    "upstream/Textures/Gui/PadCursorDown.webp": "e15ebec185c3431b5d4b40c30e97e20075a800efd3d9f926b06cc2c4694ff990",
+    "upstream/Textures/Gui/PadCursorDrag.webp": "cea416456a2a6f4391c3b556e7cf1de84cb03604717f0bf0c35fbde5d5600da7",
+    "upstream/Textures/Gui/Panorama.webp": "d539808275706d69db7d986f29f84c8bb19c830ec132a93e45d149ff11c09119",
+    "upstream/Textures/Gui/RatingStar.webp": "b297de51ad83969c456e53c31c8abe23d95e442c942fac90e7636d9e6da6b21e",
+    "upstream/Textures/Gui/ResourcesManagement.webp": "3a5b2547a710c97ef67f3aa951258000ad79dfe5939f7ff1374bfed4fc3b4aad",
+    "upstream/Textures/Gui/ScreenCaptureOverlay.webp": "befceffb19decd31daed64c8f5f5068d76c11daa0c3d51dea09e9a3b5f19d3a7",
+    "upstream/Textures/Gui/SeasonsSlider.webp": "d4c7589be9097ce28cfcbd27e8c7f176ecced1136a0b347bae75610f012f41af",
+    "upstream/Textures/Gui/Sights.webp": "31d3c7cabdf44224024b5ab3b55b1c756b59d8d34f615da9c5b3420067379b91",
+    "upstream/Textures/Gui/SoftwareMouseCursor.webp": "50e6e42e5ce02d274cd933fd5ca4ce240c8fe089a53b550197aa696b8e88f980",
+    "upstream/Textures/Gui/UpdateChecking.webp": "d47a5061c062f291df286fc2001334100d6e31caafb115e3942e66dfff2b9984",
+    "upstream/Textures/GunSmokeParticle.webp": "dd863755f142e7a68f7c5070f14df266d1175f7fba9c1497a45b6c2be7c36479",
+    "upstream/Textures/headimg.webp": "90c598378411a99ca8a63170c3b610f34122b848da226c5c1ac2e00ed5398dbe",
+    "upstream/Textures/HorizontalRectGlow.webp": "c2c45b7c48fc4c03186b42449e939121ede96c574abdb49f14700c7916f1eb8c",
+    "upstream/Textures/IceOverlay.webp": "0e3e421f85ab76cd75364d5c5636cd3fad5a84552874253142f673fa9e2371eb",
+    "upstream/Textures/IntroShip.webp": "b1f4084d49c30ef03d5f8399c075e3320a8838172c55adbac3ac55640a1907b5",
+    "upstream/Textures/KillParticle.webp": "959ebf86f0c43e8894761cf6cb1c9a382e0b527273cd65e144b5eb9c8f494b20",
+    "upstream/Textures/LeafParticle.webp": "8335dc1fa5ce303334af1860ba03d0824451f490c3722c12b0287d7ff8b2c50e",
+    "upstream/Textures/MagmaSplashParticle.webp": "15f00be93324ceeafe7b96cac97cb9a229820526915a02de9c1c30982d440e39",
+    "upstream/Textures/Moon1.webp": "0461f99f1d2d891bb70dd387880a29b1b2b843904ce826b872a674072b0116da",
+    "upstream/Textures/Moon2.webp": "1259da4956123e27f0b830780ad8f25519dcadd7d9552821607a08815cda7d77",
+    "upstream/Textures/Moon3.webp": "0ad596eed4209c855b00c2bde724ee47885c63d53ef117141cd5f03ffb51b25d",
+    "upstream/Textures/Moon4.webp": "394a837fd615d08ce4c5a333b88791034f79a3b4ff910f6da536b9714f7cd750",
+    "upstream/Textures/Moon5.webp": "29dde46dea100075d93af2e6cfe08cc27b2642a37290f1fac97dd84fa2a345b0",
+    "upstream/Textures/Moon6.webp": "58367afbb3d5103bed1b2e7b73723a0a5e2a1ea00f077edd08d763f07ea49de0",
+    "upstream/Textures/Moon7.webp": "6ba2b7f3bea7d1d95d3350537b21f441c239f5b639a13560672ace4f0d2b4acd",
+    "upstream/Textures/Moon8.webp": "746798190e1d1bb3c2d4d8700e4520ffb3cd141e129abc7f2ba237e771bd4a94",
+    "upstream/Textures/PukeParticle.webp": "0d175a5dd51eb65c405e1e1475c27c0b15f7c07b5ab23d7c396b51701a268953",
+    "upstream/Textures/RainParticle.webp": "e8f98655a2e8c93266054f519eb1c2f95afd4ecc74f0882b31b33487d00064ac",
+    "upstream/Textures/RainSplashParticle.webp": "094bae8eb582e372706bd4cd332bd5546fd6693eda8877d7080023d090053c3b",
+    "upstream/Textures/RoundGlow.webp": "784820b36663ac4b3b716823c259dc7ac82ff7afdbe1649a62360b0f40b1064e",
+    "upstream/Textures/Shadow.webp": "b1f306c5806afd8a11a4a9a878a8d364d1bae0a74c7603ba81262dcedb529a2c",
+    "upstream/Textures/ShapeshiftParticle.webp": "dd8bd3f8f5056f91dea7c371d6ed783c5f50e7eadbf659b7b6b65fddd7006788",
+    "upstream/Textures/SkyGlow.webp": "8bf86841a00362b10e4c99a7d2daa1371b911eefb671facf573b0276c17df4c6",
+    "upstream/Textures/SnowParticle.webp": "6ae51185c37f38aba551620352fd1b66380da37cbcc793e9e232d987b0f16351",
+    "upstream/Textures/SoundParticle.webp": "750732930af7e2b716fa13df221b93499fc9437c697b2fa897f491d1b8f66bdd",
+    "upstream/Textures/SplashOverlay.webp": "5861073a5a35b41895030fa5efcce0a5658955d6e3734151839016b485889da7",
+    "upstream/Textures/SquareGlow.webp": "491da3f9f0e4f962589cfbe4c9a06471693b9f068f5a040509c5f8cf46999e1b",
+    "upstream/Textures/Star.webp": "b613946c4937067f1b1098d1200488eed6cf058aea98b39bb0785bf96caa7a64",
+    "upstream/Textures/Sun.webp": "137b2930aeed0e79f6636e93578668b86fa8be36a7da28f6933a05f839395635",
+    "upstream/Textures/VerticalRectGlow.webp": "65f6396a473571f1c0ba832bb623a6dc27215329b8e7011956268dfe338e87de",
+    "upstream/Textures/WaterSplashParticle.webp": "ec2b64a2824003971f2a06096815068be45b0971156fa1018da08b1749f33579",
+    "synthetic/00-BmpEncoder.image": "ad15d8ee23862a7819479329d537cfd77bc9cc8e1dbf6780175f6eac1f278073",
+    "synthetic/01-BmpEncoder.image": "d4c5262b02318ca6d49945a9f5a0577660f8ddfe5f6f3707fb0ea6f69a6aa0f7",
+    "synthetic/02-PngEncoder.image": "16c1bc0a77ad0c0c3041502f35037a61837f23e1149b6ef357a08b5de7d673e6",
+    "synthetic/03-PngEncoder.image": "20494f9b180a2b5e10d13cf5abb27b1a58fca00de5745d787b234bd5b4df5ab8",
+    "synthetic/04-JpegEncoder.image": "921fe7dd8a490ccbcccf34c39873bddbbb6ebc507e186be9fd4f98ed0a7420bc",
+    "synthetic/05-GifEncoder.image": "2a0d88a70863d4cb81abf66f4625b0d32b2736eb000a57db280a03e332950719",
+    "synthetic/06-PbmEncoder.image": "4cefa985a8a1ff79df4c51fa6e3bcb431133b4b9860c01ee56474acf1cf9ec10",
+    "synthetic/07-QoiEncoder.image": "6b0b83622bf063a0877f375c436d22042a6a749f599ff1983b27b9d2fe59764c",
+    "synthetic/08-TiffEncoder.image": "93c17fe681f5dd8b270809f156bf1d048b8f7ff2f158f0ef0c69c195de3af431",
+    "synthetic/09-TgaEncoder.image": "31f7cb660d111ff8cad214a740e6b287000a446659e882861f15db640d890376",
+    "synthetic/10-WebpEncoder.image": "558ec3d326be76b1c84c30e5f6c63ed994e104679f6855dd6c420f6595ecf3a1",
+    "synthetic/11-WebpEncoder.image": "76550797c1b58d2cc3181e64bb0bd94931bf176f06bb13836d9e287aece2605f"
+  },
+  "api": {
+    "types": 467,
+    "records": 15332,
+    "unregisteredDifferences": 0
+  },
+  "corpus": {
+    "async-load.rgba": {
+      "bytes": 2824,
+      "sha256": "d0a96af7e88c5b23e880cee414c0ef7e18020ddb0c3c42144b20825e02241534"
+    },
+    "encoded-async/00-BmpEncoder.image": {
+      "bytes": 2866,
+      "sha256": "ad15d8ee23862a7819479329d537cfd77bc9cc8e1dbf6780175f6eac1f278073"
+    },
+    "encoded-async/01-BmpEncoder.image": {
+      "bytes": 298,
+      "sha256": "d4c5262b02318ca6d49945a9f5a0577660f8ddfe5f6f3707fb0ea6f69a6aa0f7"
+    },
+    "encoded-async/02-PngEncoder.image": {
+      "bytes": 369,
+      "sha256": "16c1bc0a77ad0c0c3041502f35037a61837f23e1149b6ef357a08b5de7d673e6"
+    },
+    "encoded-async/03-PngEncoder.image": {
+      "bytes": 276,
+      "sha256": "20494f9b180a2b5e10d13cf5abb27b1a58fca00de5745d787b234bd5b4df5ab8"
+    },
+    "encoded-async/04-JpegEncoder.image": {
+      "bytes": 1861,
+      "sha256": "921fe7dd8a490ccbcccf34c39873bddbbb6ebc507e186be9fd4f98ed0a7420bc"
+    },
+    "encoded-async/05-GifEncoder.image": {
+      "bytes": 1485,
+      "sha256": "2a0d88a70863d4cb81abf66f4625b0d32b2736eb000a57db280a03e332950719"
+    },
+    "encoded-async/06-PbmEncoder.image": {
+      "bytes": 2573,
+      "sha256": "4cefa985a8a1ff79df4c51fa6e3bcb431133b4b9860c01ee56474acf1cf9ec10"
+    },
+    "encoded-async/07-QoiEncoder.image": {
+      "bytes": 3389,
+      "sha256": "6b0b83622bf063a0877f375c436d22042a6a749f599ff1983b27b9d2fe59764c"
+    },
+    "encoded-async/08-TiffEncoder.image": {
+      "bytes": 2326,
+      "sha256": "93c17fe681f5dd8b270809f156bf1d048b8f7ff2f158f0ef0c69c195de3af431"
+    },
+    "encoded-async/09-TgaEncoder.image": {
+      "bytes": 2849,
+      "sha256": "31f7cb660d111ff8cad214a740e6b287000a446659e882861f15db640d890376"
+    },
+    "encoded-async/10-WebpEncoder.image": {
+      "bytes": 136,
+      "sha256": "558ec3d326be76b1c84c30e5f6c63ed994e104679f6855dd6c420f6595ecf3a1"
+    },
+    "encoded-async/11-WebpEncoder.image": {
+      "bytes": 1034,
+      "sha256": "76550797c1b58d2cc3181e64bb0bd94931bf176f06bb13836d9e287aece2605f"
+    },
+    "encoded/00-BmpEncoder.image": {
+      "bytes": 2866,
+      "sha256": "ad15d8ee23862a7819479329d537cfd77bc9cc8e1dbf6780175f6eac1f278073"
+    },
+    "encoded/01-BmpEncoder.image": {
+      "bytes": 298,
+      "sha256": "d4c5262b02318ca6d49945a9f5a0577660f8ddfe5f6f3707fb0ea6f69a6aa0f7"
+    },
+    "encoded/02-PngEncoder.image": {
+      "bytes": 369,
+      "sha256": "16c1bc0a77ad0c0c3041502f35037a61837f23e1149b6ef357a08b5de7d673e6"
+    },
+    "encoded/03-PngEncoder.image": {
+      "bytes": 276,
+      "sha256": "20494f9b180a2b5e10d13cf5abb27b1a58fca00de5745d787b234bd5b4df5ab8"
+    },
+    "encoded/04-JpegEncoder.image": {
+      "bytes": 1861,
+      "sha256": "921fe7dd8a490ccbcccf34c39873bddbbb6ebc507e186be9fd4f98ed0a7420bc"
+    },
+    "encoded/05-GifEncoder.image": {
+      "bytes": 1485,
+      "sha256": "2a0d88a70863d4cb81abf66f4625b0d32b2736eb000a57db280a03e332950719"
+    },
+    "encoded/06-PbmEncoder.image": {
+      "bytes": 2573,
+      "sha256": "4cefa985a8a1ff79df4c51fa6e3bcb431133b4b9860c01ee56474acf1cf9ec10"
+    },
+    "encoded/07-QoiEncoder.image": {
+      "bytes": 3389,
+      "sha256": "6b0b83622bf063a0877f375c436d22042a6a749f599ff1983b27b9d2fe59764c"
+    },
+    "encoded/08-TiffEncoder.image": {
+      "bytes": 2326,
+      "sha256": "93c17fe681f5dd8b270809f156bf1d048b8f7ff2f158f0ef0c69c195de3af431"
+    },
+    "encoded/09-TgaEncoder.image": {
+      "bytes": 2849,
+      "sha256": "31f7cb660d111ff8cad214a740e6b287000a446659e882861f15db640d890376"
+    },
+    "encoded/10-WebpEncoder.image": {
+      "bytes": 136,
+      "sha256": "558ec3d326be76b1c84c30e5f6c63ed994e104679f6855dd6c420f6595ecf3a1"
+    },
+    "encoded/11-WebpEncoder.image": {
+      "bytes": 1034,
+      "sha256": "76550797c1b58d2cc3181e64bb0bd94931bf176f06bb13836d9e287aece2605f"
+    },
+    "half.bin": {
+      "bytes": 593216,
+      "sha256": "f77e35e983ba1bd8ac14f9008592cc0b68fb1b88ceb46cba87abde3ce8c12818"
+    },
+    "invalid.bin": {
+      "bytes": 127,
+      "sha256": "15643c7436fbb3cebea92c2b20ef9b35fe19f8b203713d7c94df9ddbf013d9be"
+    },
+    "passed.txt": {
+      "bytes": 8,
+      "sha256": "eebbf6457e46a7f63acdf9b97390f790ba443d60cfa44b607da7e5c40aa1cc1d"
+    },
+    "synthetic_00-BmpEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "06082db7a26c712ba12dca4ee1c6b09c0050bbfdf10a6e530eed7b5f39d2b408"
+    },
+    "synthetic_01-BmpEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "c1784ad9f04baec2d4d195c1054cf1ce9630015be420922228e242c2038dade2"
+    },
+    "synthetic_02-PngEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "06082db7a26c712ba12dca4ee1c6b09c0050bbfdf10a6e530eed7b5f39d2b408"
+    },
+    "synthetic_03-PngEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "6176c059c0ae8a458c5539a0845d24a01659e5b976355c2854294d9a9a5d6525"
+    },
+    "synthetic_04-JpegEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "16a258f0df6a8916e98db6e6e0ae3e57842d73d0f5201e1ddc248df44ef00923"
+    },
+    "synthetic_05-GifEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "06e6e99cb086d9ac31ca6da5ab1e64409b8eaf614142ce23f89621ec4314f9e0"
+    },
+    "synthetic_06-PbmEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "f1bd82920d9e8f5d92328119447eb6a6c090e976a0d7c8921b97b54c6b1d60b4"
+    },
+    "synthetic_07-QoiEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "06082db7a26c712ba12dca4ee1c6b09c0050bbfdf10a6e530eed7b5f39d2b408"
+    },
+    "synthetic_08-TiffEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "6176c059c0ae8a458c5539a0845d24a01659e5b976355c2854294d9a9a5d6525"
+    },
+    "synthetic_09-TgaEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "06082db7a26c712ba12dca4ee1c6b09c0050bbfdf10a6e530eed7b5f39d2b408"
+    },
+    "synthetic_10-WebpEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "06082db7a26c712ba12dca4ee1c6b09c0050bbfdf10a6e530eed7b5f39d2b408"
+    },
+    "synthetic_11-WebpEncoder.image.rgba": {
+      "bytes": 3584,
+      "sha256": "e4e5626aa477c23bfe8e9c5a49474f2ecd5382b0a34aa0d9884660195a510b24"
+    },
+    "upstream_Atlases_AtlasTexture.webp.rgba": {
+      "bytes": 1668724,
+      "sha256": "fe14925e8ec2571dd5985751574b346f0d85625601517f5bf8b074558a81b9e1"
+    },
+    "upstream_Fonts_Pericles.webp.rgba": {
+      "bytes": 67109636,
+      "sha256": "efd85e0abf43561386fc1ea6ade701dd83235dba968264b4ecb190b41a35a208"
+    },
+    "upstream_Textures_Blocks.webp.rgba": {
+      "bytes": 1049348,
+      "sha256": "9da6f2082608de3e047f197650ad24ae0ce1fffcbfe67246660c7dc1610f2ba6"
+    },
+    "upstream_Textures_Boat.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "23a9b5632398b98b050840c458c8e253f26a5c57b5001df00db3c644351bd979"
+    },
+    "upstream_Textures_Clothing_CavalryBoots.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "780fc00dc6e415e98555b777cd73f0f39d1374621ac13cb87e898700c38f4f03"
+    },
+    "upstream_Textures_Clothing_ChainMail.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "b70e94850614a983957f288edcf9a7f04c73de2a8dd4211c833707947efb4773"
+    },
+    "upstream_Textures_Clothing_CopperBoots.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "9c8999d82ba738a0a5caa804a295e8c5e80129494ac1d87c542f2f9fdda62898"
+    },
+    "upstream_Textures_Clothing_CopperChestPlate.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "0ec301171c2845b78d8825fe2d05df6bee52eb936696deaa95ec2857689e6a88"
+    },
+    "upstream_Textures_Clothing_CopperHelmet.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "946e816167259e5274147f3b907e6b633e3c002ac210c6d93501823b97887236"
+    },
+    "upstream_Textures_Clothing_CopperLeggings.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8d878cdc9449a4c8c4acb2c8435bd1dd0b3a0dc166869013d16f93c7458f00b9"
+    },
+    "upstream_Textures_Clothing_CottonFedora.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "be6b7bdf039df93b4d649600883214b4122dd9b87f185fd838d900b33044613d"
+    },
+    "upstream_Textures_Clothing_CottonLongJohns.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "6512f014101bfada25d7bbb03bbdb225ad4c6bc6eb0384cfa72209465f3c792f"
+    },
+    "upstream_Textures_Clothing_CottonPants.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "6850b68fdf5e40b0416ecf02cd4dac384670d6582f88f4be35594f4f00eeb846"
+    },
+    "upstream_Textures_Clothing_CottonShirt.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "ed50e44835399b352321f2083ec6ab867c7999727f05058563e1a225962ffc67"
+    },
+    "upstream_Textures_Clothing_CottonShorts.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "5cedf3a83377f63d9f220107e61f4cf936f0d8738ccf22336f476de163ff412f"
+    },
+    "upstream_Textures_Clothing_CottonSocks.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "217e84561fe5cd7fb4e9ac50fabc46a7251ba63f027fe8e30d74374e223fbedc"
+    },
+    "upstream_Textures_Clothing_CottonSweater.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "ef6a6a3abc8e787f5989b3a5c3fbb775aabff501ddd3b8d67bef7111a430ec8f"
+    },
+    "upstream_Textures_Clothing_CottonTShirt.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "9a1e5f83434d8d34b795ace146f0c16c03c1672c5a6645208fc7344e2146e426"
+    },
+    "upstream_Textures_Clothing_CottonTankTop.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "0470e28b92bd5d6ee60a11893618531eb9a506f53682be7e156c1df820c371e9"
+    },
+    "upstream_Textures_Clothing_DiamondBoots.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "084e4b87dcea7781a020bba3f7be19ffa6ad5db9b53d971e10ac9f74c49aa592"
+    },
+    "upstream_Textures_Clothing_DiamondChestPlate.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "9248e84d07b579ca39880b1ddce57e7b7ee27c510224a34b7dd5a9143d279c25"
+    },
+    "upstream_Textures_Clothing_DiamondHelmet.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "919c90c84084b2a86cf3f80012f91ca5509e438d819fcb5f57f081ab95f6fe01"
+    },
+    "upstream_Textures_Clothing_DiamondLeggings.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "97b519ad4c0446b04f43cd550d6588870b458805ca204a2bee07d8ffe48e7f6e"
+    },
+    "upstream_Textures_Clothing_FurCoat.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "caba6a82066ce36f04a348b626d50c815ab58a86724b231de5ffa9a6268fa7d7"
+    },
+    "upstream_Textures_Clothing_FurHat.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "5a4bc7426f4d91e26e5a0a78c335735a7a40cf2346cace1f1babbbc497174d82"
+    },
+    "upstream_Textures_Clothing_FurLeggings.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4c7e2cc7bb29a88a18ec26c4916545aa52281912dc9f3433f8b261b0c7ad1039"
+    },
+    "upstream_Textures_Clothing_IronBoots.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "1c020e31325dc5f18a341b349471f19d7a0dd4744fc01dfa52e7da9daf7be21d"
+    },
+    "upstream_Textures_Clothing_IronChestPlate.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4a6eac7b6c0d4372670d901ec43a7b87622b18c64dfb28487c6bd3776e9112e7"
+    },
+    "upstream_Textures_Clothing_IronHelmet.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "fb1f206c20100e81b8a0fabc5d6885ce2b7a03596d541214b5b8dffe64085e83"
+    },
+    "upstream_Textures_Clothing_IronLeggings.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "d1bde773918108ec5a5c90a38eae5960eb3e27b1cd42bc7664559f9754394457"
+    },
+    "upstream_Textures_Clothing_LeatherBoots.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "40a2a1f30cf7f8cb3e671e217bdae6a9584bcffed25681d54a369b840abdc086"
+    },
+    "upstream_Textures_Clothing_LeatherCowboyHat.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "9ec88b6bd00fcf0820a30de9de730869f4554a7425ed22256ffdbdd56698b659"
+    },
+    "upstream_Textures_Clothing_LeatherHat.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8496914d8bc755be9e2522f29a6d90d0e644ccefdea8645df388067918afdada"
+    },
+    "upstream_Textures_Clothing_LeatherJerkin.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "84bcd4b8d32abe841f4f3fcf6ea94856790be3dc5251a295e6c6d104f950d01d"
+    },
+    "upstream_Textures_Clothing_LeatherPants.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "57705eeb93a732be7b13cf45f7cd023c296805016a6d64b6a144001871de8243"
+    },
+    "upstream_Textures_Clothing_LeatherSandals.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "2c8d9ed5ac423ec0d600ecad24319421b9ed57a3fb5c568d9bb80a364d643a11"
+    },
+    "upstream_Textures_Clothing_OldHat.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "f9240c93b23af627a1e42af6e2f72e81685c8dea5acc2b00feb06242d7014c60"
+    },
+    "upstream_Textures_Clothing_OldPants.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "91da5428bec92cf767c0375c63ee85f208fe93503b8d1aba58ab99e568f8caf5"
+    },
+    "upstream_Textures_Clothing_OldShirt.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "25fb4bb3226f5718826c9d3d04ca3e9a31aa4cedabf866419e733e99457ce00f"
+    },
+    "upstream_Textures_Clothing_OldTankTop.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "65afd56755a7e3fac31ddf06099a64ecb7a9e8b806b0d295f0ed7d7c215b531f"
+    },
+    "upstream_Textures_Clothing_WoodenChestPlate.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "608d7b3642b20345a067d839d75df9b3d2661655eed9e452488f64f3d9ed606c"
+    },
+    "upstream_Textures_Clothing_WoodenLeggings.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "d7a08fac247641ce4e2b0504bf549581d1c9f6385b9e6daec13bb679f4c1764c"
+    },
+    "upstream_Textures_Clouds.webp.rgba": {
+      "bytes": 262916,
+      "sha256": "bc13b79258682d86c0884cdd06f09e5fa8539c622f0f031a0c5ad1222065e107"
+    },
+    "upstream_Textures_Cracks1.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "28145f78607b931b6a597f6dd1c6d9e88086728f33edff73d2d6be056662a80f"
+    },
+    "upstream_Textures_Cracks2.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "fb6b715822808b0d6d783fb87200ebb72f9e80beec7ba17973ff01e62775964d"
+    },
+    "upstream_Textures_Cracks3.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "581bfd14ef2e3bf521fa0e50b527041a8d74dc6e68c64a5ee5240a35432d499b"
+    },
+    "upstream_Textures_Cracks4.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "fd0e219f02b6f2b7525dcc908cd37f0110cdbcd8c1b216afa62045c4731b4fb7"
+    },
+    "upstream_Textures_Cracks5.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "8eb8eb4aef4132b6bd1b0ed42ebd0967952d4cd2d08536b5b3bee89ce6756900"
+    },
+    "upstream_Textures_Cracks6.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "6eb4d0cc15a7423695852080d47c9a8a51c927bda0526ee79a0d1ad275c55645"
+    },
+    "upstream_Textures_Cracks7.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "9f60d0cb424c10e7ce1861b98ebb2ae0d4bdbf285135f3006c3bdaf2014235e5"
+    },
+    "upstream_Textures_Cracks8.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "91e971758b215104c51c790c5157aeff76aa8efdabd3dc443438544e05e9a4f5"
+    },
+    "upstream_Textures_Creatures_Barracuda.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "fddc3bd03138d9c2cbda589f0f16708461084526f05a933de55310632ae81c80"
+    },
+    "upstream_Textures_Creatures_Bass_Freshwater.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "fccbbfb8dbbc3404fb55b6d7968b9efbe5a3176308db6c64fbb0a5c00e829839"
+    },
+    "upstream_Textures_Creatures_Bass_Sea.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "2b038c5a741bb8464144064d33ecac6e80e384a1d518c6e215fa8d36be9f1c54"
+    },
+    "upstream_Textures_Creatures_Bear_Black.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "314b8127c1ff684e05e688e2511a7d031c7f455eede35233da4527c9d429fbce"
+    },
+    "upstream_Textures_Creatures_Bear_Brown.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "6d66887052a0d70e46d8bf7dcfeb48e99b8f40d383e9237c1e6bcf0b5d64e052"
+    },
+    "upstream_Textures_Creatures_Bear_Polar.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "d76fb6fc517d74d051d1470e8a6687a5b47566c92b049db0b79852b84166c092"
+    },
+    "upstream_Textures_Creatures_Beluga.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "ebc9a0dc18244c794cec80a7ffbd26b05303c4cea8e7239f68c144e27e1816c4"
+    },
+    "upstream_Textures_Creatures_Bison.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8b8b3ea0940bbaf716aefcf5ddf851316bdf00fcafe41618d32c414c173f9ac3"
+    },
+    "upstream_Textures_Creatures_Bull_Black.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "5966968b5f41282352ebe1a4cb7c63637f4de6d39f36bd1ce25ac0f83f0ff50b"
+    },
+    "upstream_Textures_Creatures_Bull_Brown.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "2c5ad1988d8d44c5b9b7bc93bd18c0d37072ab2cb3954112baafd0106cdd4a9a"
+    },
+    "upstream_Textures_Creatures_Bull_White.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "12b5ce651f214570c39fd73137c857df2cadb35ba7d08c17a3544048455cced2"
+    },
+    "upstream_Textures_Creatures_Camel.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "b888ad553d4d9c666f0d3b532a69de14dc363f6d35af584c23e61467f8f1caf7"
+    },
+    "upstream_Textures_Creatures_Camel_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "a70b1a3b17607bdd51270a8c0a2918f3d659adbe8b80434ff140b05659c1703d"
+    },
+    "upstream_Textures_Creatures_Cassowary.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "052a5347aef17ee689c0cfe87d9cad4044df2ae7233d6c36cade4d73232a1ce4"
+    },
+    "upstream_Textures_Creatures_Cow_Black.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "13209f6ae0529c250adc5ca762432f0c39201fc2527c1159f8e1cf06e2ddbf07"
+    },
+    "upstream_Textures_Creatures_Cow_Brown.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "884068ae2c5ef7cd68459affa75094e8e8f356946f9314c4a158799912a23743"
+    },
+    "upstream_Textures_Creatures_Donkey.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8c549072756b255df94d6ffac23da9e27621734e32a7e0c4ba668d5690bc2bb6"
+    },
+    "upstream_Textures_Creatures_Donkey_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "7143ab72be05840faa2e8cc42b064ed8574faf8d0768965dc13e6c5ccd7b9b4a"
+    },
+    "upstream_Textures_Creatures_Duck.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "41c10632f00ceeaf3724b93ed27a1a315db6d36561d95233cd1ab7c03d166f76"
+    },
+    "upstream_Textures_Creatures_Giraffe.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "a9219c609d1e962c8fa266469086244d57583b856313ab089a843bbeeeac9fa7"
+    },
+    "upstream_Textures_Creatures_Gnu.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4db6e38c872255f6b5b23bfe8efac978aa57b6a98cab20a3bfda88ff7d64189b"
+    },
+    "upstream_Textures_Creatures_Horse_Bay.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "a4347f083a6f517bb53323e0c65beeb32d52f012d867e17d233e42cc3ee92695"
+    },
+    "upstream_Textures_Creatures_Horse_Bay_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "adc17b90aeb4d23bcfd55fdb7eb50489646166688dafe97abd8d7c741a96fa27"
+    },
+    "upstream_Textures_Creatures_Horse_Black.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "ae10f850702da6d73e3ed10f07b568934697d11a487cfaf3691d0015c70c35e0"
+    },
+    "upstream_Textures_Creatures_Horse_Black_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "0024bfc4600cc02a39da9b7ed49168d68aba9a63b448abc90bc9575108db9024"
+    },
+    "upstream_Textures_Creatures_Horse_Chestnut.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "1cd3d16f0523fa08f737c6806c39510b34be5db289607bb946d3980147cfe577"
+    },
+    "upstream_Textures_Creatures_Horse_Chestnut_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "7ccbadfee00b06ee93a481c42d89e7f4ea8d040df2b6eeb7bcf139c653911ef8"
+    },
+    "upstream_Textures_Creatures_Horse_Palomino.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "af7b59782bbf09fc1113aa5e8ca2d27d238a3fa5a194ec5c4901fa023ff1bc5b"
+    },
+    "upstream_Textures_Creatures_Horse_Palomino_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "bd987f8676cf246878838103fb4cef7c3f5f441e176200c05e0fd30a30fe3401"
+    },
+    "upstream_Textures_Creatures_Horse_White.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "03778f7f43d1816e932c110b70cf579973a4263189885661502ac8b4652bc1bb"
+    },
+    "upstream_Textures_Creatures_Horse_White_Saddled.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8421cfa879c228fdecd54d8bfa326ef58dbeae3174318c331ae4567dd1bc8502"
+    },
+    "upstream_Textures_Creatures_HumanFemale1.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "f2b3a5a0e396e0f3f7401be44243bb65ec005b284929fa4418bafe8021184964"
+    },
+    "upstream_Textures_Creatures_HumanFemale2.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "fac0a5c04f6a922299ddc0aa35ac7e1d081860fff1bb4d05c6dfc0b7d3827155"
+    },
+    "upstream_Textures_Creatures_HumanFemale3.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "89db8d2c8eb9b0cbb7138249e9874fef7482c728e01a4b8e25b2d3e31e2698b8"
+    },
+    "upstream_Textures_Creatures_HumanFemale4.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "059d6d9da948c359b9cc583aab68c5a43141c82dbaf74085b91746d5a773f779"
+    },
+    "upstream_Textures_Creatures_HumanMale1.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "daf90f69f34d63fe6a0a2b61b2e67b5f49e73197097c820b6770a9cff2b71e21"
+    },
+    "upstream_Textures_Creatures_HumanMale2.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "10d472ab8debaa7fdb5b73361159ba7b5be236344e01093829ab45150ec311d1"
+    },
+    "upstream_Textures_Creatures_HumanMale3.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "bb2e07a8808e10092400e3a4d7c4509f6429348ae057657c37d8580cb3cb203e"
+    },
+    "upstream_Textures_Creatures_HumanMale4.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8dd68e55da6364e24c138ecb5691dae94b3736f39ba62451e410de3ff2e161c6"
+    },
+    "upstream_Textures_Creatures_Hyena.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4aab4fce7013cebbf9b49c9ce377f06506edf362c3bb105d0ede254961587629"
+    },
+    "upstream_Textures_Creatures_Jaguar.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "b8e47cf473130d1be11c59d34f097e259b55eed2531e1641e53f2a879c599051"
+    },
+    "upstream_Textures_Creatures_Leopard.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "337f7e1a63f8f40045cd6d5568a31a38fa59aaafcf8e89a7514eb86f803419fa"
+    },
+    "upstream_Textures_Creatures_Lion.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "ef9b45091cb0d91f2a60ef8ba9f50327cc1ec6171feb7cd089f2699d450ba387"
+    },
+    "upstream_Textures_Creatures_Moose.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "02d02394ef9c343eb920b95632d2ad2aef399cb4103bb29eada31d5980dd0a84"
+    },
+    "upstream_Textures_Creatures_Orca.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4d5e60fa207b17f0b37ccc0a4fc2159dc1a70fedacc57de8a29b3256a0ad8c29"
+    },
+    "upstream_Textures_Creatures_Ostrich.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4d7ebb25d778677cce5b79ccef9335fb9e36cd2c4343b5e77657c3cddd493a70"
+    },
+    "upstream_Textures_Creatures_Pigeon.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "f9cde3959130a7f63e10efc0d78f9f74c50df5645021a8ba65536f60a90fcf79"
+    },
+    "upstream_Textures_Creatures_Piranha.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "0f7271f64d80bb9a5f89e6bcda5dfa399e5c839ba48d656f3e976e3025dff3e4"
+    },
+    "upstream_Textures_Creatures_Raven.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "32a8a7c3d40b5039d5cc350565873df5e7aa09b3eca319191ead6a02ec5fd2f7"
+    },
+    "upstream_Textures_Creatures_Ray_Brown.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "15a878dc3d0182d211ff696b24b715a539b73392ff29c4228960fe4526123335"
+    },
+    "upstream_Textures_Creatures_Ray_Yellow.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "04ef1005b528b2005e00352f851f717424c327bae80f3ab615f5df1a27fdce20"
+    },
+    "upstream_Textures_Creatures_Reindeer.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "265a4e5739b39dc788657ebf4a78b3d69ac344884f3d56e38b1c27e217ceddfa"
+    },
+    "upstream_Textures_Creatures_Rhino.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8eaf7629c2bd8e3a25d46ff014edb198aeef9c6087ea958faef9e1bd23c40c86"
+    },
+    "upstream_Textures_Creatures_Seagull.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "73ad4b7dbb3a685c7f41556f22a044916eed345769fab499b55ed77c553201f3"
+    },
+    "upstream_Textures_Creatures_Shark_Bull.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "0119158defdad5c0fae1651b62dbc950ff8c820ede3c25f8220fc53875878f8f"
+    },
+    "upstream_Textures_Creatures_Shark_GreatWhite.webp.rgba": {
+      "bytes": 66308,
+      "sha256": "35d6ea7c01bc5aefc425f47d250eb2c854b27b141b457d61b34706970b6405a7"
+    },
+    "upstream_Textures_Creatures_Shark_Tiger.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "f012b1d3c8963a67d2b9fbd6b9f0c70d2d0919edc3bd6000e7f99d1787e676cb"
+    },
+    "upstream_Textures_Creatures_Sparrow.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "711c12b1ab7a6f8b186387350654a21c27e6882283bf7188a202f5861c571a6a"
+    },
+    "upstream_Textures_Creatures_Tiger.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "b11cc02c07dc940fedb24279ec17d2e508a1ef2c6a16388d18106f65a937c3c5"
+    },
+    "upstream_Textures_Creatures_Tiger_White.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "5f32983a441cc03187c11cc137ba856e1769d735aaa9b936ab03da341fa19198"
+    },
+    "upstream_Textures_Creatures_Werewolf.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4ad6e4a22d3bc7d7c8026a73d2edc01aa050deafb4f6d9a4beeaa71bf139a9fe"
+    },
+    "upstream_Textures_Creatures_Wildboar.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "58966d97625b0272919341078aa317d9071ee6daa3b7c3a9b469c293b8874529"
+    },
+    "upstream_Textures_Creatures_Wolf_Coyote.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "24b54a4872c5f690c4c713863107e92889d3680cb54c47aedaaa42a2bf03af5f"
+    },
+    "upstream_Textures_Creatures_Wolf_Gray.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "a13c3f4989565063dd0dce04aa8276130b17b54ee63a560b5e661702a53a7e44"
+    },
+    "upstream_Textures_Creatures_Zebra.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "1050c280f18c00569e1d7669f1ff4f62ec1b50e4e6a4799682bfa8c8355d4f9f"
+    },
+    "upstream_Textures_Experience.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "ebc96b5a24774d15038652bd88b24a86963b684dd151841974d0de0a5d1001bc"
+    },
+    "upstream_Textures_FireParticle.webp.rgba": {
+      "bytes": 9988,
+      "sha256": "6c6430b9975e67c750a5e702638184f2843072b91bdc247b44edb1ec26785d26"
+    },
+    "upstream_Textures_FireworksParticle.webp.rgba": {
+      "bytes": 1796,
+      "sha256": "2de222b6e3803f83ebef1f5c0248a985a87f1b905ad44d99087bd54dc5b4a49e"
+    },
+    "upstream_Textures_Gui_BugReport.webp.rgba": {
+      "bytes": 83716,
+      "sha256": "7cb44f9d07a3eb7e06b5953fc6f43576eb0995ee80a88613a2103710ce61a8b0"
+    },
+    "upstream_Textures_Gui_Bulletin.webp.rgba": {
+      "bytes": 58372,
+      "sha256": "4f03cd1610513c302e808297a8133a7598ee537eb31388d84b02ecf552ffe486"
+    },
+    "upstream_Textures_Gui_CandyRufusLogo.webp.rgba": {
+      "bytes": 519172,
+      "sha256": "3d6e6e36b7e00975a96c10d4dbf9084956caf3cae7128ce790cdda9fa4b49996"
+    },
+    "upstream_Textures_Gui_DefaultModIcon.webp.rgba": {
+      "bytes": 83716,
+      "sha256": "d4e962348867e1925511175f2139d99183657adabdf0d1ad862f8eebc0e05f16"
+    },
+    "upstream_Textures_Gui_DisabledOverlay.webp.rgba": {
+      "bytes": 83716,
+      "sha256": "59adab4dc7158f8e7d7064a082914afc1afd019c104a1ce7f3fe94cd91aa9de1"
+    },
+    "upstream_Textures_Gui_EngineLogo.webp.rgba": {
+      "bytes": 164612,
+      "sha256": "ac14953f899121ab485dabd6d3efd8e80cc81005545244ba53bf37b75ecafceb"
+    },
+    "upstream_Textures_Gui_Fullscreen.webp.rgba": {
+      "bytes": 83716,
+      "sha256": "99664de2d85d6f66c99dab3e3a0fc13791dac58a5d0aa67573d095c11e82202e"
+    },
+    "upstream_Textures_Gui_Language.webp.rgba": {
+      "bytes": 69416,
+      "sha256": "4be77bec2d8a415ce1dbb5dbdebafbf76b36311d45b90d2519e3f9efc1e2fbb7"
+    },
+    "upstream_Textures_Gui_Logo.webp.rgba": {
+      "bytes": 525060,
+      "sha256": "2ca25bb121db38542c333b152465a8690443583b095fa9f8000f20c787296aae"
+    },
+    "upstream_Textures_Gui_NeedToUpdate.webp.rgba": {
+      "bytes": 62276,
+      "sha256": "33aa3d8d416134f4436efad702266d0c2ee8a201c9a4a30e936b1676ebe917b1"
+    },
+    "upstream_Textures_Gui_PadCursor.webp.rgba": {
+      "bytes": 2596,
+      "sha256": "5a038bb551a10a674754b35a6a282837690f03b8ce1c1a1bfa95831212a25014"
+    },
+    "upstream_Textures_Gui_PadCursorDown.webp.rgba": {
+      "bytes": 2596,
+      "sha256": "ac77890d2e50fefc14ed71c7b4db9fca64d53d7a39f86f81fea9c27707769b5a"
+    },
+    "upstream_Textures_Gui_PadCursorDrag.webp.rgba": {
+      "bytes": 2596,
+      "sha256": "ad632ddfd283c78855234eebb81449d7e0e4c7df4e40e1a5f8cdfccb7353dbaa"
+    },
+    "upstream_Textures_Gui_Panorama.webp.rgba": {
+      "bytes": 1049348,
+      "sha256": "a807d5dbd794c4ec5e58097375bafd5dec9b70f9291b7bcaa1a9c4d6def62a36"
+    },
+    "upstream_Textures_Gui_RatingStar.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "226e0ed395355c6523590594bd7403b81477ae22926508c441e36ce0dc87dac5"
+    },
+    "upstream_Textures_Gui_ResourcesManagement.webp.rgba": {
+      "bytes": 19516,
+      "sha256": "dab1a0fb9921a0b5b7b86590afa5cc67021f8864590f00a5ecc88a6cd219f725"
+    },
+    "upstream_Textures_Gui_ScreenCaptureOverlay.webp.rgba": {
+      "bytes": 33540,
+      "sha256": "d5101559095c008cf9cceef04f4c728b23058395bad75e7cd7a0da9927a3f65b"
+    },
+    "upstream_Textures_Gui_SeasonsSlider.webp.rgba": {
+      "bytes": 1796,
+      "sha256": "3e588accf26e6dc401079232fd9af901a239a156378ac8b6767c2b9cb4b64329"
+    },
+    "upstream_Textures_Gui_Sights.webp.rgba": {
+      "bytes": 66308,
+      "sha256": "f9571c54267f204f8dfc4cae30e2fe687d83b11350491e459b1b21c769393bf6"
+    },
+    "upstream_Textures_Gui_SoftwareMouseCursor.webp.rgba": {
+      "bytes": 1684,
+      "sha256": "f4149230aad3202c21c6a47555f57fe3c0f0a140ad85d0207f4f35f3cb9c905c"
+    },
+    "upstream_Textures_Gui_UpdateChecking.webp.rgba": {
+      "bytes": 66308,
+      "sha256": "320b756ac803e0898dfb510acdd37410e94ee5e380e540c4447e46374db76df3"
+    },
+    "upstream_Textures_GunSmokeParticle.webp.rgba": {
+      "bytes": 9988,
+      "sha256": "ce72ff522d508c9ceab6db146716ec2334a1a7c352bc0551ac84fe2e35f2a2dc"
+    },
+    "upstream_Textures_HorizontalRectGlow.webp.rgba": {
+      "bytes": 2820,
+      "sha256": "ac982749b5ed1947e2ee1a8c560c2053274e5e13f776cdbc0882843b21ee8778"
+    },
+    "upstream_Textures_IceOverlay.webp.rgba": {
+      "bytes": 66308,
+      "sha256": "f579349c62270f215ae7aef32fe29980dafb789089301203ab51801cde235ca1"
+    },
+    "upstream_Textures_IntroShip.webp.rgba": {
+      "bytes": 788,
+      "sha256": "ffb04769364a098857fd38ef8637c68fa1a678283ab7cde0828d526a886b3715"
+    },
+    "upstream_Textures_KillParticle.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "8f67b67c5a6e2b93b165037f83a5b8c7366a8b165e6b6c7ec5ffef712aad784c"
+    },
+    "upstream_Textures_LeafParticle.webp.rgba": {
+      "bytes": 1796,
+      "sha256": "653e040f069c146831160c541ac7a4e54a032537fd03aa6759679313756ee77b"
+    },
+    "upstream_Textures_MagmaSplashParticle.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "5199a78de15118457eacad17e1d684b19b0cb342369d93ced2f9035792615ddd"
+    },
+    "upstream_Textures_Moon1.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "6050f97776ac96624b51910231ae7861e9a527e5a9feda471894560ba1f0fcdd"
+    },
+    "upstream_Textures_Moon2.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "cb59506da1aaa21b8840c75a43b9d5c8a6dd3631342781e9da380388f443b975"
+    },
+    "upstream_Textures_Moon3.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "4e086852dd0a10d2787e73f64950130d03d1e25210e7aa925c113033b51e543f"
+    },
+    "upstream_Textures_Moon4.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "8108c98525bd7c8ac984f49d5019fa526d9445ed4c5516a8c0f2fb4e1446ed05"
+    },
+    "upstream_Textures_Moon5.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "7460bc53c4d350d036e80e81f4e9a38ace9c0b632179fa8ce49affe27becbba5"
+    },
+    "upstream_Textures_Moon6.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "7937b13b83c649157f6fe4c4bc428ef15749ddec7dc82204f58802f1ce81f758"
+    },
+    "upstream_Textures_Moon7.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "f63db06feab79cd0f57ba104cf5aebe91a23b2c347773d452bacd7b831d78969"
+    },
+    "upstream_Textures_Moon8.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "7dd3b687b7b96c54489648fa3e71f74245c4bb0842269b9030ada7f3e1b58c1a"
+    },
+    "upstream_Textures_PukeParticle.webp.rgba": {
+      "bytes": 9988,
+      "sha256": "56c94f6dbcc324776cacbff1059328924cb02d6bc90eebcefe9fa3d62e3895cc"
+    },
+    "upstream_Textures_RainParticle.webp.rgba": {
+      "bytes": 2820,
+      "sha256": "1fc8e01a86dc6301ce6bbf898b1ba339f76bd138faf90ebc582cd9447e745d41"
+    },
+    "upstream_Textures_RainSplashParticle.webp.rgba": {
+      "bytes": 1172,
+      "sha256": "bfbb7cd7cc3b0bb27eb50dde6057e858ce0b251d3ad83ad7ccd1b65f430707d1"
+    },
+    "upstream_Textures_RoundGlow.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "217552003585a5dbc76b0a76840036fc48382ab77f885a4a89d06d98255bf6e3"
+    },
+    "upstream_Textures_Shadow.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "946b546449c5931ca9b2a30904b8f0b89b20b81f8a3a362ae0c52be7a6432331"
+    },
+    "upstream_Textures_ShapeshiftParticle.webp.rgba": {
+      "bytes": 9988,
+      "sha256": "3362c4a23b07028196f5d8b14c3995c8de49b6c08b9da88c26d06c53e4c52f64"
+    },
+    "upstream_Textures_SkyGlow.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "6d80e0c7134a06e1a02ea4e0d5015063cfa748e485726a4dff4290c750a8e6c1"
+    },
+    "upstream_Textures_SnowParticle.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "783ec03d7852c8b82f28c62d55b75c7b69f42213ef986eadc3baf5f12ed3c2fb"
+    },
+    "upstream_Textures_SoundParticle.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "cc5ab5e714490e3272c8bff589e1af47504ffd18e010aef32c3b3275eadedbf7"
+    },
+    "upstream_Textures_SplashOverlay.webp.rgba": {
+      "bytes": 1796,
+      "sha256": "0bb2c407ad3d248215c606a3bd73813809d30d7e2a72d3502932cf71d32d3d92"
+    },
+    "upstream_Textures_SquareGlow.webp.rgba": {
+      "bytes": 1796,
+      "sha256": "d7eb39a78cfbaae881658472db3cab78aea9ac9bda0bcf206646cafec4798215"
+    },
+    "upstream_Textures_Star.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "04f07ca23512de0477de70f32f37a5c4de32d053e8b4673557662d88dbef78a3"
+    },
+    "upstream_Textures_Sun.webp.rgba": {
+      "bytes": 17156,
+      "sha256": "78f0fe2602ac0a56ae7262a54968de1378f5df48a2c44a3f8e9e0a37eb30ed2b"
+    },
+    "upstream_Textures_VerticalRectGlow.webp.rgba": {
+      "bytes": 2820,
+      "sha256": "736ef524f03f444eaea74672151ea80c53c23a8d1a3d2f245f12f72a01221c98"
+    },
+    "upstream_Textures_WaterSplashParticle.webp.rgba": {
+      "bytes": 4868,
+      "sha256": "ce3f12fae3f2a93c5c6565d5dc52659b4f21dcd96e03a08cbd14b75f1886e50a"
+    },
+    "upstream_Textures_headimg.webp.rgba": {
+      "bytes": 180484,
+      "sha256": "605e1814359d3791de40b3230731c7fe084ecebb7bae2217d0b2fe20e2f59789"
+    }
+  },
+  "bundle": {
+    "plugins/SCUnity.Image.Runner.dll": "3fa42cfec54591fa50b22b70d5788745601e5d7aeec1fc92a267d9a56910a622",
+    "plugins/SixLabors.ImageSharp.dll": "de50c360d713915dd517c7c997bdd46cfe52b4cfe28c1f549eb0bec40e04848c",
+    "plugins/System.Runtime.CompilerServices.Unsafe.dll": "37768488e8ef45729bc7d9a2677633c6450042975bb96516e186da6cb9cd0dcf",
+    "plugins/System.Text.Encoding.CodePages.dll": "87f7f43626cac445a9cbacda4068c51c0b17b6af6e6b752ff613668c21e49412"
+  },
+  "managed": {
+    "Assembly-CSharp.dll": "c982962ed5a4bdd79bd1ea4ec299498a063ad6e6090d7911736df12832887243",
+    "Mono.Security.dll": "618009319dbf3ae374f9b5dc0d0522e1e1bdd172200c120a5471747b7991a584",
+    "mscorlib.dll": "6c76e06e6d44cf0f39bf59e6a90770968b70093ad4c1572dfbc5e46e431c5fbf",
+    "netstandard.dll": "6ae62e082dc494a2433984177f60ca4db5fae69b1f360a8b33754172b310b8c5",
+    "SCUnity.Image.Runner.dll": "3fa42cfec54591fa50b22b70d5788745601e5d7aeec1fc92a267d9a56910a622",
+    "SixLabors.ImageSharp.dll": "de50c360d713915dd517c7c997bdd46cfe52b4cfe28c1f549eb0bec40e04848c",
+    "System.ComponentModel.Composition.dll": "0c3e81771a5fe9657bea02887996de72606c3cb247e4fbe413f743f40e2af244",
+    "System.Configuration.dll": "04907729e87a101e62d3a5c93cfa16688bee745d05440d6daa0c541964be27ab",
+    "System.Core.dll": "a5e7d47313da0eca0b92a901a30498f5e970916faf63b70b74dd62b09760ed72",
+    "System.Data.DataSetExtensions.dll": "498f14c37d83f946a47a79e01de777e62f269ee9c3820f2026b59ab1c1b9222f",
+    "System.Data.dll": "427478545ce66b632414ca838088ea073f250ed16b21c70005f48cb571350e47",
+    "System.dll": "7019d6b6dbfa07cf30f62e7d3ccb969f70cbf001fd72112938ffb535c7f75d81",
+    "System.Drawing.dll": "e182e688223acedb8135227e8fbff17d5ed22f47f81141aa9cb96ef1ab9926fc",
+    "System.EnterpriseServices.dll": "84af394ad863e31407eb2b9555ca7e96a9f1966630f5d7f0eec54f0011f6babc",
+    "System.IO.Compression.dll": "80421a67b4162a5f1b4aad6a8327c6d1fb4b04dedd39dae14a770b812594fae2",
+    "System.IO.Compression.FileSystem.dll": "2730d2a27f9362259a406ea14727e5f0a71bc21a6825be94f8623a84bd9f9c79",
+    "System.Memory.dll": "c4f030a2cba7da7cdcf493257c24560e203d355904aee490d645a935842f834a",
+    "System.Net.Http.dll": "3cd3ac19050d5031c13644cd87958ad8029b79ce16c7747faf3d0542e7fb45a3",
+    "System.Numerics.dll": "ac9224b32355a09f09b706cab568384f64cf8116825c5911cef1e13221c61c38",
+    "System.Numerics.Vectors.dll": "1c3395a5f0c7aa066c19ee5f6fcd44b64f5bd4d76d476d5d62c4f0bb53517989",
+    "System.Runtime.CompilerServices.Unsafe.dll": "37768488e8ef45729bc7d9a2677633c6450042975bb96516e186da6cb9cd0dcf",
+    "System.Runtime.Serialization.dll": "1152ef687dbe39e0ccb6b9a68f6501004415a729072df29abab3bc7c66840217",
+    "System.Security.dll": "2101a4dd4475285f96b1ac3ba1715a52aa8067690709e675cc49a9eb8ed901a4",
+    "System.ServiceModel.Internals.dll": "888ec94a59c127854871b76afa49fdcefdf723c0f0b6fd78e87f73a8495b63b5",
+    "System.Text.Encoding.CodePages.dll": "87f7f43626cac445a9cbacda4068c51c0b17b6af6e6b752ff613668c21e49412",
+    "System.Transactions.dll": "f65dbc257d26a361dcc01edd58bf3e542d186c8ee492a4f7a62b0dd7d59f7050",
+    "System.Xml.dll": "79194220adfcf027a334c87b1adcc6d07b9660a4061e04b3d9500c10d30f7d49",
+    "System.Xml.Linq.dll": "4f5d6bf313cbf091e7bff83d07dd03ed93d0ecb3ddb025ae786aadd6b5f477fb",
+    "UnityEngine.AccessibilityModule.dll": "a5d2b476a615a5dd430254877ee63c6678e131159a5d6e61f02e383a6a4ceddc",
+    "UnityEngine.AdaptivePerformanceModule.dll": "9a9763066b8c69020bf7bc0dca09cc0e3f4a574bb427eecd762a30f62638cd72",
+    "UnityEngine.AIModule.dll": "b64487dfb7a22a0c9b43a7ec41a54c559e36a638d4ce66bed77bd534f7e86379",
+    "UnityEngine.AMDModule.dll": "9b78ba9bf3c62db80486f120da572102c4fbf39c1fcb36c9a61e5b3a18c5c85d",
+    "UnityEngine.AndroidJNIModule.dll": "47ec38060b1ce359ae1c5510ea8db9ddf09388dfe10f3cca8d7c430db59ae28e",
+    "UnityEngine.AnimationModule.dll": "0a5cc4da83a12b35d4fe2db1d890b43cce168498b342a34fc34760ac0c4d4d10",
+    "UnityEngine.ARModule.dll": "f8a28ff9f1a30d82edc14c0cd6cc41870bbff34dd0fdcd9e63e6a92d67af0fcb",
+    "UnityEngine.AssetBundleModule.dll": "9792e104a565802f038723ab770cac64d82452a3e607232107417513513b243e",
+    "UnityEngine.AudioModule.dll": "b508d20655d60299a9adef021a4ec3be6412b898ab850045e99521b4771e3ac7",
+    "UnityEngine.ClothModule.dll": "4c3fe88c792321654de9e9c388e253adb2e4c99f3583affbd6844ae4558b51e4",
+    "UnityEngine.ClusterInputModule.dll": "ea5f5096d3e27148232e477b03c1b7ca62431bd99843d02d783054dbd1d314b9",
+    "UnityEngine.ClusterRendererModule.dll": "ef5b9e34d28e218dd3309e9d481051c885223e75e41ed85e3f55ce3de32dbff7",
+    "UnityEngine.ContentLoadModule.dll": "111d91eb1986c8c5ea9bb1daf2d44f1a252e2311f9e8995ec77afde13a25f063",
+    "UnityEngine.CoreModule.dll": "fa21f00cbb37a591cf2cd2b0df6fd8d9f9bc70d0ca7884c5e6b683784e39c35d",
+    "UnityEngine.CrashReportingModule.dll": "3eb3cc245c6088a2188b45fd9b4a7dd767ba27a1729d1d3d361e7f8f0629abc4",
+    "UnityEngine.DirectorModule.dll": "b99987a9d1958c012bcf75994b876703b3066b3fb5ab3abafcdf98263e07379c",
+    "UnityEngine.dll": "6e59af41304e769285ff7de683ac0369baeb9d06fd72fcda82f0aff7365969fe",
+    "UnityEngine.DSPGraphModule.dll": "4f356f95126b0464b959df4b16ed284c43c0cfb304799dad6bec68324f9a260a",
+    "UnityEngine.GameCenterModule.dll": "e739eb28baa802ef9b46bc288772b4546448ad2fa66898db34db20caed205ad9",
+    "UnityEngine.GIModule.dll": "e4f5fe2895ec02bd1e03301ba84e15e7d84e918ca98624130a86eae3f81ad62a",
+    "UnityEngine.GraphicsStateCollectionSerializerModule.dll": "8a377d274b10d8ae0162f212975aeb7d209ddcc135b8673449dbce31cbc12183",
+    "UnityEngine.GridModule.dll": "6722a5623c178c5f3e5d8c9a255cc3dc58957654eaed59fd8b8b8c35ce0aa51d",
+    "UnityEngine.HierarchyCoreModule.dll": "6202ff67ac2f93e687c8a784287f9c0e4520ee78f321f9e797917cff0acfc690",
+    "UnityEngine.HierarchyModule.dll": "ac8efd58f3e1eac034af7403f95841824a294a4ceaaec4aa47bbeb4f1ad971ec",
+    "UnityEngine.HotReloadModule.dll": "031da0e5213af3a97ebeaec99beefc4f11309edb9085a99ffb29116c61014dc8",
+    "UnityEngine.IdentifiersModule.dll": "3061f2bb5e61526fbfb404c580f70602240eba61ee9866f5c92111fc47e9d3ff",
+    "UnityEngine.ImageConversionModule.dll": "8947b89728e815ea2d8634d92534efffbaf3c71bb1814a2790b9892b5d09a316",
+    "UnityEngine.IMGUIModule.dll": "09c560d92f2b3dd5f0cb1f5233e186e900a70116bafcf7deede39503ec33a03a",
+    "UnityEngine.InputForUIModule.dll": "9274da567ddc30fdfd1f887b764245e5672c8b304a48c75c602ec1402e01a24b",
+    "UnityEngine.InputLegacyModule.dll": "b89fc4b0fa1fb5eccf960d5bd49be51fe34ee4ac0f394c4abb526c87d68d9c4a",
+    "UnityEngine.InputModule.dll": "3a9f4c30892abd4a1af5b425ce6229416069384b8a4e8a044370019ed86075cb",
+    "UnityEngine.InsightsModule.dll": "3d4fd74da6a7a34cd61ca3661b3305c3a1f7e056a9cb4433631b8a4c159f457f",
+    "UnityEngine.JSONSerializeModule.dll": "2520cfbb0adc62d84e8faa06500af1dcf62fc78d2b9c242d2e941bdc3e6e22ad",
+    "UnityEngine.LocalizationModule.dll": "78f948c5a93fa0c8578202a4d97b3d6a92f10232bdb87deca221bb495ed54c92",
+    "UnityEngine.MarshallingModule.dll": "927bca7cf998b0170267ab890370dd2a978df03ce037600103454c170e070173",
+    "UnityEngine.MultiplayerModule.dll": "697258e6b349fda786dc55d08cd8268b43ddd7571d176839d5e1f9657cabeb33",
+    "UnityEngine.NVIDIAModule.dll": "4d03e8c0fc12107e5861b3fc424778c1935471aeecace78a9c40a893a40c5fa2",
+    "UnityEngine.ParticleSystemModule.dll": "d11cc9f6b14a610d12e1b1d95621fe95a5adffe2792f3f48965874211ff016c8",
+    "UnityEngine.PerformanceReportingModule.dll": "4ce68b3b6f9036558e57c6ff6136bcc626fa0637b3a1c933a571e61a523d715e",
+    "UnityEngine.Physics2DModule.dll": "554442836e90ccc8975405ee99ed227fb99ddee1eb353f95cec634eca57a5456",
+    "UnityEngine.PhysicsBackendPhysXModule.dll": "d606bf26bf0ca5e624c6d4a3e5b91f2ec7bf1fea3fc5df3195c9a506b6274191",
+    "UnityEngine.PhysicsModule.dll": "9c8188af1cb79c5772e8d7d458abbb06162833515c9971d52a36ca0a1ef6f3aa",
+    "UnityEngine.PropertiesModule.dll": "33025367b8cf67b7a5ff0f7418b43ac816ce9a2554bc385190f843dbd0c11e62",
+    "UnityEngine.RenderAs2DModule.dll": "6b19866631d14374024dfbbceb45b54107b535374ba4a311915668f1ee4f3d8b",
+    "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll": "ec54cc9f57d7104395457612dcaf508a3a1e6a0dc32398fb2245be5caf5b57d7",
+    "UnityEngine.ScreenCaptureModule.dll": "3ca6b9b00bc595dc10a5e2a11d038b4028c27b606d5d2a02a41a04cb11612ca4",
+    "UnityEngine.ShaderRuntimeModule.dll": "0886ece16f1eea32c4091d409431c763ec413467d8cc220abd677fd3ad931fdb",
+    "UnityEngine.ShaderVariantAnalyticsModule.dll": "52dc53d36f1cf8ee5bed332d132295f0a744a2e94bae46f1ec72d370f8fc1d2a",
+    "UnityEngine.SharedInternalsModule.dll": "f71103406c98040aafcb93e20cb16d58ef58a4e019d0c7a1c55a6a8f935a692b",
+    "UnityEngine.SpriteMaskModule.dll": "5a5e31c400b40f7e2c386793e47ebdc6dab2a3e2fec39919911832cd80af1f87",
+    "UnityEngine.SpriteShapeModule.dll": "ba32c9e67ca548c639beac9651006b2386822f03ec423d7ccd76b7d3cd94f132",
+    "UnityEngine.StreamingModule.dll": "b8e4d2b19e1359da8758cfb6901e88b6512bf7f8698e8ca161e3d1f7e1e7a191",
+    "UnityEngine.SubstanceModule.dll": "9c7f8e5a26fa8c12d8552f971289499a186e8f75d65e6f9bf32f648d3d579d0a",
+    "UnityEngine.SubsystemsModule.dll": "45592f86b2574e8226326831a5cc3daf681584c4ea55eefbb01c860d4b1412b8",
+    "UnityEngine.TerrainModule.dll": "36aa5e6a4b4bfb9916d9ae0c14dbbc057b59c1375338341e7274fe46e6f977db",
+    "UnityEngine.TerrainPhysicsModule.dll": "51b01b63f646b0c4a693c9564a62be80f75f4d06d4330854fedec5f36a38b760",
+    "UnityEngine.TextCoreFontEngineModule.dll": "d5d286a60de985c8913e8cf951341a4f7eeb54ae25230be0ce0e4d5ec97cd10a",
+    "UnityEngine.TextCoreTextEngineModule.dll": "a7cb7e44033b46211b0a00d8d6ca0eb4d169e8699db29f4c38ae686925343897",
+    "UnityEngine.TextRenderingModule.dll": "f8f33cda700104054931780fb1e357e13621155df74e200a61ec7571494a2242",
+    "UnityEngine.TilemapModule.dll": "de1cec1a31aa1aee642c6153400b1d998c5867fdc23afdbd710b9b1426ecbc80",
+    "UnityEngine.TLSModule.dll": "042b7dfc4ff727fb924801b4a9dda148205d873fb3a4fd67f7d721b26c7f64fa",
+    "UnityEngine.UIElementsModule.dll": "d0dfeb94b15c4ff0956704925a17f2420206ea7fde663e9c85b207da5c77bffc",
+    "UnityEngine.UIModule.dll": "3223040c1aed84578b41de585f2a88d5990261b87a615ed2215590c9055c3f18",
+    "UnityEngine.UmbraModule.dll": "4ec3254865b74fa52e305031b06ce4d119f6f4f25c90bbf25bc1e375a44b8b45",
+    "UnityEngine.UnityAnalyticsCommonModule.dll": "070c2bfa3014dcd5b0457fe61dc5376ed39de99fece92bc5ccdbe67c20146f39",
+    "UnityEngine.UnityAnalyticsModule.dll": "3baeba7e6a1676a0c634b72a349719efc7268653ade49fa58df132143f5726af",
+    "UnityEngine.UnityConnectModule.dll": "0924a4c73a078d34e5b2e7e75924d38e6a5077fd0631166c3d6950540a20c190",
+    "UnityEngine.UnityConsentModule.dll": "1d5ea4055721fd20cd8274e1804a2c418802da26f1c7d4561cd54a16e0ee8aa7",
+    "UnityEngine.UnityCurlModule.dll": "9e9a9d03171fc475fcca0672da467560339c5b07c7b0a202b1d49365d240025b",
+    "UnityEngine.UnityWebRequestAssetBundleModule.dll": "941754f97255c24811e87913aca638cb14158be4592cae974e53a60589eff8ad",
+    "UnityEngine.UnityWebRequestAudioModule.dll": "9a4332f5656965fbfc489534dcc0954ccac0b6481aba7e018808c3fb3380e24e",
+    "UnityEngine.UnityWebRequestModule.dll": "1443aa1d86d570ce99991e6e16a137533099b25d22033d328842a7d89f2319d9",
+    "UnityEngine.UnityWebRequestTextureModule.dll": "03b34e14d420ef563426f6560df5f011450858e2888f84b580318d4581c90949",
+    "UnityEngine.UnityWebRequestWWWModule.dll": "4542f50150b93213e5634822559d08f213e9a8c5537ab6f0c6313ee4e298db7e",
+    "UnityEngine.VectorGraphicsModule.dll": "d75862c23d13618199458f62c5889403e01f257ca9b5f62c814f5306ceec4018",
+    "UnityEngine.VehiclesModule.dll": "e1ee9ae2f64a04aa58b9f0a3737b9ecf04392e5c55b6302e72ca6f9e753587b9",
+    "UnityEngine.VFXModule.dll": "9ceb757c13bcaf37d18d95d3734d1a22e284045c478748e8ac1471abc39e19b0",
+    "UnityEngine.VideoModule.dll": "957b464028d27605d105afa39ca2ea8ac0eb2878f62488395a98cada12aedd18",
+    "UnityEngine.VirtualTexturingModule.dll": "d4c8487ba67d2ff636247047c63000c4dc7192ad479f95ce94629f98d53f397b",
+    "UnityEngine.VRModule.dll": "95d0a4f1f253961d79579b0b8ac4f3a81b7ac93373f76506c8b1ba6eb766e41c",
+    "UnityEngine.WindModule.dll": "a54edf8e11da45b8a5f4e0b3888c478c1f2842feff8dfb312eb8a6626537bdd7",
+    "UnityEngine.XRModule.dll": "60a8b62550363476ba9cb31dbcc256940952b1efb0374047ab95b574fc098fc3"
+  },
+  "reproducibleDlls": {
+    "SixLabors.ImageSharp.dll": "de50c360d713915dd517c7c997bdd46cfe52b4cfe28c1f549eb0bec40e04848c",
+    "SCUnity.Image.Runner.dll": "3fa42cfec54591fa50b22b70d5788745601e5d7aeec1fc92a267d9a56910a622"
+  },
+  "unityVersion": "6000.3.12f1",
+  "unityEditorSha256": "651dcae39a9d9d956f98f6d9d36535900f548b5dc99550297ffe442eb1106733",
+  "dotnetSdk": "10.0.100",
+  "runtime": {
+    "schema": "scunity-images-v1",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "isEditor": false,
+    "isMono": true,
+    "pointerSize": 8,
+    "passed": true,
+    "error": "",
+    "checks": [
+      {
+        "name": "all-183-images-and-resize",
+        "passed": true
+      },
+      {
+        "name": "nine-formats-twelve-encoder-modes",
+        "passed": true
+      },
+      {
+        "name": "async-file-save-equals-sync",
+        "passed": true
+      },
+      {
+        "name": "async-file-load",
+        "passed": true
+      },
+      {
+        "name": "invalid-images-rejected",
+        "passed": true
+      },
+      {
+        "name": "all-half-bit-patterns-and-100000-floats",
+        "passed": true
+      }
+    ]
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "backend": "Mono2x",
+    "apiCompatibility": "NET_Unity_4_8",
+    "development": false
+  },
+  "scope": "Full ImageSharp source retarget; no Engine image wrappers, Unity texture upload or full-game validation",
+  "apiHashes": {
+    "original-api.txt": "02b96ad2372b2d096d29aa80bfbc08dfd17a574f20820f13a1a2fb2a888a617e",
+    "candidate-api.txt": "2d523c3bbdefd1100338514d1214cebe874535fcae587b0d56042df7f6dd1fe4"
+  },
+  "recorderSha256": "2811735c744403264b6b3356c522c5fe55a01beabad3cd3aa4ed6db7c3b1a8af"
+}

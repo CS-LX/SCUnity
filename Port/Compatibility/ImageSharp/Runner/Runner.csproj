@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>SCUnity.Image.Runner</AssemblyName></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Backend/Backend.csproj" /></ItemGroup>
+</Project>
