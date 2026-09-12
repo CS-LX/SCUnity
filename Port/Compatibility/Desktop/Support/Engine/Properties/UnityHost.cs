@@ -31,7 +31,9 @@ namespace Engine.UnityRuntime {
    AppPath=Path.GetFullPath(appPath);DataPath=Path.GetFullPath(dataPath);ScreenSize=new(width,height);
    Directory.CreateDirectory(DataPath);
   }
-  public static void Step(float delta) {Window.HostFrame(delta);Graphics.UnityCommands.ThrowFailure();}
+  public static void Step(float delta) {Window.HostFrame(delta);Graphics.UnityCommands.ThrowFailure();Audio.UnityAudioCommands.ThrowFailure();}
+  public static void MixAudio(float[] samples,int channels,int rate)=>Audio.UnityAudioCommands.Mix(samples,channels,rate);
+  public static long AudioOutputFrames=>Audio.UnityAudioCommands.OutputFrames;
   public static long DrawCount => Graphics.UnityCommands.Draws;
   public static long UploadCount => Graphics.UnityCommands.Uploads;
   public static byte[] GetTextureData(int id,out int width,out int height,out uint format,out uint type)=>Graphics.UnityCommands.TextureBytes(id,out width,out height,out format,out type);

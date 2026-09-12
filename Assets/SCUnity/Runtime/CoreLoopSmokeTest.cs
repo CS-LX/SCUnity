@@ -18,6 +18,7 @@ namespace SCUnity.Runtime
         readonly DateTime started = DateTime.UtcNow;
         int phase, ticks;
         bool settingsEntered, returned, finished, disposed;
+        AudioSmokeTest audio;
 
         public CoreLoopSmokeTest(SurvivalcraftGame game, string output)
         {
@@ -51,7 +52,16 @@ namespace SCUnity.Runtime
             else if (phase == 2 && Game.ScreensManager.CurrentScreen is Game.MainMenuScreen && !Game.ScreensManager.IsAnimating)
             { returned = true; phase = 3; ticks = 0; }
             else if (phase == 3 && ticks >= 30 && game.ExecutedDraws > 0)
-            { finished = true; game.StartCoroutine(Capture()); }
+            {
+                if (Array.IndexOf(Environment.GetCommandLineArgs(), "-scunity-audio-test") >= 0)
+                { audio = new AudioSmokeTest(game); phase = 4; }
+                else { finished = true; game.StartCoroutine(Capture()); }
+            }
+            else if (phase == 4)
+            {
+                audio.Tick();
+                if (audio.Complete) { finished = true; game.StartCoroutine(Capture()); }
+            }
             if ((DateTime.UtcNow - started).TotalSeconds > 90)
                 throw new TimeoutException("Core loop smoke test timed out. Phase: " + phase);
         }
@@ -88,6 +98,8 @@ namespace SCUnity.Runtime
                 pointerSize = IntPtr.Size, error = error?.ToString(),
                 entryPoint = typeof(SurvivalcraftGame).FullName
             };
+            result.audioBlocks = game.AudioBlocks;
+            result.audioChecks = audio?.Checks.ToArray();
             try { game.Stop(); }
             catch (Exception stopError) { result.passed = false; result.error += stopError.ToString(); }
             if (Engine.Window.IsCreated) { result.passed = false; result.error += "Window remained created after shutdown."; }
@@ -99,6 +111,7 @@ namespace SCUnity.Runtime
         {
             if (disposed) return;
             disposed = true;
+            audio?.Dispose();
             InputSystem.RemoveDevice(mouse);
             InputSystem.RemoveDevice(keyboard);
         }
@@ -108,6 +121,8 @@ namespace SCUnity.Runtime
             public bool passed, enteredSettingsWithMouse, returnedWithEscape, isMono, isEditor;
             public int frames, pointerSize;
             public long executedDraws, draws, uploads;
+            public long audioBlocks;
+            public string[] audioChecks;
             public string screen, unityVersion, platform, entryPoint, error;
         }
     }

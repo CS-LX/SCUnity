@@ -114,7 +114,7 @@ def main_snapshot() -> dict:
             for p in sorted((b.ROOT / name).rglob("*")) if p.is_file()}
 
 
-def validate(workspace: Path, unity: Path) -> dict:
+def validate(workspace: Path, unity: Path, audio_test: bool = False) -> dict:
     before = main_snapshot()
     project = workspace / "main-project"
     for name in ("Assets", "Packages", "ProjectSettings"):
@@ -132,13 +132,16 @@ def validate(workspace: Path, unity: Path) -> dict:
         output = workspace / f"smoke-{index + 1}"; output.mkdir()
         # A normally visible Player is required to execute URP on Windows.
         # Each invocation has an isolated data/result directory and closes itself.
-        mono.execute([player, "-scunity-smoke-output", output, "-logFile", output / "player.log"], output / "process.log", 120)
+        mono.execute([player, "-scunity-smoke-output", output, *(["-scunity-audio-test"] if audio_test else []),
+                      "-logFile", output / "player.log"], output / "process.log", 120)
         result = b.read_json(output / "result.json")
         if (not all(result.get(key) is True for key in ("passed", "enteredSettingsWithMouse", "returnedWithEscape", "isMono"))
                 or result.get("isEditor") is not False or result.get("error") or result.get("pointerSize") != 8
                 or result.get("platform") != "WindowsPlayer" or result.get("executedDraws", 0) < 1
                 or result.get("entryPoint") != "SCUnity.Runtime.SurvivalcraftGame"):
             raise ValueError("Main-project Player assertions failed: " + str(result))
+        if audio_test and (len(result.get("audioChecks", [])) != 12 or result.get("audioBlocks", 0) < 1):
+            raise ValueError("Unity DSP audio assertions are incomplete: " + str(result))
         runs.append(result)
     editor_output = workspace / "editor-validation"; editor_output.mkdir()
     print("Verifying two Editor Play/Stop cycles with Domain reload...", flush=True)
@@ -154,7 +157,9 @@ def validate(workspace: Path, unity: Path) -> dict:
     evidence = {"schemaVersion": 1, "upstreamCommit": b.SHA, "mainProject": before,
                 "build": build_result, "runs": runs, "editor": editor_result,
                 "files": {p.relative_to(workspace).as_posix(): b.digest(p.read_bytes()) for p in workspace.glob("smoke-*/*") if p.is_file()},
-                "scope": "Original loading/main-menu/settings loop through main Unity scene; audio and world rendering remain incomplete."}
+                "scope": "Original loading/main-menu/settings loop through main Unity scene; "
+                         + ("static/streaming PCM and original music verified at Unity listener; " if audio_test else "audio not asserted in this run; ")
+                         + "world rendering and full API/platform compatibility remain incomplete."}
     b.write_json(workspace / "main-project-evidence.json", evidence)
     return evidence
 
@@ -166,6 +171,7 @@ def main() -> None:
     parser.add_argument("--validate", action="store_true")
     parser.add_argument("--validate-installed", action="store_true", help="Validate current main-project files without rebuilding dependencies")
     parser.add_argument("--refresh-package-locks", action="store_true")
+    parser.add_argument("--audio-test", action="store_true", help="Also validate static/streamed PCM through the Unity listener")
     args = parser.parse_args(); os.environ["DOTNET_CLI_UI_LANGUAGE"] = "en"
     unity = args.unity.resolve()
     workspace = Path(tempfile.mkdtemp(prefix="desktop-", dir=b.PORT / ".artifacts"))
@@ -176,7 +182,7 @@ def main() -> None:
         if args.install: install(output, unity)
     if args.validate or args.validate_installed:
         if not (args.install or args.validate_installed): raise ValueError("--validate requires --install or --validate-installed")
-        validate(workspace, unity)
+        validate(workspace, unity, args.audio_test)
     b.check_upstream(b.SHA)
     print("Completed. " + str(workspace), flush=True)
 

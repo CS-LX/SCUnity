@@ -15,12 +15,15 @@ namespace SCUnity.Runtime
         [SerializeField] UniversalRenderPipelineAsset pipeline;
         PortRenderer portRenderer;
         PortInput input;
+        PortAudio audioOutput;
         CoreLoopSmokeTest smoke;
         Harmony desktopServices;
         RenderPipelineAsset previousGraphicsPipeline, previousQualityPipeline;
         bool stopped;
         public int Frames { get; private set; }
         public long ExecutedDraws => portRenderer?.ExecutedDraws ?? 0;
+        public long AudioBlocks => audioOutput?.Blocks ?? 0;
+        public float AudioLevel => audioOutput?.Level ?? 0;
         public readonly List<string> Errors = new List<string>();
         public string DataDirectory { get; private set; }
         public string CurrentScreenName => Game.ScreensManager.CurrentScreen?.GetType().FullName;
@@ -30,9 +33,9 @@ namespace SCUnity.Runtime
             Application.logMessageReceived += UnityLog;
             try
             {
-                if (pipeline == null) throw new InvalidOperationException("Assign the Survivalcraft URP pipeline to this scene.");
                 previousGraphicsPipeline = GraphicsSettings.defaultRenderPipeline;
                 previousQualityPipeline = QualitySettings.renderPipeline;
+                if (pipeline == null) throw new InvalidOperationException("Assign the Survivalcraft URP pipeline to this scene.");
                 GraphicsSettings.defaultRenderPipeline = pipeline;
                 QualitySettings.renderPipeline = pipeline;
                 string[] args = Environment.GetCommandLineArgs();
@@ -59,6 +62,10 @@ namespace SCUnity.Runtime
                         new HarmonyMethod(typeof(SurvivalcraftGame), nameof(SkipLegacyService)));
 
                 portRenderer = new PortRenderer();
+                var audioObject = new GameObject("Survivalcraft audio");
+                audioObject.transform.SetParent(transform, false);
+                audioOutput = audioObject.AddComponent<PortAudio>();
+                audioOutput.Initialize();
                 Game.Program.EntryPoint();
                 input = new PortInput();
                 if (smokeOutput != null) smoke = new CoreLoopSmokeTest(this, smokeOutput);
@@ -116,6 +123,7 @@ namespace SCUnity.Runtime
             finally
             {
                 input?.Dispose();
+                audioOutput?.StopOutput();
                 portRenderer?.Dispose();
                 smoke?.Dispose();
                 desktopServices?.UnpatchSelf();

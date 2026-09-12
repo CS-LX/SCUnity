@@ -1,0 +1,32 @@
+{
+    "passed": true,
+    "enteredSettingsWithMouse": true,
+    "returnedWithEscape": true,
+    "isMono": true,
+    "isEditor": false,
+    "frames": 1169,
+    "pointerSize": 8,
+    "executedDraws": 11349,
+    "draws": 11349,
+    "uploads": 460,
+    "audioBlocks": 304,
+    "audioChecks": [
+        "Unity DSP callback is active",
+        "Static PCM reached the Unity listener (RMS 0.09965976)",
+        "Static loop survived multiple buffer lengths",
+        "Volume scales actual output by one quarter",
+        "Pause preserves state and silences output",
+        "Resume produces PCM again",
+        "Stop silences output",
+        "Pitch 2 finishes a 100 ms buffer in about 50 ms of DSP time",
+        "Streaming worker refills queued PCM while Unity consumes it",
+        "Streaming EOF reaches stopped state without a wall clock simulation",
+        "Original decoded music resource reaches Unity output",
+        "Original streaming music pauses without leaking queued audio"
+    ],
+    "screen": "Game.MainMenuScreen",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "entryPoint": "SCUnity.Runtime.SurvivalcraftGame",
+    "error": ""
+}

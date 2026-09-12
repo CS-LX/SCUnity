@@ -20,6 +20,10 @@ Add `--validate` to build a full copy of the real main project and run the menu 
 settings / Escape interaction twice, each with independent data and evidence.
 The Player must have a visible normal window for URP execution; it closes after
 capturing its result. `--validate-installed` verifies already installed files.
+Add `--audio-test` to include actual listener PCM, static/streaming controls and
+original music resource checks in both Player runs. The pure managed PCM mixer
+advances source cursors only when Unity DSP consumes frames; decoding and stream
+refills remain in the original Engine classes.
 All diagnostic workspaces and detailed logs are under `Port/.artifacts`.
 
 The main scene keeps the original `Engine`, `EntitySystem`, and `Survivalcraft`
@@ -37,7 +41,11 @@ The Unity retarget maps ModsManager's writable Windows roots and screenshots to
 
 ## Remaining work
 
-- Audio currently decodes and tracks playback commands without Unity Audio output.
+- Static PCM and original streaming music now reach Unity Audio. The 12 output/
+  state assertions pass twice, plus two Editor Play/Stop cycles. This is not
+  bit-exact OpenAL mixing or all low-level AL behavior; HRTF, Doppler, effects and
+  arbitrary buffer formats are outside the implemented Engine command subset.
+  See [audio acceptance](../../Tests/Baselines/desktop-audio/README.md).
 - World/model/terrain and mod shaders, texture updates/mips/readbacks, complete
   render-target/state semantics and resource lifetime need implementation and
   validation. A menu screenshot is not a world-rendering pass.
@@ -50,9 +58,10 @@ The Unity retarget maps ModsManager's writable Windows roots and screenshots to
   and placeholder native-dialog fields. Unity's API updater also reports the
   existing Harmony/MonoMod assembly-reference cycle. These are recorded limitations,
   not suppressed compatibility evidence.
-- GL/AL callback prototypes originated from Silk 2.22 metadata; the actual locked
-  dependencies are 2.23. The exercised menu calls work; a complete ABI audit against
-  2.23 is still required.
+- All 122 registered GL and 68 registered AL callback prototypes have been
+  compared with the installed Silk 2.23 assemblies, with zero differences.
+  `python Port/Build/abi_audit.py` repeats this metadata-only check (requires
+  ilspycmd 10.1.0.8386). It does not establish implementation completeness.
 
 `Support/Survivalcraft/Properties/PriorityQueue.cs` derives from the MIT-licensed
 .NET runtime v10.0.0 implementation at

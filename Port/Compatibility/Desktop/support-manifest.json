@@ -17,10 +17,6 @@
       "source": "Support/Engine/Properties/UnityAudioCallbacks.cs",
       "sha256": "bf430e19b9291a928be0c95e115b480cd8b90a52feff2886104e1842be6ff65a"
     },
-    "Engine/Properties/UnityAudioCommands.cs": {
-      "source": "Support/Engine/Properties/UnityAudioCommands.cs",
-      "sha256": "b641ac5db5fe82fcacdf569dedff00473146ee0def6a7b456069685cd09e426d"
-    },
     "Engine/Properties/UnityCallbacks.cs": {
       "source": "Support/Engine/Properties/UnityCallbacks.cs",
       "sha256": "9bebbeb5f184c11bee77f41974e5e04374b03301c66021e1eba766e48ea35021"
@@ -31,7 +27,7 @@
     },
     "Engine/Properties/UnityHost.cs": {
       "source": "Support/Engine/Properties/UnityHost.cs",
-      "sha256": "41df080f46758ae4442ff2055689ee236bc1427a9d71f7506c03853306397c36"
+      "sha256": "02d7b862b4320fe291eeb953ac45470eb864c67e9126e2db201d6ac7a3f22836"
     },
     "Engine/Properties/UnityInputContext.cs": {
       "source": "Support/Engine/Properties/UnityInputContext.cs",
@@ -52,6 +48,10 @@
     "Survivalcraft/Properties/StreamCompat.cs": {
       "source": "Support/Survivalcraft/Properties/StreamCompat.cs",
       "sha256": "7e3020081ffe7ff0681b229fd693076a5bc952f618c8f4fc0733f1f1c1e27bc6"
+    },
+    "Engine/Properties/UnityPcmMixer.cs": {
+      "source": "Support/Engine/Properties/UnityPcmMixer.cs",
+      "sha256": "246461b64b416bd9eb1e85ac1593f243242b9758b56576a8eb43e4d5d21fae11"
     }
   },
   "projects": {

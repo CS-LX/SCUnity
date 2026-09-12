@@ -3,7 +3,7 @@
 Survivalcraft API 的 Unity Windows 桌面迁移工程。Unity 版本：6000.3.12f1。
 
 当前已接入原版加载、主菜单和设置页面的核心循环，使用 Unity Mono、URP 和 Input System。
-声音输出、进入世界后的完整渲染、完整模组/API 回归仍在开发中。
+原版静态音效与流式音乐已接入 Unity Audio 并通过输出采样验收。进入世界后的完整渲染、完整模组/API 回归仍在开发中。
 
 ## 直接运行
 

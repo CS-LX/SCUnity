@@ -1,6 +1,6 @@
 # Survivalcraft Unity 迁移基线
 
-本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**；阶段 1 已完成源码生成/Mono 能力验证、数学/序列化/完整 EntitySystem，以及 FLAC 和 ImageSharp 3.1.12 解码依赖适配。完整 Engine、Survivalcraft 和游戏宿主尚未实现。阶段 0 见 [运行基线说明](Tests/RuntimeProbe/README.md)，阶段 1 见 [Mono 能力验证](Compatibility/README.md)、[基础模块](Compatibility/Foundation.md) 、[FLAC 原版对照验收](Compatibility/Flac.md) 和 [图像验收](Compatibility/Images.md)。
+本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**；阶段 1 已完成源码生成/Mono 能力验证、数学/序列化/完整 EntitySystem，以及 FLAC 和 ImageSharp 3.1.12 解码依赖适配。完整三个程序集与游戏宿主现已接入主项目，加载/主菜单/设置及音效/音乐输出已验收；世界渲染与完整 API/模组回归待完成，见 [桌面接入](Compatibility/Desktop/README.md)。阶段 0 见 [运行基线说明](Tests/RuntimeProbe/README.md)，阶段 1 见 [Mono 能力验证](Compatibility/README.md)、[基础模块](Compatibility/Foundation.md) 、[FLAC 原版对照验收](Compatibility/Flac.md) 和 [图像验收](Compatibility/Images.md)。
 
 ## 运行
 
