@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>SCUnity.Probe.Plugin</AssemblyName></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Contracts/Contracts.csproj" />
+    <ProjectReference Include="../Dependency/Dependency.csproj" />
+  </ItemGroup>
+</Project>

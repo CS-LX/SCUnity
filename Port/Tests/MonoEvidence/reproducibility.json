@@ -1,0 +1,13 @@
+{
+  "independentDirectories": true,
+  "sourceGenerationIdentical": true,
+  "framework": "net48",
+  "configuration": "Release",
+  "byteIdenticalDlls": {
+    "SCUnity.Probe.Runner.dll": "b1c6013c361c36524b675f4c11d359e392b7d2745146590d54068b3d85177925",
+    "SCUnity.Probe.Upstream.dll": "88e864f362b51da8763c7e32ce321f3b289bce5d39dec1c5362034f3abd3a24f",
+    "SCUnity.Probe.Contracts.dll": "71fe824e3c1e3cda6d677df39adcd29853b6061d45410312171400919b52362d",
+    "SCUnity.Probe.Plugin.dll": "15b811623b445b56daba809b922ee72c02a79fa9c982e9510265acd6f58e4db1",
+    "SCUnity.Probe.Dependency.dll": "20c1e27cf93e68340624bbff952f50b99f33f4353d18056c63e4b64a695114b6"
+  }
+}

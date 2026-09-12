@@ -1,0 +1,11 @@
+{
+    "schema": "scunity-mono-probe-v1",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "isEditor": false,
+    "isMono": true,
+    "pointerSize": 8,
+    "passed": false,
+    "error": "System.IO.FileNotFoundException: Could not load file or assembly 'SCUnity.Probe.Dependency, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies.\r\nFile name: 'SCUnity.Probe.Dependency, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'\r\n  at SCUnity.Probe.Entry.Run (System.String payloadDirectory) [0x00170] in <30d507e5680d4e70abe1f63846f70526>:0 \r\n  at SCUnity.Validation.MonoProbeBehaviour.Start () [0x000bb] in <d2310b769657483cadd35b62987ff490>:0 ",
+    "checks": []
+}

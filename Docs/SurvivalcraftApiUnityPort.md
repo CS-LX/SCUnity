@@ -1,6 +1,6 @@
 # Survivalcraft API Windows 端迁移到 Unity 的执行计划
 
-> 状态：阶段 0 的静态/构建/API、运行 trace、存档及模组参考基线已建立；阶段 1 尚未开始。实际覆盖边界见 [兼容报告](PortCompatibilityReport.md) 和 [基线工具说明](../Port/README.md)。
+> 状态：阶段 0 已建立完整参考基线；阶段 1 已完成源码生成与 Unity Mono 能力探针模块，25 项 Player 断言及缺失依赖负例通过。完整三个兼容程序集仍待实现。实际范围见 [兼容报告](PortCompatibilityReport.md) 和 [阶段 1 构建说明](../Port/Compatibility/README.md)。
 >
 > 调研日期：2026-09-12
 >

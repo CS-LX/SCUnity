@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SCUnity.Probe.Upstream</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup><Using Include="System.Collections" /></ItemGroup>
+  <Import Project="$(GeneratedSources)/Sources.props" />
+</Project>

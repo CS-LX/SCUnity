@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "name": "mono-capability-probe",
+  "scope": "probe",
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "sources": [
+    {
+      "path": "Engine/Engine/ReadOnlyList.cs",
+      "action": "preserve",
+      "inputSha256": "278815c26524673730c30e1288404bdcaf8e62002aa769fab2f0fb46b47a97cd",
+      "outputSha256": "278815c26524673730c30e1288404bdcaf8e62002aa769fab2f0fb46b47a97cd"
+    },
+    {
+      "path": "Survivalcraft/Game/CollectionUtils.cs",
+      "action": "preserve",
+      "inputSha256": "ee5692ba0c4e555b98ca9ead63f4d1bdb0444bbda430f41d052b3023a553cdf5",
+      "outputSha256": "ee5692ba0c4e555b98ca9ead63f4d1bdb0444bbda430f41d052b3023a553cdf5"
+    },
+    {
+      "path": "Survivalcraft/Game/StateMachine.cs",
+      "action": "preserve",
+      "inputSha256": "175add605d866475109a27f36319aaebc9fe9e5a2565514f210d369ec6499507",
+      "outputSha256": "175add605d866475109a27f36319aaebc9fe9e5a2565514f210d369ec6499507"
+    }
+  ]
+}

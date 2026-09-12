@@ -1,0 +1,112 @@
+{
+    "schema": "scunity-mono-probe-v1",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "isEditor": false,
+    "isMono": true,
+    "pointerSize": 8,
+    "passed": true,
+    "error": "",
+    "checks": [
+        {
+            "name": "payload-not-preloaded",
+            "passed": true
+        },
+        {
+            "name": "assembly-load-bytes",
+            "passed": true
+        },
+        {
+            "name": "assembly-load-event",
+            "passed": true
+        },
+        {
+            "name": "assembly-enumeration",
+            "passed": true
+        },
+        {
+            "name": "derived-type-discovery",
+            "passed": true
+        },
+        {
+            "name": "dynamic-initialization",
+            "passed": true
+        },
+        {
+            "name": "assembly-resolve-bytes",
+            "passed": true
+        },
+        {
+            "name": "dynamic-type-lookup",
+            "passed": true
+        },
+        {
+            "name": "jint-evaluate",
+            "passed": true
+        },
+        {
+            "name": "jint-host-callback",
+            "passed": true
+        },
+        {
+            "name": "jint-clr-interop",
+            "passed": true
+        },
+        {
+            "name": "jint-repeated-callback",
+            "passed": true
+        },
+        {
+            "name": "upstream-readonly-enumeration",
+            "passed": true
+        },
+        {
+            "name": "upstream-readonly-mutation-rejected",
+            "passed": true
+        },
+        {
+            "name": "upstream-collection-select",
+            "passed": true
+        },
+        {
+            "name": "upstream-state-machine-order",
+            "passed": true
+        },
+        {
+            "name": "upstream-state-machine-history",
+            "passed": true
+        },
+        {
+            "name": "harmony-constructor",
+            "passed": true
+        },
+        {
+            "name": "harmony-virtual",
+            "passed": true
+        },
+        {
+            "name": "harmony-closed-generic",
+            "passed": true
+        },
+        {
+            "name": "harmony-upstream-game-method",
+            "passed": true
+        },
+        {
+            "name": "harmony-unpatch-constructor",
+            "passed": true
+        },
+        {
+            "name": "harmony-unpatch-virtual",
+            "passed": true
+        },
+        {
+            "name": "harmony-unpatch-generic",
+            "passed": true
+        },
+        {
+            "name": "harmony-unpatch-game-method",
+            "passed": true
+        }
+    ]
+}

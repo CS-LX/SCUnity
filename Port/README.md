@@ -1,10 +1,10 @@
 # Survivalcraft Unity 迁移基线
 
-本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**。当前运行的是原版 `net10.0-windows` 参考程序集，用于后续对照。`net48` 兼容程序集和 Unity 宿主尚未实现。运行方法和实际覆盖范围见 [运行基线说明](Tests/RuntimeProbe/README.md)。
+本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**；阶段 1 已完成首个模块：源码生成、外部 `net48` 测试程序集和真正的 Unity Mono Player 运行能力验证。完整的三个兼容程序集和游戏宿主尚未实现。阶段 0 运行方法见 [运行基线说明](Tests/RuntimeProbe/README.md)，阶段 1 运行方法和范围见 [兼容构建说明](Compatibility/README.md)。
 
 ## 运行
 
-要求 Windows x64、Git、Python 3.12 或更高版本、.NET SDK **10.0.100**。SDK 在 `Port/global.json` 中锁定；工具没有第三方 Python 或 NuGet 依赖。上游构建的首次恢复需要连接 nuget.org，后续可使用本机 NuGet 缓存。
+要求 Windows x64、Git、Python 3.12 或更高版本、.NET SDK **10.0.100**。SDK 在 `Port/global.json` 中锁定；阶段 0 基线工具没有第三方 Python 或 NuGet 依赖。上游构建的首次恢复需要连接 nuget.org，后续可使用本机 NuGet 缓存。
 
 在仓库根目录执行：
 
@@ -66,4 +66,4 @@ python Port/Build/baseline.py verify --static-only
 
 每次运行的 `restore.log`、`build.log`、`api-tool-build.log`、`api-snapshot.log`、`result.json` 和 DLL 保存在终端打印的 `.artifacts` 目录，不提交 Git。工具不自动清理这些目录，便于审计。
 
-原版现已实际运行：生成模组与真实存档联合场景通过 42 项断言、605 个完整帧及 279 次采样 ECS 调用；5 个社区模组同时加载及 RealmEX 两个 Shader 变体编译通过。新增 9 项运行证据校验测试通过。用户原始样本保持不变；完整结果与限制见 [运行基线说明](Tests/RuntimeProbe/README.md) 和 [兼容报告](../Docs/PortCompatibilityReport.md)。Unity Mono 动态加载与 HarmonyX 验证仍属于阶段 1。
+原版现已实际运行：生成模组与真实存档联合场景通过 42 项断言、605 个完整帧及 279 次采样 ECS 调用；5 个社区模组同时加载及 RealmEX 两个 Shader 变体编译通过。新增 9 项运行证据校验测试通过。用户原始样本保持不变；完整结果与限制见 [运行基线说明](Tests/RuntimeProbe/README.md) 和 [兼容报告](../Docs/PortCompatibilityReport.md)。阶段 1 的 Unity Mono 能力探针已验证动态加载、Jint 和 HarmonyX；完整模组链路仍待接通。

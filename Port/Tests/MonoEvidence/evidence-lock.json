@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "hashBasis": "UTF-8 LF for JSON text",
+  "recorderSha256": "050c6234c0b1410e680339ef5d180bddfa584debb3363a42f89836c7efe4fcd9",
+  "files": {
+    "build-summary.json": "5bdda2641b6a9b6fa321e9fd9dd653d11bf4cef16e6ee73589eb0815a7e85b06",
+    "generation-summary.json": "8d76d49652d38a8d813a858fad9d8cfe216af5ae43792073f3881a5dce8e8166",
+    "negative-result.json": "a4eae05d5884403de5607b4cd3350e765e448be3e941fa049450f5ed5d2c2580",
+    "provenance.json": "acc7f5eb1bf5ae6bfdf2d8d247689b01f0c43d44593d501889d3f564f89ad36f",
+    "reproducibility.json": "0b3fb3d49e4379c8a6684ae6a09fdd02a7073121407d67ce9e1353afb544515a",
+    "runtime-result.json": "51381344f7bb6c5d7784ff2be0020b24b7059c2039090854c40d8036ff6070dc"
+  }
+}
