@@ -929,15 +929,20 @@
       "path": "Engine/Engine.Graphics/IndexBuffer.cs",
       "action": "patch",
       "inputSha256": "618e61813b6be53eb777c87806da35c16931d7a48c1232cb6be26b341dfb71ea",
-      "outputSha256": "0a7bde10f37317ac98772e2db58049f4087f09edd5fae50cc1d04308cae65689",
+      "outputSha256": "e72a621004dc7f3636e5bc3921e32a10f7ec9893c13b24706ce76fa56e4f7b38",
       "edits": [
         {
           "old": "            VerifyNotDisposed();\r\n            int num = Utilities.SizeOf<T>();\r\n            int size = IndexFormat.GetSize();\r\n            ArgumentNullException.ThrowIfNull(source);\r\n            if (sourceStartIndex < 0\r\n                || sourceCount < 0\r\n                || sourceStartIndex + sourceCount > source.Length) {\r\n",
           "new": "            VerifyNotDisposed();\r\n            int num = Utilities.SizeOf<T>();\r\n            int size = IndexFormat.GetSize();\r\n            if (source is null) throw new ArgumentNullException(\"source\");\r\n            if (sourceStartIndex < 0\r\n                || sourceCount < 0\r\n                || sourceStartIndex + sourceCount > source.Length) {\r\n",
           "count": 1
+        },
+        {
+          "old": "            if (targetStartIndex < 0\r\n                || targetStartIndex * size + sourceCount * num > IndicesCount * size) {",
+          "new": "            // Conversion changes the upload element width before reaching the GPU.\r\n            int uploadSize = ((typeof(T) == typeof(int) || typeof(T) == typeof(uint)) && size == 2)\r\n                || (typeof(T) == typeof(ushort) && size == 4) ? size : num;\r\n            if (targetStartIndex < 0\r\n                || (long)targetStartIndex * size + (long)sourceCount * uploadSize > (long)IndicesCount * size) {",
+          "count": 1
         }
       ],
-      "reason": "Retarget original source to Unity Mono: BCL substitutions or Unity host boundary. Exact source/output hashes are pinned; behavioral scope and remaining limitations are documented in README.md."
+      "reason": "Mono BCL substitution plus confirmed upstream bug fix: validate converted index width, not source byte width. Original failure and GPU regression are recorded in desktop-world evidence."
     },
     {
       "path": "Engine/Engine.Graphics/IndexFormat.cs",
@@ -8618,9 +8623,17 @@
     },
     {
       "path": "Survivalcraft/Subsystem/SubsystemDrawing.cs",
-      "action": "preserve",
+      "action": "patch",
       "inputSha256": "e6f270d3bec6e6136fbeec2e44733a206f3ac1e12609d40153b002c92395cf41",
-      "outputSha256": "e6f270d3bec6e6136fbeec2e44733a206f3ac1e12609d40153b002c92395cf41"
+      "outputSha256": "8dad3852683c1b0da23e9ad427706016bb910a19c84ae2b4cfae30b2c9d56320",
+      "edits": [
+        {
+          "old": "                catch (Exception) {\r\n                    // ignored\r\n                }",
+          "new": "                catch (Exception error) {\r\n                    Engine.UnityRuntime.Host.ReportRenderFailure(error);\r\n                }",
+          "count": 1
+        }
+      ],
+      "reason": "Surface swallowed per-draw exceptions at the Unity frame boundary so absent world geometry cannot silently masquerade as success."
     },
     {
       "path": "Survivalcraft/Subsystem/SubsystemEditableItemBehavior.cs",

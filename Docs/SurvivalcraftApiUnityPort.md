@@ -1,6 +1,6 @@
 # Survivalcraft API Windows 端迁移到 Unity 的执行计划
 
-> 状态：阶段 0 已完成；阶段 1 的 Mono、数学/序列化/完整 EntitySystem、FLAC 和 ImageSharp 已验收。完整三个程序集现已构建为 Unity Mono 目标，并已把原版加载、主菜单与设置交互的核心循环接入主项目 Assets/SCUnity/Scenes/Survivalcraft.unity。原版音效/流式音乐已通过 Unity 输出验收；世界渲染与完整 API/模组回归仍未完成，当前是增量接入，范围见 [桌面说明](../Port/Compatibility/Desktop/README.md)。
+> 状态：阶段 0 已完成；阶段 1 的 Mono、数学/序列化/完整 EntitySystem、FLAC 和 ImageSharp 已验收。完整三个程序集现已构建为 Unity Mono 目标，并已把原版加载、主菜单与设置交互的核心循环接入主项目 Assets/SCUnity/Scenes/Survivalcraft.unity。原版音效/流式音乐、初始平坦世界的地形/天空/模型与保存重载已接通；完整世界视觉对照与 API/模组回归仍未完成，当前是增量接入，范围见 [桌面说明](../Port/Compatibility/Desktop/README.md)。
 >
 > 调研日期：2026-09-12
 >

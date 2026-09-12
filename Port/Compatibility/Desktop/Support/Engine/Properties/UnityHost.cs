@@ -31,6 +31,7 @@ namespace Engine.UnityRuntime {
    AppPath=Path.GetFullPath(appPath);DataPath=Path.GetFullPath(dataPath);ScreenSize=new(width,height);
    Directory.CreateDirectory(DataPath);
   }
+  public static void ReportRenderFailure(Exception error)=>Graphics.UnityCommands.RecordFailure("Original world draw",error);
   public static void Step(float delta) {Window.HostFrame(delta);Graphics.UnityCommands.ThrowFailure();Audio.UnityAudioCommands.ThrowFailure();}
   public static void MixAudio(float[] samples,int channels,int rate)=>Audio.UnityAudioCommands.Mix(samples,channels,rate);
   public static long AudioOutputFrames=>Audio.UnityAudioCommands.OutputFrames;

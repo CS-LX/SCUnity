@@ -2,7 +2,7 @@
 
 更新日期：2026-09-12。目标：Windows x86-64 桌面非 VR Unity Player。
 
-当前里程碑：**阶段 0 与阶段 1 的基础/媒体依赖模块已验收；原版加载、主菜单和设置交互的核心循环已接入主项目。** 入口为 `Assets/SCUnity/Scenes/Survivalcraft.unity`。三个完整程序集已能在 Unity Mono 中运行该循环；原版音效/流式音乐已通过 Unity 输出验收；世界渲染、完整 API/模组/存档回归仍未完成。下方原版 `.NET 10` 基线不代表 Unity 端已经通过相同验收。详见 [桌面接入说明](../Port/Compatibility/Desktop/README.md)。
+当前里程碑：**阶段 0 与阶段 1 的基础/媒体依赖模块已验收；原版加载、主菜单和设置交互的核心循环已接入主项目。** 入口为 `Assets/SCUnity/Scenes/Survivalcraft.unity`。三个完整程序集已能在 Unity Mono 中运行该循环；原版音效/流式音乐、初始平坦世界的地形/天空/模型与保存重载已接通；完整世界视觉对照与 API/模组/存档回归仍未完成。下方原版 `.NET 10` 基线不代表 Unity 端已经通过相同验收。详见 [桌面接入说明](../Port/Compatibility/Desktop/README.md)。
 
 ## 已建立的基线
 
@@ -101,3 +101,9 @@ Windows x64 Unity 6000.3.12f1 Mono Player 的 9 项检查组通过，构建 0 �
 实际 Windows x64 Unity Mono Player 通过 6 组检查：全部 171 个内置 WebP 和 12 个跨格式样本的像素、缩放、编码、异步文件读写及半精度转换，共 211 个文件、76,157,987 字节对照一致。构建 0 警告/0 错误，两个 DLL 独立重建字节相同。新增 9 项回归门禁。
 
 内存池改用 Windows 物理内存报告，不能等同于 CoreCLR 的 GC 负载估计；这一差异及软件解码路径、未覆盖的格式边界见 [图像说明](../Port/Compatibility/Images.md)。[实际证据](../Port/Tests/ImageEvidence/evidence.json) 保留运行配置、接口快照和全部输出指纹。本模块尚未接入 Engine 包装层、纹理上传或游戏画面。
+
+## 主项目世界接入的当前范围
+
+六组原版 HLSL 已生成 Unity ShaderLab，初始平坦世界的草地、石柱、选中轮廓、天空、玩家手臂与船模型已经出现在主项目 Player 中。原版创建、方块修改、同步保存、销毁 Project 和重新载入链路接通。GPU 像素断言覆盖近远遮挡、主深度附件、渲染到纹理的上下方向及非预乘透明混合；这不等于完整世界截图已经与原版逐像素对照。
+
+发现并修正了上游索引范围检查缺陷：32 位索引转换为 16 位上传时，原检查先按 32 位字节数拒绝了合法范围，导致船模型不绘制。原版 .NET 10 DLL 已复现此失败；修复保留越界和数值溢出拒绝行为。此项是有记录的原版缺陷修正。原来被 `SubsystemDrawing` 吞掉的绘制异常现在会传至 Unity 帧边界报告。重现与证据见 [世界模块验收](../Port/Tests/Baselines/desktop-world/README.md)。

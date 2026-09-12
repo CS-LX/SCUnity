@@ -4,7 +4,7 @@ This is the first integration into the main Unity project's `Assets/SCUnity`.
 It is an incremental implementation, not full desktop migration acceptance.
 
 `profile.json` replays 1,404 selected source files against upstream
-`98e5f58f779dba20503a095073451a40899549c4`: 1,336 unchanged, 66 exact patches,
+`98e5f58f779dba20503a095073451a40899549c4`: 1,335 unchanged, 67 exact patches,
 and two backend replacements. The 23 platform exclusions remain excluded from
 compilation. `scope: complete` records source inventory coverage only; it does
 not attest to complete runtime behavior or API equivalence.
@@ -24,6 +24,10 @@ Add `--audio-test` to include actual listener PCM, static/streaming controls and
 original music resource checks in both Player runs. The pure managed PCM mixer
 advances source cursors only when Unity DSP consumes frames; decoding and stream
 refills remain in the original Engine classes.
+Add `--world-test` for original world creation, player/boat models, terrain edit,
+save/dispose/reload, and pixel assertions for depth, target orientation and alpha.
+`python Port/Build/shaders.py --check` verifies the six generated original HLSL
+pairs (nine upstream asset pairs share six unique source identities).
 All diagnostic workspaces and detailed logs are under `Port/.artifacts`.
 
 The main scene keeps the original `Engine`, `EntitySystem`, and `Survivalcraft`
@@ -31,9 +35,10 @@ assembly names and calls the original entry point. Unity owns the frame loop,
 window, GPU and physical input. Silk GL/AL entry points resolve to managed command
 adapters; no legacy EXE, GLFW window, OpenGL context, or embedded .NET Core runtime
 is started. The GL adapter accepts shader declarations to preserve Engine's
-parameter bindings; actual GPU validation currently covers only the original
-Unlit HLSL translated to Unity ShaderLab. Acceptance does not extend to arbitrary
-GL entry points, shaders, shader compilation, or mod graphics.
+parameter bindings. Six original HLSL pairs are built as Unity ShaderLab shaders,
+including Unlit, Lit, terrain, Model and Highlight. The initial flat-world test
+covers opaque terrain, sky, hand, boat and selection outline. It does not yet
+establish baseline image equivalence for complete worlds or arbitrary mod shaders.
 
 The Unity retarget maps ModsManager's writable Windows roots and screenshots to
 `data:`. Content.zip and init.js remain under `app:`. Editor and Player use
@@ -46,12 +51,12 @@ The Unity retarget maps ModsManager's writable Windows roots and screenshots to
   bit-exact OpenAL mixing or all low-level AL behavior; HRTF, Doppler, effects and
   arbitrary buffer formats are outside the implemented Engine command subset.
   See [audio acceptance](../../Tests/Baselines/desktop-audio/README.md).
-- World/model/terrain and mod shaders, texture updates/mips/readbacks, complete
-  render-target/state semantics and resource lifetime need implementation and
-  validation. A menu screenshot is not a world-rendering pass.
+- Initial world rendering and save/reload now pass; full world coverage, skinned
+  models, mod shaders, texture updates/mips/readbacks, complete render-target/state
+  semantics and resource lifetime still need implementation and validation.
 - Input menu interactions pass; complete text/IME, focus, raw scan-code queries,
   low-level gamepad facades and full desktop window/platform services remain.
-- Full API metadata comparison, BCL differential tests, world save/reload and
+- Full API metadata comparison, broader BCL differential tests and
   generated/community mod runs have not been accepted for these three full DLLs.
 - Retargeting currently produces 11 MSBuild warnings: Unity's vector facade versus
   dependency assembly version, nullable flow in PriorityQueue, an obsolete override
@@ -73,3 +78,19 @@ surfaces and require explicit scope registration in the final API policy.
 Legacy executable updater/MOTD polling, registry associations and process restart
 are disabled at the main Unity entry until replacements are ready. Unsupported
 graphics and platform calls must fail visibly rather than count as passed tests.
+
+## Explicit behavior correction
+
+The pinned upstream `IndexBuffer.VerifyParametersSetData` checks source byte width
+before `SetData` converts int/uint indices into 16 bit indices. A valid six-index
+upload into six slots therefore throws and the original `SubsystemDrawing`
+swallows it, making the boat invisible. The desktop patch checks converted upload
+width. This is a confirmed upstream bug correction, not claimed behavior identity.
+A reflection-only probe reproduces the failure in the original .NET 10 DLL and
+verifies the corrected behavior without creating a GL context. Unity tests also
+exercise real narrowed/widened uploads and reject index overflow or out-of-range
+counts before any upload. `SubsystemDrawing` now forwards caught draw failures to
+the Unity host, which fails the frame visibly.
+
+Original source data and exact edits remain hash-checked; no upstream checkout
+was edited. See [world evidence](../../Tests/Baselines/desktop-world/README.md).
