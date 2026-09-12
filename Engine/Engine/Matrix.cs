@@ -3,24 +3,24 @@ using Vector128 = SCUnity.Compatibility.Float4;
 namespace Engine {
     public struct Matrix: IEquatable<Matrix> {
         public Matrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44) : this()
-{
-    this.M11 = m11;
-    this.M21 = m21;
-    this.M31 = m31;
-    this.M41 = m41;
-    this.M12 = m12;
-    this.M22 = m22;
-    this.M32 = m32;
-    this.M42 = m42;
-    this.M13 = m13;
-    this.M23 = m23;
-    this.M33 = m33;
-    this.M43 = m43;
-    this.M14 = m14;
-    this.M24 = m24;
-    this.M34 = m34;
-    this.M44 = m44;
-}
+        {
+            this.M11 = m11;
+            this.M21 = m21;
+            this.M31 = m31;
+            this.M41 = m41;
+            this.M12 = m12;
+            this.M22 = m22;
+            this.M32 = m32;
+            this.M42 = m42;
+            this.M13 = m13;
+            this.M23 = m23;
+            this.M33 = m33;
+            this.M43 = m43;
+            this.M14 = m14;
+            this.M24 = m24;
+            this.M34 = m34;
+            this.M44 = m44;
+        }
         public float M11 ;
         public float M21 ;
         public float M31 ;

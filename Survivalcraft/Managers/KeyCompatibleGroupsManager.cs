@@ -1,19 +1,23 @@
 namespace Game {
     public static class KeyCompatibleGroupsManager {
-        public class KeyCompatibleGroup{
+        public class KeyCompatibleGroup
+        {
+            public KeyCompatibleGroup(string groupId)
+            {
+                this.GroupId = groupId;
+                this.keys = new global::System.Collections.Generic.HashSet<string>()
+                {
+                };
+            }
 
-        public KeyCompatibleGroup(string groupId)
-{
-    this.GroupId = groupId;
-    this.keys = new global::System.Collections.Generic.HashSet<string>()
-    {
-    };
-}            public string GroupId { get; }             readonly HashSet<string> keys ;
+            public string GroupId { get; }
 
+            readonly HashSet<string> keys;
             public void AddKey(string key) => keys.Add(key);
-
-            public void AddKeys(params string[] keys1) {
-                foreach (string key in keys1) {
+            public void AddKeys(params string[] keys1)
+            {
+                foreach (string key in keys1)
+                {
                     AddKey(key);
                 }
             }

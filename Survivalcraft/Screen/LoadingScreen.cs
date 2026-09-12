@@ -21,14 +21,16 @@ namespace Game {
             Advice = 3
         }
 
-        class LogItem{
+        class LogItem
+        {
+            public LogItem(LogType type, string log)
+            {
+                this.LogType = type;
+                this.Message = log;
+            }
 
-        public LogItem(LogType type, string log)
-{
-    this.LogType = type;
-    this.Message = log;
-}            public LogType LogType ;
-            public string Message ;
+            public LogType LogType;
+            public string Message;
         }
 
         List<Action> LoadingActoins = new global::System.Collections.Generic.List<global::System.Action>() {  };

@@ -27,27 +27,24 @@ namespace Engine.Media {
             }
         }
 
-        public class Glyph{
+        public class Glyph
+        {
+            public Glyph(char code, Vector2 texCoord1, Vector2 texCoord2, Vector2 offset, float width)
+            {
+                this.Code = code;
+                this.IsBlank = texCoord1 == texCoord2;
+                this.TexCoord1 = texCoord1;
+                this.TexCoord2 = texCoord2;
+                this.Offset = offset;
+                this.Width = width;
+            }
 
-        public Glyph(char code, Vector2 texCoord1, Vector2 texCoord2, Vector2 offset, float width)
-{
-    this.Code = code;
-    this.IsBlank = texCoord1 == texCoord2;
-    this.TexCoord1 = texCoord1;
-    this.TexCoord2 = texCoord2;
-    this.Offset = offset;
-    this.Width = width;
-}            public readonly char Code ;
-
-            public readonly bool IsBlank ;
-
-            public readonly Vector2 TexCoord1 ;
-
-            public readonly Vector2 TexCoord2 ;
-
-            public readonly Vector2 Offset ;
-
-            public readonly float Width ;
+            public readonly char Code;
+            public readonly bool IsBlank;
+            public readonly Vector2 TexCoord1;
+            public readonly Vector2 TexCoord2;
+            public readonly Vector2 Offset;
+            public readonly float Width;
         }
 
         public class KerningSettings {

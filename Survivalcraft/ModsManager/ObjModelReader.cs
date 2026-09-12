@@ -66,37 +66,43 @@ namespace Game {
             }
         }
 
-        public class ObjMesh{
+        public class ObjMesh
+        {
+            public ObjMesh(string meshname)
+            {
+                this.Vertices = new global::Engine.DynamicArray<global::Game.ObjModelReader.ObjVertex>()
+                {
+                };
+                this.Indices = new global::Engine.DynamicArray<int>()
+                {
+                };
+                this.TexturePath = "Textures/NoneTexture";
+                this.MeshName = meshname;
+                this.ChildMeshes = new global::System.Collections.Generic.List<global::Game.ObjModelReader.ObjMesh>()
+                {
+                };
+            }
 
-        public ObjMesh(string meshname)
-{
-    this.Vertices = new global::Engine.DynamicArray<global::Game.ObjModelReader.ObjVertex>()
-    {
-    };
-    this.Indices = new global::Engine.DynamicArray<int>()
-    {
-    };
-    this.TexturePath = "Textures/NoneTexture";
-    this.MeshName = meshname;
-    this.ChildMeshes = new global::System.Collections.Generic.List<global::Game.ObjModelReader.ObjMesh>()
-    {
-    };
-}            public int ElementIndex;
-            public DynamicArray<ObjVertex> Vertices ;
-            public DynamicArray<int> Indices ;
-            public string TexturePath ; //默认位置
-            public string MeshName ;
+            public int ElementIndex;
+            public DynamicArray<ObjVertex> Vertices;
+            public DynamicArray<int> Indices;
+            public string TexturePath; //默认位置
+            public string MeshName;
             public Matrix? MeshMatrix;
-
-            public BoundingBox CalculateBoundingBox() {
-                List<Vector3> vectors = new global::System.Collections.Generic.List<global::Engine.Vector3>() {  };
-                for (int i = 0; i < Vertices.Count; i++) {
+            public BoundingBox CalculateBoundingBox()
+            {
+                List<Vector3> vectors = new global::System.Collections.Generic.List<global::Engine.Vector3>()
+                {
+                };
+                for (int i = 0; i < Vertices.Count; i++)
+                {
                     vectors.Add(new Vector3(Vertices[i].position.x, Vertices[i].position.y, Vertices[i].position.z));
                 }
+
                 return new BoundingBox(vectors);
             }
 
-            public List<ObjMesh> ChildMeshes ;
+            public List<ObjMesh> ChildMeshes;
         }
 
         public static ObjModel Load(Stream stream) {

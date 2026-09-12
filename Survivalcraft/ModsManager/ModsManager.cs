@@ -75,22 +75,25 @@ public static class ModsManager {
         public string languageType = string.Empty;
     }
 
-    public class ModHook{
-
-        public ModHook(string name)
-{
-    this.HookName = name;
-    this.Loaders = new global::System.Collections.Generic.List<global::Game.ModLoader>()
+    public class ModHook
     {
-    };
-}        public string HookName ;
-        public List<ModLoader> Loaders ;
+        public ModHook(string name)
+        {
+            this.HookName = name;
+            this.Loaders = new global::System.Collections.Generic.List<global::Game.ModLoader>()
+            {
+            };
+        }
 
-        public void Add(ModLoader modLoader) {
+        public string HookName;
+        public List<ModLoader> Loaders;
+        public void Add(ModLoader modLoader)
+        {
             Loaders.Add(modLoader);
         }
 
-        public void Remove(ModLoader modLoader) {
+        public void Remove(ModLoader modLoader)
+        {
             Loaders.Remove(modLoader);
         }
     }

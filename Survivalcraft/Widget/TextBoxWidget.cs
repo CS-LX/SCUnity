@@ -2009,166 +2009,166 @@ namespace Game {
             public abstract void Draw(ref Vector2 position);
         }
 
-        public class NormalDrawItem: TextDrawItem {
+        public class NormalDrawItem : TextDrawItem
+        {
+            public NormalDrawItem(string fullText, int start, int length, FontBatch2D fontBatch, float fontScale, Vector2 fontSpacing, Color color)
+            {
+                this.fullText = fullText;
+                this.start = start;
+                this.length = length;
+                this.fontBatch = fontBatch;
+                this.fontScale = fontScale;
+                this.fontSpacing = fontSpacing;
+                this.color = color;
+            }
 
-        public NormalDrawItem(string fullText, int start, int length, FontBatch2D fontBatch, float fontScale, Vector2 fontSpacing, Color color)
-{
-    this.fullText = fullText;
-    this.start = start;
-    this.length = length;
-    this.fontBatch = fontBatch;
-    this.fontScale = fontScale;
-    this.fontSpacing = fontSpacing;
-    this.color = color;
-}            public override void Draw(ref Vector2 position) {
-                if (length == 0) {
+            public override void Draw(ref Vector2 position)
+            {
+                if (length == 0)
+                {
                     return;
                 }
+
                 BitmapFont font = fontBatch.Font;
                 Vector2 size = font.MeasureText(fullText, start, length, new Vector2(fontScale), fontSpacing);
-                fontBatch.QueueText(
-                    fullText.Substring(start, length),
-                    position,
-                    0,
-                    color,
-                    TextAnchor.VerticalCenter,
-                    new Vector2(fontScale),
-                    fontSpacing
-                );
+                fontBatch.QueueText(fullText.Substring(start, length), position, 0, color, TextAnchor.VerticalCenter, new Vector2(fontScale), fontSpacing);
                 position.X += size.X;
             }
 
-        private string fullText;
-        private int start;
-        private int length;
-        private FontBatch2D fontBatch;
-        private float fontScale;
-        private Vector2 fontSpacing;
-        private Color color;        }
+            private string fullText;
+            private int start;
+            private int length;
+            private FontBatch2D fontBatch;
+            private float fontScale;
+            private Vector2 fontSpacing;
+            private Color color;
+        }
 
-        public class CompositionTextDrawItem: TextDrawItem {
+        public class CompositionTextDrawItem : TextDrawItem
+        {
+            public CompositionTextDrawItem(string compositionText, FontBatch2D fontBatch, FlatBatch2D underlineFlatBatch, float fontScale, Vector2 fontSpacing, Color color)
+            {
+                this.compositionText = compositionText;
+                this.fontBatch = fontBatch;
+                this.underlineFlatBatch = underlineFlatBatch;
+                this.fontScale = fontScale;
+                this.fontSpacing = fontSpacing;
+                this.color = color;
+            }
 
-        public CompositionTextDrawItem(string compositionText, FontBatch2D fontBatch, FlatBatch2D underlineFlatBatch, float fontScale, Vector2 fontSpacing, Color color)
-{
-    this.compositionText = compositionText;
-    this.fontBatch = fontBatch;
-    this.underlineFlatBatch = underlineFlatBatch;
-    this.fontScale = fontScale;
-    this.fontSpacing = fontSpacing;
-    this.color = color;
-}            public override void Draw(ref Vector2 position) {
+            public override void Draw(ref Vector2 position)
+            {
                 BitmapFont font = fontBatch.Font;
                 Vector2 size = font.MeasureText(compositionText, 0, compositionText.Length, new Vector2(fontScale), Vector2.Zero);
-                fontBatch.QueueText(
-                    compositionText,
-                    position,
-                    0,
-                    color,
-                    TextAnchor.VerticalCenter,
-                    new Vector2(fontScale),
-                    fontSpacing
-                );
-                underlineFlatBatch.QueueLine(
-                    position + size / 2 * Vector2.UnitY,
-                    position + size / 2 * Vector2.UnitY + new Vector2(size.X, 0),
-                    0,
-                    Color.White
-                );
+                fontBatch.QueueText(compositionText, position, 0, color, TextAnchor.VerticalCenter, new Vector2(fontScale), fontSpacing);
+                underlineFlatBatch.QueueLine(position + size / 2 * Vector2.UnitY, position + size / 2 * Vector2.UnitY + new Vector2(size.X, 0), 0, Color.White);
                 position.X += size.X;
             }
 
-        private string compositionText;
-        private FontBatch2D fontBatch;
-        private FlatBatch2D underlineFlatBatch;
-        private float fontScale;
-        private Vector2 fontSpacing;
-        private Color color;        }
+            private string compositionText;
+            private FontBatch2D fontBatch;
+            private FlatBatch2D underlineFlatBatch;
+            private float fontScale;
+            private Vector2 fontSpacing;
+            private Color color;
+        }
 
-        public class CaretDrawItem: TextDrawItem {
+        public class CaretDrawItem : TextDrawItem
+        {
+            public CaretDrawItem(FlatBatch2D flatBatch, float width, float height, string compositionText, int compositionTextCaret, BitmapFont font, Vector2 fontSpacing, Color color, Vector2 fontScale)
+            {
+                this.flatBatch = flatBatch;
+                this.font = font;
+                this.compositionText = compositionText;
+                this.compositionTextCaret = compositionTextCaret;
+                this.fontScale = fontScale;
+                this.fontSpacing = fontSpacing;
+                this.width = width;
+                this.height = height;
+                this.color = color;
+            }
 
-        public CaretDrawItem(FlatBatch2D flatBatch, float width, float height, string compositionText, int compositionTextCaret, BitmapFont font, Vector2 fontSpacing, Color color, Vector2 fontScale)
-{
-    this.flatBatch = flatBatch;
-    this.font = font;
-    this.compositionText = compositionText;
-    this.compositionTextCaret = compositionTextCaret;
-    this.fontScale = fontScale;
-    this.fontSpacing = fontSpacing;
-
-    this.width = width;
-    this.height = height;
-    this.color = color;
-}            public override void Draw(ref Vector2 position) {
+            public override void Draw(ref Vector2 position)
+            {
                 Vector2 offset = font.MeasureText(compositionText, 0, compositionTextCaret, fontScale, fontSpacing) * Vector2.UnitX;
                 flatBatch.QueueQuad(position + offset + (0, -height / 2), position + offset + (width, height / 2), 0, color);
             }
 
-        private FlatBatch2D flatBatch;
-        private BitmapFont font;
-        private string compositionText;
-        private int compositionTextCaret;
-        private Vector2 fontScale;
-        private Vector2 fontSpacing;
+            private FlatBatch2D flatBatch;
+            private BitmapFont font;
+            private string compositionText;
+            private int compositionTextCaret;
+            private Vector2 fontScale;
+            private Vector2 fontSpacing;
+            private float width;
+            private float height;
+            private Color color;
+        }
 
-        private float width;
-        private float height;
-        private Color color;        }
+        public class SelectionDrawItem : TextDrawItem
+        {
+            public SelectionDrawItem(FlatBatch2D flatBatch, string text, int relativeCaretPosition, int selectionLength, BitmapFont font, Vector2 fontSpacing, Color color, float height, Vector2 fontScale)
+            {
+                this.flatBatch = flatBatch;
+                this.font = font;
+                this.fontScale = fontScale;
+                this.fontSpacing = fontSpacing;
+                this.text = text;
+                this.color = color;
+                this.height = height;
+                this.m_relativeCaretPosition = relativeCaretPosition;
+                this.m_selectionLength = selectionLength;
+            }
 
-        public class SelectionDrawItem: TextDrawItem {
-
-        public SelectionDrawItem(FlatBatch2D flatBatch, string text, int relativeCaretPosition, int selectionLength, BitmapFont font, Vector2 fontSpacing, Color color, float height, Vector2 fontScale)
-{
-    this.flatBatch = flatBatch;
-    this.font = font;
-    this.fontScale = fontScale;
-    this.fontSpacing = fontSpacing;
-
-    this.text = text;
-    this.color = color;
-    this.height = height;
-    this.m_relativeCaretPosition = relativeCaretPosition;
-    this.m_selectionLength = selectionLength;
-}            int m_relativeCaretPosition ;
-            int m_selectionLength ;
-
-            public override void Draw(ref Vector2 position) {
-                if (m_relativeCaretPosition < 0) {
+            int m_relativeCaretPosition;
+            int m_selectionLength;
+            public override void Draw(ref Vector2 position)
+            {
+                if (m_relativeCaretPosition < 0)
+                {
                     // 起点为负时，先把负偏移并入选区长度，再把起点归零。
                     m_selectionLength += m_relativeCaretPosition;
                     m_relativeCaretPosition = 0;
                 }
-                if (m_relativeCaretPosition + m_selectionLength + 1 > text.Length) {
+
+                if (m_relativeCaretPosition + m_selectionLength + 1 > text.Length)
+                {
                     m_selectionLength = text.Length - m_relativeCaretPosition;
                 }
+
                 float length = font.MeasureText(text, m_relativeCaretPosition, m_selectionLength, fontScale, fontSpacing).X;
                 float offset = font.MeasureText(text, 0, m_relativeCaretPosition, fontScale, fontSpacing).X;
                 flatBatch.QueueQuad(position + (offset, -height / 2), position + (offset + length, height / 2), 0, color);
             }
 
-        private FlatBatch2D flatBatch;
-        private BitmapFont font;
-        private Vector2 fontScale;
-        private Vector2 fontSpacing;
+            private FlatBatch2D flatBatch;
+            private BitmapFont font;
+            private Vector2 fontScale;
+            private Vector2 fontSpacing;
+            private string text;
+            private Color color;
+            private float height;
+        }
 
-        private string text;
-        private Color color;
-        private float height;        }
+        public class EndOfLineDrawItem : TextDrawItem
+        {
+            public EndOfLineDrawItem(BitmapFont font, Vector2 fontSpacing, float fontScale)
+            {
+                this.font = font;
+                this.fontSpacing = fontSpacing;
+                this.fontScale = fontScale;
+            }
 
-        public class EndOfLineDrawItem: TextDrawItem {
-
-        public EndOfLineDrawItem(BitmapFont font, Vector2 fontSpacing, float fontScale)
-{
-    this.font = font;
-    this.fontSpacing = fontSpacing;
-    this.fontScale = fontScale;
-}            public override void Draw(ref Vector2 position) {
+            public override void Draw(ref Vector2 position)
+            {
                 position.X = 0;
                 position.Y += font.GlyphHeight * font.Scale * fontScale + fontSpacing.Y;
             }
 
-        private BitmapFont font;
-        private Vector2 fontSpacing;
-        private float fontScale;        }
+            private BitmapFont font;
+            private Vector2 fontSpacing;
+            private float fontScale;
+        }
 
         private string m_unity_Description;
         private string m_unity_Title;

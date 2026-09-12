@@ -105,8 +105,10 @@ namespace Game {
             }
         }
 
-        public class Geometry: TerrainGeometry{
-        public Geometry(Texture2D texture2D) : base(texture2D)
-{
-}}    }
+        public class Geometry : TerrainGeometry
+        {
+            public Geometry(Texture2D texture2D) : base(texture2D)
+            {
+            }
+        }    }
 }
