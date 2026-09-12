@@ -1,0 +1,48 @@
+{
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "referenceAssemblies": [
+    {
+      "name": "Engine.dll",
+      "sha256": "20c562636c9ee4656ef074faf63bf233d2f39b4a5d77513138ee870ac7531206"
+    },
+    {
+      "name": "EntitySystem.dll",
+      "sha256": "81b5c056854feccfeafcff986401fca39ad0a86a4fac397b33fb2a84a1ba0784"
+    },
+    {
+      "name": "Survivalcraft.dll",
+      "sha256": "90a3d465f73a28b8dfe24379d4f678eb1ed15242a5005b4f520e333deeae1aef"
+    }
+  ],
+  "scenario": "menu",
+  "mods": "community",
+  "probeSha256": "6cfd59ad9815c2c856e7dd426309c554a59ed856480a5c6e5c5f57ea95bc6963",
+  "jit": {
+    "TieredCompilation": false,
+    "ReadyToRun": false,
+    "NoInline": true
+  },
+  "modPackages": [
+    {
+      "path": "Mods/16e1b234-Logistics.scmod",
+      "sha256": "367ba407d64fbc8062015a7fc9f40de47f7311d4620203cd2f66947726166fe6"
+    },
+    {
+      "path": "Mods/1a8d0001-SCIE.scmod",
+      "sha256": "bcecf52023cf4dc84df832767cd25424a770c6c77086b767c0e5af43dc0fe901"
+    },
+    {
+      "path": "Mods/58c14d3f-RealmEX.scmod",
+      "sha256": "1c7287768f51aaedb06a84ee9c96d88b6cd0f136cc673b374a36aedfb4cc9323"
+    },
+    {
+      "path": "Mods/92d112da-EBoyTerminal.scmod",
+      "sha256": "3b4393b15c629465b490302bbeeef3fc447957412d67e3aab61ab116be0482ab"
+    },
+    {
+      "path": "Mods/f92813b0-RecipaediaEX.scmod",
+      "sha256": "34fefbd700b5f17c8e7f48516998fa5820afcee09c786cf6624e0d5363295ef8"
+    }
+  ],
+  "sampleManifestSha256": "e9e7aa1117574173fd2ffc0b798fcbe176edfc01d35784cc7a37c4862da3dd94"
+}

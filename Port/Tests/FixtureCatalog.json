@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "status": "upstream-reference-captured",
+  "note": "Measured on the original .NET 10 Windows backend, not Unity. See RuntimeProbe/README.md for controls and limits; Baselines/runtime-lock.json pins sources and evidence. Wall-clock frame counts and full physics state are not deterministic assertions.",
+  "evidence": {"generated":"Baselines/generated/validation.json","community":"Baselines/community/validation.json","userSamples":"Baselines/UserSamples.json"},
+  "coreLoop": [
+    {"id":"startup-to-menu","status":"verified-upstream","source":"Survivalcraft/Game/Program.cs","acceptance":"Ordered frame boundaries, paired LoadingScreen actions and transition to MainMenuScreen."},
+    {"id":"fixed-world-frames","status":"captured-and-validated","source":"Survivalcraft/Subsystem/SubsystemUpdate.cs","acceptance":"Seed 123456 with no player input; all 605 frame boundaries verified, 3 playing frames sample 279 ECS update/draw calls with entity IDs and order values. Full physics determinism remains out of this check."}
+  ],
+  "saves": [
+    {"id":"new-world","status":"verified-upstream","acceptance":"Fixed seed and settings; exported new-world.scworld and pinned file hash."},
+    {"id":"existing-world","status":"captured","acceptance":"Generated populated world is played and reloaded. Seven genuine user worlds are captured/imported/upgraded; exhaustive gameplay in each user world is still pending."},
+    {"id":"save-exit-reload","status":"verified-upstream","acceptance":"Save, dispose and reload preserve player fields, seed, entity count and the placed block. Cache allocation counts are excluded."},
+    {"id":"legacy-conversion","status":"verified-upstream","acceptance":"Authentic user 2.3 archive and measured 2.4 conversion result are saved in Baselines with provenance and hashes."},
+    {"id":"damaged-recovery","status":"verified-backup-branch","acceptance":"Seven imported copies recover a deliberately corrupted Project.xml exactly from Project.bak. The no-backup recovery branch remains untested."}
+  ],
+  "mods": [
+    {"id":"resource-only","status":"verified-upstream","acceptance":"Four generated .scmod packages are discovered in nested Mods paths; resource-only packages participate in overrides."},
+    {"id":"data-overrides","status":"verified-subset","acceptance":"CSV Block registration, language JSON and XML database parameter override are asserted. Community recipe/clothes resources load, but exhaustive merge variants remain for later regression."},
+    {"id":"javascript","status":"verified-upstream","acceptance":"Script initializes a value and increments a frame-handler counter through the original registration path."},
+    {"id":"modloader","status":"verified-upstream","acceptance":"Template-pattern fixture loads from a real .scmod, initializes and executes OnLoadingFinished."},
+    {"id":"content-reader","status":"verified-upstream","acceptance":"Custom reader is discovered and decodes the packaged .probe resource."},
+    {"id":"block-type","status":"verified-upstream","acceptance":"Original reflection path and TypeCache discover a fixture Block, registered by CSV."},
+    {"id":"harmony","status":"verified-net10-reference","acceptance":"Constructor, virtual method, closed int generic method and actual game method patches execute. Unity Mono remains stage 1."},
+    {"id":"dependency-order","status":"verified-upstream","acceptance":"Version ranges, missing/wrong versions, LoadOrder, LoadAfter, stable equal priorities, duplicate instances and cyclic sorting fallback are checked."},
+    {"id":"resource-conflict","status":"verified-upstream","acceptance":"Three packages override one path; the dependency/LoadAfter winner is asserted."},
+    {"id":"custom-shader","status":"captured-and-compiled","acceptance":"Authentic RealmEX .vsh/.psh are captured; opaque and alpha-tested variants compile on original OpenGL. Pixel reference and Unity conversion remain pending."},
+    {"id":"failure-isolation","status":"verified-invalid-dll-case","acceptance":"Expected BadImageFormat diagnostic occurs once for an invalid DLL while valid packages complete. No blanket isolation guarantee for other failure types."}
+  ]
+}

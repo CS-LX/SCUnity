@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "sourceDirectory": "E:\\CS Projects\\survivalcraft-api\\Survivalcraft.Windows",
+  "status": "captured-not-yet-runtime-validated",
+  "files": [
+    {
+      "source": "bin/Debug/Mods/EBoyTerminal.scmod",
+      "path": "mods/92d112da-EBoyTerminal.scmod",
+      "size": 335343,
+      "sha256": "3b4393b15c629465b490302bbeeef3fc447957412d67e3aab61ab116be0482ab"
+    },
+    {
+      "source": "bin/Debug/Mods/Logistics.scmod",
+      "path": "mods/16e1b234-Logistics.scmod",
+      "size": 227380,
+      "sha256": "367ba407d64fbc8062015a7fc9f40de47f7311d4620203cd2f66947726166fe6"
+    },
+    {
+      "source": "bin/Debug/Mods/RealmEX.scmod",
+      "path": "mods/58c14d3f-RealmEX.scmod",
+      "size": 39480,
+      "sha256": "1c7287768f51aaedb06a84ee9c96d88b6cd0f136cc673b374a36aedfb4cc9323"
+    },
+    {
+      "source": "bin/Debug/Mods/RecipaediaEX.scmod",
+      "path": "mods/f92813b0-RecipaediaEX.scmod",
+      "size": 255633,
+      "sha256": "34fefbd700b5f17c8e7f48516998fa5820afcee09c786cf6624e0d5363295ef8"
+    },
+    {
+      "source": "bin/Debug/Mods/SCIE.scmod",
+      "path": "mods/1a8d0001-SCIE.scmod",
+      "size": 22472836,
+      "sha256": "bcecf52023cf4dc84df832767cd25424a770c6c77086b767c0e5af43dc0fe901"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Fix.scworld",
+      "path": "world-archives/21769d83.scworld",
+      "size": 6744233,
+      "sha256": "e3d6e83cc7c7738f7855ef047ca1ce3c0c2079b632c21c25d817ede784906590"
+    },
+    {
+      "source": "bin/Debug/doc/传送门实例.scworld",
+      "path": "world-archives/496b4397.scworld",
+      "size": 244190,
+      "sha256": "2b1482587124770336560d1bc965fe15114bf65e756c67c590eacdccbc8d8ba2"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World/Project.bak",
+      "path": "worlds/865c5744/Project.bak",
+      "size": 57270,
+      "sha256": "241241314a45c2c99a691a638e92bfe82d24b5099203b87586b0c314504fd1bb"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World/Project.xml",
+      "path": "worlds/865c5744/Project.xml",
+      "size": 57867,
+      "sha256": "ea990d06bc61cd35d57740f1cdcdc094e5db5445ed75a4bbae04b461fea0d379"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World/Regions/Region -1,0.dat",
+      "path": "worlds/865c5744/Regions/Region -1,0.dat",
+      "size": 313204,
+      "sha256": "209e9480afe727e3522344a94edcd1eb08f6295a967b29fe83bdc93965d1adf4"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World/Regions/Region -1,1.dat",
+      "path": "worlds/865c5744/Regions/Region -1,1.dat",
+      "size": 67933,
+      "sha256": "f03b4f63d47592bded254d748639c72100758850de62dab26d9b91c0e8431764"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World/Regions/Region 0,0.dat",
+      "path": "worlds/865c5744/Regions/Region 0,0.dat",
+      "size": 46240,
+      "sha256": "8a6eb5f24b720d5630981c69a90b3c5670848ffdbe1730f32484613871ecbab2"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Project.bak",
+      "path": "worlds/daffd0ce/Project.bak",
+      "size": 308335,
+      "sha256": "bf4f8227e9f4ea0b2ec06e3d99d95c5abb32a32bee1fd543603772542b56f7e3"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Project.xml",
+      "path": "worlds/daffd0ce/Project.xml",
+      "size": 308540,
+      "sha256": "66bc35ad26ad1c594763940338a556124173c5b9dab193051e799383fbfbc788"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region -1,-1.dat",
+      "path": "worlds/daffd0ce/Regions/Region -1,-1.dat",
+      "size": 43742,
+      "sha256": "b2836fc40a8dd41e5ecb75a072ec4e76b3b77cdccb9ac84aad65c0594a9e4561"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region -1,0.dat",
+      "path": "worlds/daffd0ce/Regions/Region -1,0.dat",
+      "size": 742553,
+      "sha256": "123b8d38da8216e8096bc9a81ecc81783446fba742fdad93086507dccd820739"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region -1,1.dat",
+      "path": "worlds/daffd0ce/Regions/Region -1,1.dat",
+      "size": 362293,
+      "sha256": "281f0ed6d193e1fbe255df5d9005da7f1879f81fa9fc63c4d0f93ccddb775aab"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 0,-1.dat",
+      "path": "worlds/daffd0ce/Regions/Region 0,-1.dat",
+      "size": 565668,
+      "sha256": "9d3435ccd384f406d77da1c05e7f81a4adf3c55d6a82a6af943d3dee61d413f8"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 0,0.dat",
+      "path": "worlds/daffd0ce/Regions/Region 0,0.dat",
+      "size": 1285479,
+      "sha256": "405c35ae80877116bcc9e13d44cc812044f9e95a730795c373d3e0e5f6d13cc7"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 0,1.dat",
+      "path": "worlds/daffd0ce/Regions/Region 0,1.dat",
+      "size": 1181695,
+      "sha256": "b0c5accdffbeaa9f6b969c20413fb822a32cfed3597bd0ef7376e9f1bf4359a0"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 0,2.dat",
+      "path": "worlds/daffd0ce/Regions/Region 0,2.dat",
+      "size": 201260,
+      "sha256": "c23162317243d8a3345abc8dc8c074aafeac4a36482a58743ab6dd97d7f2bc13"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 1,-1.dat",
+      "path": "worlds/daffd0ce/Regions/Region 1,-1.dat",
+      "size": 283797,
+      "sha256": "900c81ebb363a547c8793865047d416a7930d0ed8daff1c52d4b85abd2c35ff4"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 1,0.dat",
+      "path": "worlds/daffd0ce/Regions/Region 1,0.dat",
+      "size": 1140940,
+      "sha256": "526cf19e53f5a56b2f158e0b9198bef84f1a78b95d7b9c24c408fde69c638ffe"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 1,1.dat",
+      "path": "worlds/daffd0ce/Regions/Region 1,1.dat",
+      "size": 1058376,
+      "sha256": "d04553406e601f88cc60a2d59a94f9bbee96f17c24cd9e5cdaa6380817410cfd"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 1,2.dat",
+      "path": "worlds/daffd0ce/Regions/Region 1,2.dat",
+      "size": 39446,
+      "sha256": "1b1841131b73909ad44f5b7f04a6eaeb6c3476461022f5eca2fcbe8369d2b7b5"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 2,0.dat",
+      "path": "worlds/daffd0ce/Regions/Region 2,0.dat",
+      "size": 166072,
+      "sha256": "d65e9f26aad66664880fc423a47d6480b13ea6ae39fe9abefa98ab83851de681"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World2/Regions/Region 2,1.dat",
+      "path": "worlds/daffd0ce/Regions/Region 2,1.dat",
+      "size": 91690,
+      "sha256": "b6f8be054b77f33bb13104d2a82386e3de628a063afb9d1a6d13396d4c1f676d"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World3/Project.bak",
+      "path": "worlds/c42f92ef/Project.bak",
+      "size": 88673,
+      "sha256": "0f108694ead478e57f969a8ca0e759de44c0225e752e706cffed31bf85b94300"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World3/Project.xml",
+      "path": "worlds/c42f92ef/Project.xml",
+      "size": 84907,
+      "sha256": "6963b66120c4297c27ec64df782a7d0888b84edd23a5c4c65098d67a08ca572a"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World3/Regions/Region -1,-1.dat",
+      "path": "worlds/c42f92ef/Regions/Region -1,-1.dat",
+      "size": 24854,
+      "sha256": "b854845a2bd1f505d0a2c9156b0be48f635dffa6d6cc86ffa94096a7164af092"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World3/Regions/Region -1,0.dat",
+      "path": "worlds/c42f92ef/Regions/Region -1,0.dat",
+      "size": 4242,
+      "sha256": "8a0c08e481ef5a05342e0b32c71c1fe81b76d74d04235c302bb372cf733d2238"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Project.bak",
+      "path": "worlds/3cb66c21/Project.bak",
+      "size": 188204,
+      "sha256": "de55f48f083c6278fd5ae2b56fda3c66114ffae03eff4c203ef4fdafff7cab78"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Project.xml",
+      "path": "worlds/3cb66c21/Project.xml",
+      "size": 187833,
+      "sha256": "fc258fa12c02eba95413acd05e7ece30dec3b20a3bb464b5b56b76f5dff44770"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -1,-1.dat",
+      "path": "worlds/3cb66c21/Regions/Region -1,-1.dat",
+      "size": 281745,
+      "sha256": "feb4a3d6d9573a12da41648f91095785b3bb02fdc272aa3c6320afe42e6756bf"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -1,0.dat",
+      "path": "worlds/3cb66c21/Regions/Region -1,0.dat",
+      "size": 895975,
+      "sha256": "68ad46f93b11a0ac4a1fd25c5d6aace959236cb974d4e66bd378df3d44ba1b63"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -1,1.dat",
+      "path": "worlds/3cb66c21/Regions/Region -1,1.dat",
+      "size": 1117816,
+      "sha256": "d4841b9279a58b4931eac8778c9b2b2122f23be755667b84c54f3ba38d596701"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -1,2.dat",
+      "path": "worlds/3cb66c21/Regions/Region -1,2.dat",
+      "size": 405933,
+      "sha256": "106a909413b930228b83d6c1d3ca98b57c41e9b10a71cd8345ce0683bf93857a"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -2,-2.dat",
+      "path": "worlds/3cb66c21/Regions/Region -2,-2.dat",
+      "size": 30343,
+      "sha256": "a02602c4d41b56174b96f9884a56b57d8ca24a3961c21280d59efbe8c3339d95"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -3,-1.dat",
+      "path": "worlds/3cb66c21/Regions/Region -3,-1.dat",
+      "size": 619449,
+      "sha256": "a551fbe865b9ebf623d8a3389cacf5c4d64ea5e36d183df15f2a5d2a8fa51cbe"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -3,-2.dat",
+      "path": "worlds/3cb66c21/Regions/Region -3,-2.dat",
+      "size": 117950,
+      "sha256": "bef281b767635d29f5ce63be6f3bfa611e5bb12a33f8b6de6ee02dfd15834f17"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -3,0.dat",
+      "path": "worlds/3cb66c21/Regions/Region -3,0.dat",
+      "size": 421150,
+      "sha256": "2429cdc2089d792f2b808b440b4c8b1db549092d8dbb43307ead9d72a4048fe1"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region -3,1.dat",
+      "path": "worlds/3cb66c21/Regions/Region -3,1.dat",
+      "size": 61120,
+      "sha256": "b311be7f1d1c9b54953da4fefdf0e19663fd80f7671a3ba422fd701f5456979d"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 0,-1.dat",
+      "path": "worlds/3cb66c21/Regions/Region 0,-1.dat",
+      "size": 227222,
+      "sha256": "abe191060e907c8819dabfdcb56cc8bdedfc8dfaba5198248216345f269ad69e"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 0,0.dat",
+      "path": "worlds/3cb66c21/Regions/Region 0,0.dat",
+      "size": 910544,
+      "sha256": "cb8653bd182fa69b140fd4dfecd226b78bf55e6c950fbcfaeee37a901de7798e"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 0,1.dat",
+      "path": "worlds/3cb66c21/Regions/Region 0,1.dat",
+      "size": 1070652,
+      "sha256": "a2335afbc38081fd9a47af62fedd37414c5b6b34ac9b3a02f9048bc31a1d79e2"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 0,2.dat",
+      "path": "worlds/3cb66c21/Regions/Region 0,2.dat",
+      "size": 129696,
+      "sha256": "8c5b8c5f19f108792db9bea6e43b142f5ab071c3c8145662f15e43aafbc0a364"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 1,-1.dat",
+      "path": "worlds/3cb66c21/Regions/Region 1,-1.dat",
+      "size": 98341,
+      "sha256": "729b026ddc90e8cafb217d9653465f7701c056e19ec2c019bcabd2ae98fe6f1b"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 1,0.dat",
+      "path": "worlds/3cb66c21/Regions/Region 1,0.dat",
+      "size": 546820,
+      "sha256": "eadb81d79e2a56a882d75ebf84e1b1030a6c0e900b83e2f077a7a49b9b5a4749"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World5/Regions/Region 1,1.dat",
+      "path": "worlds/3cb66c21/Regions/Region 1,1.dat",
+      "size": 123230,
+      "sha256": "87035dd3e704955d15f3d6b06b6a058db11f8d8c817a3bb0af24554fbe2b7964"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/EmbeddedContent/闃垮師.scskin",
+      "path": "worlds/58a4a892/EmbeddedContent/闃垮師.scskin",
+      "size": 192216,
+      "sha256": "83a6652325e72e523fa0147937e03518fb166af02d4e5e84b629f4d8cad02738"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Fix.scworld",
+      "path": "worlds/58a4a892/Fix.scworld",
+      "size": 6744233,
+      "sha256": "e3d6e83cc7c7738f7855ef047ca1ce3c0c2079b632c21c25d817ede784906590"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Project.bak",
+      "path": "worlds/58a4a892/Project.bak",
+      "size": 1137348,
+      "sha256": "36f6212f4ed935a5f290bd8c7993af1c355be50bbe409b8d66d3875f131d3636"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Project.xml",
+      "path": "worlds/58a4a892/Project.xml",
+      "size": 1144546,
+      "sha256": "44e05674963d7ff1a99a5f1e942cc7800ab338f5177b9c7950efd4cd1de069a2"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Project.xml.agent-backup-20260728-231034.bak",
+      "path": "worlds/58a4a892/Project.xml.agent-backup-20260728-231034.bak",
+      "size": 1235956,
+      "sha256": "0e59085237fbdcc433fac25c6a93f3929d6df1b91ae7aee7a190ad86df3f22de"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region -1,-1.dat",
+      "path": "worlds/58a4a892/Regions/Region -1,-1.dat",
+      "size": 672705,
+      "sha256": "055d3059d0e6d19b1fdf1c6f0e3bad3f3575afbf25896dae140a363133b3b0c8"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region -1,0.dat",
+      "path": "worlds/58a4a892/Regions/Region -1,0.dat",
+      "size": 1103701,
+      "sha256": "16b0ba13398101d0f82c8fffa6740eb3254bf9d0609088a819614dc7ad0b0751"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region -1,1.dat",
+      "path": "worlds/58a4a892/Regions/Region -1,1.dat",
+      "size": 935357,
+      "sha256": "62f1ab5f8feee2da0394df0859ca78ca93ab2d67edede0a6dc400369ed4a1fb9"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region -1,2.dat",
+      "path": "worlds/58a4a892/Regions/Region -1,2.dat",
+      "size": 460395,
+      "sha256": "27a302b87d610fec62c5dfcdc69483cc74b32717ba1938520479a59bc1f24d45"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region -2,0.dat",
+      "path": "worlds/58a4a892/Regions/Region -2,0.dat",
+      "size": 13196,
+      "sha256": "9174534b7358cd8c3b7d605cdc4ded216bbc254439ae51792809285df973429d"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region -2,1.dat",
+      "path": "worlds/58a4a892/Regions/Region -2,1.dat",
+      "size": 34489,
+      "sha256": "37e4bb38bed6b2e4fb88915b5ba3cfe42415e0bf9e8fd22f48353e1d8d2eb8fb"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 0,-1.dat",
+      "path": "worlds/58a4a892/Regions/Region 0,-1.dat",
+      "size": 934190,
+      "sha256": "af6631c4ebf71e05ab623937a15d128f603eb8081cdd8a60ff95b280dafd6df5"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 0,0.dat",
+      "path": "worlds/58a4a892/Regions/Region 0,0.dat",
+      "size": 1522581,
+      "sha256": "c30653dbed4b5585e2c0e692714ee1040cd2d783563f419f3da8f3c71b412299"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 0,1.dat",
+      "path": "worlds/58a4a892/Regions/Region 0,1.dat",
+      "size": 1500887,
+      "sha256": "ceb7629d7b537f928f4c7b8ab70823769e2aee383704b1909189e4bcdcc6b6ce"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 0,2.dat",
+      "path": "worlds/58a4a892/Regions/Region 0,2.dat",
+      "size": 938762,
+      "sha256": "70a6019121087b2c647085f53d78fe518a5dda1cf7a44377767c86a6b5c6993f"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 1,-1.dat",
+      "path": "worlds/58a4a892/Regions/Region 1,-1.dat",
+      "size": 219222,
+      "sha256": "d4ce17f678f5452b118b0392cb4ca50d01cf5dc01d34e033dfb570ee525f1d62"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 1,0.dat",
+      "path": "worlds/58a4a892/Regions/Region 1,0.dat",
+      "size": 775347,
+      "sha256": "4aca38502bf69e7f6f898986a19ac7540d54617904b1f8285f792fdb44c602af"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 1,1.dat",
+      "path": "worlds/58a4a892/Regions/Region 1,1.dat",
+      "size": 425733,
+      "sha256": "a1dfd9a58978bb0aea88650d10a40d7fe70d0e3521272e532a28e2b782ec035b"
+    },
+    {
+      "source": "bin/Debug/doc/Worlds/World6/Regions/Region 1,2.dat",
+      "path": "worlds/58a4a892/Regions/Region 1,2.dat",
+      "size": 88519,
+      "sha256": "a1998957c142001a26a9a9956f21eb77f263ea588be708f3db65e6aeea88adfd"
+    }
+  ],
+  "worlds": [
+    {
+      "path": "world-archives/21769d83.scworld",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.4",
+        "APIVersion": "1.9.2"
+      }
+    },
+    {
+      "path": "world-archives/496b4397.scworld",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.3"
+      }
+    },
+    {
+      "path": "worlds/3cb66c21/Project.xml",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.4",
+        "APIVersion": "1.9.3.1"
+      }
+    },
+    {
+      "path": "worlds/58a4a892/Project.xml",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.4",
+        "APIVersion": "1.9.2"
+      }
+    },
+    {
+      "path": "worlds/865c5744/Project.xml",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.4",
+        "APIVersion": "1.9.0.2"
+      }
+    },
+    {
+      "path": "worlds/c42f92ef/Project.xml",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.4",
+        "APIVersion": "1.9.0.2"
+      }
+    },
+    {
+      "path": "worlds/daffd0ce/Project.xml",
+      "attributes": {
+        "Guid": "9e9a67f8-79df-4d05-8cfa-61bd8095661e",
+        "Name": "GameProject",
+        "Version": "2.4",
+        "APIVersion": "1.9.2"
+      }
+    }
+  ],
+  "mods": [
+    {
+      "path": "mods/16e1b234-Logistics.scmod",
+      "entryCount": 25,
+      "dlls": [
+        "Logistics.dll"
+      ],
+      "shaders": []
+    },
+    {
+      "path": "mods/1a8d0001-SCIE.scmod",
+      "entryCount": 20,
+      "dlls": [
+        "Box2D.NET.dll",
+        "SCIENEW.dll",
+        "SCIENEW.GEN.dll",
+        "XamariNES.dll"
+      ],
+      "shaders": []
+    },
+    {
+      "path": "mods/58c14d3f-RealmEX.scmod",
+      "entryCount": 11,
+      "dlls": [
+        "RealmEX.dll"
+      ],
+      "shaders": [
+        "Assets/Shaders/RealmPonderBlocks.psh",
+        "Assets/Shaders/RealmPonderBlocks.vsh"
+      ]
+    },
+    {
+      "path": "mods/92d112da-EBoyTerminal.scmod",
+      "entryCount": 36,
+      "dlls": [
+        "EBoyTerminal.dll",
+        "MoonSharp.Interpreter.dll"
+      ],
+      "shaders": []
+    },
+    {
+      "path": "mods/f92813b0-RecipaediaEX.scmod",
+      "entryCount": 35,
+      "dlls": [
+        "NPinyin.Core.dll",
+        "RecipaediaEX.dll",
+        "ZLinq.dll"
+      ],
+      "shaders": []
+    }
+  ]
+}

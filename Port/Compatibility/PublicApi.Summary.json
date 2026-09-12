@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "assemblies": [
+    {
+      "name": "Engine",
+      "version": "1.0.0.0",
+      "externallyVisibleTypes": 413,
+      "methods": 3881,
+      "fields": 1246,
+      "properties": 769,
+      "events": 34,
+      "nonPublicLayoutFields": 6,
+      "metadataRecords": 12281
+    },
+    {
+      "name": "EntitySystem",
+      "version": "1.0.0.0",
+      "externallyVisibleTypes": 22,
+      "methods": 249,
+      "fields": 59,
+      "properties": 62,
+      "events": 7,
+      "nonPublicLayoutFields": 0,
+      "metadataRecords": 759
+    },
+    {
+      "name": "Survivalcraft",
+      "version": "2.4.0.0",
+      "externallyVisibleTypes": 1290,
+      "methods": 10012,
+      "fields": 6209,
+      "properties": 2164,
+      "events": 23,
+      "nonPublicLayoutFields": 0,
+      "metadataRecords": 35000
+    }
+  ]
+}

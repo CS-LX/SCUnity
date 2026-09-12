@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "scenario": "menu",
+  "frameCount": 22,
+  "coreFrameSequence": [
+    "Engine.Window.BeforeFrameAll",
+    "Engine.Time.BeforeFrame",
+    "Engine.Dispatcher.BeforeFrame",
+    "Engine.Graphics.Display.BeforeFrame",
+    "Engine.Input.Keyboard.BeforeFrame",
+    "Engine.Input.Mouse.BeforeFrame",
+    "Engine.Input.Touch.BeforeFrame",
+    "Engine.Input.GamePad.BeforeFrame",
+    "Engine.Audio.Mixer.BeforeFrame",
+    "Game.Program.FrameHandler",
+    "Engine.Window.AfterFrameAll",
+    "Engine.Time.AfterFrame",
+    "Engine.Dispatcher.AfterFrame",
+    "Engine.Graphics.Display.AfterFrame",
+    "Engine.Input.Keyboard.AfterFrame",
+    "Engine.Input.Mouse.AfterFrame",
+    "Engine.Input.Touch.AfterFrame",
+    "Engine.Input.GamePad.AfterFrame",
+    "Engine.Audio.Mixer.AfterFrame"
+  ],
+  "loadingActions": [
+    "Game.LoadingScreen+<>c.<InitActions>b__18_0",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_1",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_2",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_3",
+    "Game.LoadingScreen.ContentLoaded",
+    "Game.LoadingScreen+<>c__DisplayClass18_0.<InitActions>b__4",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_5",
+    "ModsManager.ParseAllModSettings",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_6",
+    "ModsManager.DealWithTempModHooks",
+    "Game.LoadingScreen+<>c__DisplayClass18_0.<InitActions>b__7",
+    "Game.ClothingSlot.Initialize",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_8",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_9",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_10",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_11",
+    "Game.CraftingRecipesManager.Initialize",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_12",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_13",
+    "Game.LoadingScreen.<InitScreens>b__19_0",
+    "Game.LoadingScreen.<InitScreens>b__19_1",
+    "Game.LoadingScreen.<InitScreens>b__19_2",
+    "Game.LoadingScreen.<InitScreens>b__19_3",
+    "Game.LoadingScreen.<InitScreens>b__19_4",
+    "Game.LoadingScreen.<InitScreens>b__19_5",
+    "Game.LoadingScreen.<InitScreens>b__19_6",
+    "Game.LoadingScreen.<InitScreens>b__19_7",
+    "Game.LoadingScreen.<InitScreens>b__19_8",
+    "Game.LoadingScreen.<InitScreens>b__19_9",
+    "Game.LoadingScreen.<InitScreens>b__19_10",
+    "Game.LoadingScreen.<InitScreens>b__19_11",
+    "Game.LoadingScreen.<InitScreens>b__19_12",
+    "Game.LoadingScreen.<InitScreens>b__19_13",
+    "Game.LoadingScreen.<InitScreens>b__19_14",
+    "Game.LoadingScreen.<InitScreens>b__19_15",
+    "Game.LoadingScreen.<InitScreens>b__19_16",
+    "Game.LoadingScreen.<InitScreens>b__19_17",
+    "Game.LoadingScreen.<InitScreens>b__19_18",
+    "Game.LoadingScreen.<InitScreens>b__19_19",
+    "Game.LoadingScreen.<InitScreens>b__19_20",
+    "Game.LoadingScreen.<InitScreens>b__19_21",
+    "Game.LoadingScreen.<InitScreens>b__19_22",
+    "Game.LoadingScreen.<InitScreens>b__19_23",
+    "Game.LoadingScreen.<InitScreens>b__19_24",
+    "Game.LoadingScreen.<InitScreens>b__19_25",
+    "Game.LoadingScreen.<InitScreens>b__19_26",
+    "Game.LoadingScreen.<InitScreens>b__19_27",
+    "Game.LoadingScreen.<InitScreens>b__19_28",
+    "Game.LoadingScreen.<InitScreens>b__19_29",
+    "Game.LoadingScreen.<InitScreens>b__19_30",
+    "Game.LoadingScreen.<InitScreens>b__19_31",
+    "Game.LoadingScreen.<InitScreens>b__19_32",
+    "Game.LoadingScreen.<InitScreens>b__19_33",
+    "Game.LoadingScreen.<InitScreens>b__19_34",
+    "Game.LoadingScreen.<InitScreens>b__19_35",
+    "Game.FileAssociationManager.Initialize",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_14",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_15",
+    "Game.LoadingScreen+<>c__DisplayClass18_0.<InitActions>b__16",
+    "Game.KeyCompatibleGroupsManager.Initialize",
+    "Game.LoadingScreen+<>c.<InitActions>b__18_17"
+  ],
+  "assertions": 3,
+  "sampledEcsCalls": 0,
+  "sampledEcsFrames": [],
+  "sampledEcsTypes": {},
+  "mods": [
+    {
+      "name": "survivalcraft",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 258,
+      "loaders": [
+        "Game.JsModLoader",
+        "Game.SurvivalCraftModLoader"
+      ]
+    },
+    {
+      "name": "fastdebug",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 0,
+      "loaders": []
+    },
+    {
+      "name": "com.realmex",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 0,
+      "loaders": [
+        "RealmEX.RealmEXLoader"
+      ]
+    },
+    {
+      "name": "com.recipaediaex",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 2,
+      "loaders": [
+        "RecipaediaEX.RecipaediaEXLoader"
+      ]
+    },
+    {
+      "name": "com.IndustrialEra2",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 23,
+      "loaders": [
+        "SCIENEW.IndustrialModLoader"
+      ]
+    },
+    {
+      "name": "com.ie2.logistics",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 4,
+      "loaders": [
+        "Logistics.LogisticsLoader"
+      ]
+    },
+    {
+      "name": "com.eboy.terminal",
+      "disabled": false,
+      "reason": "Unknown",
+      "blockTypeCount": 1,
+      "loaders": [
+        "EBoyTerminal.EBoyTerminalLoader"
+      ]
+    }
+  ],
+  "determinism": "Ordered frame contract validated; wall-clock duration, startup frame count and full physics state are not asserted deterministic."
+}

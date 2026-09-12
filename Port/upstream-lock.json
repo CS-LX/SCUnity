@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "scope": "Windows x64 desktop non-VR migration; original Windows reference build includes upstream VR",
+  "upstream": {
+    "path": "External/SurvivalcraftApi",
+    "url": "https://gitee.com/SC-SPM/SurvivalcraftApi.git",
+    "branch": "SCAPI1.9",
+    "commit": "98e5f58f779dba20503a095073451a40899549c4"
+  },
+  "toolchain": {
+    "dotnetSdk": "10.0.100",
+    "configuration": "Release",
+    "targetFramework": "net10.0-windows",
+    "runtimeIdentifier": "win-x64"
+  },
+  "fingerprints": {
+    "Build/ApiSnapshot/ApiSnapshot.csproj": "01ea2e17b4c6126696e0784956915917cde684646e729f0bb4f59a8d1e9164db",
+    "Build/ApiSnapshot/Program.cs": "7787a3b6ce216fa32dde467f78dcb848957194824757deb3f616aaa74900c674",
+    "Build/NuGet.Config": "aec93b5637ab6d62470979a008990a4a336a287ab83a3f2541849ae735674055",
+    "Build/baseline.py": "7529873d7df4b591908c21facc2e162d27a0cc6de2ead2f8837910683a826897",
+    "Build/source-policy.json": "d9782e3f5b2838e65d1533e029ad3efadce20c45aa12f92a966d5618fbe85d4c",
+    "Compatibility/PublicApi.Exceptions.json": "af779c1dea4c6b472330c33e22f55b6e880c3973478e0a3639ed3e4a9fa62ac4",
+    "Compatibility/PublicApi.Shipped.txt": "874c18d9c44b84f202ec3453e9d3dcdc329fd92b0d496e27432bd9a6ae340deb",
+    "Compatibility/PublicApi.Summary.json": "05826a34ddfc4fb157801a3f3d3ab5fa16d26bdcfe674cd9472035ed435dd652",
+    "ContentManifest.json": "ceead872d4e1b19e7d3b70f2764b90e8ab1906d56308e230269b699ddcc6cfe5",
+    "Dependencies/Engine.Windows.packages.lock.json": "a1c74594fa16e5202bd3c4d11f1dd64f12bda85c98f4f5f4e4adc47195fcc5ab",
+    "Dependencies/EntitySystem.Windows.packages.lock.json": "cdbc829ce6ae992e80fd9acc7f801fdda6cc7e83f475bdd1bb8c950f458b39bd",
+    "Dependencies/Survivalcraft.Windows.packages.lock.json": "8d3aca16ec4a6cfa8f079381b963665aa3b272bbf2b94079d4f6e862e4ae737d",
+    "SourceManifest.json": "ff15f0353eab00dacf7a34cf4b808a966fb2158ad49a6e7d40302252b47f769f",
+    "UpstreamFiles.json": "71426cbecfab9df1a9da16bcd8fc65b675a6bf2071a27502354b0a0a3e85ae3c",
+    "global.json": "0aa4b85ae248d59bbc4138f346d952b7fae4fe18cc701d921fa1c003211be777"
+  }
+}

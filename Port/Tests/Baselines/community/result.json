@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "scenario": "menu",
+  "mods": "community",
+  "frameCount": 22,
+  "engineFrameCount": 22,
+  "reachedMainMenu": true,
+  "completed": true,
+  "checks": [
+    {
+      "check": "all-community-mods-discovered",
+      "passed": true
+    },
+    {
+      "check": "community-mods-enabled",
+      "passed": true
+    },
+    {
+      "check": "realm-custom-shader-opaque-and-alpha-compiled",
+      "passed": true
+    }
+  ],
+  "loggedErrors": [],
+  "expectedErrors": [],
+  "error": null
+}

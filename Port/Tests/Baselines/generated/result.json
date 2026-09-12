@@ -1,0 +1,186 @@
+{
+  "status": "passed",
+  "scenario": "world",
+  "mods": "generated",
+  "frameCount": 605,
+  "engineFrameCount": 605,
+  "reachedMainMenu": true,
+  "completed": true,
+  "checks": [
+    {
+      "check": "mod-assembly-loaded-from-scmod",
+      "passed": true
+    },
+    {
+      "check": "modloader-initialized",
+      "passed": true
+    },
+    {
+      "check": "game-method-before-patch",
+      "passed": true
+    },
+    {
+      "check": "harmony-game-method",
+      "passed": true
+    },
+    {
+      "check": "harmony-constructor",
+      "passed": true
+    },
+    {
+      "check": "harmony-virtual",
+      "passed": true
+    },
+    {
+      "check": "harmony-generic",
+      "passed": true
+    },
+    {
+      "check": "loading-finished-hook",
+      "passed": true
+    },
+    {
+      "check": "resource-override",
+      "passed": true
+    },
+    {
+      "check": "custom-reader",
+      "passed": true
+    },
+    {
+      "check": "block-discovered",
+      "passed": true
+    },
+    {
+      "check": "typecache",
+      "passed": true
+    },
+    {
+      "check": "language-merge",
+      "passed": true
+    },
+    {
+      "check": "database-xml-merge",
+      "passed": true
+    },
+    {
+      "check": "dependency-order",
+      "passed": true
+    },
+    {
+      "check": "load-after-order",
+      "passed": true
+    },
+    {
+      "check": "javascript-initialized",
+      "passed": true
+    },
+    {
+      "check": "javascript-frame-handler",
+      "passed": true
+    },
+    {
+      "check": "invalid-dll-isolated-from-valid-mod",
+      "passed": true
+    },
+    {
+      "check": "stable-equal-priority-order",
+      "passed": true
+    },
+    {
+      "check": "cycle-falls-back-without-dropping-mods",
+      "passed": true
+    },
+    {
+      "check": "same-package-distinct-instances-retained",
+      "passed": true
+    },
+    {
+      "check": "missing-dependency-disabled",
+      "passed": true
+    },
+    {
+      "check": "incompatible-version-disabled",
+      "passed": true
+    },
+    {
+      "check": "upgrade:21769d83.scworld:2.4",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:21769d83.scworld",
+      "passed": true
+    },
+    {
+      "check": "upgrade:496b4397.scworld:2.3",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:496b4397.scworld",
+      "passed": true
+    },
+    {
+      "check": "upgrade:world-3cb66c21.scworld:2.4",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:world-3cb66c21.scworld",
+      "passed": true
+    },
+    {
+      "check": "upgrade:world-58a4a892.scworld:2.4",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:world-58a4a892.scworld",
+      "passed": true
+    },
+    {
+      "check": "upgrade:world-865c5744.scworld:2.4",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:world-865c5744.scworld",
+      "passed": true
+    },
+    {
+      "check": "upgrade:world-c42f92ef.scworld:2.4",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:world-c42f92ef.scworld",
+      "passed": true
+    },
+    {
+      "check": "upgrade:world-daffd0ce.scworld:2.4",
+      "passed": true
+    },
+    {
+      "check": "backup-recovery:world-daffd0ce.scworld",
+      "passed": true
+    },
+    {
+      "check": "valid-project-after-save",
+      "passed": true
+    },
+    {
+      "check": "player-restored",
+      "passed": true
+    },
+    {
+      "check": "seed-restored",
+      "passed": true
+    },
+    {
+      "check": "placed-block-restored",
+      "passed": true
+    }
+  ],
+  "loggedErrors": [],
+  "expectedErrors": [
+    "Get file [BrokenForBaseline.dll] failed: System.BadImageFormatException: Bad IL format.\r\n   at System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(IntPtr ptrNativeAssemblyBinder, IntPtr ptrAssemblyArray, Int32 iAssemblyArrayLen, IntPtr ptrSymbols, Int32 iSymbolArrayLen, ObjectHandleOnStack retAssembly)\r\n   at System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(IntPtr ptrNativeAssemblyBinder, IntPtr ptrAssemblyArray, Int32 iAssemblyArrayLen, IntPtr ptrSymbols, Int32 iSymbolArrayLen, ObjectHandleOnStack retAssembly)\r\n   at System.Runtime.Loader.AssemblyLoadContext.InternalLoad(ReadOnlySpan\u00601 arrAssembly, ReadOnlySpan\u00601 arrSymbols)\r\n   at System.Reflection.Assembly.Load(Byte[] rawAssembly, Byte[] rawSymbolStore)\r\n   at Game.ModEntity.\u003C\u003Ec__DisplayClass36_0.\u003CGetAssemblies\u003Eb__0(String filename, Stream stream)\r\n   at Game.ModEntity.GetFiles(String extension, Action\u00602 action)",
+    "[invalid] Failed to find dependency: Package Name \u0022graph.absent\u0022, Required version: [2.0.0, 3.0.0)",
+    "[invalid] Failed to find dependency: Package Name \u0022graph.a\u0022, Required version: [2.0.0, 3.0.0)"
+  ],
+  "error": null
+}

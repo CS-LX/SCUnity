@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>PortProbeMod</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <Deterministic>true</Deterministic>
+    <NoWarn>CS0618</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Engine" HintPath="$(BaselineOutput)/Engine.dll" />
+    <Reference Include="EntitySystem" HintPath="$(BaselineOutput)/EntitySystem.dll" />
+    <Reference Include="Survivalcraft" HintPath="$(BaselineOutput)/Survivalcraft.dll" />
+    <Reference Include="0Harmony" HintPath="$(BaselineOutput)/0Harmony.dll" />
+  </ItemGroup>
+</Project>

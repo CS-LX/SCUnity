@@ -1,0 +1,15 @@
+{
+  "seed": 123456,
+  "world": "SCUnity baseline",
+  "players": [
+    {
+      "Name": "BaselinePlayer",
+      "PlayerIndex": 2,
+      "Level": 1,
+      "SpawnsCount": 1,
+      "CharacterSkinName": "$Male1"
+    }
+  ],
+  "entities": 1,
+  "allocatedChunks": 0
+}

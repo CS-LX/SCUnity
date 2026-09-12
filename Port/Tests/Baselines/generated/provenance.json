@@ -1,0 +1,44 @@
+{
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "referenceAssemblies": [
+    {
+      "name": "Engine.dll",
+      "sha256": "20c562636c9ee4656ef074faf63bf233d2f39b4a5d77513138ee870ac7531206"
+    },
+    {
+      "name": "EntitySystem.dll",
+      "sha256": "81b5c056854feccfeafcff986401fca39ad0a86a4fac397b33fb2a84a1ba0784"
+    },
+    {
+      "name": "Survivalcraft.dll",
+      "sha256": "90a3d465f73a28b8dfe24379d4f678eb1ed15242a5005b4f520e333deeae1aef"
+    }
+  ],
+  "scenario": "world",
+  "mods": "generated",
+  "probeSha256": "6cfd59ad9815c2c856e7dd426309c554a59ed856480a5c6e5c5f57ea95bc6963",
+  "jit": {
+    "TieredCompilation": false,
+    "ReadyToRun": false,
+    "NoInline": true
+  },
+  "modPackages": [
+    {
+      "path": "Mods/nested/broken.scmod",
+      "sha256": "0b1e82aacf5ae67668be850d42f3444040541101dbdf92b0ca5952795db87d21"
+    },
+    {
+      "path": "Mods/nested/code.scmod",
+      "sha256": "626692c7a5198e33c3345a30dc291ed4bbf44f3a051220d2514bc1dbf2c14694"
+    },
+    {
+      "path": "Mods/nested/late.scmod",
+      "sha256": "50ccc3a6f647633e1233294a7b3e23f5319344270c6b1bbc706025bf2d6c7780"
+    },
+    {
+      "path": "Mods/nested/resources.scmod",
+      "sha256": "9b3ef2cdf0db33a07952a3ed8a284c401c6a7c6b685fef76623edc0b241d2c6b"
+    }
+  ],
+  "sampleManifestSha256": "e9e7aa1117574173fd2ffc0b798fcbe176edfc01d35784cc7a37c4862da3dd94"
+}

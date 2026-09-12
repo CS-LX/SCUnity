@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "upstreamLockSha256": "25d316a950297b23f2552861bfe1adeda8416eea65e3156aa780dfb66ccc4eeb",
+  "hashBasis": "UTF-8 LF for JSON/source text; raw bytes for gzip and scworld",
+  "referenceTemplateCommit": "80a9e325ec8b68fa5d7632b36bed1fdf008f3690",
+  "sources": {
+    "Tests/RuntimeProbe/Program.cs": "7097d80af0e4d29af75c15087f0b9c83891f308704c73df3ebc83aa32b93c216",
+    "Tests/RuntimeProbe/RuntimeProbe.csproj": "8644899466313ddb4ac1667932f971641bb7baf047cb9eb8eb56ed072a88f859",
+    "Tests/ModFixture/ModFixture.csproj": "c8ca7455380ac426aa2f70a308e71795787f4ad9e8a24b5f5b0fa9c045f53c23",
+    "Tests/ModFixture/ProbeMod.cs": "31c73f9d9235e42bbca80e37a3fbd4fae2a250eb46c88d31ce14d3fccf19b620",
+    "Build/runtime_baseline.py": "740f987d64ec26505b35cccfe9640b3ec08c2869cf4d9e0d8788f954d6ba97e4",
+    "Build/validate_runtime.py": "641b36432e5bc023b5ee70bcec65f8c7330a534b3eeac7827dda394d6454c42a",
+    "Build/collect_runtime_samples.py": "244ff9287414e2e87993ad091381d7fbd2ff3452ed5ebb402d81c664aabdf820",
+    "Build/record_runtime_baseline.py": "304c5340dee5613432ab75efc1df2a73a4ebcf7c58f1eb32d280a81210118c4b"
+  },
+  "evidence": {
+    "community/provenance.json": "825c4b8dc2418434fda4ea49298d43b7057c0155b39bb7e206da3ba5eb987bb3",
+    "community/result.json": "342e328054933a7ab10a15f965f6269666887f1cf7a9267328f82e12f534305a",
+    "community/trace.jsonl.gz": "4532e8c0459057ea0174c64dfe77cd00c30b22792d07e5452d34e353ff8415e2",
+    "community/validation.json": "ddd155159419f70e784d3345634a1e0ad8a9d845ac47bc9210ca6860e8c220f3",
+    "generated/after-reload.json": "d9d619c64c828b9f5a90428123a9a463319c6bda51fd6d403cf6c9a47c8f47a6",
+    "generated/before-reload.json": "b4600bdbcdf2ad7e6f3a614a4edbb36c2b669e1a38a176fa6644f1cfe3343c04",
+    "generated/new-world.scworld": "37618660eb83b6e40dff8a105a13f42f3a32d87b1e692de72d6d4dc5d0745b23",
+    "generated/populated-world.scworld": "b93de8e97e528771312bc46ec891a68f11f6edb905df04124f97c56a67b7efd1",
+    "generated/provenance.json": "eec6a69ed5ba01ee16b290ecd113284b126e16b6939f2eaeefe96f23806a03c4",
+    "generated/reloaded-world.scworld": "73760ecb7597d5ce60f56054f989d7fd177defb3e7dc2dade176e30867412214",
+    "generated/result.json": "910fbcb77af3f6221f4a0b4f0105ba231b853e552003967619f80b58610a9318",
+    "generated/trace.jsonl.gz": "7b690198eb7460f3ebcc2262171bb333ef6cd0988eb78b2ec80b123d0f3ee5f1",
+    "generated/validation.json": "264ad27577e9fd9a7851413833f8d496bbbd2fc15275449c422c8558c8581af1",
+    "legacy-2.3.scworld": "2b1482587124770336560d1bc965fe15114bf65e756c67c590eacdccbc8d8ba2",
+    "legacy-upgraded-2.4.scworld": "7184c2004103c21081f18de711a663979c558463078cfa2ea7af69f4c661b7cf",
+    "UserSamples.json": "e9e7aa1117574173fd2ffc0b798fcbe176edfc01d35784cc7a37c4862da3dd94"
+  },
+  "coverage": {
+    "generated": {
+      "assertions": 42,
+      "frames": 605,
+      "ecsCalls": 279
+    },
+    "community": {
+      "assertions": 3,
+      "frames": 22,
+      "ecsCalls": 0
+    }
+  }
+}

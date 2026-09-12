@@ -1,6 +1,6 @@
 # Survivalcraft API Windows 端迁移到 Unity 的执行计划
 
-> 状态：架构调研完成，等待按阶段实施
+> 状态：阶段 0 的静态/构建/API、运行 trace、存档及模组参考基线已建立；阶段 1 尚未开始。实际覆盖边界见 [兼容报告](PortCompatibilityReport.md) 和 [基线工具说明](../Port/README.md)。
 >
 > 调研日期：2026-09-12
 >
