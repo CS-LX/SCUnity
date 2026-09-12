@@ -1,0 +1,19 @@
+{
+  "name": "SCUnity.Runtime",
+  "references": [
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Core.Runtime",
+    "Unity.InputSystem"
+  ],
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "Engine.dll",
+    "EntitySystem.dll",
+    "Survivalcraft.dll",
+    "0Harmony.dll",
+    "Silk.NET.Input.Common.dll",
+    "Silk.NET.Core.dll",
+    "Silk.NET.OpenXR.dll"
+  ],
+  "autoReferenced": false
+}

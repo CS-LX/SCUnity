@@ -1,0 +1,1 @@
+<Project><PropertyGroup><TargetFramework>net48</TargetFramework><DefineConstants>$(DefineConstants);WINDOWS;SCUNITY</DefineConstants></PropertyGroup></Project>

@@ -1,0 +1,6 @@
+{
+  "name": "SCUnity.Editor",
+  "references": ["SCUnity.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": false
+}

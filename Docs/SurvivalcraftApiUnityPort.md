@@ -1,6 +1,6 @@
 # Survivalcraft API Windows 端迁移到 Unity 的执行计划
 
-> 状态：阶段 0 已建立完整参考基线；阶段 1 已完成 Mono 能力探针、数学/序列化/完整 EntitySystem、FLAC 和 ImageSharp 解码依赖适配。最新图像模块的 183 个样本在 Unity Player 中与原版像素、缩放及编码输出逐字节一致，完整 467 个依赖类型 API 保持。完整 Engine、Survivalcraft 与宿主仍待实现。范围见 [兼容报告](PortCompatibilityReport.md) 和 [图像验收](../Port/Compatibility/Images.md)。
+> 状态：阶段 0 已完成；阶段 1 的 Mono、数学/序列化/完整 EntitySystem、FLAC 和 ImageSharp 已验收。完整三个程序集现已构建为 Unity Mono 目标，并已把原版加载、主菜单与设置交互的核心循环接入主项目 Assets/SCUnity/Scenes/Survivalcraft.unity。音频输出、世界渲染与完整 API/模组回归仍未完成，当前是增量接入，范围见 [桌面说明](../Port/Compatibility/Desktop/README.md)。
 >
 > 调研日期：2026-09-12
 >

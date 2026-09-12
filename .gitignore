@@ -67,3 +67,7 @@ Desktop.ini
 /Port/**/bin/
 /Port/**/obj/
 /Port/**/__pycache__/
+
+# Rebuilt desktop assemblies and upstream content; see Port/Build/desktop.py.
+/Assets/SCUnity/Plugins/Generated/*.dll
+/Assets/StreamingAssets/Survivalcraft/Content.zip

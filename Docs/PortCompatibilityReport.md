@@ -2,7 +2,7 @@
 
 更新日期：2026-09-12。目标：Windows x86-64 桌面非 VR Unity Player。
 
-当前里程碑：**阶段 0 已建立参考基线；阶段 1 已完成 Mono 能力验证、数学/序列化/完整 EntitySystem 、FLAC 和 ImageSharp 解码依赖适配。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表记录真正 Unity Player 的结果。完整 Engine、Survivalcraft、游戏宿主和画面仍未完成。
+当前里程碑：**阶段 0 与阶段 1 的基础/媒体依赖模块已验收；原版加载、主菜单和设置交互的核心循环已接入主项目。** 入口为 `Assets/SCUnity/Scenes/Survivalcraft.unity`。三个完整程序集已能在 Unity Mono 中运行该循环；音频输出、世界渲染、完整 API/模组/存档回归仍未完成。下方原版 `.NET 10` 基线不代表 Unity 端已经通过相同验收。详见 [桌面接入说明](../Port/Compatibility/Desktop/README.md)。
 
 ## 已建立的基线
 
@@ -41,7 +41,7 @@ API 工具统计 Engine 413、EntitySystem 22、Survivalcraft 1,290 个外部可
 | 跨框架 API 对比 | 已按显式 BCL 重定向政策验证 Engine 子集 131、完整 EntitySystem 22 个类型，无未登记差异 | 扩展到完整三程序集；低层平台类型变化仍需逐项登记 |
 | 原 OpenGL/Silk 公开表面 | 快照保留低层平台类型；后端替换的 API 等价性未验证 | 针对每个外泄类型确定同 API 实现或有证据的例外；不能静默删除 |
 | 内容运行时解码与渲染 | 原版实际加载主菜单和标准世界；自定义 Reader/资源覆盖通过，实际社区 GLSL 两变体编译通过 | Unity 运行时 Reader、媒体、URP 与像素输出仍待对照；编译通过不代表自定义画面等价 |
-| Unity 生命周期、输入、音频、桌面服务 | 未实现 | 分阶段接入，并在 Windows Player 验证 |
+| Unity 生命周期、输入、音频、桌面服务 | 主项目已接入加载/主菜单/设置循环、URP Unlit、键鼠交互；音频与完整平台服务待实现 | 主项目 Player 已验证点击/返回；继续世界、音频、完整输入与平台回归 |
 | VR | 明确排除的交付范围；原版参考 DLL 仍包含上游 VR API | 保留需要的共享签名，Unity 桌面后端稳定报告 VR 未启动 |
 
 ## 阶段 1：已完成的首个模块

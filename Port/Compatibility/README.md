@@ -1,6 +1,6 @@
 # 阶段 1：源码生成与 Unity Mono 运行能力验证
 
-本模块建立了从固定上游生成源码、外部 Roslyn 编译 `net48`、构建独立 Unity Windows Player、自动验收并保存证据的链路。**它是阶段 1 的首个完成模块。后续已完成 [数学、序列化和完整 EntitySystem](Foundation.md) 、[FLAC 解码依赖](Flac.md) 和 [ImageSharp 图像依赖](Images.md)；完整的三个兼容程序集仍待实现。**
+本模块建立了从固定上游生成源码、外部 Roslyn 编译 `net48`、构建独立 Unity Windows Player、自动验收并保存证据的链路。**它是阶段 1 的首个完成模块。后续已完成 [数学、序列化和完整 EntitySystem](Foundation.md) 、[FLAC 解码依赖](Flac.md) 和 [ImageSharp 图像依赖](Images.md)；三个完整程序集已可构建，且原版主菜单/设置核心循环已接入主项目，见 [桌面接入](Desktop/README.md)；完整后端与兼容验收仍待完成。**
 
 ## 已验证的范围
 

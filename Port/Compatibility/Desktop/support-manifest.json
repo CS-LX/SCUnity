@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "additions": {
+    "Engine/Properties/DiagnosticPlatform.cs": {
+      "source": "Support/Engine/Properties/DiagnosticPlatform.cs",
+      "sha256": "df8762196a84fcba4aad5408f14b069aa51690204200b2f18dd972834e873734"
+    },
+    "Engine/Properties/Float4.cs": {
+      "source": "Support/Engine/Properties/Float4.cs",
+      "sha256": "15c4708b8f6c3a17b8bc0db421a97e9d48f281b4fcf631d59e33463b1f42ebc7"
+    },
+    "Engine/Properties/StreamCompat.cs": {
+      "source": "Support/Engine/Properties/StreamCompat.cs",
+      "sha256": "c81df25153c2b32ebd392ca6e7be7583dac6d9a0897b941234c0ab68a12b4f39"
+    },
+    "Engine/Properties/UnityAudioCallbacks.cs": {
+      "source": "Support/Engine/Properties/UnityAudioCallbacks.cs",
+      "sha256": "bf430e19b9291a928be0c95e115b480cd8b90a52feff2886104e1842be6ff65a"
+    },
+    "Engine/Properties/UnityAudioCommands.cs": {
+      "source": "Support/Engine/Properties/UnityAudioCommands.cs",
+      "sha256": "b641ac5db5fe82fcacdf569dedff00473146ee0def6a7b456069685cd09e426d"
+    },
+    "Engine/Properties/UnityCallbacks.cs": {
+      "source": "Support/Engine/Properties/UnityCallbacks.cs",
+      "sha256": "9bebbeb5f184c11bee77f41974e5e04374b03301c66021e1eba766e48ea35021"
+    },
+    "Engine/Properties/UnityCommands.cs": {
+      "source": "Support/Engine/Properties/UnityCommands.cs",
+      "sha256": "1efffd6d68393cf927b55e9232337a2f4b8ecd7ba3d69f414b543cf65d69483a"
+    },
+    "Engine/Properties/UnityHost.cs": {
+      "source": "Support/Engine/Properties/UnityHost.cs",
+      "sha256": "41df080f46758ae4442ff2055689ee236bc1427a9d71f7506c03853306397c36"
+    },
+    "Engine/Properties/UnityInputContext.cs": {
+      "source": "Support/Engine/Properties/UnityInputContext.cs",
+      "sha256": "f574456b58367b8e57113dda6960f3e97a6bf811f0751418c464e75e811d9053"
+    },
+    "Survivalcraft/Properties/DiagnosticPlatform.cs": {
+      "source": "Support/Survivalcraft/Properties/DiagnosticPlatform.cs",
+      "sha256": "9649afcd9a18535f10c00e0996390ec30c05ccad4dcf6ad28c87a8c66921bb5a"
+    },
+    "Survivalcraft/Properties/MonoBcl.cs": {
+      "source": "Support/Survivalcraft/Properties/MonoBcl.cs",
+      "sha256": "fc8244c4fafc2c743e31e13760c23f9b3977a2d801c7ce8c045c4b5986561d65"
+    },
+    "Survivalcraft/Properties/PriorityQueue.cs": {
+      "source": "Support/Survivalcraft/Properties/PriorityQueue.cs",
+      "sha256": "1f2c15bf29de7a81b44ca6cc9daf1dbf8098a8b8fc2c60f45000d23c8d902ea1"
+    },
+    "Survivalcraft/Properties/StreamCompat.cs": {
+      "source": "Support/Survivalcraft/Properties/StreamCompat.cs",
+      "sha256": "7e3020081ffe7ff0681b229fd693076a5bc952f618c8f4fc0733f1f1c1e27bc6"
+    }
+  },
+  "projects": {
+    "Directory.Build.props": {
+      "source": "Projects/Directory.Build.props",
+      "sha256": "2aefb066862b728da9e8d1c414dc0c86578bf96f66484407e9955b68020e235e",
+      "upstreamSha256": null
+    },
+    "Directory.Build.targets": {
+      "source": "Projects/Directory.Build.targets",
+      "sha256": "3901afd485585e29a59b99c468d8bf74a4cace2ee5ce999b3364938e51e85fe7",
+      "upstreamSha256": null
+    },
+    "Engine/Engine.props": {
+      "source": "Projects/Engine/Engine.props",
+      "sha256": "2765710c2639c6ce936b4bcff5385ca1146183e658803707f3b70280b2dc915b",
+      "upstreamSha256": "22de0528b7b30e5422de99c0fcccfbcece340b0d322f2d22aef037ee9bcf8483"
+    },
+    "Survivalcraft/Survivalcraft.props": {
+      "source": "Projects/Survivalcraft/Survivalcraft.props",
+      "sha256": "49bdf5efd5aab11a9c7b7257cbe8416d0e7d430a12f8e8d4b643554a96584ac9",
+      "upstreamSha256": "4b3e0d9a20ae2feb2e80981904964872d5fee85a6331311d2d26eeee7fccb6ea"
+    },
+    "Survivalcraft.Windows/Survivalcraft.Windows.csproj": {
+      "source": "Projects/Survivalcraft.Windows/Survivalcraft.Windows.csproj",
+      "sha256": "1929a9fd7b6358f96c0f63a19821c41266352e97c275866ec9a8491c1d543551",
+      "upstreamSha256": "f26de5358d6bca3342ac1ea807c473dc62df8c5e1e9ff2e6a539767a8aa67d7f"
+    },
+    "build/Windows.props": {
+      "source": "Projects/build/Windows.props",
+      "sha256": "f7c98d6d62e4719f644f4dc5f7e78e2604c77c2368d73eabe87e3db131ea0f62",
+      "upstreamSha256": "a8c722b4244ea3c689c0f82d48963fb3d74617e9a5fe5767ee6777b09fc83a74"
+    }
+  }
+}

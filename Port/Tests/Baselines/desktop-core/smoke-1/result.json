@@ -1,0 +1,17 @@
+{
+    "passed": true,
+    "enteredSettingsWithMouse": true,
+    "returnedWithEscape": true,
+    "isMono": true,
+    "isEditor": false,
+    "frames": 177,
+    "pointerSize": 8,
+    "executedDraws": 1509,
+    "draws": 1509,
+    "uploads": 460,
+    "screen": "Game.MainMenuScreen",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "entryPoint": "SCUnity.Runtime.SurvivalcraftGame",
+    "error": ""
+}
