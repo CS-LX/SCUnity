@@ -25,7 +25,7 @@ namespace Game {
 
         public const string fName = "SubsystemFireworksBlockBehavior";
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

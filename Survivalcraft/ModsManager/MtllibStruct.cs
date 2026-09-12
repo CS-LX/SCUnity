@@ -1,6 +1,6 @@
 namespace Game {
     public class MtllibStruct {
-        public Dictionary<string, string> TexturePaths = [];
+        public Dictionary<string, string> TexturePaths = new global::System.Collections.Generic.Dictionary<string, string>() {  };
 
         public static MtllibStruct Load(Stream stream) {
             MtllibStruct mtllibStruct = new();
@@ -9,7 +9,7 @@ namespace Game {
                 string Tkey = null;
                 while (!streamReader.EndOfStream) {
                     string line = streamReader.ReadLine();
-                    string[] spl = line.Split([(char)0x09, (char)0x20], StringSplitOptions.None);
+                    string[] spl = line.Split(new char[] { (char)0x09, (char)0x20 }, StringSplitOptions.None);
                     switch (spl[0]) {
                         case "newmtl": {
                             Tkey = spl[1];

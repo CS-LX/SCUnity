@@ -74,130 +74,20 @@ namespace Engine.Input {
         public static event Action<MouseButtonEvent> MouseUp;
 
         public static void SetMousePosition(int x, int y) {
-#if !MOBILE && !BROWSER
-            m_mouse.Position = new System.Numerics.Vector2(x, y);
-#endif
+UnityRuntime.Host.MousePosition = new Point2(x,y);
         }
 
         internal static void Initialize() {
-#if ANDROID
-            if (Build.VERSION.SdkInt >= (BuildVersionCodes)26) {
-                Window.m_surface.SetOnCapturedPointerListener(new OnCapturedPointerListener());
-            }
-#elif !IOS && !BROWSER
-            m_mouse = Window.m_inputContext.Mice[0];
-            m_mouse.MouseDown += MouseDownHandler;
-            m_mouse.MouseUp += MouseUpHandler;
-            //m_mouse.MouseMove += MouseMoveHandler;
-            m_mouse.Scroll += MouseWheelHandler;
-#endif
+m_mouse=Window.m_inputContext.Mice[0];m_mouse.MouseDown+=MouseDownHandler;m_mouse.MouseUp+=MouseUpHandler;m_mouse.Scroll+=MouseWheelHandler;Clear();
         }
 
         internal static void Dispose() { }
 
         internal static void BeforeFrame() {
-#if ANDROID
-            if (IsMouseVisible) {
-                if (m_pointerCaptureRequested) {
-                    m_pointerCaptureRequested = false;
-                    if (Build.VERSION.SdkInt >= (BuildVersionCodes)26) {
-                        Window.m_surface?.ReleasePointerCapture();
-                    }
-                    Clear();
-                }
-                MouseMovement = Point2.Zero;
-                m_lastMousePosition = null;
-            }
-            else {
-                if (!m_pointerCaptureRequested) {
-                    m_pointerCaptureRequested = true;
-                    if (Build.VERSION.SdkInt >= (BuildVersionCodes)26) {
-                        Window.m_surface?.RequestPointerCapture();
-                    }
-                }
-                if (m_lastMousePosition.HasValue) {
-                    MouseMovement = Point2.Round(m_queuedMouseMovement.X, m_queuedMouseMovement.Y);
-                }
-                //安卓端m_lastMousePosition只用来表示是不是鼠标不可见后的第一帧
-                m_lastMousePosition = Point2.Zero;
-                m_queuedMouseMovement = Vector2.Zero;
-            }
-            MouseWheelMovement = (int)MathUtils.Round(m_queuedMouseWheelMovement) * 120;
-            m_queuedMouseWheelMovement = 0f;
-            MouseWheelMovementX = (int)MathUtils.Round(m_queuedMouseWheelMovementX) * 120;
-            m_queuedMouseWheelMovementX = 0f;
-            while (!m_cachedMouseButtonEvents.IsEmpty) {
-                if (m_cachedMouseButtonEvents.TryDequeue(out MouseButtonInfo buttonInfo)) {
-                    if (buttonInfo.Press) {
-                        ProcessMouseDown(buttonInfo.Button, buttonInfo.Position);
-                    }
-                    else {
-                        ProcessMouseUp(buttonInfo.Button, buttonInfo.Position);
-                    }
-                }
-                else {
-                    Thread.Yield();
-                }
-            }
-#elif BROWSER
-            if (Window.IsActive) {
-                ProcessMouseMove(m_currentMousePosition);
-                if (IsMouseVisible) {
-                    if (m_pointerCaptureRequested) {
-                        m_pointerCaptureRequested = false;
-                        BrowserInterop.SetNeedPointerLock(false);
-                    }
-                    MouseMovement = Point2.Zero;
-                    m_lastMousePosition = null;
-                }
-                else {
-                    if (!m_pointerCaptureRequested) {
-                        m_pointerCaptureRequested = true;
-                        BrowserInterop.SetNeedPointerLock(true);
-                    }
-                    if (m_lastMousePosition.HasValue) {
-                        MouseMovement = Point2.Round(m_queuedMouseMovement.X, m_queuedMouseMovement.Y);
-                    }
-                    m_lastMousePosition = m_currentMousePosition;
-                    m_queuedMouseMovement = Vector2.Zero;
-                }
-            }
-            else {
-                m_lastMousePosition = null;
-            }
-            MouseWheelMovement = (int)MathUtils.Round(m_queuedMouseWheelMovement) * 120;
-            m_queuedMouseWheelMovement = 0f;
-            MouseWheelMovementX = (int)MathUtils.Round(m_queuedMouseWheelMovementX) * 120;
-            m_queuedMouseWheelMovementX = 0f;
-#elif !IOS
-            if (Window.IsActive) {
-                Point2 position = new((int)m_mouse.Position.X, (int)m_mouse.Position.Y);
-                ProcessMouseMove(position);
-                if (IsMouseVisible) {
-                    m_mouse.Cursor.CursorMode = CursorMode.Normal;
-                    MouseMovement = Point2.Zero;
-                    m_lastMousePosition = null;
-                }
-                else {
-                    m_mouse.Cursor.CursorMode = CursorMode.Raw;
-                    if (m_lastMousePosition.HasValue) {
-                        MouseMovement = new Point2(position.X - m_lastMousePosition.Value.X, position.Y - m_lastMousePosition.Value.Y);
-                    }
-                    Point2 windowSize = Window.Size;
-                    if (position.X < 0
-                        || position.X >= windowSize.X
-                        || position.Y < 0
-                        || position.Y >= windowSize.Y) {
-                        position = new Point2(windowSize.X / 2, windowSize.Y / 2);
-                        SetMousePosition(position.X, position.Y);
-                    }
-                    m_lastMousePosition = position;
-                }
-            }
-            else {
-                m_lastMousePosition = null;
-            }
-#endif
+if (Window.IsActive) ProcessMouseMove(UnityRuntime.Host.MousePosition);
+            MouseMovement = IsMouseVisible ? Point2.Zero : UnityRuntime.Host.MouseDelta;
+            
+            
         }
 #if ANDROID
         public static void EnqueueMouseButtonEvent(MouseButton button, bool press, Point2 position) => m_cachedMouseButtonEvents.Enqueue(new MouseButtonInfo(button, press, position));
@@ -320,11 +210,11 @@ namespace Engine.Input {
 #endif
 
         static Mouse() {
-            m_mouseButtonsDownArray = new bool[Enum.GetValues<MouseButton>().Length];
-            m_mouseButtonsDownFrameArray = new int[Enum.GetValues<MouseButton>().Length];
-            m_mouseButtonsDelayedUpArray = new bool[Enum.GetValues<MouseButton>().Length];
-            m_mouseButtonsDownOnceArray = new bool[Enum.GetValues<MouseButton>().Length];
-            m_mouseButtonsUpOnceArray = new bool[Enum.GetValues<MouseButton>().Length];
+            m_mouseButtonsDownArray = new bool[((MouseButton[])System.Enum.GetValues(typeof(MouseButton))).Length];
+            m_mouseButtonsDownFrameArray = new int[((MouseButton[])System.Enum.GetValues(typeof(MouseButton))).Length];
+            m_mouseButtonsDelayedUpArray = new bool[((MouseButton[])System.Enum.GetValues(typeof(MouseButton))).Length];
+            m_mouseButtonsDownOnceArray = new bool[((MouseButton[])System.Enum.GetValues(typeof(MouseButton))).Length];
+            m_mouseButtonsUpOnceArray = new bool[((MouseButton[])System.Enum.GetValues(typeof(MouseButton))).Length];
             IsMouseVisible = true;
         }
 
@@ -359,10 +249,10 @@ namespace Engine.Input {
             if (!IsMouseVisible) {
                 MousePosition = null;
 #if !MOBILE && !BROWSER
-                m_mouse.Cursor.CursorMode = Window.IsActive ? CursorMode.Raw : CursorMode.Normal;
+                if (m_mouse != null) m_mouse.Cursor.CursorMode = Window.IsActive ? CursorMode.Raw : CursorMode.Normal;
             }
             else {
-                m_mouse.Cursor.CursorMode = CursorMode.Normal;
+                if (m_mouse != null) m_mouse.Cursor.CursorMode = CursorMode.Normal;
 #endif
             }
             MouseWheelMovement = 0;
@@ -440,7 +330,7 @@ namespace Engine.Input {
                 Window.m_surface?.PointerIcon = PointerIcon.GetSystemIcon(Application.Context, TranslateCursorType(cursorType));
             }
 #elif !IOS && !BROWSER
-            m_mouse.Cursor.StandardCursor = TranslateCursorType(cursorType);
+            if (m_mouse != null) m_mouse.Cursor.StandardCursor = TranslateCursorType(cursorType);
 #endif
         }
     }

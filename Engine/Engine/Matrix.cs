@@ -1,38 +1,42 @@
-using System.Runtime.Intrinsics;
+using Vector128 = SCUnity.Compatibility.Float4;
 
 namespace Engine {
-    public struct Matrix(float m11,
-        float m12,
-        float m13,
-        float m14,
-        float m21,
-        float m22,
-        float m23,
-        float m24,
-        float m31,
-        float m32,
-        float m33,
-        float m34,
-        float m41,
-        float m42,
-        float m43,
-        float m44) : IEquatable<Matrix> {
-        public float M11 = m11;
-        public float M21 = m21;
-        public float M31 = m31;
-        public float M41 = m41;
-        public float M12 = m12;
-        public float M22 = m22;
-        public float M32 = m32;
-        public float M42 = m42;
-        public float M13 = m13;
-        public float M23 = m23;
-        public float M33 = m33;
-        public float M43 = m43;
-        public float M14 = m14;
-        public float M24 = m24;
-        public float M34 = m34;
-        public float M44 = m44;
+    public struct Matrix: IEquatable<Matrix> {
+        public Matrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44) : this()
+{
+    this.M11 = m11;
+    this.M21 = m21;
+    this.M31 = m31;
+    this.M41 = m41;
+    this.M12 = m12;
+    this.M22 = m22;
+    this.M32 = m32;
+    this.M42 = m42;
+    this.M13 = m13;
+    this.M23 = m23;
+    this.M33 = m33;
+    this.M43 = m43;
+    this.M14 = m14;
+    this.M24 = m24;
+    this.M34 = m34;
+    this.M44 = m44;
+}
+        public float M11 ;
+        public float M21 ;
+        public float M31 ;
+        public float M41 ;
+        public float M12 ;
+        public float M22 ;
+        public float M32 ;
+        public float M42 ;
+        public float M13 ;
+        public float M23 ;
+        public float M33 ;
+        public float M43 ;
+        public float M14 ;
+        public float M24 ;
+        public float M34 ;
+        public float M44 ;
 
         public static readonly Matrix Zero = default;
 
@@ -760,32 +764,32 @@ namespace Engine {
         }
 
         public static Matrix Lerp(Matrix m1, Matrix m2, float f) {
-            Vector128<float> vf = Vector128.Create(f);
-            Vector128<float> c1 = Vector128.LoadUnsafe(ref m1.M11);
-            Vector128<float> d1 = Vector128.LoadUnsafe(ref m2.M11);
+            SCUnity.Compatibility.Float4 vf = Vector128.Create(f);
+            SCUnity.Compatibility.Float4 c1 = Vector128.LoadUnsafe(ref m1.M11);
+            SCUnity.Compatibility.Float4 d1 = Vector128.LoadUnsafe(ref m2.M11);
             Vector128.StoreUnsafe(c1 + (d1 - c1) * vf, ref m1.M11);
-            Vector128<float> c2 = Vector128.LoadUnsafe(ref m1.M12);
-            Vector128<float> d2 = Vector128.LoadUnsafe(ref m2.M12);
+            SCUnity.Compatibility.Float4 c2 = Vector128.LoadUnsafe(ref m1.M12);
+            SCUnity.Compatibility.Float4 d2 = Vector128.LoadUnsafe(ref m2.M12);
             Vector128.StoreUnsafe(c2 + (d2 - c2) * vf, ref m1.M12);
-            Vector128<float> c3 = Vector128.LoadUnsafe(ref m1.M13);
-            Vector128<float> d3 = Vector128.LoadUnsafe(ref m2.M13);
+            SCUnity.Compatibility.Float4 c3 = Vector128.LoadUnsafe(ref m1.M13);
+            SCUnity.Compatibility.Float4 d3 = Vector128.LoadUnsafe(ref m2.M13);
             Vector128.StoreUnsafe(c3 + (d3 - c3) * vf, ref m1.M13);
-            Vector128<float> c4 = Vector128.LoadUnsafe(ref m1.M14);
-            Vector128<float> d4 = Vector128.LoadUnsafe(ref m2.M14);
+            SCUnity.Compatibility.Float4 c4 = Vector128.LoadUnsafe(ref m1.M14);
+            SCUnity.Compatibility.Float4 d4 = Vector128.LoadUnsafe(ref m2.M14);
             Vector128.StoreUnsafe(c4 + (d4 - c4) * vf, ref m1.M14);
             return m1;
         }
 
         // 列主序：M11/M12/M13/M14 各落在连续 4 float 的列起点；乘加顺序与标量版一致，结果逐位相同
         public static void MultiplyRestricted(ref Matrix m1, ref Matrix m2, out Matrix result) {
-            Vector128<float> a1 = Vector128.LoadUnsafe(ref m1.M11);
-            Vector128<float> a2 = Vector128.LoadUnsafe(ref m1.M12);
-            Vector128<float> a3 = Vector128.LoadUnsafe(ref m1.M13);
-            Vector128<float> a4 = Vector128.LoadUnsafe(ref m1.M14);
-            Vector128<float> b1 = Vector128.LoadUnsafe(ref m2.M11);
-            Vector128<float> b2 = Vector128.LoadUnsafe(ref m2.M12);
-            Vector128<float> b3 = Vector128.LoadUnsafe(ref m2.M13);
-            Vector128<float> b4 = Vector128.LoadUnsafe(ref m2.M14);
+            SCUnity.Compatibility.Float4 a1 = Vector128.LoadUnsafe(ref m1.M11);
+            SCUnity.Compatibility.Float4 a2 = Vector128.LoadUnsafe(ref m1.M12);
+            SCUnity.Compatibility.Float4 a3 = Vector128.LoadUnsafe(ref m1.M13);
+            SCUnity.Compatibility.Float4 a4 = Vector128.LoadUnsafe(ref m1.M14);
+            SCUnity.Compatibility.Float4 b1 = Vector128.LoadUnsafe(ref m2.M11);
+            SCUnity.Compatibility.Float4 b2 = Vector128.LoadUnsafe(ref m2.M12);
+            SCUnity.Compatibility.Float4 b3 = Vector128.LoadUnsafe(ref m2.M13);
+            SCUnity.Compatibility.Float4 b4 = Vector128.LoadUnsafe(ref m2.M14);
             result = default;
             Vector128.StoreUnsafe(a1 * Vector128.Create(b1[0]) + a2 * Vector128.Create(b1[1]) + a3 * Vector128.Create(b1[2]) + a4 * Vector128.Create(b1[3]), ref result.M11);
             Vector128.StoreUnsafe(a1 * Vector128.Create(b2[0]) + a2 * Vector128.Create(b2[1]) + a3 * Vector128.Create(b2[2]) + a4 * Vector128.Create(b2[3]), ref result.M12);
@@ -800,7 +804,7 @@ namespace Engine {
         public static Matrix operator +(Matrix m) => m;
 
         public static Matrix operator -(Matrix m) {
-            Vector128<float> zero = Vector128.Create(0f);
+            SCUnity.Compatibility.Float4 zero = Vector128.Create(0f);
             Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M11), ref m.M11);
             Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M12), ref m.M12);
             Vector128.StoreUnsafe(zero - Vector128.LoadUnsafe(ref m.M13), ref m.M13);
@@ -830,7 +834,7 @@ namespace Engine {
         }
 
         public static Matrix operator *(Matrix m, float s) {
-            Vector128<float> vs = Vector128.Create(s);
+            SCUnity.Compatibility.Float4 vs = Vector128.Create(s);
             Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M11) * vs, ref m.M11);
             Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M12) * vs, ref m.M12);
             Vector128.StoreUnsafe(Vector128.LoadUnsafe(ref m.M13) * vs, ref m.M13);

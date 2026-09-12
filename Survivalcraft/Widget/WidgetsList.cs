@@ -42,7 +42,7 @@ namespace Game {
 
         public ContainerWidget m_containerWidget;
 
-        public List<Widget> m_widgets = [];
+        public List<Widget> m_widgets = new global::System.Collections.Generic.List<global::Game.Widget>() {  };
 
         public int m_version;
 

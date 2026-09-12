@@ -7,7 +7,7 @@ namespace Game {
 
         public static Random m_random = new();
 
-        public override int[] HandledBlocks => [56, 57, 58];
+        public override int[] HandledBlocks => new int[] { 56, 57, 58 };
 
         public bool OpenCloseDoor(int x, int y, int z, bool open) {
             int cellValue = SubsystemTerrain.Terrain.GetCellValue(x, y, z);

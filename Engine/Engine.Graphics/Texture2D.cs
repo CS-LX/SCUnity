@@ -20,7 +20,7 @@ namespace Engine.Graphics {
         public PixelType m_pixelType;
         InternalFormat m_internalFormat;
 
-        public IntPtr NativeHandle => m_texture;
+        public IntPtr NativeHandle => (IntPtr)m_texture;
 
         /// <summary>
         /// 是否为 sRGB 颜色空间
@@ -159,7 +159,7 @@ namespace Engine.Graphics {
             SetDataInternal(mipLevel, source);
         }
 
-        public virtual void SetDataInternal(int mipLevel, nint source) {
+        public virtual unsafe void SetDataInternal(int mipLevel, nint source) {
             int width = MathUtils.Max(Width >> mipLevel, 1);
             int height = MathUtils.Max(Height >> mipLevel, 1);
             GLWrapper.BindTexture(TextureTarget.Texture2D, m_texture, false);
@@ -172,7 +172,7 @@ namespace Engine.Graphics {
                 0,
                 m_pixelFormat,
                 m_pixelType,
-                in source
+                (void*)source
             );
         }
 
@@ -451,7 +451,7 @@ namespace Engine.Graphics {
             int num2 = MathUtils.Max(Width >> mipLevel, 1);
             int num3 = MathUtils.Max(Height >> mipLevel, 1);
             int num4 = size * num2 * num3;
-            ArgumentNullException.ThrowIfNull(source);
+            if (source is null) throw new ArgumentNullException("source");
             if (mipLevel < 0
                 || mipLevel >= MipLevelsCount) {
                 throw new ArgumentOutOfRangeException(nameof(mipLevel));
@@ -464,7 +464,7 @@ namespace Engine.Graphics {
             }
             if (sourceStartIndex < 0
                 || (source.Length - sourceStartIndex) * num < num4) {
-                throw new InvalidOperationException("Not enough data in source array.");
+                throw new InvalidOperationException("Not enough data (void*)source array.");
             }
         }
 
@@ -498,7 +498,7 @@ namespace Engine.Graphics {
 
         void VerifyParametersSetData(Image<Rgba32> source) {
             VerifyNotDisposed();
-            ArgumentNullException.ThrowIfNull(source);
+            if (source is null) throw new ArgumentNullException("source");
         }
     }
 }

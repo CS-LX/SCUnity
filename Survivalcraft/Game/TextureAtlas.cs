@@ -6,17 +6,17 @@ namespace Game {
     public class TextureAtlas {
         public Texture2D m_texture;
 
-        public Dictionary<string, Rectangle> m_rectangles = [];
+        public Dictionary<string, Rectangle> m_rectangles = new global::System.Collections.Generic.Dictionary<string, global::Engine.Rectangle>() {  };
 
         public Texture2D Texture => m_texture;
 
         public TextureAtlas(Texture2D texture, string atlasDefinition, string prefix) {
             m_texture = texture;
-            string[] array = atlasDefinition.Split(['\n', '\r'], StringSplitOptions.RemoveEmptyEntries);
+            string[] array = atlasDefinition.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             int num = 0;
             while (true) {
                 if (num < array.Length) {
-                    string[] array2 = array[num].Split([' '], StringSplitOptions.RemoveEmptyEntries);
+                    string[] array2 = array[num].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     if (array2.Length < 5) {
                         break;
                     }

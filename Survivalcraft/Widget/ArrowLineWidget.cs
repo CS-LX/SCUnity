@@ -12,7 +12,7 @@ namespace Game {
 
         public bool m_absoluteCoordinates;
 
-        public List<Vector2> m_vertices = [];
+        public List<Vector2> m_vertices = new global::System.Collections.Generic.List<global::Engine.Vector2>() {  };
 
         public bool m_parsingPending;
 
@@ -86,7 +86,7 @@ namespace Game {
         public void ParsePoints() {
             m_parsingPending = false;
             List<Vector2> list = new();
-            string[] array = m_pointsString.Split([";"], StringSplitOptions.None);
+            string[] array = m_pointsString.Split(new string[] { ";" }, StringSplitOptions.None);
             foreach (string data in array) {
                 list.Add(HumanReadableConverter.ConvertFromString<Vector2>(data));
             }

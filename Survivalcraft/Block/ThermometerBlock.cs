@@ -43,7 +43,7 @@ namespace Game {
                     * Matrix.CreateTranslation(-0.5f, 0f, -0.5f)
                     * Matrix.CreateRotationY((i + 1) * (float)Math.PI / 2f)
                     * Matrix.CreateTranslation(0.5f, 0f, 0.5f);
-                m_collisionBoxesByData[i] = [m_caseMesh.CalculateBoundingBox(m_matricesByData[i])];
+                m_collisionBoxesByData[i] = new global::Engine.BoundingBox[] { m_caseMesh.CalculateBoundingBox(m_matricesByData[i]) };
             }
             m_fluidBottomPosition = m_fluidMesh.Vertices.Min(v => v.Position.Y);
             base.Initialize();

@@ -8,9 +8,9 @@ namespace Game {
 
         public int m_contents;
 
-        public Dictionary<int, T> m_itemsData = [];
+        public Dictionary<int, T> m_itemsData = new global::System.Collections.Generic.Dictionary<int, T>() {  };
 
-        public Dictionary<Point3, T> m_blocksData = [];
+        public Dictionary<Point3, T> m_blocksData = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, T>() {  };
         public Dictionary<MovingBlock, T> m_movingBlocksData = new();
 
         public SubsystemEditableItemBehavior(int contents) => m_contents = contents;

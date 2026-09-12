@@ -115,27 +115,27 @@ namespace Game {
 
         public SubsystemAnimatedTextures m_subsystemAnimatedTextures;
 
-        public List<MovingBlockSet> m_movingBlockSets = [];
+        public List<MovingBlockSet> m_movingBlockSets = new global::System.Collections.Generic.List<global::Game.SubsystemMovingBlocks.MovingBlockSet>() {  };
 
-        public List<MovingBlockSet> m_stopped = [];
+        public List<MovingBlockSet> m_stopped = new global::System.Collections.Generic.List<global::Game.SubsystemMovingBlocks.MovingBlockSet>() {  };
 
-        public List<MovingBlockSet> m_removing = [];
+        public List<MovingBlockSet> m_removing = new global::System.Collections.Generic.List<global::Game.SubsystemMovingBlocks.MovingBlockSet>() {  };
 
         public DynamicArray<TerrainChunkGeometry.Buffer> Buffers;
 
-        public DynamicArray<IMovingBlockSet> m_result = [];
-        public static DynamicArray<int> m_tmpIndices = [];
-        public static DynamicArray<TerrainVertex> m_vertexList = [];
+        public DynamicArray<IMovingBlockSet> m_result = new global::Engine.DynamicArray<global::Game.IMovingBlockSet>() {  };
+        public static DynamicArray<int> m_tmpIndices = new global::Engine.DynamicArray<int>() {  };
+        public static DynamicArray<TerrainVertex> m_vertexList = new global::Engine.DynamicArray<global::Game.TerrainVertex>() {  };
         public Shader m_shader;
 
         public BlockGeometryGenerator m_blockGeometryGenerator;
 
         public bool m_canGenerateGeometry;
 
-        public static int[] m_drawOrders = [10];
+        public static int[] m_drawOrders = new int[] { 10 };
 
         [Obsolete("Use MovingBlockSetEnumerable instead. This is slow and uses more memory.")]
-        public List<IMovingBlockSet> MovingBlockSets => [..m_movingBlockSets];
+        public List<IMovingBlockSet> MovingBlockSets => new global::System.Collections.Generic.List<global::Game.IMovingBlockSet>(m_movingBlockSets);
 
         public IEnumerable<IMovingBlockSet> MovingBlockSetEnumerable => m_movingBlockSets;
 
@@ -435,7 +435,7 @@ namespace Game {
             m_subsystemSky = Project.FindSubsystem<SubsystemSky>(true);
             m_subsystemAnimatedTextures = Project.FindSubsystem<SubsystemAnimatedTextures>(true);
             m_shader = ContentManager.Get<Shader>("Shaders/AlphaTested");
-            Buffers = [];
+            Buffers = new global::Engine.DynamicArray<global::Game.TerrainChunkGeometry.Buffer>() {  };
             foreach (ValuesDictionary value9 in valuesDictionary.GetValue<ValuesDictionary>("MovingBlockSets").Values) {
                 Vector3 value = value9.GetValue<Vector3>("Position");
                 Vector3 value2 = value9.GetValue<Vector3>("TargetPosition");
@@ -445,11 +445,11 @@ namespace Game {
                 Vector2 value6 = value9.GetValue("Smoothness", Vector2.Zero);
                 string value7 = value9.GetValue<string>("Id", null);
                 object value8 = value9.GetValue<object>("Tag", null);
-                List<MovingBlock> list = [];
-                string[] array = value9.GetValue<string>("Blocks").Split([';'], StringSplitOptions.RemoveEmptyEntries);
+                List<MovingBlock> list = new global::System.Collections.Generic.List<global::Game.MovingBlock>() {  };
+                string[] array = value9.GetValue<string>("Blocks").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string obj2 in array) {
                     MovingBlock item = new();
-                    string[] array2 = obj2.Split([','], StringSplitOptions.RemoveEmptyEntries);
+                    string[] array2 = obj2.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     item.Value = HumanReadableConverter.ConvertFromString<int>(array2[0]);
                     item.Offset.X = HumanReadableConverter.ConvertFromString<int>(array2[1]);
                     item.Offset.Y = HumanReadableConverter.ConvertFromString<int>(array2[2]);
@@ -472,11 +472,11 @@ namespace Game {
         }
 
         public override void Save(ValuesDictionary valuesDictionary) {
-            ValuesDictionary valuesDictionary2 = [];
+            ValuesDictionary valuesDictionary2 = new global::TemplatesDatabase.ValuesDictionary() {  };
             valuesDictionary.SetValue("MovingBlockSets", valuesDictionary2);
             int num = 0;
             foreach (MovingBlockSet movingBlockSet in m_movingBlockSets) {
-                ValuesDictionary valuesDictionary3 = [];
+                ValuesDictionary valuesDictionary3 = new global::TemplatesDatabase.ValuesDictionary() {  };
                 valuesDictionary2.SetValue(num.ToString(CultureInfo.InvariantCulture), valuesDictionary3);
                 valuesDictionary3.SetValue("Position", movingBlockSet.Position);
                 valuesDictionary3.SetValue("TargetPosition", movingBlockSet.TargetPosition);
@@ -653,7 +653,7 @@ namespace Game {
                 GenerateGeometry(movingBlockSet);
                 Vector3 vector = movingBlockSet.Position + movingBlockSet.GeometryOffset;
                 TerrainRenderer.CompileDrawSubsets(
-                    [movingBlockSet.Geometry],
+                    new global::Game.TerrainGeometry[] { movingBlockSet.Geometry },
                     Buffers,
                     item => {
                         item.X += vector.X;

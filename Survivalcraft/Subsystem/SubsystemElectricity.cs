@@ -7,228 +7,42 @@ using TemplatesDatabase;
 
 namespace Game {
     public class SubsystemElectricity : Subsystem, IUpdateable {
-        public static ElectricConnectionPath[] m_connectionPathsTable = [
-            new(0, 1, -1, 4, 4, 0),
-            new(0, 1, 0, 0, 4, 5),
-            new(0, 1, -1, 2, 4, 5),
-            new(0, 0, 0, 5, 4, 2),
-            new(-1, 0, -1, 3, 3, 0),
-            new(-1, 0, 0, 0, 3, 1),
-            new(-1, 0, -1, 2, 3, 1),
-            new(0, 0, 0, 1, 3, 2),
-            new(0, -1, -1, 5, 5, 0),
-            new(0, -1, 0, 0, 5, 4),
-            new(0, -1, -1, 2, 5, 4),
-            new(0, 0, 0, 4, 5, 2),
-            new(1, 0, -1, 1, 1, 0),
-            new(1, 0, 0, 0, 1, 3),
-            new(1, 0, -1, 2, 1, 3),
-            new(0, 0, 0, 3, 1, 2),
-            new(0, 0, -1, 2, 2, 0),
-            null,
-            null,
-            null,
-            new(-1, 1, 0, 4, 4, 1),
-            new(0, 1, 0, 1, 4, 5),
-            new(-1, 1, 0, 3, 4, 5),
-            new(0, 0, 0, 5, 4, 3),
-            new(-1, 0, 1, 0, 0, 1),
-            new(0, 0, 1, 1, 0, 2),
-            new(-1, 0, 1, 3, 0, 2),
-            new(0, 0, 0, 2, 0, 3),
-            new(-1, -1, 0, 5, 5, 1),
-            new(0, -1, 0, 1, 5, 4),
-            new(-1, -1, 0, 3, 5, 4),
-            new(0, 0, 0, 4, 5, 3),
-            new(-1, 0, -1, 2, 2, 1),
-            new(0, 0, -1, 1, 2, 0),
-            new(-1, 0, -1, 3, 2, 0),
-            new(0, 0, 0, 0, 2, 3),
-            new(-1, 0, 0, 3, 3, 1),
-            null,
-            null,
-            null,
-            new(0, 1, 1, 4, 4, 2),
-            new(0, 1, 0, 2, 4, 5),
-            new(0, 1, 1, 0, 4, 5),
-            new(0, 0, 0, 5, 4, 0),
-            new(1, 0, 1, 1, 1, 2),
-            new(1, 0, 0, 2, 1, 3),
-            new(1, 0, 1, 0, 1, 3),
-            new(0, 0, 0, 3, 1, 0),
-            new(0, -1, 1, 5, 5, 2),
-            new(0, -1, 0, 2, 5, 4),
-            new(0, -1, 1, 0, 5, 4),
-            new(0, 0, 0, 4, 5, 0),
-            new(-1, 0, 1, 3, 3, 2),
-            new(-1, 0, 0, 2, 3, 1),
-            new(-1, 0, 1, 0, 3, 1),
-            new(0, 0, 0, 1, 3, 0),
-            new(0, 0, 1, 0, 0, 2),
-            null,
-            null,
-            null,
-            new(1, 1, 0, 4, 4, 3),
-            new(0, 1, 0, 3, 4, 5),
-            new(1, 1, 0, 1, 4, 5),
-            new(0, 0, 0, 5, 4, 1),
-            new(1, 0, -1, 2, 2, 3),
-            new(0, 0, -1, 3, 2, 0),
-            new(1, 0, -1, 1, 2, 0),
-            new(0, 0, 0, 0, 2, 1),
-            new(1, -1, 0, 5, 5, 3),
-            new(0, -1, 0, 3, 5, 4),
-            new(1, -1, 0, 1, 5, 4),
-            new(0, 0, 0, 4, 5, 1),
-            new(1, 0, 1, 0, 0, 3),
-            new(0, 0, 1, 3, 0, 2),
-            new(1, 0, 1, 1, 0, 2),
-            new(0, 0, 0, 2, 0, 1),
-            new(1, 0, 0, 1, 1, 3),
-            null,
-            null,
-            null,
-            new(0, -1, -1, 2, 2, 4),
-            new(0, 0, -1, 4, 2, 0),
-            new(0, -1, -1, 5, 2, 0),
-            new(0, 0, 0, 0, 2, 5),
-            new(-1, -1, 0, 3, 3, 4),
-            new(-1, 0, 0, 4, 3, 1),
-            new(-1, -1, 0, 5, 3, 1),
-            new(0, 0, 0, 1, 3, 5),
-            new(0, -1, 1, 0, 0, 4),
-            new(0, 0, 1, 4, 0, 2),
-            new(0, -1, 1, 5, 0, 2),
-            new(0, 0, 0, 2, 0, 5),
-            new(1, -1, 0, 1, 1, 4),
-            new(1, 0, 0, 4, 1, 3),
-            new(1, -1, 0, 5, 1, 3),
-            new(0, 0, 0, 3, 1, 5),
-            new(0, -1, 0, 5, 5, 4),
-            null,
-            null,
-            null,
-            new(0, 1, -1, 2, 2, 5),
-            new(0, 0, -1, 5, 2, 0),
-            new(0, 1, -1, 4, 2, 0),
-            new(0, 0, 0, 0, 2, 4),
-            new(1, 1, 0, 1, 1, 5),
-            new(1, 0, 0, 5, 1, 3),
-            new(1, 1, 0, 4, 1, 3),
-            new(0, 0, 0, 3, 1, 4),
-            new(0, 1, 1, 0, 0, 5),
-            new(0, 0, 1, 5, 0, 2),
-            new(0, 1, 1, 4, 0, 2),
-            new(0, 0, 0, 2, 0, 4),
-            new(-1, 1, 0, 3, 3, 5),
-            new(-1, 0, 0, 5, 3, 1),
-            new(-1, 1, 0, 4, 3, 1),
-            new(0, 0, 0, 1, 3, 4),
-            new(0, 1, 0, 4, 4, 5),
-            null,
-            null,
-            null
-        ];
+        public static ElectricConnectionPath[] m_connectionPathsTable = new global::Game.ElectricConnectionPath[] {             new(0, 1, -1, 4, 4, 0),             new(0, 1, 0, 0, 4, 5),             new(0, 1, -1, 2, 4, 5),             new(0, 0, 0, 5, 4, 2),             new(-1, 0, -1, 3, 3, 0),             new(-1, 0, 0, 0, 3, 1),             new(-1, 0, -1, 2, 3, 1),             new(0, 0, 0, 1, 3, 2),             new(0, -1, -1, 5, 5, 0),             new(0, -1, 0, 0, 5, 4),             new(0, -1, -1, 2, 5, 4),             new(0, 0, 0, 4, 5, 2),             new(1, 0, -1, 1, 1, 0),             new(1, 0, 0, 0, 1, 3),             new(1, 0, -1, 2, 1, 3),             new(0, 0, 0, 3, 1, 2),             new(0, 0, -1, 2, 2, 0),             null,             null,             null,             new(-1, 1, 0, 4, 4, 1),             new(0, 1, 0, 1, 4, 5),             new(-1, 1, 0, 3, 4, 5),             new(0, 0, 0, 5, 4, 3),             new(-1, 0, 1, 0, 0, 1),             new(0, 0, 1, 1, 0, 2),             new(-1, 0, 1, 3, 0, 2),             new(0, 0, 0, 2, 0, 3),             new(-1, -1, 0, 5, 5, 1),             new(0, -1, 0, 1, 5, 4),             new(-1, -1, 0, 3, 5, 4),             new(0, 0, 0, 4, 5, 3),             new(-1, 0, -1, 2, 2, 1),             new(0, 0, -1, 1, 2, 0),             new(-1, 0, -1, 3, 2, 0),             new(0, 0, 0, 0, 2, 3),             new(-1, 0, 0, 3, 3, 1),             null,             null,             null,             new(0, 1, 1, 4, 4, 2),             new(0, 1, 0, 2, 4, 5),             new(0, 1, 1, 0, 4, 5),             new(0, 0, 0, 5, 4, 0),             new(1, 0, 1, 1, 1, 2),             new(1, 0, 0, 2, 1, 3),             new(1, 0, 1, 0, 1, 3),             new(0, 0, 0, 3, 1, 0),             new(0, -1, 1, 5, 5, 2),             new(0, -1, 0, 2, 5, 4),             new(0, -1, 1, 0, 5, 4),             new(0, 0, 0, 4, 5, 0),             new(-1, 0, 1, 3, 3, 2),             new(-1, 0, 0, 2, 3, 1),             new(-1, 0, 1, 0, 3, 1),             new(0, 0, 0, 1, 3, 0),             new(0, 0, 1, 0, 0, 2),             null,             null,             null,             new(1, 1, 0, 4, 4, 3),             new(0, 1, 0, 3, 4, 5),             new(1, 1, 0, 1, 4, 5),             new(0, 0, 0, 5, 4, 1),             new(1, 0, -1, 2, 2, 3),             new(0, 0, -1, 3, 2, 0),             new(1, 0, -1, 1, 2, 0),             new(0, 0, 0, 0, 2, 1),             new(1, -1, 0, 5, 5, 3),             new(0, -1, 0, 3, 5, 4),             new(1, -1, 0, 1, 5, 4),             new(0, 0, 0, 4, 5, 1),             new(1, 0, 1, 0, 0, 3),             new(0, 0, 1, 3, 0, 2),             new(1, 0, 1, 1, 0, 2),             new(0, 0, 0, 2, 0, 1),             new(1, 0, 0, 1, 1, 3),             null,             null,             null,             new(0, -1, -1, 2, 2, 4),             new(0, 0, -1, 4, 2, 0),             new(0, -1, -1, 5, 2, 0),             new(0, 0, 0, 0, 2, 5),             new(-1, -1, 0, 3, 3, 4),             new(-1, 0, 0, 4, 3, 1),             new(-1, -1, 0, 5, 3, 1),             new(0, 0, 0, 1, 3, 5),             new(0, -1, 1, 0, 0, 4),             new(0, 0, 1, 4, 0, 2),             new(0, -1, 1, 5, 0, 2),             new(0, 0, 0, 2, 0, 5),             new(1, -1, 0, 1, 1, 4),             new(1, 0, 0, 4, 1, 3),             new(1, -1, 0, 5, 1, 3),             new(0, 0, 0, 3, 1, 5),             new(0, -1, 0, 5, 5, 4),             null,             null,             null,             new(0, 1, -1, 2, 2, 5),             new(0, 0, -1, 5, 2, 0),             new(0, 1, -1, 4, 2, 0),             new(0, 0, 0, 0, 2, 4),             new(1, 1, 0, 1, 1, 5),             new(1, 0, 0, 5, 1, 3),             new(1, 1, 0, 4, 1, 3),             new(0, 0, 0, 3, 1, 4),             new(0, 1, 1, 0, 0, 5),             new(0, 0, 1, 5, 0, 2),             new(0, 1, 1, 4, 0, 2),             new(0, 0, 0, 2, 0, 4),             new(-1, 1, 0, 3, 3, 5),             new(-1, 0, 0, 5, 3, 1),             new(-1, 1, 0, 4, 3, 1),             new(0, 0, 0, 1, 3, 4),             new(0, 1, 0, 4, 4, 5),             null,             null,             null
+ };
 
-        public static ElectricConnectorDirection?[] m_connectorDirectionsTable = [
-            null,
-            ElectricConnectorDirection.Right,
-            ElectricConnectorDirection.In,
-            ElectricConnectorDirection.Left,
-            ElectricConnectorDirection.Top,
-            ElectricConnectorDirection.Bottom,
-            ElectricConnectorDirection.Left,
-            null,
-            ElectricConnectorDirection.Right,
-            ElectricConnectorDirection.In,
-            ElectricConnectorDirection.Top,
-            ElectricConnectorDirection.Bottom,
-            ElectricConnectorDirection.In,
-            ElectricConnectorDirection.Left,
-            null,
-            ElectricConnectorDirection.Right,
-            ElectricConnectorDirection.Top,
-            ElectricConnectorDirection.Bottom,
-            ElectricConnectorDirection.Right,
-            ElectricConnectorDirection.In,
-            ElectricConnectorDirection.Left,
-            null,
-            ElectricConnectorDirection.Top,
-            ElectricConnectorDirection.Bottom,
-            ElectricConnectorDirection.Bottom,
-            ElectricConnectorDirection.Right,
-            ElectricConnectorDirection.Top,
-            ElectricConnectorDirection.Left,
-            null,
-            ElectricConnectorDirection.In,
-            ElectricConnectorDirection.Top,
-            ElectricConnectorDirection.Right,
-            ElectricConnectorDirection.Bottom,
-            ElectricConnectorDirection.Left,
-            ElectricConnectorDirection.In,
-            null
-        ];
+        public static ElectricConnectorDirection?[] m_connectorDirectionsTable = new global::Game.ElectricConnectorDirection?[] {             null,             ElectricConnectorDirection.Right,             ElectricConnectorDirection.In,             ElectricConnectorDirection.Left,             ElectricConnectorDirection.Top,             ElectricConnectorDirection.Bottom,             ElectricConnectorDirection.Left,             null,             ElectricConnectorDirection.Right,             ElectricConnectorDirection.In,             ElectricConnectorDirection.Top,             ElectricConnectorDirection.Bottom,             ElectricConnectorDirection.In,             ElectricConnectorDirection.Left,             null,             ElectricConnectorDirection.Right,             ElectricConnectorDirection.Top,             ElectricConnectorDirection.Bottom,             ElectricConnectorDirection.Right,             ElectricConnectorDirection.In,             ElectricConnectorDirection.Left,             null,             ElectricConnectorDirection.Top,             ElectricConnectorDirection.Bottom,             ElectricConnectorDirection.Bottom,             ElectricConnectorDirection.Right,             ElectricConnectorDirection.Top,             ElectricConnectorDirection.Left,             null,             ElectricConnectorDirection.In,             ElectricConnectorDirection.Top,             ElectricConnectorDirection.Right,             ElectricConnectorDirection.Bottom,             ElectricConnectorDirection.Left,             ElectricConnectorDirection.In,             null
+ };
 
-        public static int[] m_connectorFacesTable = [
-            4,
-            3,
-            5,
-            1,
-            2,
-            4,
-            0,
-            5,
-            2,
-            3,
-            4,
-            1,
-            5,
-            3,
-            0,
-            4,
-            2,
-            5,
-            0,
-            1,
-            2,
-            1,
-            0,
-            3,
-            5,
-            0,
-            1,
-            2,
-            3,
-            4
-        ];
+        public static int[] m_connectorFacesTable = new int[] {             4,             3,             5,             1,             2,             4,             0,             5,             2,             3,             4,             1,             5,             3,             0,             4,             2,             5,             0,             1,             2,             1,             0,             3,             5,             0,             1,             2,             3,             4
+ };
 
         public float m_remainingSimulationTime;
 
-        public Dictionary<Point3, float> m_persistentElementsVoltages = [];
+        public Dictionary<Point3, float> m_persistentElementsVoltages = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, float>() {  };
 
-        public Dictionary<ElectricElement, bool> m_electricElements = [];
+        public Dictionary<ElectricElement, bool> m_electricElements = new global::System.Collections.Generic.Dictionary<global::Game.ElectricElement, bool>() {  };
 
-        public Dictionary<CellFace, ElectricElement> m_electricElementsByCellFace = [];
+        public Dictionary<CellFace, ElectricElement> m_electricElementsByCellFace = new global::System.Collections.Generic.Dictionary<global::Game.CellFace, global::Game.ElectricElement>() {  };
 
-        public Dictionary<Point3, bool> m_pointsToUpdate = [];
+        public Dictionary<Point3, bool> m_pointsToUpdate = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, bool>() {  };
 
-        public Dictionary<Point3, ElectricElement> m_electricElementsToAdd = [];
+        public Dictionary<Point3, ElectricElement> m_electricElementsToAdd = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.ElectricElement>() {  };
 
-        public Dictionary<ElectricElement, bool> m_electricElementsToRemove = [];
+        public Dictionary<ElectricElement, bool> m_electricElementsToRemove = new global::System.Collections.Generic.Dictionary<global::Game.ElectricElement, bool>() {  };
 
-        public Dictionary<Point3, bool> m_wiresToUpdate = [];
+        public Dictionary<Point3, bool> m_wiresToUpdate = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, bool>() {  };
 
-        public List<Dictionary<ElectricElement, bool>> m_listsCache = [];
+        public List<Dictionary<ElectricElement, bool>> m_listsCache = new global::System.Collections.Generic.List<global::System.Collections.Generic.Dictionary<global::Game.ElectricElement, bool>>() {  };
 
-        public Dictionary<int, Dictionary<ElectricElement, bool>> m_futureSimulateLists = [];
+        public Dictionary<int, Dictionary<ElectricElement, bool>> m_futureSimulateLists = new global::System.Collections.Generic.Dictionary<int, global::System.Collections.Generic.Dictionary<global::Game.ElectricElement, bool>>() {  };
 
         public Dictionary<ElectricElement, bool> m_nextStepSimulateList;
 
-        public DynamicArray<ElectricConnectionPath> m_tmpConnectionPaths = [];
+        public DynamicArray<ElectricConnectionPath> m_tmpConnectionPaths = new global::Engine.DynamicArray<global::Game.ElectricConnectionPath>() {  };
 
-        public Dictionary<CellFace, bool> m_tmpVisited = [];
+        public Dictionary<CellFace, bool> m_tmpVisited = new global::System.Collections.Generic.Dictionary<global::Game.CellFace, bool>() {  };
 
-        public Dictionary<CellFace, bool> m_tmpResult = [];
+        public Dictionary<CellFace, bool> m_tmpResult = new global::System.Collections.Generic.Dictionary<global::Game.CellFace, bool>() {  };
 
         public static bool DebugDrawElectrics = false;
 
@@ -236,7 +50,7 @@ namespace Game {
 
         public const float CircuitStepDuration = 0.01f;
 
-        public Dictionary<Type, DebugInfo> m_debugInfos = [];
+        public Dictionary<Type, DebugInfo> m_debugInfos = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Game.DebugInfo>() {  };
         public Stopwatch m_debugStopwatch = new();
         public bool UpdateTimeDebug = false;
 
@@ -455,11 +269,11 @@ namespace Game {
             SubsystemTerrain = Project.FindSubsystem<SubsystemTerrain>(true);
             SubsystemTime = Project.FindSubsystem<SubsystemTime>(true);
             SubsystemAudio = Project.FindSubsystem<SubsystemAudio>(true);
-            string[] array = valuesDictionary.GetValue<string>("VoltagesByCell").Split([';'], StringSplitOptions.RemoveEmptyEntries);
+            string[] array = valuesDictionary.GetValue<string>("VoltagesByCell").Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             int num = 0;
             while (true) {
                 if (num < array.Length) {
-                    string[] array2 = array[num].Split([","], StringSplitOptions.None);
+                    string[] array2 = array[num].Split(new string[] { "," }, StringSplitOptions.None);
                     if (array2.Length != 4) {
                         break;
                     }
@@ -691,7 +505,7 @@ namespace Game {
         }
 
         public void ScanWireDomain(CellFace startCellFace, Dictionary<CellFace, bool> visited, Dictionary<CellFace, bool> result) {
-            DynamicArray<CellFace> dynamicArray = [startCellFace];
+            DynamicArray<CellFace> dynamicArray = new global::Engine.DynamicArray<global::Game.CellFace>() { startCellFace };
             while (dynamicArray.Count > 0) {
                 CellFace key = dynamicArray.Array[--dynamicArray.Count];
                 if (visited.ContainsKey(key)) {
@@ -735,7 +549,7 @@ namespace Game {
                 m_listsCache.RemoveAt(m_listsCache.Count - 1);
                 return result;
             }
-            return [];
+            return new global::System.Collections.Generic.Dictionary<global::Game.ElectricElement, bool>() {  };
         }
 
         public void ReturnListToCache(Dictionary<ElectricElement, bool> list) {

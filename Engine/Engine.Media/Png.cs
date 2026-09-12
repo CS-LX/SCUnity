@@ -20,12 +20,12 @@ namespace Engine.Media {
         }
 
         public static bool IsPngStream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return SixLabors.ImageSharp.Image.DetectFormat(stream).Name == "PNG";
         }
 
         public static PngInfo GetInfo(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             ImageInfo info = SixLabors.ImageSharp.Image.Identify(stream);
             if (info.Metadata.DecodedImageFormat.Name != "PNG") {
                 throw new FormatException($"Image format({info.Metadata.DecodedImageFormat.Name}) is not Png");
@@ -45,7 +45,7 @@ namespace Engine.Media {
         }
 
         public static Image Load(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             string formatName = SixLabors.ImageSharp.Image.DetectFormat(stream).Name;
             return formatName != "PNG" ? throw new FormatException($"Image format({formatName}) is not Png") : Image.Load(stream);
         }
@@ -55,8 +55,8 @@ namespace Engine.Media {
             Format format,
             PngCompressionLevel compressionLevel = PngCompressionLevel.DefaultCompression,
             bool sync = false) {
-            ArgumentNullException.ThrowIfNull(image);
-            ArgumentNullException.ThrowIfNull(stream);
+            if (image is null) throw new ArgumentNullException("image");
+            if (stream is null) throw new ArgumentNullException("stream");
             PngColorType pngColorType;
             switch (format) {
                 case Format.RGBA8: pngColorType = PngColorType.RgbWithAlpha; break;

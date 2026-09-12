@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+using System.Xml.Linq;
 
 namespace Game {
     public class EditCommunityServerInfoDialog : Dialog {

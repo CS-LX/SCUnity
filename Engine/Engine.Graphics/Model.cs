@@ -14,9 +14,9 @@ namespace Engine.Graphics {
 
         public ModelBone m_rootBone;
 
-        public List<ModelBone> m_bones = [];
+        public List<ModelBone> m_bones = new global::System.Collections.Generic.List<global::Engine.Graphics.ModelBone>() {  };
 
-        public List<ModelMesh> m_meshes = [];
+        public List<ModelMesh> m_meshes = new global::System.Collections.Generic.List<global::Engine.Graphics.ModelMesh>() {  };
 
         public ModelBone RootBone => m_rootBone;
 
@@ -85,12 +85,12 @@ namespace Engine.Graphics {
         /// <summary>
         /// 动画数据列表
         /// </summary>
-        public List<ModelAnimation> Animations { get; set; } = [];
+        public List<ModelAnimation> Animations { get; set; } = new global::System.Collections.Generic.List<global::Engine.Animation.ModelAnimation>() {  };
 
         /// <summary>
         /// 灯光列表（KHR_lights_punctual）
         /// </summary>
-        public List<ModelLight> Lights { get; set; } = [];
+        public List<ModelLight> Lights { get; set; } = new global::System.Collections.Generic.List<global::Engine.Graphics.ModelLight>() {  };
 
         /// <summary>
         /// 是否支持蒙皮
@@ -112,19 +112,19 @@ namespace Engine.Graphics {
         /// </summary>
         public static Texture2D DefaultWhiteTexture {
             get {
-                if (field == null) {
-                    field = CreateColorTexture(Color.White);
+                if (m_unity_DefaultWhiteTexture == null) {
+                    m_unity_DefaultWhiteTexture = CreateColorTexture(Color.White);
                 }
-                return field;
+                return m_unity_DefaultWhiteTexture;
             }
         }
 
         public static Texture2D DefaultTransparentTexture {
             get {
-                if (field == null) {
-                    field = CreateColorTexture(Color.Transparent);
+                if (m_unity_DefaultTransparentTexture == null) {
+                    m_unity_DefaultTransparentTexture = CreateColorTexture(Color.Transparent);
                 }
-                return field;
+                return m_unity_DefaultTransparentTexture;
             }
         }
 
@@ -132,7 +132,7 @@ namespace Engine.Graphics {
         /// 创建一个 1x1 的白色纹理
         /// </summary>
         public static Texture2D CreateColorTexture(Color color) {
-            return Texture2D.Load(Image.LoadPixelData([new Rgba32(color.PackedValue)], 1, 1));
+            return Texture2D.Load(Image.LoadPixelData<Rgba32>(new global::SixLabors.ImageSharp.PixelFormats.Rgba32[] { new Rgba32(color.PackedValue) }, 1, 1));
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Engine.Graphics {
             try {
                 using var stream = texInfo.SourceImage.Open();
                 Engine.Media.Image img = Engine.Media.Image.Load(stream);
-                int mipLevels = (int)Math.Floor(Math.Log2(Math.Max(img.Width, img.Height))) + 1;
+                int mipLevels = (int)Math.Floor(Math.Log(Math.Max(img.Width, img.Height), 2)) + 1;
                 texture = LoadTexturesInSrgb && texInfo.IsSrgb
                     ? Texture2D.LoadSrgb(img.m_trueImage, mipLevels)
                     : Texture2D.Load(img, mipLevels);
@@ -266,7 +266,7 @@ namespace Engine.Graphics {
         }
 
         public ModelBone NewBone(string name, Matrix transform, ModelBone parentBone) {
-            ArgumentNullException.ThrowIfNull(name);
+            if (name is null) throw new ArgumentNullException("name");
             if (parentBone == null
                 && m_bones.Count > 0) {
                 throw new InvalidOperationException("There can be only one root bone.");
@@ -294,15 +294,15 @@ namespace Engine.Graphics {
         }
 
         public ModelMesh NewMesh(string name, ModelBone parentBone, BoundingBox boundingBox) {
-            ArgumentNullException.ThrowIfNull(name);
-            ArgumentNullException.ThrowIfNull(parentBone);
+            if (name is null) throw new ArgumentNullException("name");
+            if (parentBone is null) throw new ArgumentNullException("parentBone");
             return parentBone.Model != this
                 ? throw new InvalidOperationException("Parent bone must belong to the same model.")
                 : new ModelMesh { Name = name, ParentBone = parentBone, BoundingBox = boundingBox };
         }
 
         public void CopyAbsoluteBoneTransformsTo(Matrix[] absoluteTransforms) {
-            ArgumentNullException.ThrowIfNull(absoluteTransforms);
+            if (absoluteTransforms is null) throw new ArgumentNullException("absoluteTransforms");
             if (absoluteTransforms.Length < m_bones.Count) {
                 throw new ArgumentOutOfRangeException(nameof(absoluteTransforms));
             }
@@ -322,7 +322,7 @@ namespace Engine.Graphics {
         }
 
         public BoundingBox CalculateAbsoluteBoundingBox(Matrix[] absoluteTransforms) {
-            ArgumentNullException.ThrowIfNull(absoluteTransforms);
+            if (absoluteTransforms is null) throw new ArgumentNullException("absoluteTransforms");
             if (absoluteTransforms.Length < m_bones.Count) {
                 throw new ArgumentOutOfRangeException(nameof(absoluteTransforms));
             }
@@ -360,7 +360,7 @@ namespace Engine.Graphics {
             ModelData = modelData;
             Skin = modelData.Skin;
             Animations = modelData.Animations;
-            ArgumentNullException.ThrowIfNull(modelData);
+            if (modelData is null) throw new ArgumentNullException("modelData");
             InternalDispose();
             // 纹理延迟加载，不在初始化时创建
             VertexBuffer[] array = new VertexBuffer[modelData.Buffers.Count];
@@ -457,5 +457,7 @@ namespace Engine.Graphics {
             }
             m_loadedTextures.Clear();
         }
-    }
+
+        private static Texture2D m_unity_DefaultWhiteTexture;
+        private static Texture2D m_unity_DefaultTransparentTexture;    }
 }

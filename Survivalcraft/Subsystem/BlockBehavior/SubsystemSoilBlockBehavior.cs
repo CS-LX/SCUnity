@@ -7,11 +7,11 @@ namespace Game {
 
         public Random m_random = new();
 
-        public Dictionary<Point3, bool> m_toDegrade = [];
+        public Dictionary<Point3, bool> m_toDegrade = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, bool>() {  };
 
-        public Dictionary<Point3, bool> m_toHydrate = [];
+        public Dictionary<Point3, bool> m_toHydrate = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, bool>() {  };
 
-        public override int[] HandledBlocks => [168];
+        public override int[] HandledBlocks => new int[] { 168 };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

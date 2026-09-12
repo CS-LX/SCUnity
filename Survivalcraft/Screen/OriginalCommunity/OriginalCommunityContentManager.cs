@@ -395,7 +395,7 @@ public static class OriginalCommunityContentManager {
         );
     }
 
-    static string CalculateContentHashString(byte[] data) => Convert.ToBase64String(SHA1.HashData(data));
+    static string CalculateContentHashString(byte[] data) => Convert.ToBase64String(Game.MonoBcl.HashSHA1(data));
 
     static string MakeFeedbackCacheKey(string address, string feedback, string userId) => $"{address}\n{feedback}\n{userId}";
 

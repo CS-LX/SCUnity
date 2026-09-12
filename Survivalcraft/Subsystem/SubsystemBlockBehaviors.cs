@@ -7,7 +7,7 @@ namespace Game {
     public class SubsystemBlockBehaviors : Subsystem {
         public SubsystemBlockBehavior[][] m_blockBehaviorsByContents;
 
-        public List<SubsystemBlockBehavior> m_blockBehaviors = [];
+        public List<SubsystemBlockBehavior> m_blockBehaviors = new global::System.Collections.Generic.List<global::Game.SubsystemBlockBehavior>() {  };
 
         public ReadOnlyList<SubsystemBlockBehavior> BlockBehaviors => new(m_blockBehaviors);
 
@@ -15,9 +15,9 @@ namespace Game {
 
         public override void Load(ValuesDictionary valuesDictionary) {
             m_blockBehaviorsByContents = new SubsystemBlockBehavior[BlocksManager.Blocks.Length][];
-            Dictionary<int, HashSet<SubsystemBlockBehavior>> dictionary = [];
+            Dictionary<int, HashSet<SubsystemBlockBehavior>> dictionary = new global::System.Collections.Generic.Dictionary<int, global::System.Collections.Generic.HashSet<global::Game.SubsystemBlockBehavior>>() {  };
             for (int i = 0; i < m_blockBehaviorsByContents.Length; i++) {
-                dictionary[i] = [];
+                dictionary[i] = new global::System.Collections.Generic.HashSet<global::Game.SubsystemBlockBehavior>() {  };
                 string[] array = BlocksManager.Blocks[i].Behaviors.Split(',', StringSplitOptions.RemoveEmptyEntries);
                 foreach (string text in array) {
                     SubsystemBlockBehavior item = Project.FindSubsystem<SubsystemBlockBehavior>(text.Trim(), true);

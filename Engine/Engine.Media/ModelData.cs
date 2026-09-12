@@ -3,21 +3,21 @@ using Engine.Graphics;
 
 namespace Engine.Media {
     public class ModelData {
-        public List<ModelBoneData> Bones = [];
+        public List<ModelBoneData> Bones = new global::System.Collections.Generic.List<global::Engine.Media.ModelBoneData>() {  };
 
-        public List<ModelMeshData> Meshes = [];
+        public List<ModelMeshData> Meshes = new global::System.Collections.Generic.List<global::Engine.Media.ModelMeshData>() {  };
 
-        public List<ModelBuffersData> Buffers = [];
+        public List<ModelBuffersData> Buffers = new global::System.Collections.Generic.List<global::Engine.Media.ModelBuffersData>() {  };
 
         /// <summary>
         /// 纹理信息列表（glTF 加载时填充，支持延迟加载）
         /// </summary>
-        public List<ModelTextureInfo> Textures = [];
+        public List<ModelTextureInfo> Textures = new global::System.Collections.Generic.List<global::Engine.Media.ModelTextureInfo>() {  };
 
         /// <summary>
         /// 材质数据列表（glTF 加载时填充）
         /// </summary>
-        public List<ModelMaterial> Materials = [];
+        public List<ModelMaterial> Materials = new global::System.Collections.Generic.List<global::Engine.Media.ModelMaterial>() {  };
 
         /// <summary>
         /// 蒙皮数据（glTF 加载时填充）
@@ -27,12 +27,12 @@ namespace Engine.Media {
         /// <summary>
         /// 动画数据列表（glTF 加载时填充）
         /// </summary>
-        public List<ModelAnimation> Animations { get; set; } = [];
+        public List<ModelAnimation> Animations { get; set; } = new global::System.Collections.Generic.List<global::Engine.Animation.ModelAnimation>() {  };
 
         /// <summary>
         /// 灯光数据列表（KHR_lights_punctual，glTF 加载时填充）
         /// </summary>
-        public List<ModelLightData> Lights = [];
+        public List<ModelLightData> Lights = new global::System.Collections.Generic.List<global::Engine.Media.ModelLightData>() {  };
 
         /// <summary>
         /// glTF 纹理 LogicalIndex 到 Textures 列表索引的映射

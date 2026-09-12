@@ -64,7 +64,7 @@ namespace Game {
                 boundingBox.Min.Z = 0f;
                 boundingBox.Max.X = 1f;
                 boundingBox.Max.Z = 1f;
-                m_collisionBoxesByData[i] = [boundingBox];
+                m_collisionBoxesByData[i] = new global::Engine.BoundingBox[] { boundingBox };
             }
             m_standaloneMesh.AppendModelMeshPart(
                 model.FindMesh("Wood").MeshParts[0],

@@ -11,9 +11,9 @@ namespace Game {
 
         public BoundingBox[][] m_collisionBoxesByData = new BoundingBox[16][];
 
-        public int[] m_creativeValuesByMaterial = [Terrain.MakeBlockValue(144, 0, 0), Terrain.MakeBlockValue(144, 0, 1)];
+        public int[] m_creativeValuesByMaterial = new int[] { Terrain.MakeBlockValue(144, 0, 0), Terrain.MakeBlockValue(144, 0, 1) };
 
-        public int[] m_textureSlotsByMaterial = [4, 1];
+        public int[] m_textureSlotsByMaterial = new int[] { 4, 1 };
 
         public override void Initialize() {
             Model model = ContentManager.Get<Model>("Models/PressurePlate");
@@ -51,12 +51,11 @@ namespace Game {
                     vector2.X = MathF.Round(vector2.X * 100f) / 100f;
                     vector2.Y = MathF.Round(vector2.Y * 100f) / 100f;
                     vector2.Z = MathF.Round(vector2.Z * 100f) / 100f;
-                    m_collisionBoxesByData[num2] = [
-                        new BoundingBox(
+                    m_collisionBoxesByData[num2] = new global::Engine.BoundingBox[] {                         new BoundingBox(
                             new Vector3(MathF.Min(vector.X, vector2.X), MathF.Min(vector.Y, vector2.Y), MathF.Min(vector.Z, vector2.Z)),
                             new Vector3(MathF.Max(vector.X, vector2.X), MathF.Max(vector.Y, vector2.Y), MathF.Max(vector.Z, vector2.Z))
                         )
-                    ];
+ };
                 }
                 Matrix identity = Matrix.Identity;
                 m_standaloneBlockMeshesByMaterial[i] = new BlockMesh();

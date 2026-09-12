@@ -22,11 +22,11 @@ namespace Game {
         /// <summary>
         ///     这四个Factors是可以调整的影响因素
         /// </summary>
-        public List<Factor> m_strengthFactors = [];
+        public List<Factor> m_strengthFactors = new global::System.Collections.Generic.List<global::Game.ComponentLevel.Factor>() {  };
 
-        public List<Factor> m_speedFactors = [];
-        public List<Factor> m_hungerFactors = [];
-        public List<Factor> m_resilienceFactors = [];
+        public List<Factor> m_speedFactors = new global::System.Collections.Generic.List<global::Game.ComponentLevel.Factor>() {  };
+        public List<Factor> m_hungerFactors = new global::System.Collections.Generic.List<global::Game.ComponentLevel.Factor>() {  };
+        public List<Factor> m_resilienceFactors = new global::System.Collections.Generic.List<global::Game.ComponentLevel.Factor>() {  };
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
         public static string fName = "ComponentFactors";

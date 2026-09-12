@@ -1,4 +1,4 @@
-﻿namespace Game {
+namespace Game {
     public enum GeometrySubsetType {
         Opaque = 0,
         AlphaTest = 1,

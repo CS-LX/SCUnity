@@ -11,9 +11,9 @@ namespace Game {
 
             public MovingBlock MovingBlock;
 
-            public string[] Lines = [string.Empty, string.Empty, string.Empty, string.Empty];
+            public string[] Lines = new string[] { string.Empty, string.Empty, string.Empty, string.Empty };
 
-            public Color[] Colors = [Color.Black, Color.Black, Color.Black, Color.Black];
+            public Color[] Colors = new global::Engine.Color[] { Color.Black, Color.Black, Color.Black, Color.Black };
 
             public string Url = string.Empty;
 
@@ -48,21 +48,21 @@ namespace Game {
 
         public SubsystemGameInfo m_subsystemGameInfo;
 
-        public Dictionary<Point3, TextData> m_textsByPoint = [];
+        public Dictionary<Point3, TextData> m_textsByPoint = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.SubsystemSignBlockBehavior.TextData>() {  };
 
         public Dictionary<MovingBlock, TextData> m_textsByMovingBlock = new();
 
-        public List<RenderTarget2D> m_texturesByPoint = [];
+        public List<RenderTarget2D> m_texturesByPoint = new global::System.Collections.Generic.List<global::Engine.Graphics.RenderTarget2D>() {  };
 
         public TextData[] m_textureLocations = new TextData[32];
 
-        public List<TextData> m_nearTexts = [];
+        public List<TextData> m_nearTexts = new global::System.Collections.Generic.List<global::Game.SubsystemSignBlockBehavior.TextData>() {  };
 
         public BitmapFont m_font = LabelWidget.BitmapFont;
 
         public RenderTarget2D m_renderTarget;
 
-        public List<Vector3> m_lastUpdatePositions = [];
+        public List<Vector3> m_lastUpdatePositions = new global::System.Collections.Generic.List<global::Engine.Vector3>() {  };
 
         public PrimitivesRenderer2D m_primitivesRenderer2D = new();
 
@@ -72,9 +72,9 @@ namespace Game {
 
         public bool CopySignsText;
 
-        public static int[] m_drawOrders = [50];
+        public static int[] m_drawOrders = new int[] { 50 };
 
-        public override int[] HandledBlocks => [23, 97, 98, 210, 211];
+        public override int[] HandledBlocks => new int[] { 23, 97, 98, 210, 211 };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
@@ -216,7 +216,7 @@ namespace Game {
                 Color value8 = value11.GetValue("Color3", Color.Black);
                 Color value9 = value11.GetValue("Color4", Color.Black);
                 string value10 = value11.GetValue("Url", string.Empty);
-                SetSignData(value, [value2, value3, value4, value5], [value6, value7, value8, value9], value10, movingBlock);
+                SetSignData(value, new string[] { value2, value3, value4, value5 }, new global::Engine.Color[] { value6, value7, value8, value9 }, value10, movingBlock);
             }
             Display.DeviceReset += Display_DeviceReset;
         }
@@ -309,8 +309,8 @@ namespace Game {
             if (!textData.TextureLocation.HasValue) {
                 return;
             }
-            List<string> list = [];
-            List<Color> list2 = [];
+            List<string> list = new global::System.Collections.Generic.List<string>() {  };
+            List<Color> list2 = new global::System.Collections.Generic.List<global::Engine.Color>() {  };
             for (int i = 0; i < textData.Lines.Length; i++) {
                 if (!string.IsNullOrEmpty(textData.Lines[i])) {
                     list.Add(textData.Lines[i].Replace("\\", "").ToUpper());

@@ -8,7 +8,7 @@ namespace Game {
 
         public SubsystemPlayers m_subsystemPlayers;
 
-        public List<GameWidget> m_gameWidgets = [];
+        public List<GameWidget> m_gameWidgets = new global::System.Collections.Generic.List<global::GameWidget>() {  };
 
         public virtual GamesWidget GamesWidget { get; set; }
 

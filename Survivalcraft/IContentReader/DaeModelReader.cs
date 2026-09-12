@@ -5,7 +5,7 @@ namespace Game.IContentReader {
     public class DaeModelReader : IContentReader {
         public override string Type => "Engine.Graphics.Model";
         // 因为 ContentManager.ReaderList 的键是上面的 Type，所以 gltf、glb 也通过此 Reader 读取
-        public override string[] DefaultSuffix => ["gltf", "glb", "dae"];
+        public override string[] DefaultSuffix => new string[] { "gltf", "glb", "dae" };
 
         public override object Get(ContentInfo[] contents) {
             var content = contents[0];

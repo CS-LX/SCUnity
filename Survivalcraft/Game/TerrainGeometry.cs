@@ -41,9 +41,9 @@ namespace Game {
             SubsetOpaque = Subsets[4];
             SubsetAlphaTest = Subsets[5];
             SubsetTransparent = Subsets[6];
-            OpaqueSubsetsByFace = [Subsets[0], Subsets[1], Subsets[2], Subsets[3], Subsets[4], Subsets[4]];
-            AlphaTestSubsetsByFace = [Subsets[5], Subsets[5], Subsets[5], Subsets[5], Subsets[5], Subsets[5]];
-            TransparentSubsetsByFace = [Subsets[6], Subsets[6], Subsets[6], Subsets[6], Subsets[6], Subsets[6]];
+            OpaqueSubsetsByFace = new global::Game.TerrainGeometrySubset[] { Subsets[0], Subsets[1], Subsets[2], Subsets[3], Subsets[4], Subsets[4] };
+            AlphaTestSubsetsByFace = new global::Game.TerrainGeometrySubset[] { Subsets[5], Subsets[5], Subsets[5], Subsets[5], Subsets[5], Subsets[5] };
+            TransparentSubsetsByFace = new global::Game.TerrainGeometrySubset[] { Subsets[6], Subsets[6], Subsets[6], Subsets[6], Subsets[6], Subsets[6] };
         }
 
         public virtual TerrainGeometry GetGeometry(Texture2D texture) {
@@ -51,7 +51,7 @@ namespace Game {
                 return geometries;
             }
             TerrainGeometry geometry = new(texture);
-            Draws ??= [];
+            Draws ??= new global::System.Collections.Generic.Dictionary<global::Engine.Graphics.Texture2D, global::Game.TerrainGeometry>() {  };
             Draws.Add(texture, geometry);
             return geometry;
         }

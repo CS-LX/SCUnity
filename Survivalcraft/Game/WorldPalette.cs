@@ -7,24 +7,8 @@ namespace Game {
         public const int MaxColors = 16;
         public const int MaxNameLength = 16;
 
-        public static readonly Color[] DefaultColors = [
-            new(255, 255, 255),
-            new(181, 255, 255),
-            new(255, 181, 255),
-            new(160, 181, 255),
-            new(255, 240, 160),
-            new(181, 255, 181),
-            new(255, 181, 160),
-            new(181, 181, 181),
-            new(112, 112, 112),
-            new(32, 112, 112),
-            new(112, 32, 112),
-            new(26, 52, 128),
-            new(87, 54, 31),
-            new(24, 116, 24),
-            new(136, 32, 32),
-            new(24, 24, 24)
-        ];
+        public static readonly Color[] DefaultColors = new global::Engine.Color[] {             new(255, 255, 255),             new(181, 255, 255),             new(255, 181, 255),             new(160, 181, 255),             new(255, 240, 160),             new(181, 255, 181),             new(255, 181, 160),             new(181, 181, 181),             new(112, 112, 112),             new(32, 112, 112),             new(112, 32, 112),             new(26, 52, 128),             new(87, 54, 31),             new(24, 116, 24),             new(136, 32, 32),             new(24, 24, 24)
+ };
 
         public Color[] Colors;
         public string[] Names;

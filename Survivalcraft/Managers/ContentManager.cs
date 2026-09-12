@@ -48,9 +48,9 @@ namespace Game {
     }
 
     public static class ContentManager {
-        internal static ConcurrentDictionary<string, ContentInfo> Resources = [];
-        internal static Dictionary<string, IContentReader.IContentReader> ReaderList = [];
-        internal static ConcurrentDictionary<string, List<object>> Caches = [];
+        internal static ConcurrentDictionary<string, ContentInfo> Resources = new global::System.Collections.Concurrent.ConcurrentDictionary<string, global::Game.ContentInfo>() {  };
+        internal static Dictionary<string, IContentReader.IContentReader> ReaderList = new global::System.Collections.Generic.Dictionary<string, global::Game.IContentReader.IContentReader>() {  };
+        internal static ConcurrentDictionary<string, List<object>> Caches = new global::System.Collections.Concurrent.ConcurrentDictionary<string, global::System.Collections.Generic.List<object>>() {  };
         internal static object syncObj = new();
 
         public static void Initialize() {
@@ -74,7 +74,7 @@ namespace Game {
         public static object Get(Type type, string name, string suffix = null) => Get(type, name, suffix, true);
 
         public static object Get(Type type, string name, string suffix = null, bool throwOnNotFound = true) {
-            ArgumentNullException.ThrowIfNull(type);
+            if (type is null) throw new ArgumentNullException("type");
             object obj = null;
             string key = suffix == null ? name : name + (suffix.StartsWith('.') ? suffix : $".{suffix}");
             if (type == typeof(Subtexture)) {
@@ -87,7 +87,7 @@ namespace Game {
                 return obj;
             }
             if (ReaderList.TryGetValue(type.FullName ?? type.Name, out IContentReader.IContentReader reader)) {
-                List<ContentInfo> contents = [];
+                List<ContentInfo> contents = new global::System.Collections.Generic.List<global::Game.ContentInfo>() {  };
                 string p;
                 if (suffix == null) {
                     foreach (string suffix1 in reader.DefaultSuffix) {
@@ -97,7 +97,7 @@ namespace Game {
                         }
                         if (obj != null) {
                             if (cacheList == null) {
-                                cacheList = [];
+                                cacheList = new global::System.Collections.Generic.List<object>() {  };
                                 Caches.AddOrUpdate(key, cacheList, (_, _) => cacheList);
                             }
                             cacheList.Add(obj);
@@ -121,7 +121,7 @@ namespace Game {
             }
             if (cacheList == null
                 && !Caches.TryGetValue(key, out cacheList)) {
-                cacheList = [];
+                cacheList = new global::System.Collections.Generic.List<object>() {  };
                 Caches.AddOrUpdate(key, cacheList, (_, _) => cacheList);
             }
             cacheList.Add(obj);
@@ -186,7 +186,7 @@ namespace Game {
         public static ReadOnlyList<ContentInfo> List() => new(Resources.Values.ToDynamicArray());
 
         public static ReadOnlyList<ContentInfo> List(string directory) {
-            List<ContentInfo> contents = [];
+            List<ContentInfo> contents = new global::System.Collections.Generic.List<global::Game.ContentInfo>() {  };
             if (!directory.EndsWith('/')) {
                 directory += "/";
             }

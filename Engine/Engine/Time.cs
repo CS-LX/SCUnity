@@ -14,7 +14,7 @@ namespace Engine {
 
         static long? m_startTicks;
 
-        static List<DelayedExecutionRequest> m_delayedExecutionsRequests = [];
+        static List<DelayedExecutionRequest> m_delayedExecutionsRequests = new global::System.Collections.Generic.List<global::Engine.Time.DelayedExecutionRequest>() {  };
 
         static int m_fpsStartFrameIndex;
 

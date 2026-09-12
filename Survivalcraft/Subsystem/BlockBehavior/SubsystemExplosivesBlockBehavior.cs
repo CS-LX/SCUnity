@@ -25,13 +25,13 @@ namespace Game {
 
         public Random m_random = new();
 
-        public Dictionary<Point3, ExplosiveData> m_explosiveDataByPoint = [];
+        public Dictionary<Point3, ExplosiveData> m_explosiveDataByPoint = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.SubsystemExplosivesBlockBehavior.ExplosiveData>() {  };
 
         public Sound m_fuseSound;
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public bool IgniteFuse(int x, int y, int z) {
             int cellContents = m_subsystemTerrain.Terrain.GetCellContents(x, y, z);

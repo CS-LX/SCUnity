@@ -3,17 +3,17 @@ using TemplatesDatabase;
 
 namespace Game {
     public abstract class SubsystemFluidBlockBehavior : SubsystemBlockBehavior {
-        public static Point2[] m_sideNeighbors = [new(-1, 0), new(1, 0), new(0, -1), new(0, 1)];
+        public static Point2[] m_sideNeighbors = new global::Engine.Point2[] { new(-1, 0), new(1, 0), new(0, -1), new(0, 1) };
 
         public FluidBlock m_fluidBlock;
 
-        public Dictionary<Point3, bool> m_toUpdate = [];
+        public Dictionary<Point3, bool> m_toUpdate = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, bool>() {  };
 
-        public Dictionary<Point3, int> m_toSet = [];
+        public Dictionary<Point3, int> m_toSet = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, int>() {  };
 
-        public Dictionary<Point3, int> m_visited = [];
+        public Dictionary<Point3, int> m_visited = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, int>() {  };
 
-        public Dictionary<Point3, Vector2> m_fluidRandomFlowDirections = [];
+        public Dictionary<Point3, Vector2> m_fluidRandomFlowDirections = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Engine.Vector2>() {  };
 
         public bool m_generateSources;
 

@@ -11,7 +11,7 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [160];
+        public override int[] HandledBlocks => new int[] { 160 };
 
         public override bool OnUse(Ray3 ray, ComponentMiner componentMiner) {
             m_subsystemAudio.PlayRandomSound("Audio/Whistle", 1f, m_random.Float(-0.2f, 0f), ray.Position, 4f, true);

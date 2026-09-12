@@ -137,7 +137,7 @@ namespace Game {
                 Color.White
             );
             for (int j = 0; j < 5; j++) {
-                m_collisionBoxes[j] = [m_blockMeshesByVariant[j].CalculateBoundingBox()];
+                m_collisionBoxes[j] = new global::Engine.BoundingBox[] { m_blockMeshesByVariant[j].CalculateBoundingBox() };
             }
             base.Initialize();
         }

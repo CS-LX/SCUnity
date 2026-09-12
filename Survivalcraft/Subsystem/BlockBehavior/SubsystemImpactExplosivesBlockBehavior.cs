@@ -4,7 +4,7 @@ namespace Game {
     public class SubsystemImpactExplosivesBlockBehavior : SubsystemBlockBehavior {
         public SubsystemExplosions m_subsystemExplosions;
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override bool OnHitAsProjectile(CellFace? cellFace, ComponentBody componentBody, WorldItem worldItem) =>
             m_subsystemExplosions.TryExplodeBlock(

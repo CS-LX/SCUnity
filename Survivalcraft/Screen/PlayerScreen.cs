@@ -45,15 +45,8 @@ namespace Game {
         public ButtonWidget m_deleteButton;
         public ButtonWidget m_playButton;
 
-        public static WidgetInputDevice[] m_allInputDevices = [
-            WidgetInputDevice.None,
-            WidgetInputDevice.Keyboard | WidgetInputDevice.Mouse,
-            WidgetInputDevice.GamePad1,
-            WidgetInputDevice.GamePad2,
-            WidgetInputDevice.GamePad3,
-            WidgetInputDevice.GamePad4,
-            WidgetInputDevice.VrControllers
-        ];
+        public static WidgetInputDevice[] m_allInputDevices = new global::Game.WidgetInputDevice[] {             WidgetInputDevice.None,             WidgetInputDevice.Keyboard | WidgetInputDevice.Mouse,             WidgetInputDevice.GamePad1,             WidgetInputDevice.GamePad2,             WidgetInputDevice.GamePad3,             WidgetInputDevice.GamePad4,             WidgetInputDevice.VrControllers
+ };
 
         public static ReadOnlyList<WidgetInputDevice> AllInputDevices => new(m_allInputDevices);
 
@@ -138,7 +131,7 @@ namespace Game {
             string description = valuesDictionary.GetValue<string>("Description");
             if (description.StartsWith('[')
                 && description.EndsWith(']')) {
-                string[] lp = description.Substring(1, description.Length - 2).Split([":"], StringSplitOptions.RemoveEmptyEntries);
+                string[] lp = description.Substring(1, description.Length - 2).Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
                 description = LanguageControl.GetDatabase("Description", lp[1]);
             }
             m_descriptionLabel.Text = description;
@@ -232,7 +225,7 @@ namespace Game {
                 m_playerData.SubsystemPlayers.AddPlayerData(m_playerData);
                 Project project = m_playerData.SubsystemPlayers.Project;
                 Leave();
-                Enter([Mode.Initial, project]);
+                Enter(new object[] { Mode.Initial, project });
             }
             if ((Input.Back || Input.Cancel || Children.Find<ButtonWidget>("TopBar.Back").IsClicked)
                 && VerifyName()) {

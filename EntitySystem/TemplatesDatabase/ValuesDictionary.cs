@@ -7,7 +7,7 @@ using XmlUtilities;
 
 namespace TemplatesDatabase {
     public class ValuesDictionary : IEnumerable<KeyValuePair<string, object>> {
-        public Dictionary<string, object> m_dictionary = [];
+        public Dictionary<string, object> m_dictionary = new global::System.Collections.Generic.Dictionary<string, object>() {  };
 
         public DatabaseObject m_databaseObject;
 
@@ -117,7 +117,7 @@ namespace TemplatesDatabase {
                     }
                 }
                 else {
-                    ValuesDictionary valuesDictionary = [];
+                    ValuesDictionary valuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  };
                     valuesDictionary.PopulateFromDatabaseObject(effectiveNestingChild);
                     SetValue(effectiveNestingChild.Name, valuesDictionary);
                 }
@@ -128,7 +128,7 @@ namespace TemplatesDatabase {
             foreach (KeyValuePair<string, object> item in overridesValuesDictionary) {
                 if (item.Value is ValuesDictionary valuesDictionary) {
                     if (GetValue<object>(item.Key, null) is not ValuesDictionary valuesDictionary2) {
-                        valuesDictionary2 = [];
+                        valuesDictionary2 = new global::TemplatesDatabase.ValuesDictionary() {  };
                         SetValue(item.Key, valuesDictionary2);
                     }
                     valuesDictionary2.ApplyOverrides(valuesDictionary);

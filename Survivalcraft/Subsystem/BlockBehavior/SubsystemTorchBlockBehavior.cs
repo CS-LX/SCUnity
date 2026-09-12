@@ -5,9 +5,9 @@ namespace Game {
     public class SubsystemTorchBlockBehavior : SubsystemBlockBehavior {
         public SubsystemParticles m_subsystemParticles;
 
-        public Dictionary<Point3, FireParticleSystem> m_particleSystemsByCell = [];
+        public Dictionary<Point3, FireParticleSystem> m_particleSystemsByCell = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.FireParticleSystem>() {  };
 
-        public override int[] HandledBlocks => [31, 17, 132];
+        public override int[] HandledBlocks => new int[] { 31, 17, 132 };
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
             int cellValueFast = SubsystemTerrain.Terrain.GetCellValueFast(x, y, z);

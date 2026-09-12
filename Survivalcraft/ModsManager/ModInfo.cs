@@ -41,10 +41,10 @@ namespace Game {
         /// 注意：玩家能在游戏中手动修改顺序
         /// </summary>
         public int LoadOrder = (int)Game.LoadOrder.Default;
-        public List<string> Dependencies = [];
+        public List<string> Dependencies = new global::System.Collections.Generic.List<string>() {  };
         public NuGetVersion NuGetVersion;
         public VersionRange ApiVersionRange;
-        public Dictionary<string, VersionRange> DependencyRanges = [];
+        public Dictionary<string, VersionRange> DependencyRanges = new global::System.Collections.Generic.Dictionary<string, global::NuGet.Versioning.VersionRange>() {  };
 
         /// <summary>
         ///     非持久性模组<br/>

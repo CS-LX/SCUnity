@@ -11,11 +11,10 @@ namespace Game {
 
         public BoundingBox[][] m_collisionBoxes = new BoundingBox[24][];
 
-        public static Color[] m_colors = [new(20, 20, 20), new(50, 20, 20), new(80, 30, 30), new(20, 20, 40)];
+        public static Color[] m_colors = new global::Engine.Color[] { new(20, 20, 20), new(50, 20, 20), new(80, 30, 30), new(20, 20, 40) };
 
-        public static Vector2[] m_offsets = [
-            0.15f * new Vector2(-0.8f, -1f), 0.15f * new Vector2(1f, -0.75f), 0.15f * new Vector2(-0.65f, 1f), 0.15f * new Vector2(0.9f, 0.7f)
-        ];
+        public static Vector2[] m_offsets = new global::Engine.Vector2[] {             0.15f * new Vector2(-0.8f, -1f), 0.15f * new Vector2(1f, -0.75f), 0.15f * new Vector2(-0.65f, 1f), 0.15f * new Vector2(0.9f, 0.7f)
+ };
 
         public override void Initialize() {
             Model model = ContentManager.Get<Model>("Models/SeaUrchin");
@@ -48,7 +47,7 @@ namespace Game {
                             false,
                             Color.White
                         );
-                    m_collisionBoxes[num] = [m_blockMeshes[num].CalculateBoundingBox()];
+                    m_collisionBoxes[num] = new global::Engine.BoundingBox[] { m_blockMeshes[num].CalculateBoundingBox() };
                 }
             }
             m_standaloneBlockMesh = new BlockMesh();

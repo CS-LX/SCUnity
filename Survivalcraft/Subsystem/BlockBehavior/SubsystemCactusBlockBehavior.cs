@@ -13,7 +13,7 @@ namespace Game {
         public int m_sandBlockIndex;
 
         public int m_cactusBlockIndex;
-        public override int[] HandledBlocks => [BlocksManager.GetBlockIndex<CactusBlock>()];
+        public override int[] HandledBlocks => new int[] { BlocksManager.GetBlockIndex<CactusBlock>() };
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
             int cellContents = SubsystemTerrain.Terrain.GetCellContents(x, y - 1, z);

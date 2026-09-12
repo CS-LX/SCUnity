@@ -2,13 +2,13 @@ namespace Engine.Graphics {
     public abstract class BaseFlatBatch : BaseBatch {
         public static UnlitShader m_shader = new(true, false, false, false);
 
-        public readonly DynamicArray<VertexPositionColor> LineVertices = [];
+        public readonly DynamicArray<VertexPositionColor> LineVertices = new global::Engine.DynamicArray<global::Engine.Graphics.VertexPositionColor>() {  };
 
-        public readonly DynamicArray<int> LineIndices = [];
+        public readonly DynamicArray<int> LineIndices = new global::Engine.DynamicArray<int>() {  };
 
-        public readonly DynamicArray<VertexPositionColor> TriangleVertices = [];
+        public readonly DynamicArray<VertexPositionColor> TriangleVertices = new global::Engine.DynamicArray<global::Engine.Graphics.VertexPositionColor>() {  };
 
-        public readonly DynamicArray<int> TriangleIndices = [];
+        public readonly DynamicArray<int> TriangleIndices = new global::Engine.DynamicArray<int>() {  };
 
         public override bool IsEmpty() => LineIndices.Count == 0 && TriangleIndices.Count == 0;
 

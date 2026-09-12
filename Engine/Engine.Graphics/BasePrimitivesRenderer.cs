@@ -6,7 +6,7 @@ namespace Engine.Graphics {
         where T3 : BaseFontBatch, new() {
         public bool m_sortNeeded;
 
-        public List<BaseBatch> m_allBatches = [];
+        public List<BaseBatch> m_allBatches = new global::System.Collections.Generic.List<global::Engine.Graphics.BaseBatch>() {  };
 
         public LinkedList<T1> m_flatBatches = new();
 
@@ -48,7 +48,7 @@ namespace Engine.Graphics {
             RasterizerState rasterizerState,
             BlendState blendState,
             SamplerState samplerState) {
-            ArgumentNullException.ThrowIfNull(texture);
+            if (texture is null) throw new ArgumentNullException("texture");
             for (LinkedListNode<T2> linkedListNode = m_texturedBatches.First; linkedListNode != null; linkedListNode = linkedListNode.Next) {
                 T2 value = linkedListNode.Value;
                 if (texture == value.Texture
@@ -86,7 +86,7 @@ namespace Engine.Graphics {
             RasterizerState rasterizerState,
             BlendState blendState,
             SamplerState samplerState) {
-            ArgumentNullException.ThrowIfNull(font);
+            if (font is null) throw new ArgumentNullException("font");
             for (LinkedListNode<T3> linkedListNode = m_fontBatches.First; linkedListNode != null; linkedListNode = linkedListNode.Next) {
                 T3 value = linkedListNode.Value;
                 if (font == value.Font

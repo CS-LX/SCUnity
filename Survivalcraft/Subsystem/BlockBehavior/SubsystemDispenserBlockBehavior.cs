@@ -2,7 +2,7 @@ using TemplatesDatabase;
 
 namespace Game {
     public class SubsystemDispenserBlockBehavior : SubsystemEntityBlockBehavior {
-        public override int[] HandledBlocks => [216];
+        public override int[] HandledBlocks => new int[] { 216 };
 
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);

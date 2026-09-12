@@ -18,7 +18,7 @@ namespace Game {
 
         public ComponentPathfinding m_componentPathfinding;
 
-        public DynamicArray<ComponentBody> m_componentBodies = [];
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
         public Random m_random = new();
 

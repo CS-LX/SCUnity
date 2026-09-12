@@ -35,7 +35,7 @@ namespace Game {
                         false,
                         Color.White
                     );
-                m_collisionBoxesByData[num] = [m_blockMeshesByData[num].CalculateBoundingBox()];
+                m_collisionBoxesByData[num] = new global::Engine.BoundingBox[] { m_blockMeshesByData[num].CalculateBoundingBox() };
             }
             Matrix m2 = Matrix.CreateRotationY(-(float)Math.PI / 2f) * Matrix.CreateRotationZ((float)Math.PI / 2f);
             m_standaloneBlockMesh.AppendModelMeshPart(

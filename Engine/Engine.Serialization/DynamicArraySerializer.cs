@@ -1,7 +1,7 @@
 namespace Engine.Serialization {
     public class DynamicArraySerializer<T> : ISerializer<DynamicArray<T>> {
         public void Serialize(InputArchive archive, ref DynamicArray<T> value) {
-            value = [];
+            value = new global::Engine.DynamicArray<T>() {  };
             archive.SerializeCollection(null, value);
         }
 

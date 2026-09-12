@@ -77,82 +77,12 @@ namespace Engine.Graphics {
         public static bool UsingAngle = false;
 
         public static void Initialize() {
-#if BROWSER
-            InitializeEgl(IntPtr.Zero);
-#elif WINDOWS
-            if (UsingAngle) {
-                try {
-                    // libEGL 初始化时会自行加载 libGLESv2，缺失时 libEGL 会在原生侧直接终止进程，
-                    // 托管代码无法拦截。且按裸文件名加载可能命中 PATH 上其他程序（如 VR 运行时）
-                    // 携带的同名异版 ANGLE DLL，导致 libEGL 在游戏目录找不到配套 libGLESv2 而终止。
-                    // 因此用绝对路径锁定游戏目录预加载，预加载后模块按文件名驻留进程，
-                    // libEGL 内部与后续 DllImport 都会命中这份。
-                    if (!NativeLibrary.TryLoad(Path.Combine(AppContext.BaseDirectory, "libGLESv2.dll"), out _)
-                        || !NativeLibrary.TryLoad(Path.Combine(AppContext.BaseDirectory, "libEGL.dll"), out _)) {
-                        Log.Error("Failed to load ANGLE libraries (libEGL.dll / libGLESv2.dll) from the game directory");
-                        ShowAngleFatalError(
-                            "Failed to load \"libEGL.dll\" / \"libGLESv2.dll\" from the game directory. The game directory may be incomplete, or your antivirus software may have removed the files."
-                            + "\n从游戏目录加载 libEGL.dll / libGLESv2.dll 失败，游戏目录可能不完整，或文件已被杀毒软件删除。"
-                            + AngleMarkerHint());
-                    }
-                    IntPtr hwnd = Window.Handle;
-                    if (hwnd == IntPtr.Zero) {
-                        throw new Exception("Failed to get window handle");
-                    }
-                    InitializeEgl(hwnd);
-                    SaveAngleMarker();
-                }
-                catch (Exception ex) {
-                    // InitializeAll 会吞掉所有异常，ANGLE 失败必须在这里直接弹窗退出，
-                    // 否则游戏会带着空的 GL 状态继续运行。
-                    Log.Error($"Failed to initialize ANGLE: {ex}");
-                    ShowAngleFatalError(
-                        "Failed to initialize the ANGLE-based compatible mode. Please try updating your graphics card driver."
-                        + "\nANGLE 兼容模式初始化失败，请尝试更新显卡驱动。"
-                        + AngleMarkerHint());
-                }
-            }
-            else {
-                GL = GL.GetApi(Window.m_view);
-            }
-#elif IOS
-            // iOS 上不能依赖 SDL_GL_GetProcAddress（其内部实现是 dlsym(RTLD_DEFAULT, proc)）。
-            // 在 PlayCover（macOS 运行 iOS 应用）环境下，进程内同时存在桌面版 libGL.dylib，
-            // RTLD_DEFAULT 会把 glGetIntegerv 等符号错误解析到桌面 OpenGL，
-            // 在没有当前 CGL 上下文时调用即崩溃（EXC_BAD_ACCESS 0x348）。
-            // 因此直接从 OpenGLES.framework 解析符号，兜底再走 SDL。
-            GL = GL.GetApi(GetGlesProcAddress);
-#else
-            GL = GL.GetApi(Window.m_view);
-#endif
-#if IOS
-            m_mainFramebuffer = GL.GetInteger((GLEnum)GetPName.DrawFramebufferBinding);
-            m_mainDepthbuffer = GL.GetInteger((GLEnum)GetPName.RenderbufferBinding);
-            m_mainColorbuffer = GL.GetInteger(GLEnum.ColorAttachment0);
-#else
+GL = GL.GetApi(UnityCommands.Resolve);
             m_mainFramebuffer = 0;
-#endif
-#if DEBUG && !IOS && !BROWSER
-            unsafe {
-                GL.DebugMessageCallback(DebugMessageDelegate, IntPtr.Zero.ToPointer());
-                GL.Enable(EnableCap.DebugOutput);
-            }
-#endif
-            int[] bits = new int[6];
-            for (int i = 0; i < 6; i++) {
-                bits[i] = GL.GetInteger((GetPName)(i + 3410));
-            }
-            GL.GetInteger(GetPName.MaxTextureSize, out GL_MAX_TEXTURE_SIZE);
-            GL.GetInteger(GetPName.MaxVertexUniformVectors, out GL_MAX_VERTEX_UNIFORM_VECTORS);
-            string OpenGLVendor = $"OpenGL ES, Vendor={GL.GetStringS(StringName.Vendor) ?? string.Empty}";
-            Display.DeviceDescription =
-                $"{OpenGLVendor}, Renderer={GL.GetStringS(StringName.Renderer) ?? string.Empty}, Version={GL.GetStringS(StringName.Version) ?? string.Empty}, R={bits[0]} G={bits[1]} B={bits[2]} A={bits[3]}, D={bits[4]} S={bits[5]}, MaxTextureSize={GL_MAX_TEXTURE_SIZE}";
-            Log.Information($"Initialized display device: {Display.DeviceDescription}");
-            string extensions = GL.GetStringS(StringName.Extensions);
-            GL_EXT_texture_filter_anisotropic = extensions?.Contains("GL_EXT_texture_filter_anisotropic") ?? false;
-            GL_OES_packed_depth_stencil = extensions?.Contains("GL_OES_packed_depth_stencil") ?? false;
-            GL_KHR_texture_compression_astc_ldr = extensions?.Contains("GL_KHR_texture_compression_astc_ldr") ?? false;
-            GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = GL.GetInteger(GetPName.MaxCombinedTextureImageUnits);
+            GL_MAX_TEXTURE_SIZE = 8192; GL_MAX_VERTEX_UNIFORM_VECTORS = 1024; GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = 32;
+            GL_OES_packed_depth_stencil = true;
+            UsingAngle = false;
+            Display.DeviceDescription = "SCUnity managed command validation backend (no GPU)";
         }
 
 #if BROWSER || WINDOWS
@@ -161,49 +91,7 @@ namespace Engine.Graphics {
         /// </summary>
         /// <param name="hwnd">原生窗口句柄，BROWSER 下传 IntPtr.Zero（目标 surface 由宿主决定）</param>
         static void InitializeEgl(IntPtr hwnd) {
-            m_eglDisplay = Egl.GetDisplay(IntPtr.Zero);
-            if (m_eglDisplay == IntPtr.Zero) {
-                throw new Exception("eglGetDisplay failed");
-            }
-            if (!Egl.Initialize(m_eglDisplay, out _, out _)) {
-                throw new Exception("eglInitialize failed");
-            }
-            int[] configAttribs = [
-                Egl.RedSize, 8,
-                Egl.GreenSize, 8,
-                Egl.BlueSize, 8,
-                Egl.AlphaSize, 8,
-                Egl.DepthSize, 24,
-                Egl.StencilSize, 8,
-                Egl.SurfaceType, Egl.WindowBit,
-                Egl.RenderableType, Egl.OpenglEs3Bit,
-                Egl.None
-            ];
-            IntPtr[] configs = new IntPtr[1];
-            if (!Egl.ChooseConfig(m_eglDisplay, configAttribs, configs, 1, out int numConfigs)) {
-                throw new Exception("eglChooseConfig failed");
-            }
-            IntPtr config = configs[0];
-#if BROWSER
-            m_eglSurface = Egl.CreateWindowSurface(m_eglDisplay, config, IntPtr.Zero, [Egl.None]);
-#else
-            m_eglSurface = Egl.CreateWindowSurface(m_eglDisplay, config, hwnd, [Egl.None]);
-#endif
-            if (m_eglSurface == IntPtr.Zero) {
-                throw new Exception("eglCreateWindowSurface failed");
-            }
-            int[] contextAttribs = [Egl.ContextClientVersion, 3, Egl.None];
-            m_eglContext = Egl.CreateContext(m_eglDisplay, config, IntPtr.Zero, contextAttribs);
-            if (m_eglContext == IntPtr.Zero) {
-                throw new Exception("eglCreateContext failed");
-            }
-            if (!Egl.MakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext)) {
-                throw new Exception("eglMakeCurrent failed");
-            }
-#if BROWSER
-            TrampolineFuncs.ApplyWorkaroundFixingInvocations();
-#endif
-            GL = GL.GetApi(Egl.GetProcAddress);
+throw new PlatformNotSupportedException("Unity owns the graphics device.");
         }
 #endif
 
@@ -231,14 +119,7 @@ namespace Engine.Graphics {
         /// 启动时读取游戏目录的 UsingAngle 标记文件，存在则直接使用 ANGLE 兼容模式；删除该文件即重置为自动检测
         /// </summary>
         public static void LoadAngleMarker() {
-            try {
-                if (File.Exists(AngleMarkerPath)) {
-                    UsingAngle = true;
-                }
-            }
-            catch (Exception ex) {
-                Log.Error($"Failed to read ANGLE marker file: {ex}");
-            }
+UsingAngle = false;
         }
 
         /// <summary>
@@ -284,82 +165,7 @@ namespace Engine.Graphics {
         /// <param name="width">PBuffer 宽度（默认 256）</param>
         /// <param name="height">PBuffer 高度（默认 256）</param>
         public static void InitializeHeadless(int width = 256, int height = 256) {
-            m_eglDisplay = Egl.GetDisplay(IntPtr.Zero);
-            if (m_eglDisplay == IntPtr.Zero) {
-                throw new Exception("eglGetDisplay failed");
-            }
-            if (!Egl.Initialize(m_eglDisplay, out _, out _)) {
-                throw new Exception("eglInitialize failed");
-            }
-
-            // 使用 PBuffer Bit 而不是 Window Bit
-            int[] configAttribs = [
-                Egl.RedSize, 8,
-                Egl.GreenSize, 8,
-                Egl.BlueSize, 8,
-                Egl.AlphaSize, 8,
-                Egl.DepthSize, 24,
-                Egl.StencilSize, 8,
-                Egl.SurfaceType, Egl.PbufferBit,
-                Egl.RenderableType, Egl.OpenglEs3Bit,
-                Egl.None
-            ];
-
-            IntPtr[] configs = new IntPtr[1];
-            if (!Egl.ChooseConfig(m_eglDisplay, configAttribs, configs, 1, out int numConfigs)) {
-                throw new Exception("eglChooseConfig failed");
-            }
-            IntPtr config = configs[0];
-
-            // 创建 PBuffer Surface
-            int[] pbufferAttribs = [
-                Egl.Width, width,
-                Egl.Height, height,
-                Egl.None
-            ];
-            m_eglSurface = Egl.CreatePbufferSurface(m_eglDisplay, config, pbufferAttribs);
-            if (m_eglSurface == IntPtr.Zero) {
-                throw new Exception("eglCreatePbufferSurface failed");
-            }
-
-            // 创建 OpenGL ES 3.0 上下文
-            int[] contextAttribs = [Egl.ContextClientVersion, 3, Egl.None];
-            m_eglContext = Egl.CreateContext(m_eglDisplay, config, IntPtr.Zero, contextAttribs);
-            if (m_eglContext == IntPtr.Zero) {
-                throw new Exception("eglCreateContext failed");
-            }
-
-            if (!Egl.MakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext)) {
-                throw new Exception("eglMakeCurrent failed");
-            }
-
-            GL = GL.GetApi(Egl.GetProcAddress);
-            m_mainFramebuffer = 0;
-
-#if DEBUG
-            unsafe {
-                GL.DebugMessageCallback(DebugMessageDelegate, IntPtr.Zero.ToPointer());
-                GL.Enable(EnableCap.DebugOutput);
-            }
-#endif
-
-            int[] bits = new int[6];
-            for (int i = 0; i < 6; i++) {
-                bits[i] = GL.GetInteger((GetPName)(i + 3410));
-            }
-            GL.GetInteger(GetPName.MaxTextureSize, out GL_MAX_TEXTURE_SIZE);
-            GL.GetInteger(GetPName.MaxVertexUniformVectors, out GL_MAX_VERTEX_UNIFORM_VECTORS);
-            Display.DeviceDescription =
-                $"OpenGL ES (Headless), Vendor={GL.GetStringS(StringName.Vendor) ?? string.Empty}, " +
-                $"Renderer={GL.GetStringS(StringName.Renderer) ?? string.Empty}, " +
-                $"Version={GL.GetStringS(StringName.Version) ?? string.Empty}";
-            Log.Information($"Initialized headless display device: {Display.DeviceDescription}");
-
-            string extensions = GL.GetStringS(StringName.Extensions);
-            GL_EXT_texture_filter_anisotropic = extensions?.Contains("GL_EXT_texture_filter_anisotropic") ?? false;
-            GL_OES_packed_depth_stencil = extensions?.Contains("GL_OES_packed_depth_stencil") ?? false;
-            GL_KHR_texture_compression_astc_ldr = extensions?.Contains("GL_KHR_texture_compression_astc_ldr") ?? false;
-            GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = GL.GetInteger(GetPName.MaxCombinedTextureImageUnits);
+Initialize();
         }
 #endif
 
@@ -392,12 +198,12 @@ namespace Engine.Graphics {
             m_blendFuncDestination = (BlendingFactor)(-1);
             m_blendFuncDestinationColor = (BlendingFactor)(-1);
             m_blendFuncDestinationAlpha = (BlendingFactor)(-1);
-            m_enableDisableStates = [];
+            m_enableDisableStates = new global::System.Collections.Generic.Dictionary<global::Silk.NET.OpenGLES.EnableCap, bool>() {  };
             m_vertexAttribArray = new bool?[16];
             m_rasterizerState = null;
             m_depthStencilState = null;
             m_blendState = null;
-            m_textureSamplerStates = [];
+            m_textureSamplerStates = new global::System.Collections.Generic.Dictionary<int, global::Engine.Graphics.SamplerState>() {  };
             m_lastShader = null;
             m_lastVertexDeclaration = null;
             m_lastVertexOffset = IntPtr.Zero;
@@ -656,7 +462,7 @@ namespace Engine.Graphics {
                 m_framebuffer = -1;
             }
             uint uFramebuffer = (uint)framebuffer;
-            GL.DeleteFramebuffers(1, in uFramebuffer);
+            GL.DeleteFramebuffers(1, ref uFramebuffer);
         }
 
         public static void DeleteBuffer(BufferTargetARB target, int buffer) {
@@ -673,7 +479,7 @@ namespace Engine.Graphics {
                 m_elementArrayBuffer = -1;
             }
             uint uBuffer = (uint)buffer;
-            GL.DeleteBuffers(1u, in uBuffer);
+            GL.DeleteBuffers(1u, ref uBuffer);
         }
 
         public static void ApplyViewportScissor(Viewport viewport, Rectangle scissorRectangle, bool isScissorEnabled) {

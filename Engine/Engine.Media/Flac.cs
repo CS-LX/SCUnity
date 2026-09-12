@@ -86,7 +86,7 @@ namespace Engine.Media {
             }
 
             public override int Read(byte[] buffer, int offset, int count) {
-                ArgumentNullException.ThrowIfNull(buffer);
+                if (buffer is null) throw new ArgumentNullException("buffer");
                 if (offset < 0
                     || count < 0
                     || offset + count > buffer.Length) {
@@ -110,7 +110,7 @@ namespace Engine.Media {
         }
 
         public static bool IsFlacStream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             long position = stream.Position;
             stream.Position = 0;
             byte[] beginSync = new byte[4];
@@ -122,7 +122,7 @@ namespace Engine.Media {
         }
 
         public static StreamingSource Stream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new FlacStreamingSource(stream);
         }
 
@@ -194,7 +194,7 @@ namespace Engine.Media {
             }
 
             public override int Read(byte[] buffer, int offset, int count) {
-                ArgumentNullException.ThrowIfNull(buffer);
+                if (buffer is null) throw new ArgumentNullException("buffer");
                 if (offset < 0
                     || count < 0
                     || offset + count > buffer.Length) {
@@ -219,7 +219,7 @@ namespace Engine.Media {
         }
 
         public static bool IsFlacStream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             long position = stream.Position;
             stream.Position = 0;
             ID3v2.SkipTag(stream);
@@ -232,7 +232,7 @@ namespace Engine.Media {
         }
 
         public static StreamingSource Stream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new FlacStreamingSource(stream);
         }
 

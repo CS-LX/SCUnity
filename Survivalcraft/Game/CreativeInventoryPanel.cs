@@ -7,7 +7,7 @@ namespace Game {
 
         public ComponentCreativeInventory m_componentCreativeInventory;
 
-        public List<int> m_slotIndices = [];
+        public List<int> m_slotIndices = new global::System.Collections.Generic.List<int>() {  };
 
         public GridPanelWidget m_inventoryGrid;
 

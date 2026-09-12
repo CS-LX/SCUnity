@@ -35,9 +35,9 @@ namespace Game {
 
         public SubsystemFireBlockBehavior m_subsystemFireBlockBehavior;
 
-        public List<Projectile> m_projectiles = [];
+        public List<Projectile> m_projectiles = new global::System.Collections.Generic.List<global::Game.Projectile>() {  };
 
-        public List<Projectile> m_projectilesToRemove = [];
+        public List<Projectile> m_projectilesToRemove = new global::System.Collections.Generic.List<global::Game.Projectile>() {  };
 
         public PrimitivesRenderer3D m_primitivesRenderer = new();
 
@@ -47,7 +47,7 @@ namespace Game {
 
         public const float BodyInflateAmount = 0.2f;
 
-        public static int[] m_drawOrders = [10];
+        public static int[] m_drawOrders = new int[] { 10 };
 
         public ReadOnlyList<Projectile> Projectiles => new(m_projectiles);
 

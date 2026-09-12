@@ -40,7 +40,7 @@ namespace Engine.Audio {
         }
 
         void VerifyStreamingSource(StreamingSource streamingSource) {
-            ArgumentNullException.ThrowIfNull(streamingSource);
+            if (streamingSource is null) throw new ArgumentNullException("streamingSource");
             if (streamingSource.ChannelsCount < 1
                 || streamingSource.ChannelsCount > 2) {
                 throw new InvalidOperationException("Unsupported channels count.");

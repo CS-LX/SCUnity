@@ -10,44 +10,14 @@ namespace Game {
 
         public Color m_color;
 
-        public Vector2[] m_centers = [
-            new(0f, 6f),
-            new(-4f, 3f),
-            new(-4f, -3f),
-            new(0f, -6f),
-            new(4f, -3f),
-            new(4f, 3f),
-            new(0f, 0f)
-        ];
+        public Vector2[] m_centers = new global::Engine.Vector2[] {             new(0f, 6f),             new(-4f, 3f),             new(-4f, -3f),             new(0f, -6f),             new(4f, -3f),             new(4f, 3f),             new(0f, 0f)
+ };
 
-        public Vector2[] m_sizes = [
-            new(3.2f, 1f),
-            new(1f, 2.3f),
-            new(1f, 2.3f),
-            new(3.2f, 1f),
-            new(1f, 2.3f),
-            new(1f, 2.3f),
-            new(3.2f, 1f)
-        ];
+        public Vector2[] m_sizes = new global::Engine.Vector2[] {             new(3.2f, 1f),             new(1f, 2.3f),             new(1f, 2.3f),             new(3.2f, 1f),             new(1f, 2.3f),             new(1f, 2.3f),             new(3.2f, 1f)
+ };
 
-        public int[] m_patterns = [
-            63,
-            6,
-            91,
-            79,
-            102,
-            109,
-            125,
-            7,
-            127,
-            111,
-            119,
-            124,
-            57,
-            94,
-            121,
-            113
-        ];
+        public int[] m_patterns = new int[] {             63,             6,             91,             79,             102,             109,             125,             7,             127,             111,             119,             124,             57,             94,             121,             113
+ };
 
         public SevenSegmentDisplayElectricElement(SubsystemElectricity subsystemElectricity, CellFace cellFace) :
             base(subsystemElectricity, cellFace) => m_subsystemGlow = subsystemElectricity.Project.FindSubsystem<SubsystemGlow>(true);

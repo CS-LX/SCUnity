@@ -24,9 +24,9 @@ namespace Engine.Graphics {
         public IReadOnlyList<Vector4>[] m_savedColors0;
 
         // 定义属性的规范顺序
-        public static readonly string[] CanonicalAttributeOrder = ["POSITION", "NORMAL", "TANGENT", "TEXCOORD_0", "TEXCOORD_1", "COLOR_0"];
+        public static readonly string[] CanonicalAttributeOrder = new string[] { "POSITION", "NORMAL", "TANGENT", "TEXCOORD_0", "TEXCOORD_1", "COLOR_0" };
 
-        public readonly List<string> m_activeAttributes = [];
+        public readonly List<string> m_activeAttributes = new global::System.Collections.Generic.List<string>() {  };
 
         /// <summary>
         /// 纹理句柄

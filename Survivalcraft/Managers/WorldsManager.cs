@@ -6,7 +6,7 @@ using XmlUtilities;
 
 namespace Game {
     public static class WorldsManager {
-        public static List<WorldInfo> m_worldInfos = [];
+        public static List<WorldInfo> m_worldInfos = new global::System.Collections.Generic.List<global::Game.WorldInfo>() {  };
 
         public static ReadOnlyList<string> m_newWorldNames;
 
@@ -27,7 +27,7 @@ namespace Game {
             }
             Storage.CreateDirectory(WorldsDirectoryName);
             string text = ContentManager.Get<string>("NewWorldNames");
-            m_newWorldNames = new ReadOnlyList<string>(text.Split(['\n', '\r'], StringSplitOptions.RemoveEmptyEntries));
+            m_newWorldNames = new ReadOnlyList<string>(text.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries));
             Loaded = true;
         }
 

@@ -1,4 +1,4 @@
-﻿namespace Game {
+namespace Game {
     public class FileAlreadyExistsException : Exception {
         public readonly string Path;
 

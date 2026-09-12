@@ -3,7 +3,7 @@ using System.Text.Json;
 namespace Game.IContentReader {
     public class JsonArrayReader : IContentReader {
         public override string Type => "System.Text.Json.Nodes.JsonArray";
-        public override string[] DefaultSuffix => ["json"];
+        public override string[] DefaultSuffix => new string[] { "json" };
 
         public override object Get(ContentInfo[] contents) {
             JsonElement element = JsonDocument.Parse(new StreamReader(contents[0].Duplicate()).ReadToEnd(), JsonDocumentReader.DefaultJsonOptions).RootElement;
@@ -13,13 +13,13 @@ namespace Game.IContentReader {
 
     public class JsonModelReader : IContentReader {
         public override string Type => "Game.JsonModel";
-        public override string[] DefaultSuffix => ["json"];
+        public override string[] DefaultSuffix => new string[] { "json" };
         public override object Get(ContentInfo[] contents) => Game.JsonModelReader.Load(contents[0].Duplicate());
     }
 
     public class JsonObjectReader : IContentReader {
         public override string Type => "System.Text.Json.Nodes.JsonObject";
-        public override string[] DefaultSuffix => ["json"];
+        public override string[] DefaultSuffix => new string[] { "json" };
 
         public override object Get(ContentInfo[] contents) {
             JsonElement element = JsonDocument.Parse(new StreamReader(contents[0].Duplicate()).ReadToEnd(), JsonDocumentReader.DefaultJsonOptions).RootElement;
@@ -33,7 +33,7 @@ namespace Game.IContentReader {
             CommentHandling = JsonCommentHandling.Skip
         };
         public override string Type => "System.Text.Json.JsonDocument";
-        public override string[] DefaultSuffix => ["json"];
+        public override string[] DefaultSuffix => new string[] { "json" };
         public override object Get(ContentInfo[] contents) => JsonDocument.Parse(new StreamReader(contents[0].Duplicate()).ReadToEnd(), DefaultJsonOptions);
     }
 }

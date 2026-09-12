@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+using System.Xml.Linq;
 using Engine;
 using Engine.Graphics;
 
@@ -117,7 +117,7 @@ namespace Game {
             }
         }
 
-        public HashSet<string> m_changedGuids = [];
+        public HashSet<string> m_changedGuids = new global::System.Collections.Generic.HashSet<string>() {  };
 
         public ButtonWidget m_backButton;
 

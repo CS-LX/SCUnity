@@ -9,7 +9,7 @@ namespace Game.IContentReader {
     /// </summary>
     public class BitmapFontReader : IContentReader {
         public override string Type => "Engine.Media.BitmapFont";
-        public override string[] DefaultSuffix => ["lst", "astc", "astcsrgb", "webp", "png"];
+        public override string[] DefaultSuffix => new string[] { "lst", "astc", "astcsrgb", "webp", "png" };
 
         public override object Get(ContentInfo[] contents) {
             if (contents.Length != 2) {

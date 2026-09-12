@@ -4,9 +4,9 @@ namespace Engine.Graphics {
 
         public static UnlitShader m_shaderAlphaTest = new(true, true, false, true);
 
-        public readonly DynamicArray<VertexPositionColorTexture> TriangleVertices = [];
+        public readonly DynamicArray<VertexPositionColorTexture> TriangleVertices = new global::Engine.DynamicArray<global::Engine.Graphics.VertexPositionColorTexture>() {  };
 
-        public readonly DynamicArray<int> TriangleIndices = [];
+        public readonly DynamicArray<int> TriangleIndices = new global::Engine.DynamicArray<int>() {  };
 
         public Texture2D Texture { get; set; }
 

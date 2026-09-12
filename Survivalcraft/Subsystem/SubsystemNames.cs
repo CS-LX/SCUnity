@@ -2,7 +2,7 @@ using GameEntitySystem;
 
 namespace Game {
     public class SubsystemNames : Subsystem {
-        public Dictionary<string, ComponentName> m_componentsByName = [];
+        public Dictionary<string, ComponentName> m_componentsByName = new global::System.Collections.Generic.Dictionary<string, global::Game.ComponentName>() {  };
 
         public Component FindComponentByName(string name, Type componentType, string componentName) =>
             FindEntityByName(name)?.FindComponent(componentType, componentName, false);

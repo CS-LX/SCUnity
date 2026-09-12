@@ -168,7 +168,7 @@ public class ModsManageContentScreen : Screen {
             || Input.Cancel
             || Children.Find<ButtonWidget>("TopBar.Back").IsClicked) {
             if (m_needRestart) {
-                List<string> array = [];
+                List<string> array = new global::System.Collections.Generic.List<string>() {  };
                 foreach (ModEntity entity1 in ModsManager.ModListAll) {
                     if (!string.IsNullOrEmpty(entity1.LoadAfter)) {
                         array.Add(entity1.modInfo.PackageName);
@@ -210,7 +210,7 @@ public class ModsManageContentScreen : Screen {
                     }
                 }
                 else {
-                    ModsManager.DisabledMods.Add(entity.modInfo.PackageName, [entity.modInfo.Version]);
+                    ModsManager.DisabledMods.Add(entity.modInfo.PackageName, new global::System.Collections.Generic.HashSet<string>() { entity.modInfo.Version });
                 }
                 m_needRestart = true;
             }
@@ -222,7 +222,7 @@ public class ModsManageContentScreen : Screen {
                 }
             }
             else {
-                ModsManager.DisabledMods.Add(entity.modInfo.PackageName, [entity.modInfo.Version]);
+                ModsManager.DisabledMods.Add(entity.modInfo.PackageName, new global::System.Collections.Generic.HashSet<string>() { entity.modInfo.Version });
             }
             m_needRestart = true;
         }

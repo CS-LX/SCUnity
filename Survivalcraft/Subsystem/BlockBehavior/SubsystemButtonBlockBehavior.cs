@@ -1,6 +1,6 @@
 namespace Game {
     public class SubsystemButtonBlockBehavior : SubsystemBlockBehavior {
-        public override int[] HandledBlocks => [142];
+        public override int[] HandledBlocks => new int[] { 142 };
 
         public override bool OnEditInventoryItem(IInventory inventory, int slotIndex, ComponentPlayer componentPlayer) {
             if (componentPlayer.DragHostWidget.IsDragInProgress) {

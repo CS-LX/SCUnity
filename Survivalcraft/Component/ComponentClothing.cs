@@ -57,15 +57,15 @@ namespace Game {
 
         public static string fName = "ComponentClothing";
 
-        public List<int> m_clothesList = [];
+        public List<int> m_clothesList = new global::System.Collections.Generic.List<int>() {  };
 
-        public Dictionary<ClothingSlot, List<int>> m_clothes = [];
+        public Dictionary<ClothingSlot, List<int>> m_clothes = new global::System.Collections.Generic.Dictionary<global::Game.ClothingSlot, global::System.Collections.Generic.List<int>>() {  };
         public static ClothingSlot[] m_innerSlotsOrder => m_innerSlotsOrderList.ToArray();
         public static ClothingSlot[] m_outerSlotsOrder => m_outerSlotsOrderList.ToArray();
 
-        public static List<ClothingSlot> m_innerSlotsOrderList = [];
+        public static List<ClothingSlot> m_innerSlotsOrderList = new global::System.Collections.Generic.List<global::Game.ClothingSlot>() {  };
 
-        public static List<ClothingSlot> m_outerSlotsOrderList = [];
+        public static List<ClothingSlot> m_outerSlotsOrderList = new global::System.Collections.Generic.List<global::Game.ClothingSlot>() {  };
 
         /// <summary>
         /// 服装贴图合成总开关。为 false 时 <see cref="UpdateRenderTargets"/> 直接返回，
@@ -85,7 +85,7 @@ namespace Game {
         public Texture2D InnerClothedTexture => m_innerClothedTexture;
         public Texture2D OuterClothedTexture => m_outerClothedTexture;
 
-        public Dictionary<ClothingSlot, float> InsulationBySlots = [];
+        public Dictionary<ClothingSlot, float> InsulationBySlots = new global::System.Collections.Generic.Dictionary<global::Game.ClothingSlot, float>() {  };
         public float Insulation { get; set; }
 
         public ClothingSlot LeastInsulatedSlot { get; set; }
@@ -281,7 +281,7 @@ namespace Game {
             Insulation = 0f;
             LeastInsulatedSlot = ClothingSlot.Feet;
             foreach (ClothingSlot clothingSlot in m_innerSlotsOrder) {
-                m_clothes[clothingSlot] = [];
+                m_clothes[clothingSlot] = new global::System.Collections.Generic.List<int>() {  };
             }
             ShowClothedTexture = valuesDictionary.GetValue<bool>("ShowClothedTexture", true);
             DrawClothedTexture = valuesDictionary.GetValue<bool>("DrawClothedTexture", true);
@@ -524,7 +524,7 @@ namespace Game {
                     return;
                 }
                 clothingData.Mount?.Invoke(value, this);
-                List<int> list = [..GetClothes(clothingData.Slot), value];
+                List<int> list = new global::System.Collections.Generic.List<int>(GetClothes(clothingData.Slot)) { value };
                 SetClothes(clothingData.Slot, list);
             }
         }

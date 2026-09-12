@@ -65,7 +65,7 @@ namespace Game {
                             Color.White
                         );
                 }
-                m_collisionBoxes[i] = [m_blockMeshes[i].CalculateBoundingBox()];
+                m_collisionBoxes[i] = new global::Engine.BoundingBox[] { m_blockMeshes[i].CalculateBoundingBox() };
             }
             base.Initialize();
         }

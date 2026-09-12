@@ -167,7 +167,7 @@ namespace Engine {
 
             string sourceFullPath = Path.GetFullPath(sourcePath);
             string destinationFullPath = Path.GetFullPath(destinationPath);
-            StringComparison pathComparison = OperatingSystem.IsWindows()
+            StringComparison pathComparison = true
                 ? StringComparison.OrdinalIgnoreCase
                 : StringComparison.Ordinal;
             if (string.Equals(sourceFullPath, destinationFullPath, pathComparison)
@@ -208,7 +208,7 @@ namespace Engine {
         /// 将流追加到文件末尾。文件不存在时创建文件；不会自动创建父目录。
         /// </summary>
         public static void Append(string path, Stream source) {
-            ArgumentNullException.ThrowIfNull(source);
+            if (source is null) throw new ArgumentNullException("source");
             using Stream destination = OpenFile(path, OpenFileMode.CreateOrOpen);
             destination.Seek(0L, SeekOrigin.End);
             source.CopyTo(destination);
@@ -218,7 +218,7 @@ namespace Engine {
         /// 将字节追加到文件末尾。文件不存在时创建文件；不会自动创建父目录。
         /// </summary>
         public static void Append(string path, byte[] bytes) {
-            ArgumentNullException.ThrowIfNull(bytes);
+            if (bytes is null) throw new ArgumentNullException("bytes");
             using MemoryStream source = new(bytes, writable: false);
             Append(path, source);
         }
@@ -323,7 +323,7 @@ namespace Engine {
         }
 
         public static string CombinePaths(params string[] paths) {
-            ArgumentNullException.ThrowIfNull(paths);
+            if (paths is null) throw new ArgumentNullException("paths");
             StringBuilder stringBuilder = new();
             for (int i = 0; i < paths.Length; i++) {
                 string path = paths[i] ?? throw new ArgumentException("paths");
@@ -352,7 +352,7 @@ namespace Engine {
 #if ANDROID
         public static string ProcessPath(string path, bool writeAccess, bool failIfApp) => ProcessPath(path, writeAccess, failIfApp, out _);
         public static string ProcessPath(string path, bool writeAccess, bool failIfApp, out bool isApp) {
-            ArgumentNullException.ThrowIfNull(path);
+            if (path is null) throw new ArgumentNullException("path");
             if (Path.DirectorySeparatorChar != '/') {
                 path = path.Replace('/', Path.DirectorySeparatorChar);
             }
@@ -388,7 +388,7 @@ namespace Engine {
 #elif IOS
         public static string ProcessPath(string path, bool writeAccess, bool failIfApp) => ProcessPath(path, writeAccess, failIfApp, out _);
         public static string ProcessPath(string path, bool writeAccess, bool failIfApp, out bool isApp) {
-            ArgumentNullException.ThrowIfNull(path);
+            if (path is null) throw new ArgumentNullException("path");
             if (Path.DirectorySeparatorChar != '/') {
                 path = path.Replace('/', Path.DirectorySeparatorChar);
             }
@@ -418,14 +418,11 @@ namespace Engine {
         public static string GetAppDirectory(bool failIfApp) => failIfApp
             ? throw new InvalidOperationException("Access denied.")
 #pragma warning disable IL3000
-            : Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location);
+            : UnityRuntime.Host.AppPath;
 #pragma warning restore IL3000
 #endif
         public static string GetDataDirectory(bool writeAccess) {
-            string text = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                Assembly.GetEntryAssembly()!.GetName()!.Name!
-            );
+            string text = UnityRuntime.Host.DataPath;
             if (writeAccess) {
                 lock (m_dataDirectoryCreationLock) {
                     if (m_dataDirectoryCreated) {
@@ -440,7 +437,7 @@ namespace Engine {
         }
 
         public static string ProcessPath(string path, bool writeAccess, bool failIfApp) {
-            ArgumentNullException.ThrowIfNull(path);
+            if (path is null) throw new ArgumentNullException("path");
             switch (Path.DirectorySeparatorChar) {
                 case '/':
                     path = path.Replace('\\', Path.DirectorySeparatorChar);
@@ -483,18 +480,8 @@ namespace Engine {
 
         public static FileInfo GetFileInfo(string path) => new(ProcessPath(path, true, false));
 
-        public static char[] InvalidFileNameChars = [
-            '\\',
-            '/',
-            ':',
-            '*',
-            '?',
-            '"',
-            '<',
-            '>',
-            '|',
-            '\0'
-        ];
+        public static char[] InvalidFileNameChars = new char[] {             '\\',             '/',             ':',             '*',             '?',             '"',             '<',             '>',             '|',             '\0'
+ };
 
         public static string SanitizeFileName(string filename, string replacement = "-") {
             StringBuilder sanitized = new();
@@ -535,6 +522,9 @@ namespace Engine {
          * <Param name="mimeType">MIME 类型，留空时自动根据文件后缀推断</Param>
          */
         public static async Task ShareFile(string path, string chooserTitle = null, string mimeType = null) {
+#if SCUNITY
+            await Task.CompletedTask; // Retain asynchronous exception semantics on the host.
+#endif
             if (!FileExists(path)) {
                 throw new FileNotFoundException($"Share {path} failed, because it is not exists.");
             }

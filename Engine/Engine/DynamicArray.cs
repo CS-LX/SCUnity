@@ -47,7 +47,7 @@ namespace Engine {
 
         int m_count;
 
-        static T[] m_emptyArray = [];
+        static T[] m_emptyArray = new T[] {  };
 
         public int Capacity {
             get => m_array.Length;
@@ -226,7 +226,7 @@ namespace Engine {
         }
 
         public int RemoveAll(Predicate<T> match) {
-            ArgumentNullException.ThrowIfNull(match);
+            if (match is null) throw new ArgumentNullException("match");
             int i;
             for (i = 0; i < m_count && !match(m_array[i]); i++) { }
             if (i >= m_count) {

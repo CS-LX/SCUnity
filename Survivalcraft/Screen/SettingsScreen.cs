@@ -92,7 +92,7 @@ namespace Game {
         /// <param name="onClicked"></param>
         /// <exception cref="InvalidOperationException"></exception>
         public void AddSettingButton(ButtonWidget button, Action onClicked) {
-            ArgumentNullException.ThrowIfNull(button);
+            if (button is null) throw new ArgumentNullException("button");
             if (!m_buttonActions.TryAdd(button, onClicked)) {
                 throw new InvalidOperationException("Button already has an action assigned");
             }

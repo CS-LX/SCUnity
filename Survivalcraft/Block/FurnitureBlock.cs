@@ -5,8 +5,8 @@ namespace Game {
     public class FurnitureBlock : Block, IPaintableBlock, IElectricElementBlock {
         public static int Index = 227;
         public Matrix[] m_matrices = new Matrix[4];
-        public int[][] m_facesMaps = [[0, 1, 2, 3, 4, 5], [1, 2, 3, 0, 4, 5], [2, 3, 0, 1, 4, 5], [3, 0, 1, 2, 4, 5]];
-        public int[][] m_reverseFacesMaps = [[0, 1, 2, 3, 4, 5], [3, 0, 1, 2, 4, 5], [2, 3, 0, 1, 4, 5], [1, 2, 3, 0, 4, 5]];
+        public int[][] m_facesMaps = new int[][] { new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 0, 4, 5 }, new int[] { 2, 3, 0, 1, 4, 5 }, new int[] { 3, 0, 1, 2, 4, 5 } };
+        public int[][] m_reverseFacesMaps = new int[][] { new int[] { 0, 1, 2, 3, 4, 5 }, new int[] { 3, 0, 1, 2, 4, 5 }, new int[] { 2, 3, 0, 1, 4, 5 }, new int[] { 1, 2, 3, 0, 4, 5 } };
         public const string fName = "FurnitureBlock";
 
         public override void Initialize() {

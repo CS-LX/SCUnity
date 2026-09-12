@@ -8,7 +8,7 @@ namespace Game {
 
         public SubsystemTerrain m_subsystemTerrain;
 
-        public DynamicArray<ComponentBody> m_componentBodies = [];
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
         public Vector3 m_riderOffset;
 

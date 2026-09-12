@@ -13,9 +13,9 @@ namespace Game {
 
         public SubsystemProjectiles m_subsystemProjectiles;
 
-        public Dictionary<Projectile, bool> m_projectiles = [];
+        public Dictionary<Projectile, bool> m_projectiles = new global::System.Collections.Generic.Dictionary<global::Game.Projectile, bool>() {  };
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

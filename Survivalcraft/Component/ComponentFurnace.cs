@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Engine;
 using GameEntitySystem;
 using TemplatesDatabase;

@@ -1,4 +1,4 @@
-﻿using Engine;
+using Engine;
 using TemplatesDatabase;
 
 namespace Game {
@@ -16,7 +16,7 @@ namespace Game {
         public bool AboveTopBlock;
         public float MinShoreDistance;
         public float MaxShoreDistance;
-        public List<Type> BlockTypes = [];
+        public List<Type> BlockTypes = new global::System.Collections.Generic.List<global::System.Type>() {  };
 
         /// <summary>
         /// 条件满足时 SpawnSuitabilityFunction 的返回值
@@ -49,7 +49,7 @@ namespace Game {
             Suitability = valuesDictionary.GetValue("Suitability", 1f);
             Count = valuesDictionary.GetValue("Count", 1);
             string blocksString = valuesDictionary.GetValue("Blocks", string.Empty);
-            foreach (string typeName in blocksString.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)) {
+            foreach (string typeName in blocksString.SplitTrimmed(';')) {
                 if (BlocksManager.BlockNameToIndex.TryGetValue(typeName, out int index)) {
                     BlockTypes.Add(BlocksManager.Blocks[index].GetType());
                 }

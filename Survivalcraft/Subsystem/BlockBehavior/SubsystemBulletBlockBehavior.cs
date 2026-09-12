@@ -11,7 +11,7 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override bool OnHitAsProjectile(CellFace? cellFace, ComponentBody componentBody, WorldItem worldItem) {
             BulletBlock.BulletType bulletType = BulletBlock.GetBulletType(Terrain.ExtractData(worldItem.Value));

@@ -23,11 +23,11 @@ namespace Game {
 
         public bool m_allowPistonHeadRemove;
 
-        public Dictionary<Point3, QueuedAction> m_actions = [];
+        public Dictionary<Point3, QueuedAction> m_actions = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.SubsystemPistonBlockBehavior.QueuedAction>() {  };
 
-        public List<KeyValuePair<Point3, QueuedAction>> m_tmpActions = [];
+        public List<KeyValuePair<Point3, QueuedAction>> m_tmpActions = new global::System.Collections.Generic.List<global::System.Collections.Generic.KeyValuePair<global::Engine.Point3, global::Game.SubsystemPistonBlockBehavior.QueuedAction>>() {  };
 
-        public DynamicArray<MovingBlock> m_movingBlocks = [];
+        public DynamicArray<MovingBlock> m_movingBlocks = new global::Engine.DynamicArray<global::Game.MovingBlock>() {  };
 
         public const string IdString = "Piston";
 
@@ -39,7 +39,7 @@ namespace Game {
 
         public UpdateOrder UpdateOrder => m_subsystemMovingBlocks.UpdateOrder + 1;
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public void AdjustPiston(Point3 position, int length) {
             if (!m_actions.TryGetValue(position, out QueuedAction value)) {

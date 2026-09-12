@@ -5,11 +5,11 @@ namespace Game {
     public class SubsystemTreasureGeneratorBlockBehavior : SubsystemBlockBehavior {
         public struct TreasureData {
             public TreasureData() { }
-            public int Value;
+            public int Value = default;
 
-            public float Probability;
+            public float Probability = default;
 
-            public int MaxCount;
+            public int MaxCount = default;
 
             /// <summary>
             ///     模组如果需要添加或使用额外信息，可以在这个ValuesDictionary读写元素
@@ -23,7 +23,7 @@ namespace Game {
 
         public static List<TreasureData> m_treasureData;
 
-        public override int[] HandledBlocks => [190];
+        public override int[] HandledBlocks => new int[] { 190 };
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
             int cellContents = SubsystemTerrain.Terrain.GetCellContents(neighborX, neighborY, neighborZ);

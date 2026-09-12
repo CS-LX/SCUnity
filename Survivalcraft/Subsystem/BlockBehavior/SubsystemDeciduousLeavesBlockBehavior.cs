@@ -25,11 +25,11 @@ namespace Game {
 
         Random m_random = new();
 
-        DynamicArray<LeafParticles> m_leafParticles = [];
+        DynamicArray<LeafParticles> m_leafParticles = new global::Engine.DynamicArray<global::Game.SubsystemDeciduousLeavesBlockBehavior.LeafParticles>() {  };
 
-        DynamicArray<LeafParticles> m_tmpLeafParticles = [];
+        DynamicArray<LeafParticles> m_tmpLeafParticles = new global::Engine.DynamicArray<global::Game.SubsystemDeciduousLeavesBlockBehavior.LeafParticles>() {  };
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         UpdateOrder IUpdateable.UpdateOrder => UpdateOrder.Default;
 

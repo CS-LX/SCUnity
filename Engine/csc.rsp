@@ -1,0 +1,9 @@
+-langversion:10
+-define:WINDOWS,SCUNITY
+-resource:External/SurvivalcraftApi/Engine/Resources/Lit.psh,Engine.Resources.Lit.psh
+-resource:External/SurvivalcraftApi/Engine/Resources/Lit.vsh,Engine.Resources.Lit.vsh
+-resource:External/SurvivalcraftApi/Engine/Resources/Unlit.psh,Engine.Resources.Unlit.psh
+-resource:External/SurvivalcraftApi/Engine/Resources/Unlit.vsh,Engine.Resources.Unlit.vsh
+-resource:External/SurvivalcraftApi/Engine/Resources/Debugfont.lst,Engine.Resources.Debugfont.lst
+-resource:External/SurvivalcraftApi/Engine/Resources/Debugfont.png,Engine.Resources.Debugfont.png
+-resource:External/SurvivalcraftApi/Engine/Resources/icon.png,Engine.Resources.icon.png

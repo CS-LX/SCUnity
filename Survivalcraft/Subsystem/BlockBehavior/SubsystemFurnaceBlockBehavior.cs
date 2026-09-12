@@ -5,9 +5,9 @@ namespace Game {
     public class SubsystemFurnaceBlockBehavior : SubsystemEntityBlockBehavior {
         public SubsystemParticles m_subsystemParticles;
 
-        public Dictionary<Point3, FireParticleSystem> m_particleSystemsByCell = [];
+        public Dictionary<Point3, FireParticleSystem> m_particleSystemsByCell = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.FireParticleSystem>() {  };
 
-        public override int[] HandledBlocks => [64, 65];
+        public override int[] HandledBlocks => new int[] { 64, 65 };
 
         public override void OnBlockAdded(int value, int oldValue, int x, int y, int z) {
             if (Terrain.ExtractContents(oldValue) != 64

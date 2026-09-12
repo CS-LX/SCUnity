@@ -8,7 +8,7 @@ namespace Game {
 
         public double m_nextAutomaticScanTime;
 
-        public List<ScannedItemData> m_items = [];
+        public List<ScannedItemData> m_items = new global::System.Collections.Generic.List<global::Game.ScannedItemData>() {  };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

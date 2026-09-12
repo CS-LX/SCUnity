@@ -1876,7 +1876,7 @@ namespace Game {
         /// <param name="settingsScreen"></param>
         /// <param name="buttonsToAdd">键为按钮，值为按下后进行的操作</param>
         public virtual void OnSettingsScreenCreated(SettingsScreen settingsScreen, out Dictionary<ButtonWidget, Action> buttonsToAdd) {
-            buttonsToAdd = [];
+            buttonsToAdd = new global::System.Collections.Generic.Dictionary<global::Game.ButtonWidget, global::System.Action>() {  };
         }
 
         /// <summary>

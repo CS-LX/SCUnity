@@ -17,14 +17,14 @@ namespace Game {
 
         public Geometry m_geometry;
 
-        DynamicArray<TerrainVertex> m_vertices = [];
-        DynamicArray<int> m_indices = [];
+        DynamicArray<TerrainVertex> m_vertices = new global::Engine.DynamicArray<global::Game.TerrainVertex>() {  };
+        DynamicArray<int> m_indices = new global::Engine.DynamicArray<int>() {  };
 
         public Point3 m_point;
 
         public int m_value;
 
-        public static int[] m_drawOrders = [1];
+        public static int[] m_drawOrders = new int[] { 1 };
 
         public int[] DrawOrders => m_drawOrders;
 
@@ -105,6 +105,8 @@ namespace Game {
             }
         }
 
-        public class Geometry(Texture2D texture2D) : TerrainGeometry(texture2D);
-    }
+        public class Geometry: TerrainGeometry{
+        public Geometry(Texture2D texture2D) : base(texture2D)
+{
+}}    }
 }

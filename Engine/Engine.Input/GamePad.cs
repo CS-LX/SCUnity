@@ -73,12 +73,10 @@ namespace Engine.Input {
 
         public static double m_buttonNextRepeatTime = 0.04;
 
-        internal static State[] m_states = [new(), new(), new(), new()];
+        internal static State[] m_states = new global::Engine.Input.GamePad.State[] { new(), new(), new(), new() };
 
         internal static void Initialize() {
-#if !MOBILE && !BROWSER
-            m_gamepads = Window.m_inputContext.Gamepads;
-#endif
+m_gamepads = Array.Empty<IGamepad>();
         }
 
         internal static void Dispose() { }

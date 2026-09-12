@@ -6,10 +6,10 @@ using TemplatesDatabase;
 
 namespace Game {
     public static class CharacterSkinsManager {
-        public static List<string> m_characterSkinNames = [];
-        public static Dictionary<PlayerClass, Model> m_playerModels = [];
-        public static Dictionary<PlayerClass, Model> m_playerModelsForClothing = [];
-        public static Dictionary<PlayerClass, Model> m_outerClothingModels = [];
+        public static List<string> m_characterSkinNames = new global::System.Collections.Generic.List<string>() {  };
+        public static Dictionary<PlayerClass, Model> m_playerModels = new global::System.Collections.Generic.Dictionary<global::Game.PlayerClass, global::Engine.Graphics.Model>() {  };
+        public static Dictionary<PlayerClass, Model> m_playerModelsForClothing = new global::System.Collections.Generic.Dictionary<global::Game.PlayerClass, global::Engine.Graphics.Model>() {  };
+        public static Dictionary<PlayerClass, Model> m_outerClothingModels = new global::System.Collections.Generic.Dictionary<global::Game.PlayerClass, global::Engine.Graphics.Model>() {  };
         public static bool AddEmptySkin;
         public static bool UseEmptySkinAsDefault;
         public const string fName = "CharacterSkinsManager";

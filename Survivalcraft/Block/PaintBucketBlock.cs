@@ -83,12 +83,8 @@ namespace Game {
         }
 
         public override IEnumerable<CraftingRecipe> GetProceduralCraftingRecipes() {
-            string[] additives = [
-                BlocksManager.Blocks[43].CraftingId,
-                BlocksManager.Blocks[24].CraftingId,
-                BlocksManager.Blocks[103].CraftingId,
-                BlocksManager.Blocks[22].CraftingId
-            ];
+            string[] additives = new string[] {                 BlocksManager.Blocks[43].CraftingId,                 BlocksManager.Blocks[24].CraftingId,                 BlocksManager.Blocks[103].CraftingId,                 BlocksManager.Blocks[22].CraftingId
+ };
             int color = 0;
             while (color < 16) {
                 int num2;

@@ -17,11 +17,11 @@ namespace Game {
 
         public Random m_random = new();
 
-        public Dictionary<GameWidget, Dictionary<Point2, PrecipitationShaftParticleSystem>> m_activeShafts = [];
+        public Dictionary<GameWidget, Dictionary<Point2, PrecipitationShaftParticleSystem>> m_activeShafts = new global::System.Collections.Generic.Dictionary<global::GameWidget, global::System.Collections.Generic.Dictionary<global::Engine.Point2, global::Game.PrecipitationShaftParticleSystem>>() {  };
 
-        public List<PrecipitationShaftParticleSystem> m_toRemove = [];
+        public List<PrecipitationShaftParticleSystem> m_toRemove = new global::System.Collections.Generic.List<global::Game.PrecipitationShaftParticleSystem>() {  };
 
-        public Dictionary<GameWidget, Vector2?> m_lastShaftsUpdatePositions = [];
+        public Dictionary<GameWidget, Vector2?> m_lastShaftsUpdatePositions = new global::System.Collections.Generic.Dictionary<global::GameWidget, global::Engine.Vector2?>() {  };
 
         public float m_targetRainSoundVolume;
 
@@ -47,7 +47,7 @@ namespace Game {
 
         public int[] m_shuffledOrder;
 
-        public static int[] m_drawOrders = [50];
+        public static int[] m_drawOrders = new int[] { 50 };
 
         public SubsystemTerrain SubsystemTerrain { get; set; }
 
@@ -445,7 +445,7 @@ namespace Game {
 
         public virtual Dictionary<Point2, PrecipitationShaftParticleSystem> GetActiveShafts(GameWidget gameWidget) {
             if (!m_activeShafts.TryGetValue(gameWidget, out Dictionary<Point2, PrecipitationShaftParticleSystem> value)) {
-                value = [];
+                value = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, global::Game.PrecipitationShaftParticleSystem>() {  };
                 m_activeShafts.Add(gameWidget, value);
             }
             return value;

@@ -8,6 +8,6 @@ namespace Game {
 
         public DateTime Time;
 
-        public List<ExternalContentEntry> ChildEntries = [];
+        public List<ExternalContentEntry> ChildEntries = new global::System.Collections.Generic.List<global::Game.ExternalContentEntry>() {  };
     }
 }

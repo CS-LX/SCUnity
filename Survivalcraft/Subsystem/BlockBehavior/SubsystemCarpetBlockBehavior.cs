@@ -6,7 +6,7 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override void Load(ValuesDictionary valuesDictionary) {
             m_subsystemWeather = Project.FindSubsystem<SubsystemWeather>(true);

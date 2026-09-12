@@ -17,7 +17,7 @@ namespace Game {
 
         public bool m_isRotEnabled;
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override void Load(ValuesDictionary valuesDictionary) {
             base.Load(valuesDictionary);

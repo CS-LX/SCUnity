@@ -48,7 +48,7 @@ namespace Game {
         public static string LastLaunchedVersion { get; set; }
 
         static VersionsManager() {
-            m_versionConverters = []; //List
+            m_versionConverters = new global::System.Collections.Generic.List<global::Game.VersionConverter>() {  }; //List
             Assembly assembly = typeof(VersionsManager).GetTypeInfo().Assembly;
             AssemblyName assemblyName = new(assembly.FullName!);
             Version = $"{assemblyName.Version!.Major}.{assemblyName.Version.Minor}.{assemblyName.Version.Build}.{assemblyName.Version.Revision}";
@@ -139,7 +139,7 @@ namespace Game {
                 );
             }
             if (sourceVersion == targetVersion) {
-                return [];
+                return new global::System.Collections.Generic.List<global::Game.VersionConverter>() {  };
             }
             List<VersionConverter> result = null;
             int num = 2147483647;

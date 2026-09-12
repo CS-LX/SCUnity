@@ -62,15 +62,15 @@ namespace Game {
 
         public int[] Shafts;
 
-        public static ArrayCache<int> m_cellsCache = new([Size * Size * Height], 0.66f, 60f, 0.33f, 5f);
+        public static ArrayCache<int> m_cellsCache = new(new int[] { Size * Size * Height }, 0.66f, 60f, 0.33f, 5f);
 
-        public static ArrayCache<int> m_shaftsCache = new([Size * Size], 0.66f, 60f, 0.33f, 5f);
+        public static ArrayCache<int> m_shaftsCache = new(new int[] { Size * Size }, 0.66f, 60f, 0.33f, 5f);
 
-        public DynamicArray<BrushPaint> m_brushPaints = [];
+        public DynamicArray<BrushPaint> m_brushPaints = new global::Engine.DynamicArray<global::Game.TerrainChunk.BrushPaint>() {  };
 
         public TerrainGeometry[] ChunkSliceGeometries = new TerrainGeometry[SlicesCount];
 
-        public DynamicArray<TerrainChunkGeometry.Buffer> Buffers = [];
+        public DynamicArray<TerrainChunkGeometry.Buffer> Buffers = new global::Engine.DynamicArray<global::Game.TerrainChunkGeometry.Buffer>() {  };
 
         public int[] SliceContentsHashes = new int[SlicesCount];
 

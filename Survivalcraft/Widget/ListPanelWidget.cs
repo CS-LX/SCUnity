@@ -3,11 +3,11 @@ using Engine.Graphics;
 
 namespace Game {
     public class ListPanelWidget : ScrollPanelWidget {
-        public List<object> m_items = [];
+        public List<object> m_items = new global::System.Collections.Generic.List<object>() {  };
 
         public int? m_selectedItemIndex;
 
-        public Dictionary<int, Widget> m_widgetsByIndex = [];
+        public Dictionary<int, Widget> m_widgetsByIndex = new global::System.Collections.Generic.Dictionary<int, global::Game.Widget>() {  };
 
         public int m_firstVisibleIndex;
 

@@ -1,6 +1,6 @@
 namespace Game {
     public class SubsystemInWaterBlockBehavior : SubsystemWaterBlockBehavior {
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override void OnItemHarvested(int x, int y, int z, int blockValue, ref BlockDropValue dropValue, ref int newBlockValue) {
             int level = FluidBlock.GetLevel(Terrain.ExtractData(blockValue));

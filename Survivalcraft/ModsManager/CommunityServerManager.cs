@@ -1,4 +1,4 @@
-﻿namespace Game {
+namespace Game {
     public static class CommunityServerManager {
         public enum Type {
             Original = 0,
@@ -50,7 +50,7 @@
         public static Info DefaultChineseInfo = new(Type.Chinese, string.Empty, "https://m.suancaixianyu.cn/api/", "https://test.suancaixianyu.cn/#/modList/0");
 #endif
 
-        public static List<Info> UserInfos = [];
+        public static List<Info> UserInfos = new global::System.Collections.Generic.List<global::Game.CommunityServerManager.Info>() {  };
         public static Info CurrentOriginalInfo = DefaultOriginalInfo;
         public static Info CurrentChineseInfo = DefaultChineseInfo;
 

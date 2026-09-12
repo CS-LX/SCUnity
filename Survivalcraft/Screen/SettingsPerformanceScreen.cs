@@ -3,36 +3,10 @@ using Engine;
 
 namespace Game {
     public class SettingsPerformanceScreen : Screen {
-        public static List<int> m_presentationIntervals = [2, 1, 0];
+        public static List<int> m_presentationIntervals = new global::System.Collections.Generic.List<int>() { 2, 1, 0 };
 
-        public static List<int> m_visibilityRanges = [
-            32,
-            48,
-            64,
-            80,
-            96,
-            112,
-            128,
-            160,
-            192,
-            224,
-            256,
-            320,
-            384,
-            448,
-            512,
-            576,
-            640,
-            704,
-            768,
-            832,
-            896,
-            960,
-            1024,
-            1280,
-            1536,
-            2048
-        ];
+        public static List<int> m_visibilityRanges = new global::System.Collections.Generic.List<int>() {             32,             48,             64,             80,             96,             112,             128,             160,             192,             224,             256,             320,             384,             448,             512,             576,             640,             704,             768,             832,             896,             960,             1024,             1280,             1536,             2048
+ };
 
         public ButtonWidget m_resolutionButton;
 

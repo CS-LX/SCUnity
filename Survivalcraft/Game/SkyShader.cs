@@ -59,7 +59,7 @@ namespace Engine.Graphics {
             bool useTexture,
             bool useAlphaThreshold,
             ShaderMacro[] shaderMacros = null) {
-            List<ShaderMacro> list = [];
+            List<ShaderMacro> list = new global::System.Collections.Generic.List<global::Engine.Graphics.ShaderMacro>() {  };
             if (useVertexColor) {
                 list.Add(new ShaderMacro("USE_VERTEXCOLOR"));
             }

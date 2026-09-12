@@ -35,7 +35,7 @@ namespace Game {
 
         public static LitShader m_shader = new(2, false, false, true, false, false);
 
-        public static int[] m_drawOrders = [1];
+        public static int[] m_drawOrders = new int[] { 1 };
 
         public Vector3 ItemOffsetOrder { get; set; }
 

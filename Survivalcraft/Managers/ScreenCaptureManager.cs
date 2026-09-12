@@ -7,7 +7,7 @@ using Android.Content;
 
 namespace Game {
     public static class ScreenCaptureManager {
-        public static readonly string ScreenshotDir = "app:/ScreenCapture";
+        public static readonly string ScreenshotDir = "data:/ScreenCapture";
 
         public static bool m_captureRequested;
 

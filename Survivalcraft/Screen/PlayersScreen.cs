@@ -83,13 +83,13 @@ namespace Game {
                     array = new ScreenLayout[1];
                 }
                 else if (m_subsystemPlayers.PlayersData.Count == 2) {
-                    array = [ScreenLayout.DoubleVertical, ScreenLayout.DoubleHorizontal, ScreenLayout.DoubleOpposite];
+                    array = new global::Game.ScreenLayout[] { ScreenLayout.DoubleVertical, ScreenLayout.DoubleHorizontal, ScreenLayout.DoubleOpposite };
                 }
                 else if (m_subsystemPlayers.PlayersData.Count == 3) {
-                    array = [ScreenLayout.TripleVertical, ScreenLayout.TripleHorizontal, ScreenLayout.TripleEven, ScreenLayout.TripleOpposite];
+                    array = new global::Game.ScreenLayout[] { ScreenLayout.TripleVertical, ScreenLayout.TripleHorizontal, ScreenLayout.TripleEven, ScreenLayout.TripleOpposite };
                 }
                 else if (m_subsystemPlayers.PlayersData.Count == 4) {
-                    array = [ScreenLayout.Quadruple, ScreenLayout.QuadrupleOpposite];
+                    array = new global::Game.ScreenLayout[] { ScreenLayout.Quadruple, ScreenLayout.QuadrupleOpposite };
                 }
                 if (array != null) {
                     DialogsManager.ShowDialog(

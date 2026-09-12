@@ -11,7 +11,7 @@ namespace Game {
         public ElectricElement(SubsystemElectricity subsystemElectricity, IEnumerable<CellFace> cellFaces) {
             SubsystemElectricity = subsystemElectricity;
             CellFaces = new ReadOnlyList<CellFace>(new List<CellFace>(cellFaces));
-            Connections = [];
+            Connections = new global::System.Collections.Generic.List<global::Game.ElectricConnection>() {  };
         }
 
         public ElectricElement(SubsystemElectricity subsystemElectricity, CellFace cellFace) : this(

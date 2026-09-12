@@ -109,26 +109,8 @@ namespace Game {
                 value = new Point2(width, height);
             }
         }
-        public static int[] ScreenshotSizeCustomWidths = [
-            80,
-            160,
-            320,
-            480,
-            640,
-            800,
-            960,
-            1280,
-            1600,
-            1920, //default
-            2560,
-            3840,
-            5120,
-            6144,
-            7680,
-            10240,
-            12288,
-            15360
-        ];
+        public static int[] ScreenshotSizeCustomWidths = new int[] {             80,             160,             320,             480,             640,             800,             960,             1280,             1600,             1920,             2560,             3840,             5120,             6144,             7680,             10240,             12288,             15360
+ };
         private static int m_screenshotSizeCustomWidthIndex;
 
         public static int ScreenshotSizeCustomWidthIndex {
@@ -151,31 +133,11 @@ namespace Game {
             return 0;
         }
 
-        public static float[] ScreenshotSizeCustomAspectRatios = [
-            1f,
-            4f / 5f,
-            3f / 4f,
-            2f / 3f,
-            10f / 16f,
-            9f / 16f, //default
-            0.5f,
-            27f / 64f,
-            9f / 32f,
-            27f / 128f
-        ];
+        public static float[] ScreenshotSizeCustomAspectRatios = new float[] {             1f,             4f / 5f,             3f / 4f,             2f / 3f,             10f / 16f,             9f / 16f,             0.5f,             27f / 64f,             9f / 32f,             27f / 128f
+ };
 
-        public static string[] ScreenshotSizeCustomAspectRatiosNames = [
-            "1:1",
-            "5:4",
-            "4:3",
-            "3:2",
-            "16:10",
-            "16:9",
-            "18:9",
-            "21:9",
-            "32:9",
-            "42:9"
-        ];
+        public static string[] ScreenshotSizeCustomAspectRatiosNames = new string[] {             "1:1",             "5:4",             "4:3",             "3:2",             "16:10",             "16:9",             "18:9",             "21:9",             "32:9",             "42:9"
+ };
         private static int m_screenshotSizeCustomAspectRatioIndex;
         public static int ScreenshotSizeCustomAspectRatioIndex {
             get {  return m_screenshotSizeCustomAspectRatioIndex; }
@@ -360,7 +322,7 @@ namespace Game {
         public static bool FileAssociationEnabled {
             get {
 #if WINDOWS
-                return field;
+                return m_unity_FileAssociationEnabled;
 #elif ANDROID
                 return true;
 #else
@@ -369,14 +331,14 @@ namespace Game {
             }
             set {
 #if WINDOWS
-                field = value;
+                m_unity_FileAssociationEnabled = value;
 #endif
             }
         }
 
         public static string DisabledMods {
             get {
-                List<string> result = [];
+                List<string> result = new global::System.Collections.Generic.List<string>() {  };
                 foreach ((string packageName, HashSet<string> versions) in ModsManager.DisabledMods) {
                     if (versions.Count == 0) {
                         continue;
@@ -394,7 +356,7 @@ namespace Game {
                     return;
                 }
                 string[] array = value.Split(';');
-                Dictionary<string, HashSet<string>> result = [];
+                Dictionary<string, HashSet<string>> result = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.HashSet<string>>() {  };
                 int i = 0;
                 while (i < array.Length) {
                     string packageName = array[i++];
@@ -432,7 +394,7 @@ namespace Game {
                 if (CommunityServerManager.UserInfos.Count == 0) {
                     return string.Empty;
                 }
-                List<string> results = [];
+                List<string> results = new global::System.Collections.Generic.List<string>() {  };
                 foreach (CommunityServerManager.Info info in CommunityServerManager.UserInfos) {
                     results.Add(info.ToString());
                 }
@@ -500,7 +462,7 @@ namespace Game {
                         continue;
                     }
                     string guid = array2[0];
-                    List<ModsManager.ClassSubstitute> substitutes = [];
+                    List<ModsManager.ClassSubstitute> substitutes = new global::System.Collections.Generic.List<global::ModsManager.ClassSubstitute>() {  };
                     for (int i = 1; i < array2.Length; i += 2) {
                         substitutes.Add(new ModsManager.ClassSubstitute(array2[i], array2[i + 1]));
                     }
@@ -720,7 +682,7 @@ namespace Game {
                 dict.SetValue(name, VrControllerButton.Null);
                 return;
             }
-            ValuesDictionary vd = [];
+            ValuesDictionary vd = new global::TemplatesDatabase.ValuesDictionary() {  };
             vd.SetValue("Controller", ctrl);
             vd.SetValue("Button", btn);
             dict.SetValue(name, vd);
@@ -1030,5 +992,6 @@ namespace Game {
                 m_saveLock.Exit();
             }
         }
-    }
+
+        private static bool m_unity_FileAssociationEnabled;    }
 }

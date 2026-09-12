@@ -34,7 +34,7 @@ namespace Engine.Media {
             }
 
             public override int Read(byte[] buffer, int offset, int count) {
-                ArgumentNullException.ThrowIfNull(buffer);
+                if (buffer is null) throw new ArgumentNullException("buffer");
                 if (offset < 0
                     || count < 0
                     || offset + count > buffer.Length) {
@@ -91,7 +91,7 @@ namespace Engine.Media {
         }
 
         public static StreamingSource Stream(Stream stream, bool leaveOpen = false) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new OggStreamingSource(stream, leaveOpen);
         }
 

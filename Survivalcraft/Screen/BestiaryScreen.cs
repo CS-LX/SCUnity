@@ -128,7 +128,7 @@ namespace Game {
                                 HasSpawnerEgg = value2?.GetValue<bool>("ShowEgg") ?? false,
                                 Loot = valuesDictionary9 != null
                                     ? ComponentLoot.ParseLootList(valuesDictionary9.GetValue<ValuesDictionary>("Loot"))
-                                    : []
+                                    : new global::System.Collections.Generic.List<global::Game.ComponentLoot.Loot>() {  }
                             };
                             if (value3 != null
                                 && entitiesValuesDictionary.DatabaseObject.Name.ToLower().Contains("female")) {

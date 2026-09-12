@@ -1,6 +1,6 @@
 namespace Engine.Serialization {
     public class BinaryInputArchive : InputArchive, IDisposable {
-        Dictionary<int, string> m_stringIds = [];
+        Dictionary<int, string> m_stringIds = new global::System.Collections.Generic.Dictionary<int, string>() {  };
 
         EngineBinaryReader m_reader;
 

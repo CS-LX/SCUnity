@@ -72,7 +72,7 @@ namespace Engine.Graphics {
                     (uint)sourceRectangle.Height,
                     PixelFormat.Rgba,
                     PixelType.UnsignedByte,
-                    target.ToPointer()
+                    (void*)target
                 );
             }
         }
@@ -104,7 +104,7 @@ namespace Engine.Graphics {
         /// Blits a color rectangle from another render target into this target.
         /// </summary>
         public void BlitFromRenderTarget(RenderTarget2D source, Rectangle sourceRectangle) {
-            ArgumentNullException.ThrowIfNull(source);
+            if (source is null) throw new ArgumentNullException("source");
             GLWrapper.GL.BindFramebuffer(FramebufferTarget.ReadFramebuffer, (uint)source.m_frameBuffer);
             GLWrapper.GL.BindFramebuffer(FramebufferTarget.DrawFramebuffer, (uint)m_frameBuffer);
             GLWrapper.GL.BlitFramebuffer(
@@ -187,7 +187,7 @@ namespace Engine.Graphics {
         public virtual void DeleteRenderTarget() {
             if (m_depthBuffer != 0) {
                 uint depthBuffer = (uint)m_depthBuffer;
-                GLWrapper.GL.DeleteRenderbuffers(1, in depthBuffer);
+                GLWrapper.GL.DeleteRenderbuffers(1, ref depthBuffer);
                 m_depthBuffer = 0;
             }
             if (m_frameBuffer != 0) {
@@ -261,7 +261,7 @@ namespace Engine.Graphics {
             VerifyNotDisposed();
             int size = ColorFormat.GetSize();
             int num = Utilities.SizeOf<T>();
-            ArgumentNullException.ThrowIfNull(target);
+            if (target is null) throw new ArgumentNullException("target");
             if (num > size) {
                 throw new ArgumentException("Target array element size is larger than pixel size.");
             }

@@ -7,11 +7,11 @@ namespace Game {
 
         public SubsystemTime m_subsystemTime;
 
-        public Dictionary<Point3, int> m_toUpdate = [];
+        public Dictionary<Point3, int> m_toUpdate = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, int>() {  };
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [8];
+        public override int[] HandledBlocks => new int[] { 8 };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

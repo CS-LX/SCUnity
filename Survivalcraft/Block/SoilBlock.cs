@@ -7,7 +7,7 @@ namespace Game {
 
         public static string fName = "SoilBlock";
 
-        public static BoundingBox[] m_collisionBoxes = [new(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.9375f, 1f))];
+        public static BoundingBox[] m_collisionBoxes = new global::Engine.BoundingBox[] { new(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.9375f, 1f)) };
 
         public override bool IsFaceNonAttachable(SubsystemTerrain subsystemTerrain, int face, int value, int attachBlockValue) {
             Block block = BlocksManager.Blocks[Terrain.ExtractContents(attachBlockValue)];

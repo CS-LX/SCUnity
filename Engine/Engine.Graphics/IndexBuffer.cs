@@ -159,14 +159,17 @@ namespace Engine.Graphics {
             VerifyNotDisposed();
             int num = Utilities.SizeOf<T>();
             int size = IndexFormat.GetSize();
-            ArgumentNullException.ThrowIfNull(source);
+            if (source is null) throw new ArgumentNullException("source");
             if (sourceStartIndex < 0
                 || sourceCount < 0
                 || sourceStartIndex + sourceCount > source.Length) {
                 throw new ArgumentException("Range is out of source bounds.");
             }
+            // Conversion changes the upload element width before reaching the GPU.
+            int uploadSize = ((typeof(T) == typeof(int) || typeof(T) == typeof(uint)) && size == 2)
+                || (typeof(T) == typeof(ushort) && size == 4) ? size : num;
             if (targetStartIndex < 0
-                || targetStartIndex * size + sourceCount * num > IndicesCount * size) {
+                || (long)targetStartIndex * size + (long)sourceCount * uploadSize > (long)IndicesCount * size) {
                 throw new ArgumentException("Range is out of target bounds.");
             }
         }

@@ -6,7 +6,7 @@ namespace Game {
     public class ComponentFurnitureInventory : Component, IInventory {
         public SubsystemFurnitureBlockBehavior m_subsystemFurnitureBlockBehavior;
 
-        public List<int> m_slots = [];
+        public List<int> m_slots = new global::System.Collections.Generic.List<int>() {  };
 
         public const int m_largeNumber = 0x1fffffff;
 

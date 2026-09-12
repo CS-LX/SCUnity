@@ -4,67 +4,67 @@ using TemplatesDatabase;
 namespace Game {
     public struct PlayerInput {
         public PlayerInput() { }
-        public Vector2 Look;
+        public Vector2 Look = default;
 
-        public Vector3 Move;
+        public Vector3 Move = default;
 
-        public Vector3 CrouchMove;
+        public Vector3 CrouchMove = default;
 
-        public Vector3? VrMove;
+        public Vector3? VrMove = default;
 
-        public Vector2? VrLook;
+        public Vector2? VrLook = default;
 
-        public Vector2 CameraLook;
+        public Vector2 CameraLook = default;
 
-        public Vector3 CameraMove;
+        public Vector3 CameraMove = default;
 
-        public Vector3 CameraCrouchMove;
+        public Vector3 CameraCrouchMove = default;
 
-        public bool ToggleCreativeFly;
+        public bool ToggleCreativeFly = default;
 
-        public bool ToggleCrouch;
+        public bool ToggleCrouch = default;
 
-        public bool ToggleMount;
+        public bool ToggleMount = default;
 
-        public bool EditItem;
+        public bool EditItem = default;
 
-        public bool Jump;
+        public bool Jump = default;
 
-        public int ScrollInventory;
+        public int ScrollInventory = default;
 
-        public bool ToggleInventory;
+        public bool ToggleInventory = default;
 
-        public bool ToggleClothing;
+        public bool ToggleClothing = default;
 
-        public bool TakeScreenshot;
+        public bool TakeScreenshot = default;
 
-        public bool SwitchCameraMode;
+        public bool SwitchCameraMode = default;
 
-        public bool TimeOfDay;
+        public bool TimeOfDay = default;
 
-        public bool Lighting;
+        public bool Lighting = default;
 
-        public bool Precipitation;
+        public bool Precipitation = default;
 
-        public bool Fog;
+        public bool Fog = default;
 
-        public bool KeyboardHelp;
+        public bool KeyboardHelp = default;
 
-        public bool GamepadHelp;
+        public bool GamepadHelp = default;
 
-        public Ray3? Dig;
+        public Ray3? Dig = default;
 
-        public Ray3? Hit;
+        public Ray3? Hit = default;
 
-        public Ray3? Aim;
+        public Ray3? Aim = default;
 
-        public Ray3? Interact;
+        public Ray3? Interact = default;
 
-        public Ray3? PickBlockType;
+        public Ray3? PickBlockType = default;
 
-        public bool Drop;
+        public bool Drop = default;
 
-        public int? SelectInventorySlot;
+        public int? SelectInventorySlot = default;
 
         /// <summary>
         ///     模组如果需要添加或使用额外信息，可以在这个ValuesDictionary读写元素

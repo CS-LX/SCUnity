@@ -11,7 +11,7 @@ namespace Engine.Graphics {
         public PixelType m_pixelType;
         InternalFormat m_internalFormat;
 
-        public IntPtr NativeHandle => m_texture;
+        public IntPtr NativeHandle => (IntPtr)m_texture;
 
         public int Size {
             get => m_size;
@@ -116,7 +116,7 @@ namespace Engine.Graphics {
             int pixelSize = m_colorFormat.GetSize();
             int requiredSize = pixelSize * mipSize * mipSize;
             if (sourceStartIndex < 0 || (source.Length - sourceStartIndex) * elementSize < requiredSize)
-                throw new InvalidOperationException("Not enough data in source array.");
+                throw new InvalidOperationException("Not enough data (void*)source array.");
             GCHandle handle = GCHandle.Alloc(source, GCHandleType.Pinned);
             try {
                 SetDataInternal(face, mipLevel, handle.AddrOfPinnedObject() + sourceStartIndex * elementSize);
@@ -146,7 +146,7 @@ namespace Engine.Graphics {
                 0,
                 m_pixelFormat,
                 m_pixelType,
-                in source
+                (void*)source
             );
         }
 

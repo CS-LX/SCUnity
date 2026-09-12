@@ -14,56 +14,14 @@ namespace Game {
 
         public double m_playAllowedTime;
 
-        public string[] m_tones = [
-            "",
-            "Bell",
-            "Organ",
-            "Ping",
-            "String",
-            "Trumpet",
-            "Voice",
-            "Piano",
-            "PianoLong",
-            "Drums",
-            "Bass",
-            "",
-            "",
-            "",
-            "",
-            "Piano"
-        ];
+        public string[] m_tones = new string[] {             "",             "Bell",             "Organ",             "Ping",             "String",             "Trumpet",             "Voice",             "Piano",             "PianoLong",             "Drums",             "Bass",             "",             "",             "",             "",             "Piano"
+ };
 
-        public int[] m_maxOctaves = [
-            0,
-            6,
-            5,
-            6,
-            6,
-            6,
-            6,
-            6,
-            6,
-            0,
-            6,
-            0,
-            0,
-            0,
-            0,
-            6
-        ];
+        public int[] m_maxOctaves = new int[] {             0,             6,             5,             6,             6,             6,             6,             6,             6,             0,             6,             0,             0,             0,             0,             6
+ };
 
-        public string[] m_drums = [
-            "Snare",
-            "BassDrum",
-            "ClosedHiHat",
-            "PedalHiHat",
-            "OpenHiHat",
-            "LowTom",
-            "HighTom",
-            "CrashCymbal",
-            "RideCymbal",
-            "HandClap"
-        ];
+        public string[] m_drums = new string[] {             "Snare",             "BassDrum",             "ClosedHiHat",             "PedalHiHat",             "OpenHiHat",             "LowTom",             "HighTom",             "CrashCymbal",             "RideCymbal",             "HandClap"
+ };
 
         public SoundGeneratorElectricElement(SubsystemElectricity subsystemElectricity, CellFace cellFace) : base(subsystemElectricity, cellFace) {
             m_subsystemNoise = subsystemElectricity.Project.FindSubsystem<SubsystemNoise>(true);

@@ -6,7 +6,7 @@ namespace TemplatesDatabase {
         public class StringBin {
             public int m_mask;
 
-            public List<string> m_list = [];
+            public List<string> m_list = new global::System.Collections.Generic.List<string>() {  };
 
             public bool Contains(string s) {
                 int num = Hash(s) & 0x1F;
@@ -250,7 +250,7 @@ namespace TemplatesDatabase {
         List<DatabaseObject> InternalNestingChildren {
             get {
                 if (m_nestingChildren == null) {
-                    m_nestingChildren = [];
+                    m_nestingChildren = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObject>() {  };
                 }
                 return m_nestingChildren;
             }

@@ -2,7 +2,7 @@ using Engine;
 
 namespace Game {
     public class CanvasWidget : ContainerWidget {
-        public Dictionary<Widget, Vector2> m_positions = [];
+        public Dictionary<Widget, Vector2> m_positions = new global::System.Collections.Generic.Dictionary<global::Game.Widget, global::Engine.Vector2>() {  };
 
         public Vector2 Size { get; set; } = new(-1f);
 

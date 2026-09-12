@@ -60,12 +60,12 @@ namespace Engine.Media {
         }
 
         public static bool IsBmpStream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return SixLabors.ImageSharp.Image.DetectFormat(stream).Name == "BMP";
         }
 
         public static BmpInfo GetInfo(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             ImageInfo info = SixLabors.ImageSharp.Image.Identify(stream);
             if (info.Metadata.DecodedImageFormat.Name != "BMP") {
                 throw new FormatException($"Image format({info.Metadata.DecodedImageFormat.Name}) is not Bmp");
@@ -79,14 +79,14 @@ namespace Engine.Media {
         }
 
         public static Image Load(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             string formatName = SixLabors.ImageSharp.Image.DetectFormat(stream).Name;
             return formatName != "BMP" ? throw new FormatException($"Image format({formatName}) is not BMP") : Image.Load(stream);
         }
 
         public static void Save(Image image, Stream stream, Format format, bool sync = false) {
-            ArgumentNullException.ThrowIfNull(image);
-            ArgumentNullException.ThrowIfNull(stream);
+            if (image is null) throw new ArgumentNullException("image");
+            if (stream is null) throw new ArgumentNullException("stream");
             if (!EngineBmpFormat2ImageSharpBitsPerPixel.TryGetValue(format, out BmpBitsPerPixel bitsPerPixel)) {
                 throw new InvalidOperationException("Unsupported BMP pixel format.");
             }
@@ -100,7 +100,7 @@ namespace Engine.Media {
         }
 
         public static BitmapHeader ReadHeader(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             if (!BitConverter.IsLittleEndian) {
                 throw new InvalidOperationException("Unsupported system endianness.");
             }

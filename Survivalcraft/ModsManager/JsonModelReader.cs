@@ -6,81 +6,49 @@ namespace Game {
      * 此处基础坐标系为YZX
      */
     public class JsonModelReader {
-        public static Dictionary<string, List<Vector3>> FacesDic = [];
-        public static Dictionary<string, Vector3> NormalDic = [];
-        public static Dictionary<string, List<int>> FacedirecDic = [];
-        public static Dictionary<float, List<int>> TextureRotate = [];
+        public static Dictionary<string, List<Vector3>> FacesDic = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<global::Engine.Vector3>>() {  };
+        public static Dictionary<string, Vector3> NormalDic = new global::System.Collections.Generic.Dictionary<string, global::Engine.Vector3>() {  };
+        public static Dictionary<string, List<int>> FacedirecDic = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<int>>() {  };
+        public static Dictionary<float, List<int>> TextureRotate = new global::System.Collections.Generic.Dictionary<float, global::System.Collections.Generic.List<int>>() {  };
 
         static JsonModelReader() {
-            FacesDic.Add("north", [Vector3.UnitX, Vector3.Zero, Vector3.UnitY, new Vector3(1, 1, 0)]);
-            FacesDic.Add("south", [new Vector3(1, 0, 1), Vector3.UnitZ, new Vector3(0, 1, 1), new Vector3(1, 1, 1)]);
-            FacesDic.Add("east", [new Vector3(1, 0, 0), new Vector3(1, 0, 1), new Vector3(1, 1, 1), new Vector3(1, 1, 0)]);
-            FacesDic.Add("west", [Vector3.Zero, Vector3.UnitZ, new Vector3(0, 1, 1), Vector3.UnitY]);
-            FacesDic.Add("up", [Vector3.UnitY, new Vector3(0, 1, 1), Vector3.One, new Vector3(1, 1, 0)]);
-            FacesDic.Add("down", [Vector3.Zero, Vector3.UnitZ, new Vector3(1, 0, 1), new Vector3(1, 0, 0)]);
+            FacesDic.Add("north", new global::System.Collections.Generic.List<global::Engine.Vector3>() { Vector3.UnitX, Vector3.Zero, Vector3.UnitY, new Vector3(1, 1, 0) });
+            FacesDic.Add("south", new global::System.Collections.Generic.List<global::Engine.Vector3>() { new Vector3(1, 0, 1), Vector3.UnitZ, new Vector3(0, 1, 1), new Vector3(1, 1, 1) });
+            FacesDic.Add("east", new global::System.Collections.Generic.List<global::Engine.Vector3>() { new Vector3(1, 0, 0), new Vector3(1, 0, 1), new Vector3(1, 1, 1), new Vector3(1, 1, 0) });
+            FacesDic.Add("west", new global::System.Collections.Generic.List<global::Engine.Vector3>() { Vector3.Zero, Vector3.UnitZ, new Vector3(0, 1, 1), Vector3.UnitY });
+            FacesDic.Add("up", new global::System.Collections.Generic.List<global::Engine.Vector3>() { Vector3.UnitY, new Vector3(0, 1, 1), Vector3.One, new Vector3(1, 1, 0) });
+            FacesDic.Add("down", new global::System.Collections.Generic.List<global::Engine.Vector3>() { Vector3.Zero, Vector3.UnitZ, new Vector3(1, 0, 1), new Vector3(1, 0, 0) });
             NormalDic.Add("north", new Vector3(0, 0, -1));
             NormalDic.Add("south", new Vector3(0, 0, 1));
             NormalDic.Add("east", new Vector3(1, 0, 0));
             NormalDic.Add("west", new Vector3(-1, 0, 0));
             NormalDic.Add("up", new Vector3(0, 1, 0));
             NormalDic.Add("down", new Vector3(0, -1, 0));
-            FacedirecDic.Add("north", [0, 2, 1, 0, 3, 2]); //逆
-            FacedirecDic.Add("west", [0, 2, 1, 0, 3, 2]); //逆
-            FacedirecDic.Add("up", [0, 2, 1, 0, 3, 2]); //逆
-            FacedirecDic.Add("south", [0, 1, 2, 0, 2, 3]); //顺
-            FacedirecDic.Add("east", [0, 1, 2, 0, 2, 3]); //顺
-            FacedirecDic.Add("down", [0, 1, 2, 0, 2, 3]); //顺
+            FacedirecDic.Add("north", new global::System.Collections.Generic.List<int>() { 0, 2, 1, 0, 3, 2 }); //逆
+            FacedirecDic.Add("west", new global::System.Collections.Generic.List<int>() { 0, 2, 1, 0, 3, 2 }); //逆
+            FacedirecDic.Add("up", new global::System.Collections.Generic.List<int>() { 0, 2, 1, 0, 3, 2 }); //逆
+            FacedirecDic.Add("south", new global::System.Collections.Generic.List<int>() { 0, 1, 2, 0, 2, 3 }); //顺
+            FacedirecDic.Add("east", new global::System.Collections.Generic.List<int>() { 0, 1, 2, 0, 2, 3 }); //顺
+            FacedirecDic.Add("down", new global::System.Collections.Generic.List<int>() { 0, 1, 2, 0, 2, 3 }); //顺
             TextureRotate.Add(
                 0f,
-                [
-                    0,
-                    3,
-                    2,
-                    3,
-                    2,
-                    1,
-                    0,
-                    1
-                ]
+                new global::System.Collections.Generic.List<int>() {                     0,                     3,                     2,                     3,                     2,                     1,                     0,                     1
+ }
             );
             TextureRotate.Add(
                 90f,
-                [
-                    0,
-                    1,
-                    0,
-                    3,
-                    2,
-                    3,
-                    2,
-                    1
-                ]
+                new global::System.Collections.Generic.List<int>() {                     0,                     1,                     0,                     3,                     2,                     3,                     2,                     1
+ }
             );
             TextureRotate.Add(
                 180f,
-                [
-                    2,
-                    1,
-                    0,
-                    1,
-                    0,
-                    3,
-                    2,
-                    3
-                ]
+                new global::System.Collections.Generic.List<int>() {                     2,                     1,                     0,                     1,                     0,                     3,                     2,                     3
+ }
             );
             TextureRotate.Add(
                 270f,
-                [
-                    2,
-                    3,
-                    2,
-                    1,
-                    0,
-                    1,
-                    0,
-                    3
-                ]
+                new global::System.Collections.Generic.List<int>() {                     2,                     3,                     2,                     1,                     0,                     1,                     0,                     3
+ }
             );
         }
 

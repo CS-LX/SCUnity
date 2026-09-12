@@ -90,7 +90,7 @@ namespace Engine.Serialization {
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                     null,
                     Type.EmptyTypes,
-                    []
+                    new global::System.Reflection.ParameterModifier[] {  }
                 );
                 if (constructor == null
                     && type.BaseType != null) {
@@ -100,13 +100,13 @@ namespace Engine.Serialization {
             }
         }
 
-        static HashSet<Assembly> m_scannedAssemblies = [];
+        static HashSet<Assembly> m_scannedAssemblies = new global::System.Collections.Generic.HashSet<global::System.Reflection.Assembly>() {  };
 
-        static Dictionary<Type, SerializeData> m_serializeDataByType = [];
+        static Dictionary<Type, SerializeData> m_serializeDataByType = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Engine.Serialization.Archive.SerializeData>() {  };
 
-        static Dictionary<Type, SerializeData> m_pendingOptionsByType = [];
+        static Dictionary<Type, SerializeData> m_pendingOptionsByType = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Engine.Serialization.Archive.SerializeData>() {  };
 
-        static Dictionary<Type, TypeInfo> m_genericSerializersByType = [];
+        static Dictionary<Type, TypeInfo> m_genericSerializersByType = new global::System.Collections.Generic.Dictionary<global::System.Type, global::System.Reflection.TypeInfo>() {  };
 
         public object Context;
 
@@ -294,7 +294,7 @@ namespace Engine.Serialization {
             SerializeData obj = (SerializeData)typeof(Archive).GetTypeInfo()
                 .GetDeclaredMethod("CreateSerializeDataForSerializableHelper")
                 .MakeGenericMethod(type)
-                .Invoke(null, []);
+                .Invoke(null, new object[] {  });
             ApplySerializationOptionsAttribute(obj, type.GetTypeInfo());
             return obj;
         }
@@ -334,7 +334,7 @@ namespace Engine.Serialization {
                 return (SerializeData)typeof(Archive).GetTypeInfo()
                     .GetDeclaredMethod("CreateSerializeDataForSerializerHelper")
                     .MakeGenericMethod(type)
-                    .Invoke(null, [@delegate, delegate2]);
+                    .Invoke(null, new object[] { @delegate, delegate2 });
             }
             throw new InvalidOperationException($"Serialization methods not found in {serializerType.Name}");
         }

@@ -89,7 +89,7 @@ namespace Game {
                 && frameHandlers.Count > 0) {
                 Window.Frame += delegate { frameHandlers.ForEach(function => { Invoke(function); }); };
             }
-            handlersDictionary = [];
+            handlersDictionary = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<global::Jint.Native.Function.Function>>() {  };
             loader = (JsModLoader)ModsManager.ModLoaders.Find(item => item is JsModLoader);
             GetAndRegisterHandlers("OnMinerDig");
             GetAndRegisterHandlers("OnMinerPlace");
@@ -193,7 +193,7 @@ namespace Game {
             if (array.IsNull()) {
                 return null;
             }
-            List<Function> list = [];
+            List<Function> list = new global::System.Collections.Generic.List<global::Jint.Native.Function.Function>() {  };
             foreach (JsValue item in array) {
                 try {
                     Function function = item.AsFunctionInstance();

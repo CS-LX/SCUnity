@@ -5,15 +5,15 @@ namespace Game {
     public struct TerrainRaycastResult {
         public TerrainRaycastResult() { }
 
-        public Ray3 Ray;
+        public Ray3 Ray = default;
 
-        public int Value;
+        public int Value = default;
 
-        public CellFace CellFace;
+        public CellFace CellFace = default;
 
-        public int CollisionBoxIndex;
+        public int CollisionBoxIndex = default;
 
-        public float Distance;
+        public float Distance = default;
 
         public Vector3 HitPoint(float offsetFromSurface = 0f) =>
             Ray.Position + Ray.Direction * Distance + CellFace.FaceToVector3(CellFace.Face) * offsetFromSurface;

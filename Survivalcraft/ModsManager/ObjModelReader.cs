@@ -3,19 +3,19 @@ using Engine.Graphics;
 
 namespace Game {
     public class ObjModelReader {
-        public static Dictionary<int, List<int>> FaceMap = [];
+        public static Dictionary<int, List<int>> FaceMap = new global::System.Collections.Generic.Dictionary<int, global::System.Collections.Generic.List<int>>() {  };
 
         static ObjModelReader() {
-            FaceMap.Add(4, [0, 2, 1]); //顶面
-            FaceMap.Add(5, [0, 2, 1]); //底面
-            FaceMap.Add(2, [0, 2, 1]); //逆
-            FaceMap.Add(3, [0, 2, 1]); //逆
-            FaceMap.Add(0, [0, 2, 1]); //顺
-            FaceMap.Add(1, [0, 2, 1]); //顺
+            FaceMap.Add(4, new global::System.Collections.Generic.List<int>() { 0, 2, 1 }); //顶面
+            FaceMap.Add(5, new global::System.Collections.Generic.List<int>() { 0, 2, 1 }); //底面
+            FaceMap.Add(2, new global::System.Collections.Generic.List<int>() { 0, 2, 1 }); //逆
+            FaceMap.Add(3, new global::System.Collections.Generic.List<int>() { 0, 2, 1 }); //逆
+            FaceMap.Add(0, new global::System.Collections.Generic.List<int>() { 0, 2, 1 }); //顺
+            FaceMap.Add(1, new global::System.Collections.Generic.List<int>() { 0, 2, 1 }); //顺
         }
 
         public struct ObjPosition {
-            public float x, y, z;
+            public float x,y,z;
 
             public ObjPosition(string x_, string y_, string z_) {
                 x = float.Parse(x_);
@@ -37,7 +37,7 @@ namespace Game {
         }
 
         public struct ObjNormal {
-            public float x, y, z;
+            public float x,y,z;
 
             public ObjNormal(string x_, string y_, string z_) {
                 x = float.Parse(x_);
@@ -53,7 +53,7 @@ namespace Game {
         }
 
         public struct ObjTexCood {
-            public float tx, ty;
+            public float tx,ty;
 
             public ObjTexCood(string tx_, string ty_) {
                 tx = float.Parse(tx_);
@@ -66,38 +66,52 @@ namespace Game {
             }
         }
 
-        public class ObjMesh(string meshname) {
-            public int ElementIndex;
-            public DynamicArray<ObjVertex> Vertices = [];
-            public DynamicArray<int> Indices = [];
-            public string TexturePath = "Textures/NoneTexture"; //默认位置
-            public string MeshName = meshname;
+        public class ObjMesh{
+
+        public ObjMesh(string meshname)
+{
+    this.Vertices = new global::Engine.DynamicArray<global::Game.ObjModelReader.ObjVertex>()
+    {
+    };
+    this.Indices = new global::Engine.DynamicArray<int>()
+    {
+    };
+    this.TexturePath = "Textures/NoneTexture";
+    this.MeshName = meshname;
+    this.ChildMeshes = new global::System.Collections.Generic.List<global::Game.ObjModelReader.ObjMesh>()
+    {
+    };
+}            public int ElementIndex;
+            public DynamicArray<ObjVertex> Vertices ;
+            public DynamicArray<int> Indices ;
+            public string TexturePath ; //默认位置
+            public string MeshName ;
             public Matrix? MeshMatrix;
 
             public BoundingBox CalculateBoundingBox() {
-                List<Vector3> vectors = [];
+                List<Vector3> vectors = new global::System.Collections.Generic.List<global::Engine.Vector3>() {  };
                 for (int i = 0; i < Vertices.Count; i++) {
                     vectors.Add(new Vector3(Vertices[i].position.x, Vertices[i].position.y, Vertices[i].position.z));
                 }
                 return new BoundingBox(vectors);
             }
 
-            public List<ObjMesh> ChildMeshes = [];
+            public List<ObjMesh> ChildMeshes ;
         }
 
         public static ObjModel Load(Stream stream) {
-            Dictionary<string, ObjMesh> Meshes = [];
-            Dictionary<string, string> TexturePaths = [];
-            List<ObjPosition> objPositions = [];
-            List<ObjTexCood> objTexCoods = [];
-            List<ObjNormal> objNormals = [];
+            Dictionary<string, ObjMesh> Meshes = new global::System.Collections.Generic.Dictionary<string, global::Game.ObjModelReader.ObjMesh>() {  };
+            Dictionary<string, string> TexturePaths = new global::System.Collections.Generic.Dictionary<string, string>() {  };
+            List<ObjPosition> objPositions = new global::System.Collections.Generic.List<global::Game.ObjModelReader.ObjPosition>() {  };
+            List<ObjTexCood> objTexCoods = new global::System.Collections.Generic.List<global::Game.ObjModelReader.ObjTexCood>() {  };
+            List<ObjNormal> objNormals = new global::System.Collections.Generic.List<global::Game.ObjModelReader.ObjNormal>() {  };
             using (stream) {
                 StreamReader streamReader = new(stream);
                 ObjMesh objMesh = null;
                 string CurrentTkey = null;
                 while (!streamReader.EndOfStream) {
                     string line = streamReader.ReadLine();
-                    string[] spl = line.Split([(char)0x09, (char)0x20], StringSplitOptions.None);
+                    string[] spl = line.Split(new char[] { (char)0x09, (char)0x20 }, StringSplitOptions.None);
                     switch (spl[0]) {
                         case "mtllib": {
                             MtllibStruct mtllibStruct = ContentManager.Get<MtllibStruct>(spl[1]);
@@ -144,7 +158,7 @@ namespace Game {
                             int i = 0;
                             int startCount = objMesh.Vertices.Count;
                             while (++i < spl.Length) {
-                                string[] param = spl[i].Split(['/'], StringSplitOptions.None);
+                                string[] param = spl[i].Split(new char[] { '/' }, StringSplitOptions.None);
                                 if (param.Length != 3) {
                                     throw new Exception("面参数错误");
                                 }

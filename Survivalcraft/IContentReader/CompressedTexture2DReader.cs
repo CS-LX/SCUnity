@@ -3,7 +3,7 @@ using Engine.Graphics;
 namespace Game.IContentReader {
     public class CompressedTexture2DReader : IContentReader {
         public override string Type => "Engine.Graphics.CompressedTexture2D";
-        public override string[] DefaultSuffix => ["astc", "astcsrgb"];
+        public override string[] DefaultSuffix => new string[] { "astc", "astcsrgb" };
 
         public override object Get(ContentInfo[] contents) {
             ContentInfo contentInfo = contents[0];

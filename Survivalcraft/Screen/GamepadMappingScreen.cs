@@ -52,8 +52,8 @@ namespace Game {
         public BevelledButtonWidget m_disableKeyButton;
         public BevelledButtonWidget m_gameHelpButton;
         public bool IsWaitingForKeyInput;
-        public Dictionary<string, ContainerWidget> m_widgetsByString = [];
-        public Dictionary<object, List<string>> m_conflicts = [];
+        public Dictionary<string, ContainerWidget> m_widgetsByString = new global::System.Collections.Generic.Dictionary<string, global::Game.ContainerWidget>() {  };
+        public Dictionary<object, List<string>> m_conflicts = new global::System.Collections.Generic.Dictionary<object, global::System.Collections.Generic.List<string>>() {  };
 
         public GamepadMappingScreen() {
             XElement node = ContentManager.Get<XElement>("Screens/KeyboardMappingScreen");
@@ -144,7 +144,7 @@ namespace Game {
                         && Input.IsPadButtonDownOnce(button)) {
                         if (holdingModifierKey != null
                             && !GamePad.IsModifierKey(button)) {
-                            ValuesDictionary combinedKey = [];
+                            ValuesDictionary combinedKey = new global::TemplatesDatabase.ValuesDictionary() {  };
                             combinedKey.SetValue("ModifierKey", holdingModifierKey);
                             combinedKey.SetValue("ActionKey", button);
                             SetGamepadMapping(selectedKeyName, combinedKey);
@@ -205,7 +205,7 @@ namespace Game {
                 string name = item.Key;
                 object obj = item.Value;
                 if (!m_conflicts.TryGetValue(obj, out List<string> value)) {
-                    value = [];
+                    value = new global::System.Collections.Generic.List<string>() {  };
                     m_conflicts[obj] = value;
                 }
                 if (!value.Contains(name)) {

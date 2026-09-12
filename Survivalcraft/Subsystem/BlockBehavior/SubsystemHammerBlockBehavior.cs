@@ -5,7 +5,7 @@ namespace Game {
     public class SubsystemHammerBlockBehavior : SubsystemBlockBehavior {
         public SubsystemFurnitureBlockBehavior m_subsystemFurnitureBlockBehavior;
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override bool OnUse(Ray3 ray, ComponentMiner componentMiner) {
             TerrainRaycastResult? terrainRaycastResult = componentMiner.Raycast<TerrainRaycastResult>(ray, RaycastMode.Digging);

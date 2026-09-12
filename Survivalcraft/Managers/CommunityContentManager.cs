@@ -10,8 +10,8 @@ using XmlUtilities;
 namespace Game {
     public static class CommunityContentManager {
 
-        public static Dictionary<string, string> m_idToAddressMap = [];
-        public static Dictionary<string, bool> m_feedbackCache = [];
+        public static Dictionary<string, string> m_idToAddressMap = new global::System.Collections.Generic.Dictionary<string, string>() {  };
+        public static Dictionary<string, bool> m_feedbackCache = new global::System.Collections.Generic.Dictionary<string, bool>() {  };
 
         public const string fName = "CommunityContentManager";
 
@@ -632,7 +632,7 @@ namespace Game {
             );*/
         }
 
-        public static string CalculateContentHashString(byte[] data) => Convert.ToBase64String(SHA384.HashData(data));
+        public static string CalculateContentHashString(byte[] data) => Convert.ToBase64String(Game.MonoBcl.HashSHA384(data));
 
         public static string MakeFeedbackCacheKey(string address, string feedback, string userId) => $"{address}\n{feedback}\n{userId}";
 

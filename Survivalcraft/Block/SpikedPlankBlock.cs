@@ -13,7 +13,7 @@ namespace Game {
 
         public override void Initialize() {
             Model model = ContentManager.Get<Model>("Models/SpikedPlanks");
-            string[] array = ["SpikedPlankRetracted", "SpikedPlank"];
+            string[] array = new string[] { "SpikedPlankRetracted", "SpikedPlank" };
             for (int i = 0; i < 2; i++) {
                 string name = array[i];
                 Matrix boneAbsoluteTransform = BlockMesh.GetBoneAbsoluteTransform(model.FindMesh(name).ParentBone);
@@ -38,7 +38,7 @@ namespace Game {
                             false,
                             Color.White
                         );
-                    m_collisionBoxesByData[num] = [m_blockMeshesByData[num].CalculateBoundingBox()];
+                    m_collisionBoxesByData[num] = new global::Engine.BoundingBox[] { m_blockMeshesByData[num].CalculateBoundingBox() };
                 }
                 Matrix identity = Matrix.Identity;
                 m_standaloneBlockMesh.AppendModelMeshPart(

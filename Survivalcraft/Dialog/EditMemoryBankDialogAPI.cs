@@ -5,7 +5,7 @@ using Engine;
 namespace Game {
     public class EditMemoryBankDialogAPI : Dialog {
         public MemoryBankData memory;
-        public DynamicArray<byte> Data = [];
+        public DynamicArray<byte> Data = new global::Engine.DynamicArray<byte>() {  };
         public StackPanelWidget MainView;
         public Action onCancel;
         public int clickpos;
@@ -13,7 +13,7 @@ namespace Game {
         public int setPosN; //第几位数
         public int lastvalue;
         public bool isclick = true;
-        public List<ClickTextWidget> list = [];
+        public List<ClickTextWidget> list = new global::System.Collections.Generic.List<global::Game.ClickTextWidget>() {  };
         public const string fName = "EditMemoryBankDialogAPI";
 
         public byte LastOutput { get; set; }

@@ -10,7 +10,7 @@ using XmlUtilities;
 namespace TemplatesDatabase {
     public static class XmlDatabaseSerializer {
         public static Database LoadDatabase(XElement node) {
-            Dictionary<string, DatabaseObjectType> dictionary = [];
+            Dictionary<string, DatabaseObjectType> dictionary = new global::System.Collections.Generic.Dictionary<string, global::TemplatesDatabase.DatabaseObjectType>() {  };
             XElement xElement = XmlUtils.FindChildElement(node, "DatabaseObjectTypes", true);
             foreach (XElement item in xElement.Elements()) {
                 string attributeValue = XmlUtils.GetAttributeValue<string>(item, "Name");
@@ -38,16 +38,16 @@ namespace TemplatesDatabase {
                 string attributeValue10 = XmlUtils.GetAttributeValue<string>(item2, "AllowedNestingParents");
                 string attributeValue11 = XmlUtils.GetAttributeValue<string>(item2, "AllowedInheritanceParents");
                 string attributeValue12 = XmlUtils.GetAttributeValue<string>(item2, "NestedValueType");
-                List<DatabaseObjectType> list = [];
-                string[] array = attributeValue10.Split([',', ' '], StringSplitOptions.RemoveEmptyEntries);
+                List<DatabaseObjectType> list = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObjectType>() {  };
+                string[] array = attributeValue10.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string text in array) {
                     if (!dictionary.TryGetValue(text, out DatabaseObjectType value2)) {
                         throw new InvalidOperationException($"Database object type \"{text}\" not found.");
                     }
                     list.Add(value2);
                 }
-                List<DatabaseObjectType> list2 = [];
-                array = attributeValue11.Split([',', ' '], StringSplitOptions.RemoveEmptyEntries);
+                List<DatabaseObjectType> list2 = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObjectType>() {  };
+                array = attributeValue11.Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string text2 in array) {
                     if (!dictionary.TryGetValue(text2, out DatabaseObjectType value3)) {
                         throw new InvalidOperationException($"Database object type \"{text2}\" not found.");
@@ -90,11 +90,11 @@ namespace TemplatesDatabase {
             LoadDatabaseObjectsList(node, database, false);
 
         public static List<DatabaseObject> LoadDatabaseObjectsList(XElement node, Database database, bool generateNewGuids) {
-            Dictionary<DatabaseObject, Guid> dictionary = [];
-            Dictionary<DatabaseObject, Guid> dictionary2 = [];
-            Dictionary<Guid, Guid> dictionary3 = generateNewGuids ? [] : null;
+            Dictionary<DatabaseObject, Guid> dictionary = new global::System.Collections.Generic.Dictionary<global::TemplatesDatabase.DatabaseObject, global::System.Guid>() {  };
+            Dictionary<DatabaseObject, Guid> dictionary2 = new global::System.Collections.Generic.Dictionary<global::TemplatesDatabase.DatabaseObject, global::System.Guid>() {  };
+            Dictionary<Guid, Guid> dictionary3 = generateNewGuids ? new global::System.Collections.Generic.Dictionary<global::System.Guid, global::System.Guid>() {  } : null;
             List<DatabaseObject> list = InternalLoadDatabaseObjectsList(node, database, dictionary, dictionary2, dictionary3);
-            Dictionary<Guid, DatabaseObject> dictionary4 = [];
+            Dictionary<Guid, DatabaseObject> dictionary4 = new global::System.Collections.Generic.Dictionary<global::System.Guid, global::TemplatesDatabase.DatabaseObject>() {  };
             foreach (DatabaseObject item in list) {
                 dictionary4.Add(item.Guid, item);
                 foreach (DatabaseObject explicitNestingChild in item.GetExplicitNestingChildren(null, false)) {
@@ -126,7 +126,7 @@ namespace TemplatesDatabase {
         }
 
         public static DatabaseObject LoadDatabaseObject(XElement node, Database database) {
-            Dictionary<DatabaseObject, Guid> dictionary = [];
+            Dictionary<DatabaseObject, Guid> dictionary = new global::System.Collections.Generic.Dictionary<global::TemplatesDatabase.DatabaseObject, global::System.Guid>() {  };
             DatabaseObject result = InternalLoadDatabaseObject(node, database, null, dictionary, null);
             foreach (KeyValuePair<DatabaseObject, Guid> item in dictionary) {
                 item.Key.ExplicitInheritanceParent = database.FindDatabaseObject(item.Value, null, true);
@@ -166,9 +166,9 @@ namespace TemplatesDatabase {
                     databaseObjectType.NestedValueType != null ? databaseObjectType.NestedValueType.Name : string.Empty
                 );
             }
-            List<Type> list = [];
+            List<Type> list = new global::System.Collections.Generic.List<global::System.Type>() {  };
             database.FindUsedValueTypes(list);
-            List<Assembly> list2 = [];
+            List<Assembly> list2 = new global::System.Collections.Generic.List<global::System.Reflection.Assembly>() {  };
             foreach (Type item in list) {
                 if (!list2.Contains(item.GetTypeInfo().Assembly)) {
                     list2.Add(item.GetTypeInfo().Assembly);
@@ -185,7 +185,7 @@ namespace TemplatesDatabase {
         }
 
         public static void SaveDatabaseObjectsList(XElement node, IEnumerable<DatabaseObject> databaseObjects) {
-            List<DatabaseObject> list = [];
+            List<DatabaseObject> list = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObject>() {  };
             IEnumerable<DatabaseObject> enumerable = databaseObjects as DatabaseObject[] ?? databaseObjects.ToArray();
             foreach (DatabaseObject databaseObject in enumerable) {
                 list.AddRange(from x in databaseObject.GetExplicitNestingChildren(null, false) where x.Type.SaveStandalone select x);
@@ -203,7 +203,7 @@ namespace TemplatesDatabase {
             Dictionary<DatabaseObject, Guid> nestingParents,
             Dictionary<DatabaseObject, Guid> inheritanceParents,
             Dictionary<Guid, Guid> guidTranslation) {
-            List<DatabaseObject> list = [];
+            List<DatabaseObject> list = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObject>() {  };
             foreach (XElement item2 in node.Elements()) {
                 DatabaseObject item = InternalLoadDatabaseObject(item2, database, nestingParents, inheritanceParents, guidTranslation);
                 list.Add(item);

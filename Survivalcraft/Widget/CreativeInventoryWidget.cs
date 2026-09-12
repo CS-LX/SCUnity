@@ -12,7 +12,7 @@ namespace Game {
             public ContainerWidget Panel;
         }
 
-        public List<Category> m_categories = [];
+        public List<Category> m_categories = new global::System.Collections.Generic.List<global::Game.CreativeInventoryWidget.Category>() {  };
 
         public int m_activeCategoryIndex = -1;
 

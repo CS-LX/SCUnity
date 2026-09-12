@@ -6,13 +6,13 @@ namespace Game {
     public class ComponentLoot : Component, IUpdateable {
         public struct Loot {
             public Loot() { }
-            public int Value;
+            public int Value = default;
 
-            public int MinCount;
+            public int MinCount = default;
 
-            public int MaxCount;
+            public int MaxCount = default;
 
-            public float Probability;
+            public float Probability = default;
 
             /// <summary>
             ///     模组如果需要添加或使用额外信息，可以在这个ValuesDictionary读写元素
@@ -52,7 +52,7 @@ namespace Game {
                 >= m_componentCreature.ComponentHealth.DeathTime.Value + m_componentCreature.ComponentHealth.CorpseDuration) {
                 bool num = m_componentCreature.Entity.FindComponent<ComponentOnFire>()?.IsOnFire ?? false;
                 m_lootDropped = true;
-                List<BlockDropValue> blockDropValues = [];
+                List<BlockDropValue> blockDropValues = new global::System.Collections.Generic.List<global::Game.BlockDropValue>() {  };
                 foreach (Loot item in num ? m_lootOnFireList : m_lootList) {
                     if (m_random.Float(0f, 1f) < item.Probability) {
                         int num2 = m_random.Int(item.MinCount, item.MaxCount);
@@ -89,7 +89,7 @@ namespace Game {
         }
 
         public static Loot ParseLoot(string lootString) {
-            string[] array = lootString.Split([";"], StringSplitOptions.None);
+            string[] array = lootString.Split(new string[] { ";" }, StringSplitOptions.None);
             if (array.Length >= 3) {
                 try {
                     int v = CraftingRecipesManager.DecodeResult(array[0]);

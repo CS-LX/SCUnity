@@ -20,13 +20,13 @@ namespace Game {
         public SubsystemParticles m_subsystemParticles;
         public static string fName = "SubsystemFurnitureBlockBehavior";
 
-        public List<FurnitureSet> m_furnitureSets = [];
+        public List<FurnitureSet> m_furnitureSets = new global::System.Collections.Generic.List<global::Game.FurnitureSet>() {  };
 
         public FurnitureDesign[] m_furnitureDesigns = new FurnitureDesign[FurnitureDesign.maxDesign];
 
-        public Dictionary<Point3, List<FireParticleSystem>> m_particleSystemsByCell = [];
+        public Dictionary<Point3, List<FireParticleSystem>> m_particleSystemsByCell = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::System.Collections.Generic.List<global::Game.FireParticleSystem>>() {  };
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public ReadOnlyList<FurnitureSet> FurnitureSets => new(m_furnitureSets);
 
@@ -133,7 +133,7 @@ namespace Game {
             else {
                 Stack<Point3> val = new();
                 val.Push(start.Point);
-                HashSet<Point3> scannedPoints = [];
+                HashSet<Point3> scannedPoints = new global::System.Collections.Generic.HashSet<global::Engine.Point3>() {  };
                 while (val.Count > 0) {
                     Point3 key = val.Pop();
                     if (valuesDictionary.ContainsKey(key)
@@ -306,8 +306,8 @@ namespace Game {
         }
 
         public void SwitchToNextState(int x, int y, int z, bool playSound) {
-            HashSet<Point3> hashSet = [];
-            List<Point3> list = [new(x, y, z)];
+            HashSet<Point3> hashSet = new global::System.Collections.Generic.HashSet<global::Engine.Point3>() {  };
+            List<Point3> list = new global::System.Collections.Generic.List<global::Engine.Point3>() { new(x, y, z) };
             int num = 0;
             while (num < list.Count
                 && num < 4096) {
@@ -393,7 +393,7 @@ namespace Game {
         }
 
         public static List<FurnitureDesign> LoadFurnitureDesigns(SubsystemTerrain subsystemTerrain, ValuesDictionary valuesDictionary) {
-            List<FurnitureDesign> list = [];
+            List<FurnitureDesign> list = new global::System.Collections.Generic.List<global::Game.FurnitureDesign>() {  };
             foreach (KeyValuePair<string, object> item2 in valuesDictionary) {
                 int index = int.Parse(item2.Key, CultureInfo.InvariantCulture);
                 ValuesDictionary valuesDictionary2 = (ValuesDictionary)item2.Value;
@@ -439,7 +439,7 @@ namespace Game {
         }
 
         public override void OnChunkDiscarding(TerrainChunk chunk) {
-            List<Point3> list = [];
+            List<Point3> list = new global::System.Collections.Generic.List<global::Engine.Point3>() {  };
             foreach (Point3 key in m_particleSystemsByCell.Keys) {
                 if (key.X >= chunk.Origin.X
                     && key.X < chunk.Origin.X + 16
@@ -613,7 +613,7 @@ namespace Game {
             if (design == null) {
                 return;
             }
-            List<FireParticleSystem> list = [];
+            List<FireParticleSystem> list = new global::System.Collections.Generic.List<global::Game.FireParticleSystem>() {  };
             BoundingBox[] torchPoints = design.GetTorchPoints(rotation);
             if (torchPoints.Length != 0) {
                 BoundingBox[] array = torchPoints;

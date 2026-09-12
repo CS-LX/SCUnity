@@ -9,7 +9,7 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override bool OnAim(Ray3 aim, ComponentMiner componentMiner, AimState state) {
             switch (state) {

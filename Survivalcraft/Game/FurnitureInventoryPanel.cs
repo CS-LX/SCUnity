@@ -93,8 +93,7 @@ namespace Game {
             }
             ComponentFurnitureInventory.PageIndex = m_pagesCount > 0 ? Math.Clamp(ComponentFurnitureInventory.PageIndex, 0, m_pagesCount - 1) : 0;
             if (m_addButton.IsClicked) {
-                List<Tuple<string, Action>> list = [
-                    new(
+                List<Tuple<string, Action>> list = new global::System.Collections.Generic.List<global::System.Tuple<string, global::System.Action>>() {                     new(
                         LanguageControl.Get(fName, 6),
                         delegate {
                             if (SubsystemFurnitureBlockBehavior.FurnitureSets.Count < 32) {
@@ -107,9 +106,8 @@ namespace Game {
                                 );
                             }
                         }
-                    ),
-                    new(LanguageControl.Get(fName, 7), delegate { ImportFurnitureSet(SubsystemTerrain); })
-                ];
+                    ),                     new(LanguageControl.Get(fName, 7), delegate { ImportFurnitureSet(SubsystemTerrain); })
+ };
                 DialogsManager.ShowDialog(
                     m_componentPlayer.GuiWidget,
                     new ListSelectionDialog(
@@ -123,9 +121,7 @@ namespace Game {
             }
             if (m_moreButton.IsClicked
                 && ComponentFurnitureInventory.FurnitureSet != null) {
-                List<Tuple<string, Action>> list2 = [
-                    new(LanguageControl.Get(fName, 9), RenameFurnitureSet),
-                    new(
+                List<Tuple<string, Action>> list2 = new global::System.Collections.Generic.List<global::System.Tuple<string, global::System.Action>>() {                     new(LanguageControl.Get(fName, 9), RenameFurnitureSet),                     new(
                         LanguageControl.Get(fName, 10),
                         delegate {
                             if (SubsystemFurnitureBlockBehavior.GetFurnitureSetDesigns(ComponentFurnitureInventory.FurnitureSet).Any()) {
@@ -148,11 +144,8 @@ namespace Game {
                                 DeleteFurnitureSet();
                             }
                         }
-                    ),
-                    new(LanguageControl.Get(fName, 11), delegate { MoveFurnitureSet(-1); }),
-                    new(LanguageControl.Get(fName, 12), delegate { MoveFurnitureSet(1); }),
-                    new(LanguageControl.Get(fName, 13), ExportFurnitureSet)
-                ];
+                    ),                     new(LanguageControl.Get(fName, 11), delegate { MoveFurnitureSet(-1); }),                     new(LanguageControl.Get(fName, 12), delegate { MoveFurnitureSet(1); }),                     new(LanguageControl.Get(fName, 13), ExportFurnitureSet)
+ };
                 DialogsManager.ShowDialog(
                     m_componentPlayer.GuiWidget,
                     new ListSelectionDialog(
@@ -194,7 +187,7 @@ namespace Game {
         }
 
         public void AssignInventorySlots() {
-            List<int> list = [];
+            List<int> list = new global::System.Collections.Generic.List<int>() {  };
             for (int i = 0; i < ComponentFurnitureInventory.SlotsCount; i++) {
                 int slotValue = ComponentFurnitureInventory.GetSlotValue(i);
                 int slotCount = ComponentFurnitureInventory.GetSlotCount(i);
@@ -305,7 +298,7 @@ namespace Game {
                                 List<List<FurnitureDesign>> list = FurnitureDesign.ListChains(
                                     FurniturePacksManager.LoadFurniturePack(subsystemTerrain, text)
                                 );
-                                List<FurnitureDesign> list2 = [];
+                                List<FurnitureDesign> list2 = new global::System.Collections.Generic.List<global::Game.FurnitureDesign>() {  };
                                 SubsystemFurnitureBlockBehavior.GarbageCollectDesigns();
                                 foreach (List<FurnitureDesign> item in list) {
                                     FurnitureDesign furnitureDesign = SubsystemFurnitureBlockBehavior.TryAddDesignChain(item[0], false);

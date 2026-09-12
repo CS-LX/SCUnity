@@ -10,7 +10,7 @@ namespace Game {
             public Action Leave;
         }
 
-        public Dictionary<string, State> m_states = [];
+        public Dictionary<string, State> m_states = new global::System.Collections.Generic.Dictionary<string, global::Game.StateMachine.State>() {  };
 
         public State m_currentState;
 

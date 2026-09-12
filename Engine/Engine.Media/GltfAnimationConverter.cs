@@ -134,7 +134,7 @@ namespace Engine.Media {
             if (string.IsNullOrEmpty(path)) {
                 return null;
             }
-            string[] segments = path.Split(['/'], StringSplitOptions.RemoveEmptyEntries);
+            string[] segments = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             if (segments.Length < 3) {
                 return null;
             }
@@ -638,7 +638,7 @@ namespace Engine.Media {
             if (!path.StartsWith("/nodes/")) {
                 return null;
             }
-            string[] segments = path.Split(['/'], StringSplitOptions.RemoveEmptyEntries);
+            string[] segments = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             if (segments.Length < 5
                 || segments[0] != "nodes"
                 || segments[2] != "extensions") {

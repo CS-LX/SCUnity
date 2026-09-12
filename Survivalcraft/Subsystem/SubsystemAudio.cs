@@ -17,15 +17,15 @@ namespace Game {
         }
 
         public struct SoundInfo {
-            public double Time;
+            public double Time = default;
 
-            public string Name;
+            public string Name = default;
 
-            public float Volume;
+            public float Volume = default;
 
-            public float Pitch;
+            public float Pitch = default;
 
-            public float Pan;
+            public float Pan = default;
 
             public Vector3 direction = Vector3.Zero;
 
@@ -38,17 +38,17 @@ namespace Game {
 
         public Random m_random = new();
 
-        public List<Vector3> m_listenerPositions = [];
+        public List<Vector3> m_listenerPositions = new global::System.Collections.Generic.List<global::Engine.Vector3>() {  };
 
-        public Dictionary<string, Congestion> m_congestions = [];
+        public Dictionary<string, Congestion> m_congestions = new global::System.Collections.Generic.Dictionary<string, global::Game.SubsystemAudio.Congestion>() {  };
 
         public double m_nextSoundTime;
 
-        public List<SoundInfo> m_queuedSounds = [];
+        public List<SoundInfo> m_queuedSounds = new global::System.Collections.Generic.List<global::Game.SubsystemAudio.SoundInfo>() {  };
 
-        public List<Sound> m_sounds = [];
+        public List<Sound> m_sounds = new global::System.Collections.Generic.List<global::Engine.Audio.Sound>() {  };
 
-        public Dictionary<Sound, bool> m_mutedSounds = [];
+        public Dictionary<Sound, bool> m_mutedSounds = new global::System.Collections.Generic.Dictionary<global::Engine.Audio.Sound, bool>() {  };
 
         public ReadOnlyList<Vector3> ListenerPositions => new(m_listenerPositions);
 

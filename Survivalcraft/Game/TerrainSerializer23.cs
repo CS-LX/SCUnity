@@ -46,7 +46,7 @@ namespace Game {
 
             BinaryWriter Writer;
 
-            Dictionary<Point2, ChunkDescriptor> ChunkDescriptors = [];
+            Dictionary<Point2, ChunkDescriptor> ChunkDescriptors = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, global::Game.TerrainSerializer23.SingleFileStorage.ChunkDescriptor>() {  };
 
             int FreeNode;
 
@@ -140,7 +140,7 @@ namespace Game {
             }
 
             public virtual List<int> GetFreeNodes(int count) {
-                List<int> list = [];
+                List<int> list = new global::System.Collections.Generic.List<int>() {  };
                 int nextNode = FreeNode;
                 while (nextNode >= 0
                     && list.Count < count) {
@@ -310,7 +310,7 @@ namespace Game {
 
             string TmpFilePath;
 
-            Dictionary<Point2, Stream> StreamsByRegion = [];
+            Dictionary<Point2, Stream> StreamsByRegion = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, global::System.IO.Stream>() {  };
 
             Queue<Stream> OpenedStreams = new();
 

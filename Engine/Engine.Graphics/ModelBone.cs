@@ -1,6 +1,6 @@
 namespace Engine.Graphics {
     public class ModelBone {
-        public List<ModelBone> m_childBones = [];
+        public List<ModelBone> m_childBones = new global::System.Collections.Generic.List<global::Engine.Graphics.ModelBone>() {  };
 
         public Matrix m_transform;
 

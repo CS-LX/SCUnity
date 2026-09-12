@@ -2,7 +2,7 @@ using Engine;
 
 namespace Game {
     public class SubsystemLadderBlockBehavior : SubsystemBlockBehavior {
-        public override int[] HandledBlocks => [59, 213];
+        public override int[] HandledBlocks => new int[] { 59, 213 };
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
             int ladderBlockValue = SubsystemTerrain.Terrain.GetCellValue(x, y, z);

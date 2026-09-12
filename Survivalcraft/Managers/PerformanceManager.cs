@@ -37,7 +37,7 @@ namespace Game {
 
         public static string m_statsString;
 
-        public static readonly List<string> m_extraStats = [];
+        public static readonly List<string> m_extraStats = new global::System.Collections.Generic.List<string>() {  };
 
         public static FrameData[] m_frameData;
 

@@ -6,7 +6,7 @@ namespace Game {
         [HumanReadableConverter(typeof(FloatCurve))]
         public class HumanReadableConverter : IHumanReadableConverter {
             public string ConvertToString(object value) =>
-                Engine.Serialization.HumanReadableConverter.ValuesListToString('|', ((FloatCurve)value).Points ?? []);
+                Engine.Serialization.HumanReadableConverter.ValuesListToString('|', ((FloatCurve)value).Points ?? new global::Engine.Vector2[] {  });
 
             public object ConvertFromString(Type type, string data) =>
                 new FloatCurve(Engine.Serialization.HumanReadableConverter.ValuesListFromString<Vector2>('|', data));

@@ -8,7 +8,7 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [158];
+        public override int[] HandledBlocks => new int[] { 158 };
 
         public override bool OnUse(Ray3 ray, ComponentMiner componentMiner) {
             BodyRaycastResult? bodyRaycastResult = componentMiner.Raycast<BodyRaycastResult>(ray, RaycastMode.Interaction);

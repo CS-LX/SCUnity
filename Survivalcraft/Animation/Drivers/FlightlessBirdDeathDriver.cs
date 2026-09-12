@@ -11,7 +11,7 @@ namespace Game.Animation.Drivers {
         public AnimationBlendMode BlendMode => AnimationBlendMode.Override;
 
         public string[] TargetBones => mTargetBones;
-        string[] mTargetBones = ["Body", "Head", "Neck", "Leg1", "Leg2"];
+        string[] mTargetBones = new string[] { "Body", "Head", "Neck", "Leg1", "Leg2" };
 
         // 参数名称
         public string DeathPhaseParam { get; set; } = "DeathPhase";

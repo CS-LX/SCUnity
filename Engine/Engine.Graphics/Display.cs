@@ -22,7 +22,7 @@ namespace Engine.Graphics {
         public static RasterizerState RasterizerState {
             get => m_rasterizerState;
             set {
-                ArgumentNullException.ThrowIfNull(value);
+                if (value is null) throw new ArgumentNullException("value");
                 m_rasterizerState = value;
                 value.IsLocked = true;
             }
@@ -31,7 +31,7 @@ namespace Engine.Graphics {
         public static DepthStencilState DepthStencilState {
             get => m_depthStencilState;
             set {
-                ArgumentNullException.ThrowIfNull(value);
+                if (value is null) throw new ArgumentNullException("value");
                 m_depthStencilState = value;
                 value.IsLocked = true;
             }
@@ -40,7 +40,7 @@ namespace Engine.Graphics {
         public static BlendState BlendState {
             get => m_blendState;
             set {
-                ArgumentNullException.ThrowIfNull(value);
+                if (value is null) throw new ArgumentNullException("value");
                 m_blendState = value;
                 value.IsLocked = true;
             }
@@ -257,9 +257,9 @@ namespace Engine.Graphics {
             int startVertex,
             int verticesCount) where T : unmanaged {
             int num = Utilities.SizeOf<T>();
-            ArgumentNullException.ThrowIfNull(shader);
-            ArgumentNullException.ThrowIfNull(vertexDeclaration);
-            ArgumentNullException.ThrowIfNull(vertexData);
+            if (shader is null) throw new ArgumentNullException("shader");
+            if (vertexDeclaration is null) throw new ArgumentNullException("vertexDeclaration");
+            if (vertexData is null) throw new ArgumentNullException("vertexData");
             if (vertexDeclaration.VertexStride / num * num != vertexDeclaration.VertexStride) {
                 throw new InvalidOperationException(
                     $"Vertex is not an integer multiple of array element, vertex stride is {vertexDeclaration.VertexStride}, array element is {num}."
@@ -283,10 +283,10 @@ namespace Engine.Graphics {
             int startIndex,
             int indicesCount) where T : unmanaged {
             int num = Utilities.SizeOf<T>();
-            ArgumentNullException.ThrowIfNull(shader);
-            ArgumentNullException.ThrowIfNull(vertexDeclaration);
-            ArgumentNullException.ThrowIfNull(vertexData);
-            ArgumentNullException.ThrowIfNull(indexData);
+            if (shader is null) throw new ArgumentNullException("shader");
+            if (vertexDeclaration is null) throw new ArgumentNullException("vertexDeclaration");
+            if (vertexData is null) throw new ArgumentNullException("vertexData");
+            if (indexData is null) throw new ArgumentNullException("indexData");
             if (vertexDeclaration.VertexStride / num * num != vertexDeclaration.VertexStride) {
                 throw new InvalidOperationException(
                     $"Vertex is not an integer multiple of array element, vertex stride is {vertexDeclaration.VertexStride}, array element is {num}."
@@ -311,8 +311,8 @@ namespace Engine.Graphics {
             int startVertex,
             int verticesCount) {
             vertexBuffer.VerifyNotDisposed();
-            ArgumentNullException.ThrowIfNull(shader);
-            ArgumentNullException.ThrowIfNull(vertexBuffer);
+            if (shader is null) throw new ArgumentNullException("shader");
+            if (vertexBuffer is null) throw new ArgumentNullException("vertexBuffer");
             if (startVertex < 0
                 || verticesCount < 0
                 || startVertex + verticesCount > vertexBuffer.VerticesCount) {
@@ -327,9 +327,9 @@ namespace Engine.Graphics {
             IndexBuffer indexBuffer,
             int startIndex,
             int indicesCount) {
-            ArgumentNullException.ThrowIfNull(shader);
-            ArgumentNullException.ThrowIfNull(vertexBuffer);
-            ArgumentNullException.ThrowIfNull(indexBuffer);
+            if (shader is null) throw new ArgumentNullException("shader");
+            if (vertexBuffer is null) throw new ArgumentNullException("vertexBuffer");
+            if (indexBuffer is null) throw new ArgumentNullException("indexBuffer");
             if (startIndex < 0
                 || indicesCount < 0
                 || startIndex + indicesCount > indexBuffer.IndicesCount) {

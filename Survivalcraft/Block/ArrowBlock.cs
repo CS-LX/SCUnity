@@ -17,139 +17,40 @@ namespace Game {
 
         public static int Index = 192;
 
-        public List<BlockMesh> m_standaloneBlockMeshes = [];
+        public List<BlockMesh> m_standaloneBlockMeshes = new global::System.Collections.Generic.List<global::Game.BlockMesh>() {  };
 
-        public static int[] m_order = [
-            0,
-            1,
-            8,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7
-        ];
+        public static int[] m_order = new int[] {             0,             1,             8,             2,             3,             4,             5,             6,             7
+ };
 
-        public static string[] m_tipNames = [
-            "ArrowTip",
-            "ArrowTip",
-            "ArrowTip",
-            "ArrowTip",
-            "ArrowFireTip",
-            "BoltTip",
-            "BoltTip",
-            "BoltExplosiveTip",
-            "ArrowTip"
-        ];
+        public static string[] m_tipNames = new string[] {             "ArrowTip",             "ArrowTip",             "ArrowTip",             "ArrowTip",             "ArrowFireTip",             "BoltTip",             "BoltTip",             "BoltExplosiveTip",             "ArrowTip"
+ };
 
-        public static int[] m_tipTextureSlots = [
-            47,
-            1,
-            63,
-            182,
-            62,
-            63,
-            182,
-            183,
-            79
-        ];
+        public static int[] m_tipTextureSlots = new int[] {             47,             1,             63,             182,             62,             63,             182,             183,             79
+ };
 
-        public static string[] m_shaftNames = [
-            "ArrowShaft",
-            "ArrowShaft",
-            "ArrowShaft",
-            "ArrowShaft",
-            "ArrowShaft",
-            "BoltShaft",
-            "BoltShaft",
-            "BoltShaft",
-            "ArrowShaft"
-        ];
+        public static string[] m_shaftNames = new string[] {             "ArrowShaft",             "ArrowShaft",             "ArrowShaft",             "ArrowShaft",             "ArrowShaft",             "BoltShaft",             "BoltShaft",             "BoltShaft",             "ArrowShaft"
+ };
 
-        public static int[] m_shaftTextureSlots = [
-            4,
-            4,
-            4,
-            4,
-            4,
-            63,
-            63,
-            63,
-            4
-        ];
+        public static int[] m_shaftTextureSlots = new int[] {             4,             4,             4,             4,             4,             63,             63,             63,             4
+ };
 
-        public static string[] m_stabilizerNames = [
-            "ArrowStabilizer",
-            "ArrowStabilizer",
-            "ArrowStabilizer",
-            "ArrowStabilizer",
-            "ArrowStabilizer",
-            "BoltStabilizer",
-            "BoltStabilizer",
-            "BoltStabilizer",
-            "ArrowStabilizer"
-        ];
+        public static string[] m_stabilizerNames = new string[] {             "ArrowStabilizer",             "ArrowStabilizer",             "ArrowStabilizer",             "ArrowStabilizer",             "ArrowStabilizer",             "BoltStabilizer",             "BoltStabilizer",             "BoltStabilizer",             "ArrowStabilizer"
+ };
 
-        public static int[] m_stabilizerTextureSlots = [
-            15,
-            15,
-            15,
-            15,
-            15,
-            63,
-            63,
-            63,
-            15
-        ];
+        public static int[] m_stabilizerTextureSlots = new int[] {             15,             15,             15,             15,             15,             63,             63,             63,             15
+ };
 
-        public static float[] m_offsets = [
-            -0.5f,
-            -0.5f,
-            -0.5f,
-            -0.5f,
-            -0.5f,
-            -0.3f,
-            -0.3f,
-            -0.3f,
-            -0.5f
-        ];
+        public static float[] m_offsets = new float[] {             -0.5f,             -0.5f,             -0.5f,             -0.5f,             -0.5f,             -0.3f,             -0.3f,             -0.3f,             -0.5f
+ };
 
-        public static float[] m_weaponPowers = [
-            5f,
-            7f,
-            14f,
-            18f,
-            4f,
-            28f,
-            36f,
-            8f,
-            10f
-        ];
+        public static float[] m_weaponPowers = new float[] {             5f,             7f,             14f,             18f,             4f,             28f,             36f,             8f,             10f
+ };
 
-        public static float[] m_iconViewScales = [
-            0.8f,
-            0.8f,
-            0.8f,
-            0.8f,
-            0.8f,
-            1.1f,
-            1.1f,
-            1.1f,
-            0.8f
-        ];
+        public static float[] m_iconViewScales = new float[] {             0.8f,             0.8f,             0.8f,             0.8f,             0.8f,             1.1f,             1.1f,             1.1f,             0.8f
+ };
 
-        public static float[] m_explosionPressures = [
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            0f,
-            40f,
-            0f
-        ];
+        public static float[] m_explosionPressures = new float[] {             0f,             0f,             0f,             0f,             0f,             0f,             0f,             40f,             0f
+ };
 
         public override void Initialize() {
             Model model = ContentManager.Get<Model>("Models/Arrows");
@@ -267,7 +168,7 @@ namespace Game {
         public override string GetDisplayName(SubsystemTerrain subsystemTerrain, int value) {
             int arrowType = (int)GetArrowType(Terrain.ExtractData(value));
             if (arrowType < 0
-                || arrowType >= Enum.GetValues<ArrowType>().Length) {
+                || arrowType >= ((ArrowType[])System.Enum.GetValues(typeof(ArrowType))).Length) {
                 return string.Empty;
             }
             return LanguageControl.Get("ArrowBlock", arrowType);

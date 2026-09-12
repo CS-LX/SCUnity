@@ -41,16 +41,8 @@ namespace Game {
 
         public SubsystemSignBlockBehavior.TextData m_editingTextData;
 
-        public Color[] m_colors = [
-            new(0, 0, 0),
-            new(140, 0, 0),
-            new(0, 112, 0),
-            new(0, 0, 96),
-            new(160, 0, 128),
-            new(0, 112, 112),
-            new(160, 112, 0),
-            new(180, 180, 180)
-        ];
+        public Color[] m_colors = new global::Engine.Color[] {             new(0, 0, 0),             new(140, 0, 0),             new(0, 112, 0),             new(0, 0, 96),             new(160, 0, 128),             new(0, 112, 112),             new(160, 112, 0),             new(180, 180, 180)
+ };
 
         public EditSignDialog(SubsystemSignBlockBehavior subsystemSignBlockBehavior, Point3 signPoint) {
             XElement node = ContentManager.Get<XElement>("Dialogs/EditSignDialog");
@@ -106,8 +98,8 @@ namespace Game {
         public override void Update() {
             UpdateControls();
             if (m_okButton.IsClicked) {
-                string[] lines = [m_textBox1.Text, m_textBox2.Text, m_textBox3.Text, m_textBox4.Text];
-                Color[] colors = [m_colorButton1.Color, m_colorButton2.Color, m_colorButton3.Color, m_colorButton4.Color];
+                string[] lines = new string[] { m_textBox1.Text, m_textBox2.Text, m_textBox3.Text, m_textBox4.Text };
+                Color[] colors = new global::Engine.Color[] { m_colorButton1.Color, m_colorButton2.Color, m_colorButton3.Color, m_colorButton4.Color };
                 m_subsystemSignBlockBehavior.SetSignData(m_signPoint, lines, colors, m_urlTextBox.Text);
                 Dismiss();
             }

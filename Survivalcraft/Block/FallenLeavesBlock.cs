@@ -7,7 +7,7 @@ namespace Game {
 
         public const float m_height = 0.0625f;
 
-        public BoundingBox[] m_collisionBoxes = [new(new Vector3(0f, 0f, 0f), new Vector3(1f, m_height, 1f))];
+        public BoundingBox[] m_collisionBoxes = new global::Engine.BoundingBox[] { new(new Vector3(0f, 0f, 0f), new Vector3(1f, m_height, 1f)) };
 
         public override void GenerateTerrainVertices(BlockGeometryGenerator generator, TerrainGeometry geometry, int value, int x, int y, int z) {
             Texture2D texture = GetDefaultTexture(value);

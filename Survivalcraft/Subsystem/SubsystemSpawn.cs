@@ -27,9 +27,9 @@ namespace Game {
 
         public double m_nextDespawnTime = 1.0;
 
-        public Dictionary<Point2, SpawnChunk> m_chunks = [];
+        public Dictionary<Point2, SpawnChunk> m_chunks = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, global::Game.SpawnChunk>() {  };
 
-        public Dictionary<ComponentSpawn, bool> m_spawns = [];
+        public Dictionary<ComponentSpawn, bool> m_spawns = new global::System.Collections.Generic.Dictionary<global::Game.ComponentSpawn, bool>() {  };
 
         // ReSharper disable CollectionNeverQueried.Global
         public Dictionary<int, SpawnEntityData> m_spawnEntityDatas = new();
@@ -296,7 +296,7 @@ namespace Game {
         }
 
         public virtual void LoadSpawnsData(string data, List<SpawnEntityData> creaturesData) {
-            string[] array = data.Split([';'], StringSplitOptions.RemoveEmptyEntries);
+            string[] array = data.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < array.Length; i++) {
                 string[] array2 = array[i].Split(new[] { ',' });
                 if (array2.Length < 4) {
@@ -326,7 +326,7 @@ namespace Game {
         public virtual void SaveSpawnsData(ValuesDictionary saveData, List<SpawnEntityData> spawnsData) {
             int i = 0;
             foreach (SpawnEntityData d in spawnsData) {
-                ValuesDictionary v2 = [];
+                ValuesDictionary v2 = new global::TemplatesDatabase.ValuesDictionary() {  };
                 v2.SetValue("c", d.ConstantSpawn);
                 v2.SetValue("p", d.Position);
                 v2.SetValue("n", d.TemplateName);

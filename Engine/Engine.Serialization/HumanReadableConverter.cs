@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace Engine.Serialization {
     public static class HumanReadableConverter {
-        static Dictionary<Type, IHumanReadableConverter> m_humanReadableConvertersByType = [];
+        static Dictionary<Type, IHumanReadableConverter> m_humanReadableConvertersByType = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Engine.Serialization.IHumanReadableConverter>() {  };
 
-        static HashSet<Assembly> m_scannedAssemblies = [];
+        static HashSet<Assembly> m_scannedAssemblies = new global::System.Collections.Generic.HashSet<global::System.Reflection.Assembly>() {  };
 
         public static string ConvertToString(object value) {
             if (value == null) {
@@ -88,11 +88,11 @@ namespace Engine.Serialization {
                 }
                 return array2;
             }
-            return [];
+            return new T[] {  };
         }
 
         static IHumanReadableConverter GetConverter(Type type, bool throwIfNotFound) {
-            ArgumentNullException.ThrowIfNull(type);
+            if (type is null) throw new ArgumentNullException("type");
             lock (m_humanReadableConvertersByType) {
                 if (!m_humanReadableConvertersByType.TryGetValue(type, out IHumanReadableConverter value)) {
                     ScanAssembliesForConverters();

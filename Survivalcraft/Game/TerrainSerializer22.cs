@@ -26,7 +26,7 @@ namespace Game {
 
         public byte[] m_buffer = new byte[262144];
 
-        public Dictionary<Point2, long> m_chunkOffsets = [];
+        public Dictionary<Point2, long> m_chunkOffsets = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, long>() {  };
 
         public IEnumerable<Point2> Chunks => m_chunkOffsets.Keys;
 

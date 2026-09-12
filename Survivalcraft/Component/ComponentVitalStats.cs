@@ -42,9 +42,9 @@ namespace Game {
 
         public float m_lastWetness;
 
-        public Dictionary<int, float> m_satiation = [];
+        public Dictionary<int, float> m_satiation = new global::System.Collections.Generic.Dictionary<int, float>() {  };
 
-        public List<KeyValuePair<int, float>> m_satiationList = [];
+        public List<KeyValuePair<int, float>> m_satiationList = new global::System.Collections.Generic.List<global::System.Collections.Generic.KeyValuePair<int, float>>() {  };
 
         public float m_densityModifierApplied;
 

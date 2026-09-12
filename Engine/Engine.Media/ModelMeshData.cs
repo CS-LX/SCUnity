@@ -6,7 +6,7 @@ namespace Engine.Media {
 
         public bool IsVisible = true;
 
-        public List<ModelMeshPartData> MeshParts = [];
+        public List<ModelMeshPartData> MeshParts = new global::System.Collections.Generic.List<global::Engine.Media.ModelMeshPartData>() {  };
 
         public BoundingBox BoundingBox;
     }

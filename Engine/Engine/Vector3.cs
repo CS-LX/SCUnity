@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics;
-using System.Runtime.Intrinsics.X86;
+using Vector128 = SCUnity.Compatibility.Float4;
+using Sse = SCUnity.Compatibility.Float4;
 
 namespace Engine {
     public struct Vector3 : IEquatable<Vector3> {
@@ -165,18 +165,14 @@ namespace Engine {
             return num > maxLength * maxLength ? v * (maxLength / MathF.Sqrt(num)) : v;
         }
 
-        public static Vector3 Transform(Vector3 v, Matrix m) => new(
-            v.X * m.M11 + v.Y * m.M21 + v.Z * m.M31 + m.M41,
-            v.X * m.M12 + v.Y * m.M22 + v.Z * m.M32 + m.M42,
-            v.X * m.M13 + v.Y * m.M23 + v.Z * m.M33 + m.M43
-        );
+        public static Vector3 Transform(Vector3 v, Matrix m) {
+            TransformRows(ref m, out var row1, out var row2, out var row3, out var row4);
+            var r = row1 * Vector128.Create(v.X) + row2 * Vector128.Create(v.Y) + row3 * Vector128.Create(v.Z) + row4;
+            return new Vector3(r[0], r[1], r[2]);
+        }
 
         public static void Transform(ref Vector3 v, ref Matrix m, out Vector3 result) {
-            result = new Vector3(
-                v.X * m.M11 + v.Y * m.M21 + v.Z * m.M31 + m.M41,
-                v.X * m.M12 + v.Y * m.M22 + v.Z * m.M32 + m.M42,
-                v.X * m.M13 + v.Y * m.M23 + v.Z * m.M33 + m.M43
-            );
+            result = Transform(v, m);
         }
 
         public static Vector3 Transform(Vector3 v, Quaternion q) {
@@ -221,15 +217,15 @@ namespace Engine {
 
         // x86 SSE：shufps 四次把四列转置成四行；加法顺序与标量版一致，结果逐位相同
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void TransformRows(ref Matrix m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4) {
-            Vector128<float> c1 = Vector128.LoadUnsafe(ref m.M11);
-            Vector128<float> c2 = Vector128.LoadUnsafe(ref m.M12);
-            Vector128<float> c3 = Vector128.LoadUnsafe(ref m.M13);
-            Vector128<float> c4 = Vector128.LoadUnsafe(ref m.M14);
-            Vector128<float> t01 = Sse.Shuffle(c1, c2, 0x44);
-            Vector128<float> t23 = Sse.Shuffle(c1, c2, 0xEE);
-            Vector128<float> u01 = Sse.Shuffle(c3, c4, 0x44);
-            Vector128<float> u23 = Sse.Shuffle(c3, c4, 0xEE);
+        private static void TransformRows(ref Matrix m, out SCUnity.Compatibility.Float4 row1, out SCUnity.Compatibility.Float4 row2, out SCUnity.Compatibility.Float4 row3, out SCUnity.Compatibility.Float4 row4) {
+            SCUnity.Compatibility.Float4 c1 = Vector128.LoadUnsafe(ref m.M11);
+            SCUnity.Compatibility.Float4 c2 = Vector128.LoadUnsafe(ref m.M12);
+            SCUnity.Compatibility.Float4 c3 = Vector128.LoadUnsafe(ref m.M13);
+            SCUnity.Compatibility.Float4 c4 = Vector128.LoadUnsafe(ref m.M14);
+            SCUnity.Compatibility.Float4 t01 = Sse.Shuffle(c1, c2, 0x44);
+            SCUnity.Compatibility.Float4 t23 = Sse.Shuffle(c1, c2, 0xEE);
+            SCUnity.Compatibility.Float4 u01 = Sse.Shuffle(c3, c4, 0x44);
+            SCUnity.Compatibility.Float4 u23 = Sse.Shuffle(c3, c4, 0xEE);
             row1 = Sse.Shuffle(t01, u01, 0x88);
             row2 = Sse.Shuffle(t01, u01, 0xDD);
             row3 = Sse.Shuffle(t23, u23, 0x88);
@@ -243,10 +239,10 @@ namespace Engine {
             int destinationIndex,
             int count) {
             if (Sse.IsSupported) {
-                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out Vector128<float> row4);
+                TransformRows(ref m, out SCUnity.Compatibility.Float4 row1, out SCUnity.Compatibility.Float4 row2, out SCUnity.Compatibility.Float4 row3, out SCUnity.Compatibility.Float4 row4);
                 for (int i = 0; i < count; i++) {
                     Vector3 vector = sourceArray[sourceIndex + i];
-                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z) + row4;
+                    SCUnity.Compatibility.Float4 r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z) + row4;
                     destinationArray[destinationIndex + i] = new Vector3(r[0], r[1], r[2]);
                 }
                 return;
@@ -261,18 +257,14 @@ namespace Engine {
             }
         }
 
-        public static Vector3 TransformNormal(Vector3 v, Matrix m) => new(
-            v.X * m.M11 + v.Y * m.M21 + v.Z * m.M31,
-            v.X * m.M12 + v.Y * m.M22 + v.Z * m.M32,
-            v.X * m.M13 + v.Y * m.M23 + v.Z * m.M33
-        );
+        public static Vector3 TransformNormal(Vector3 v, Matrix m) {
+            TransformRows(ref m, out var row1, out var row2, out var row3, out _);
+            var r = row1 * Vector128.Create(v.X) + row2 * Vector128.Create(v.Y) + row3 * Vector128.Create(v.Z);
+            return new Vector3(r[0], r[1], r[2]);
+        }
 
         public static void TransformNormal(ref Vector3 v, ref Matrix m, out Vector3 result) {
-            result = new Vector3(
-                v.X * m.M11 + v.Y * m.M21 + v.Z * m.M31,
-                v.X * m.M12 + v.Y * m.M22 + v.Z * m.M32,
-                v.X * m.M13 + v.Y * m.M23 + v.Z * m.M33
-            );
+            result = TransformNormal(v, m);
         }
 
         public static void TransformNormal(Vector3[] sourceArray,
@@ -282,10 +274,10 @@ namespace Engine {
             int destinationIndex,
             int count) {
             if (Sse.IsSupported) {
-                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row3, out _);
+                TransformRows(ref m, out SCUnity.Compatibility.Float4 row1, out SCUnity.Compatibility.Float4 row2, out SCUnity.Compatibility.Float4 row3, out _);
                 for (int i = 0; i < count; i++) {
                     Vector3 vector = sourceArray[sourceIndex + i];
-                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z);
+                    SCUnity.Compatibility.Float4 r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row3 * Vector128.Create(vector.Z);
                     destinationArray[destinationIndex + i] = new Vector3(r[0], r[1], r[2]);
                 }
                 return;

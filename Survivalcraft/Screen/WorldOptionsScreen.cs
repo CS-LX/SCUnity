@@ -90,95 +90,17 @@ namespace Game {
 
         public static bool ForceEnableTerrainGeneratorVersionButton = false;
 
-        public static float[] m_islandSizes = [
-            1f,
-            7f,
-            15f,
-            30f,
-            40f,
-            50f,
-            60f,
-            80f,
-            100f,
-            120f,
-            150f,
-            200f,
-            250f,
-            300f,
-            400f,
-            500f,
-            600f,
-            800f,
-            1000f,
-            1200f,
-            1500f,
-            2000f,
-            2500f
-        ];
+        public static float[] m_islandSizes = new float[] {             1f,             7f,             15f,             30f,             40f,             50f,             60f,             80f,             100f,             120f,             150f,             200f,             250f,             300f,             400f,             500f,             600f,             800f,             1000f,             1200f,             1500f,             2000f,             2500f
+ };
 
-        public static float[] m_biomeSizes = [
-            0.01f,
-            0.1f,
-            0.25f,
-            0.33f,
-            0.5f,
-            0.75f,
-            1f,
-            1.5f,
-            2f,
-            3f,
-            4f,
-            6f,
-            8f,
-            10f,
-            12f,
-            16f,
-            20f,
-            24f,
-            32f
-        ];
+        public static float[] m_biomeSizes = new float[] {             0.01f,             0.1f,             0.25f,             0.33f,             0.5f,             0.75f,             1f,             1.5f,             2f,             3f,             4f,             6f,             8f,             10f,             12f,             16f,             20f,             24f,             32f
+ };
 
-        public static float[] m_yearDays = [
-            4f,
-            8f,
-            12f,
-            16f,
-            20f,
-            24f,
-            32f,
-            48f,
-            64f,
-            96f,
-            128f,
-            192f,
-            256f,
-            365f,
-            384f,
-            512f
-        ];
+        public static float[] m_yearDays = new float[] {             4f,             8f,             12f,             16f,             20f,             24f,             32f,             48f,             64f,             96f,             128f,             192f,             256f,             365f,             384f,             512f
+ };
 
-        public static int[] m_flatTerrainBlockList = [
-            -1,
-            8,
-            2,
-            7,
-            3,
-            67,
-            66,
-            4,
-            5,
-            26,
-            73,
-            21,
-            46,
-            47,
-            15,
-            62,
-            68,
-            126,
-            71,
-            1
-        ];
+        public static int[] m_flatTerrainBlockList = new int[] {             -1,             8,             2,             7,             3,             67,             66,             4,             5,             26,             73,             21,             46,             47,             15,             62,             68,             126,             71,             1
+ };
 
         public WorldOptionsScreen() {
             XElement node = ContentManager.Get<XElement>("Screens/WorldOptionsScreen");

@@ -7,7 +7,7 @@ namespace Game {
 
         const float m_height = 0.125f;
 
-        public BoundingBox[] m_collisionBoxes = [new(new Vector3(0f, 0f, 0f), new Vector3(1f, m_height, 1f))];
+        public BoundingBox[] m_collisionBoxes = new global::Engine.BoundingBox[] { new(new Vector3(0f, 0f, 0f), new Vector3(1f, m_height, 1f)) };
 
         public override bool IsFaceTransparent(SubsystemTerrain subsystemTerrain, int face, int value) => face != 5;
 

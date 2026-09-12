@@ -44,11 +44,11 @@ namespace Game {
         public SubsystemGameWidgets m_subsystemViews;
 
         public Random m_random = new();
-        public List<CreatureType> m_creatureTypes = [];
-        public Dictionary<ComponentCreature, bool> m_creatures = [];
-        public DynamicArray<ComponentBody> m_componentBodies = [];
-        public List<SpawnChunk> m_newSpawnChunks = [];
-        public List<SpawnChunk> m_spawnChunks = [];
+        public List<CreatureType> m_creatureTypes = new global::System.Collections.Generic.List<global::Game.SubsystemCreatureSpawn.CreatureType>() {  };
+        public Dictionary<ComponentCreature, bool> m_creatures = new global::System.Collections.Generic.Dictionary<global::Game.ComponentCreature, bool>() {  };
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
+        public List<SpawnChunk> m_newSpawnChunks = new global::System.Collections.Generic.List<global::Game.SpawnChunk>() {  };
+        public List<SpawnChunk> m_spawnChunks = new global::System.Collections.Generic.List<global::Game.SpawnChunk>() {  };
 
         public static SpawnLocationType[] m_spawnLocations = EnumUtils.GetEnumValues<SpawnLocationType>().Cast<SpawnLocationType>().ToArray();
         public static int m_totalLimit = 26;
@@ -60,7 +60,7 @@ namespace Game {
         public static int m_areaRadiusConstant = 42;
         public const float m_populationReductionConstant = 0.25f;
 
-        public static Dictionary<string, Type> m_creatureSpawnRules = [];
+        public static Dictionary<string, Type> m_creatureSpawnRules = new global::System.Collections.Generic.Dictionary<string, global::System.Type>() {  };
 
         public Dictionary<ComponentCreature, bool>.KeyCollection Creatures => m_creatures.Keys;
 

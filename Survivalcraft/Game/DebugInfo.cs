@@ -1,4 +1,4 @@
-﻿namespace Game {
+namespace Game {
     public class DebugInfo {
         public int Counter;
         public long TotalTicksCosted;

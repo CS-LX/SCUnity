@@ -6,7 +6,7 @@ namespace Game {
     public class SubsystemNoise : Subsystem {
         public SubsystemBodies m_subsystemBodies;
 
-        public DynamicArray<ComponentBody> m_componentBodies = [];
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
         public void MakeNoise(Vector3 position, float loudness, float range) {
             MakeNoisepublic(null, position, loudness, range);

@@ -89,7 +89,7 @@ namespace Engine.Graphics {
         public virtual void DeleteRenderTarget() {
             if (m_depthBuffer != 0) {
                 uint depthBuffer = (uint)m_depthBuffer;
-                GLWrapper.GL.DeleteRenderbuffers(1, in depthBuffer);
+                GLWrapper.GL.DeleteRenderbuffers(1, ref depthBuffer);
                 m_depthBuffer = 0;
             }
             if (m_frameBuffer != 0) {

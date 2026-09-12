@@ -31,8 +31,8 @@ namespace Game {
                     Type type = typeof(T);
                     if (!m_namesValuesByType.TryGetValue(type, out NamesValues namesValues)) {
                         namesValues = default;
-                        namesValues.Names = new ReadOnlyList<string>(Enum.GetNames<T>());
-                        namesValues.Values = new ReadOnlyList<int>(Enum.GetValues<T>().Select(x => Convert.ToInt32(x)).ToArray());
+                        namesValues.Names = new ReadOnlyList<string>(System.Enum.GetNames(typeof(T)));
+                        namesValues.Values = new ReadOnlyList<int>(((T[])System.Enum.GetValues(typeof(T))).Select(x => Convert.ToInt32(x)).ToArray());
                         m_namesValuesByType.Add(type, namesValues);
                     }
                     return namesValues;

@@ -21,7 +21,7 @@ namespace Game {
         }
 
         public class Storage : IAStarStorage<Vector3> {
-            public Dictionary<Vector3, object> Dictionary = [];
+            public Dictionary<Vector3, object> Dictionary = new global::System.Collections.Generic.Dictionary<global::Engine.Vector3, object>() {  };
 
             public void Clear() {
                 Dictionary.Clear();

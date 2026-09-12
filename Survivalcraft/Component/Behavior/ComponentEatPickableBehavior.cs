@@ -14,7 +14,7 @@ namespace Game {
 
         public StateMachine m_stateMachine = new();
 
-        public Dictionary<Pickable, bool> m_pickables = [];
+        public Dictionary<Pickable, bool> m_pickables = new global::System.Collections.Generic.Dictionary<global::Game.Pickable, bool>() {  };
 
         public Random m_random = new();
 

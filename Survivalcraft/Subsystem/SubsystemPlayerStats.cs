@@ -4,7 +4,7 @@ using TemplatesDatabase;
 
 namespace Game {
     public class SubsystemPlayerStats : Subsystem {
-        public Dictionary<int, PlayerStats> m_playerStats = [];
+        public Dictionary<int, PlayerStats> m_playerStats = new global::System.Collections.Generic.Dictionary<int, global::Game.PlayerStats>() {  };
 
         public PlayerStats GetPlayerStats(int playerIndex) {
             if (!m_playerStats.TryGetValue(playerIndex, out PlayerStats value)) {

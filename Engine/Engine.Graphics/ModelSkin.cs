@@ -11,7 +11,7 @@ namespace Engine.Graphics {
         /// <summary>
         /// 关节骨骼列表（运行时，由 Model.Initialize 填充）
         /// </summary>
-        public List<ModelBone> Joints { get; set; } = [];
+        public List<ModelBone> Joints { get; set; } = new global::System.Collections.Generic.List<global::Engine.Graphics.ModelBone>() {  };
 
         /// <summary>
         /// 逆绑定矩阵，每个关节一个

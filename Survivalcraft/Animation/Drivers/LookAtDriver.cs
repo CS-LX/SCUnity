@@ -12,15 +12,14 @@ namespace Game.Animation.Drivers {
 
         // 可配置的目标骨骼名称
         public string TargetBoneName {
-            get;
+            get=>m_unity_TargetBoneName;
             set {
-                field = value;
+                m_unity_TargetBoneName = value;
                 m_cachedTargetBones = null;
             }
-        } = "Head";
-
+        } 
         // IAnimationDriver 接口实现
-        public string[] TargetBones => m_cachedTargetBones ??= [TargetBoneName];
+        public string[] TargetBones => m_cachedTargetBones ??= new string[] { TargetBoneName };
         public string[] m_cachedTargetBones;
 
         // 配置参数
@@ -30,15 +29,13 @@ namespace Game.Animation.Drivers {
         // 角度限制（度数，内部转换为弧度）
 
         public float MaxAngleX {
-            get;
-            set => field = MathUtils.DegToRad(value);
-        } = 65f;
-
+            get=>m_unity_MaxAngleX;
+            set => m_unity_MaxAngleX = MathUtils.DegToRad(value);
+        } 
         public float MaxAngleY {
-            get;
-            set => field = MathUtils.DegToRad(value);
-        } = 55f;
-
+            get=>m_unity_MaxAngleY;
+            set => m_unity_MaxAngleY = MathUtils.DegToRad(value);
+        } 
         // 旋转轴配置（用于适配不同坐标系）
         // "X", "Y", "Z"
         public string PitchAxis { get; set; } = "X"; // 俯仰轴（上下）
@@ -83,5 +80,8 @@ namespace Game.Animation.Drivers {
                 _ => Matrix.CreateRotationX(angle) // 默认 X 轴
             };
         }
-    }
+
+        private string m_unity_TargetBoneName= "Head";
+        private float m_unity_MaxAngleX= 65f;
+        private float m_unity_MaxAngleY= 55f;    }
 }

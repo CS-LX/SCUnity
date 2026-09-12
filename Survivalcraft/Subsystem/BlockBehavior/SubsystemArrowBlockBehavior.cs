@@ -7,7 +7,7 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override void OnFiredAsProjectile(Projectile projectile) {
             if (ArrowBlock.GetArrowType(Terrain.ExtractData(projectile.Value)) == ArrowBlock.ArrowType.FireArrow) {

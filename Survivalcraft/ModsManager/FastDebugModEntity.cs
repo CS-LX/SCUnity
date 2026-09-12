@@ -5,7 +5,7 @@ using NuGet.Versioning;
 
 namespace Game {
     public class FastDebugModEntity : ModEntity {
-        public Dictionary<string, FileInfo> FModFiles = [];
+        public Dictionary<string, FileInfo> FModFiles = new global::System.Collections.Generic.Dictionary<string, global::System.IO.FileInfo>() {  };
 
         public FastDebugModEntity() {
             modInfo = new ModInfo { Name = "[Debug]", PackageName = "debug" };

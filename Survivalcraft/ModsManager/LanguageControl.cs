@@ -34,7 +34,7 @@ namespace Game {
 #if BROWSER
         public static HashSet<string> LanguageTypes = [];
 #else
-        public static Dictionary<string, CultureInfo> LanguageTypes = [];
+        public static Dictionary<string, CultureInfo> LanguageTypes = new global::System.Collections.Generic.Dictionary<string, global::System.Globalization.CultureInfo>() {  };
 
         public static CultureInfo CurrentLanguageCultureInfo { get; set; } = new("en-US", false);
 #endif
@@ -374,7 +374,7 @@ namespace Game {
 #endif
             Window.TitlePrefix = title;
 #endif
-            Dictionary<string, object> objs = [];
+            Dictionary<string, object> objs = new global::System.Collections.Generic.Dictionary<string, object>() {  };
             foreach (KeyValuePair<string, Screen> c in ScreensManager.m_screens) {
                 Type type = c.Value.GetType();
 #pragma warning disable IL2072
@@ -393,7 +393,7 @@ namespace Game {
             ScreensManager.SwitchScreen("MainMenu");
         }
 
-        public static Dictionary<string, string> CachedLanguageFullNames = [];
+        public static Dictionary<string, string> CachedLanguageFullNames = new global::System.Collections.Generic.Dictionary<string, string>() {  };
 
         public static void CreateLanguageSelectionDialog(Widget parent) {
             if (CachedLanguageFullNames.Count == 0) {

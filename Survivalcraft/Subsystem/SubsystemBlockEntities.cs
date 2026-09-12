@@ -3,9 +3,9 @@ using GameEntitySystem;
 
 namespace Game {
     public class SubsystemBlockEntities : Subsystem {
-        public Dictionary<Point3, ComponentBlockEntity> m_blockEntities = [];
+        public Dictionary<Point3, ComponentBlockEntity> m_blockEntities = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.ComponentBlockEntity>() {  };
 
-        public Dictionary<MovingBlock, ComponentBlockEntity> m_movingBlockEntities = [];
+        public Dictionary<MovingBlock, ComponentBlockEntity> m_movingBlockEntities = new global::System.Collections.Generic.Dictionary<global::Game.MovingBlock, global::Game.ComponentBlockEntity>() {  };
 
         public ComponentBlockEntity GetBlockEntity(int x, int y, int z) {
             m_blockEntities.TryGetValue(new Point3(x, y, z), out ComponentBlockEntity value);

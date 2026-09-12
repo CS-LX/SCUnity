@@ -121,18 +121,8 @@ namespace Game {
                 return LanguageControl.GetContentWidgets(fName, 6);
             }
             int firstNumberIndex = currentVersion.IndexOfAny(
-                [
-                    '0',
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9'
-                ]
+                new char[] {                     '0',                     '1',                     '2',                     '3',                     '4',                     '5',                     '6',                     '7',                     '8',                     '9'
+ }
             );
             if (firstNumberIndex >= 0 && currentVersion.Substring(firstNumberIndex) == targetVersion) {
                 return LanguageControl.GetContentWidgets(fName, "5");

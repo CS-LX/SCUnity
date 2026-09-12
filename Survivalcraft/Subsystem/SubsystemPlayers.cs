@@ -7,9 +7,9 @@ namespace Game {
     public class SubsystemPlayers : Subsystem, IUpdateable {
         public SubsystemTime m_subsystemTime;
 
-        public List<PlayerData> m_playersData = [];
+        public List<PlayerData> m_playersData = new global::System.Collections.Generic.List<global::Game.PlayerData>() {  };
 
-        public List<ComponentPlayer> m_componentPlayers = [];
+        public List<ComponentPlayer> m_componentPlayers = new global::System.Collections.Generic.List<global::Game.ComponentPlayer>() {  };
 
         public int m_nextPlayerIndex;
 

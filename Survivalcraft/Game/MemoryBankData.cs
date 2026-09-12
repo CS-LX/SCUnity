@@ -3,26 +3,10 @@ using Engine;
 
 namespace Game {
     public class MemoryBankData : IEditableItemData {
-        public static List<char> m_hexChars = [
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F'
-        ];
+        public static List<char> m_hexChars = new global::System.Collections.Generic.List<char>() {             '0',             '1',             '2',             '3',             '4',             '5',             '6',             '7',             '8',             '9',             'A',             'B',             'C',             'D',             'E',             'F'
+ };
 
-        public DynamicArray<byte> Data = [];
+        public DynamicArray<byte> Data = new global::Engine.DynamicArray<byte>() {  };
 
         public byte LastOutput { get; set; }
 
@@ -50,7 +34,7 @@ namespace Game {
         public IEditableItemData Copy() => new MemoryBankData { Data = new DynamicArray<byte>(Data), LastOutput = LastOutput };
 
         public void LoadString(string data) {
-            string[] array = data.Split([';'], StringSplitOptions.RemoveEmptyEntries);
+            string[] array = data.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             if (array.Length >= 1) {
                 string text = array[0];
                 text = text.TrimEnd('0');

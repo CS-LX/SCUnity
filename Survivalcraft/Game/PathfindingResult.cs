@@ -10,6 +10,6 @@ namespace Game {
 
         public int PositionsChecked;
 
-        public DynamicArray<Vector3> Path = [];
+        public DynamicArray<Vector3> Path = new global::Engine.DynamicArray<global::Engine.Vector3>() {  };
     }
 }

@@ -21,13 +21,18 @@ namespace Game {
             Advice = 3
         }
 
-        class LogItem(LogType type, string log) {
-            public LogType LogType = type;
-            public string Message = log;
+        class LogItem{
+
+        public LogItem(LogType type, string log)
+{
+    this.LogType = type;
+    this.Message = log;
+}            public LogType LogType ;
+            public string Message ;
         }
 
-        List<Action> LoadingActoins = [];
-        List<Action> ModLoadingActoins = [];
+        List<Action> LoadingActoins = new global::System.Collections.Generic.List<global::System.Action>() {  };
+        List<Action> ModLoadingActoins = new global::System.Collections.Generic.List<global::System.Action>() {  };
         CanvasWidget Canvas = new() { Size = new Vector2(float.PositiveInfinity) };
 
         RectangleWidget Background = new() {
@@ -207,7 +212,7 @@ namespace Game {
             });
             AddLoadAction(ContentLoaded);
             AddLoadAction(() => {
-                    Dictionary<string, Assembly[]> assemblies = [];
+                    Dictionary<string, Assembly[]> assemblies = new global::System.Collections.Generic.Dictionary<string, global::System.Reflection.Assembly[]>() {  };
                     ModsManager.ModListAllDo(modEntity => {
                             bool flag = true;
                             assemblies[modEntity.modInfo.PackageName] = modEntity.GetAssemblies();
@@ -269,14 +274,9 @@ namespace Game {
                         ScreensManager.SwitchScreen(
                             new LoadingFailedScreen(
                                 "Loading failed 加载失败",
-                                ["Exceptions: 异常信息：", ..exception?.ToString().Split('\n') ?? []],
-                                [
-                                    $"Check the API version required by mod is equal to the current API version ({ModsManager.APIVersionString}). Check and add missing mods. If not solved, please contact the developer of the mods or API with Game.log in the path below.",
-                                    $"检查模组是否缺失，并添加所缺失的模组。查看模组所需插件版版本与当前插件版版本（{ModsManager.APIVersionString}）是否一致。若以上方式都无法解决，请联系模组、插件版开发者，并发送下面路径中的 Game.log",
-                                    Storage.GetSystemPath(ModsManager.LogPath),
-                                    "And you can enable Safe Mode to stop loading any mod.",
-                                    "你还可以启用安全模式，停止加载任何模组。"
-                                ]
+                                global::System.Linq.Enumerable.ToArray(global::System.Linq.Enumerable.Concat(new string[] { "Exceptions: 异常信息：" }, exception?.ToString().Split('\n') ?? new string[] {  })),
+                                new string[] {                                     $"Check the API version required by mod is equal to the current API version ({ModsManager.APIVersionString}). Check and add missing mods. If not solved, please contact the developer of the mods or API with Game.log in the path below.",                                     $"检查模组是否缺失，并添加所缺失的模组。查看模组所需插件版版本与当前插件版版本（{ModsManager.APIVersionString}）是否一致。若以上方式都无法解决，请联系模组、插件版开发者，并发送下面路径中的 Game.log",                                     Storage.GetSystemPath(ModsManager.LogPath),                                     "And you can enable Safe Mode to stop loading any mod.",                                     "你还可以启用安全模式，停止加载任何模组。"
+ }
                             )
                         );
                     }
@@ -440,7 +440,7 @@ namespace Game {
             AddLoadAction(
                 delegate {
                     Info(LanguageControl.Get(fName, "1"));
-                    List<Action> actions = [];
+                    List<Action> actions = new global::System.Collections.Generic.List<global::System.Action>() {  };
                     ModsManager.HookAction(
                         "OnLoadingStart",
                         loader => {

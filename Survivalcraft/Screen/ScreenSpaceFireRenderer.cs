@@ -23,7 +23,7 @@ namespace Game {
             public float TimeToLive;
         }
 
-        public List<Particle> m_particles = [];
+        public List<Particle> m_particles = new global::System.Collections.Generic.List<global::Game.ScreenSpaceFireRenderer.Particle>() {  };
 
         public Random m_random = new();
 

@@ -233,9 +233,8 @@ public class ManageContentScreen : Screen {
             ExternalContentManager.ShowUploadUi(selectedItem.Type, selectedItem.Name);
         }
         if (m_changeFilterButton.IsClicked) {
-            List<ExternalContentType> list = [
-                ExternalContentType.Unknown, ExternalContentType.BlocksTexture, ExternalContentType.CharacterSkin, ExternalContentType.FurniturePack
-            ];
+            List<ExternalContentType> list = new global::System.Collections.Generic.List<global::Game.ExternalContentType>() {                 ExternalContentType.Unknown, ExternalContentType.BlocksTexture, ExternalContentType.CharacterSkin, ExternalContentType.FurniturePack
+ };
             DialogsManager.ShowDialog(
                 null,
                 new ListSelectionDialog(
@@ -283,7 +282,7 @@ public class ManageContentScreen : Screen {
 
     public virtual void UpdateList() {
         WorldsManager.UpdateWorldsList();
-        List<ListItem> list = [];
+        List<ListItem> list = new global::System.Collections.Generic.List<global::ManageContentScreen.ListItem>() {  };
         if (m_filter == ExternalContentType.BlocksTexture
             || m_filter == ExternalContentType.Unknown) {
             BlocksTexturesManager.UpdateBlocksTexturesList();

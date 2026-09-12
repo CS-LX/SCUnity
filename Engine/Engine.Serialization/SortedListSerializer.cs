@@ -1,7 +1,7 @@
 namespace Engine.Serialization {
     public class SortedListSerializer<K, V> : ISerializer<SortedList<K, V>> {
         public void Serialize(InputArchive archive, ref SortedList<K, V> value) {
-            value = [];
+            value = new global::System.Collections.Generic.SortedList<K, V>() {  };
             archive.SerializeDictionary(null, value);
         }
 

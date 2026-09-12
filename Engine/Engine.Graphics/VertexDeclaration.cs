@@ -2,7 +2,7 @@ namespace Engine.Graphics {
     public class VertexDeclaration : IEquatable<VertexDeclaration> {
         public readonly VertexElement[] m_elements;
 
-        public static List<VertexElement[]> m_allElements = [];
+        public static List<VertexElement[]> m_allElements = new global::System.Collections.Generic.List<global::Engine.Graphics.VertexElement[]>() {  };
 
         public ReadOnlyList<VertexElement> VertexElements => new(m_elements);
 

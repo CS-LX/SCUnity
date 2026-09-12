@@ -12,9 +12,9 @@ namespace Game {
 
         public Vector3? m_closestSoundToPlay;
 
-        public Dictionary<ComponentCreature, double> m_lastInjuryTimes = [];
+        public Dictionary<ComponentCreature, double> m_lastInjuryTimes = new global::System.Collections.Generic.Dictionary<global::Game.ComponentCreature, double>() {  };
 
-        public override int[] HandledBlocks => [BlocksManager.GetBlockIndex<SpikedPlankBlock>()];
+        public override int[] HandledBlocks => new int[] { BlocksManager.GetBlockIndex<SpikedPlankBlock>() };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

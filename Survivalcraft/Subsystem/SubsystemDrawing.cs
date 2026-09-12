@@ -6,11 +6,11 @@ using TemplatesDatabase;
 
 namespace Game {
     public class SubsystemDrawing : Subsystem {
-        public Dictionary<IDrawable, bool> m_drawables = [];
+        public Dictionary<IDrawable, bool> m_drawables = new global::System.Collections.Generic.Dictionary<global::Game.IDrawable, bool>() {  };
 
-        public SortedMultiCollection<int, IDrawable> m_sortedDrawables = [];
+        public SortedMultiCollection<int, IDrawable> m_sortedDrawables = new global::Game.SortedMultiCollection<int, global::Game.IDrawable>() {  };
 
-        public Dictionary<Type, DebugInfo> m_debugInfos = [];
+        public Dictionary<Type, DebugInfo> m_debugInfos = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Game.DebugInfo>() {  };
         public Stopwatch m_debugStopwatch = new();
         public bool UpdateTimeDebug = false;
 
@@ -54,8 +54,8 @@ namespace Game {
                 try {
                     sortedDrawable.Draw(camera, drawOrder);
                 }
-                catch (Exception) {
-                    // ignored
+                catch (Exception error) {
+                    Engine.UnityRuntime.Host.ReportRenderFailure(error);
                 }
                 finally {
                     if (UpdateTimeDebug) {

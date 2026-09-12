@@ -14,11 +14,11 @@ namespace Game {
             public float ActualHeight;
         }
 
-        public List<Column> m_columns = [];
+        public List<Column> m_columns = new global::System.Collections.Generic.List<global::Game.GridPanelWidget.Column>() {  };
 
-        public List<Row> m_rows = [];
+        public List<Row> m_rows = new global::System.Collections.Generic.List<global::Game.GridPanelWidget.Row>() {  };
 
-        public Dictionary<Widget, Point2> m_cells = [];
+        public Dictionary<Widget, Point2> m_cells = new global::System.Collections.Generic.Dictionary<global::Game.Widget, global::Engine.Point2>() {  };
 
         public int ColumnsCount {
             get => m_columns.Count;

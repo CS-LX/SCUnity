@@ -14,8 +14,8 @@ namespace Engine.Audio {
         public static AL AL;
         public static ALContext m_audioContext;
         static float m_masterVolume = 1f;
-        public static readonly List<Sound> m_soundsToStop = [];
-        public static HashSet<Sound> m_soundsToStopPoll = [];
+        public static readonly List<Sound> m_soundsToStop = new global::System.Collections.Generic.List<global::Engine.Audio.Sound>() {  };
+        public static HashSet<Sound> m_soundsToStopPoll = new global::System.Collections.Generic.HashSet<global::Engine.Audio.Sound>() {  };
         public static bool m_isInitialized;
 
         public static float MasterVolume {
@@ -30,35 +30,7 @@ namespace Engine.Audio {
         }
 
         internal static void Initialize() {
-#if BROWSER
-            m_audioContext = new ALContext();
-            AL = new AL();
-            if (!CheckALErrorFull()) {
-                m_isInitialized = true;
-            }
-#else
-#if !MOBILE
-            //直接加载
-            string fullPath = Path.GetDirectoryName(
-                RunPath.GetExecutablePath() == "" ? RunPath.GetEntryPath() : RunPath.GetExecutablePath()
-            ); //路径备选方案
-            Environment.SetEnvironmentVariable("PATH", $"{fullPath};{RunPath.GetEnvironmentPath()}", EnvironmentVariableTarget.Process);
-#endif
-            m_audioContext = ALContext.GetApi();
-            AL = AL.GetApi();
-            unsafe {
-                Device* device = m_audioContext.OpenDevice("");
-                if (device == null) {
-                    Log.Error("Could not create audio device");
-                    return;
-                }
-                Context* c = m_audioContext.CreateContext(device, null);
-                m_audioContext.MakeContextCurrent(c);
-            }
-            if (!CheckALErrorFull()) {
-                m_isInitialized = true;
-            }
-#endif
+AL = new AL(new Silk.NET.Core.Contexts.LamdaNativeContext(UnityAudioCommands.Resolve)); m_isInitialized = true;
         }
 
         internal static void Dispose() {

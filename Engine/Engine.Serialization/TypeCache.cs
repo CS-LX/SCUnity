@@ -25,10 +25,10 @@ namespace Engine.Serialization {
         }
 
         static TypeCache() {
-            m_typesByName = [];
-            m_shortToLong = [];
-            m_longToShort = [];
-            m_loadedAssemblies = [];
+            m_typesByName = new global::System.Collections.Generic.Dictionary<string, global::System.Type>() {  };
+            m_shortToLong = new global::System.Collections.Generic.Dictionary<string, string>() {  };
+            m_longToShort = new global::System.Collections.Generic.Dictionary<string, string>() {  };
+            m_loadedAssemblies = new global::System.Collections.Generic.List<global::System.Reflection.Assembly>() {  };
             m_rescanAssemblies = true;
             AddShortTypeName("bool", typeof(bool).FullName);
             AddShortTypeName("sbyte", typeof(sbyte).FullName);

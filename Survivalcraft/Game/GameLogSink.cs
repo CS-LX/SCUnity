@@ -38,7 +38,7 @@ namespace Game {
                             false
                         );
                         try {
-                            fileInfo.MoveTo(destination, true);
+                            MonoBcl.MoveOverwrite(fileInfo.FullName, destination);
                         }
                         catch {
                             // ignore
@@ -87,7 +87,7 @@ namespace Game {
 
         public static List<string> GetRecentLogLines(int bytesCount) {
             if (m_stream == null) {
-                return [errorOfInstantiation, LanguageControl.Get(fName, "1")];
+                return new global::System.Collections.Generic.List<string>() { errorOfInstantiation, LanguageControl.Get(fName, "1") };
             }
             lock (m_stream) {
                 try {

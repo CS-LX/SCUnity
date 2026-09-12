@@ -37,6 +37,10 @@ namespace Game {
         #region 方法
 
         public override void MeasureOverride(Vector2 parentAvailableSize) {
+            if (m_widgetsDirty) {
+                m_widgetsDirty = false;
+                UpdateNodes();
+            }
             base.MeasureOverride(parentAvailableSize);
             foreach (Widget child in Children) {
                 if (child.IsVisible) { //限制子条目大小
@@ -47,10 +51,6 @@ namespace Game {
 
         public override void Draw(DrawContext dc) {
             base.Draw(dc);
-            if (m_widgetsDirty) {
-                m_widgetsDirty = false;
-                UpdateNodes();
-            }
         }
 
         public virtual void UpdateNodes() {
@@ -122,6 +122,10 @@ namespace Game {
         }
 
         public void Clear(bool dispose = true) {
+            // Detach rows before freeing textures: draw items are collected before Draw.
+            Children.Clear();
+            if (m_selectedNode != null) m_selectedNode.Selected = false;
+            m_selectedNode = null;
             Nodes.ForEach(x => {
                     if (dispose) {
                         x.Dispose();
@@ -187,8 +191,11 @@ namespace Game {
 
         public Subtexture Subtexture {
             get {
-                if (m_subtexture == null
-                    && Icon != null) {
+                if (Icon == null) {
+                    m_subtexture = null;
+                    return null;
+                }
+                if (m_subtexture == null || m_subtexture.Texture != Icon) {
                     m_subtexture = new Subtexture(Icon, Vector2.Zero, Vector2.One);
                 }
                 return m_subtexture;
@@ -337,13 +344,15 @@ namespace Game {
             ClearChildren();
             ParentTree = null;
             ParentNode = null;
-            //Icon?.Dispose();
-            if (Icon != null) {
+            // Collection and entry nodes may share a thumbnail; content owns its assets.
+            if (Icon != null && !Icon.m_isDisposed && !ContentManager.IsContent(Icon)) {
                 if (Icon.Tag is Image image) {
                     image.Dispose();
                 }
                 Icon.Dispose();
             }
+            Icon = null;
+            m_subtexture = null;
             GC.SuppressFinalize(this);
         }
     }

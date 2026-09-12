@@ -5,7 +5,7 @@ namespace Game {
     public class CarpetBlock : CubeBlock {
         public static int Index = 208;
 
-        public BoundingBox[] m_collisionBoxes = [new(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.0625f, 1f))];
+        public BoundingBox[] m_collisionBoxes = new global::Engine.BoundingBox[] { new(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.0625f, 1f)) };
 
         public CarpetBlock() => CanBeBuiltIntoFurniture = true;
 

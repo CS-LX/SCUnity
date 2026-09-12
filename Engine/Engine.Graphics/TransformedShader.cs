@@ -1,4 +1,4 @@
-﻿namespace Engine.Graphics {
+namespace Engine.Graphics {
     public class TransformedShader : Shader {
         public readonly ShaderTransforms Transforms;
 

@@ -73,13 +73,13 @@ namespace Engine.Graphics {
 
         public static string GetUnlitVshString() {
             Stream stream = typeof(Shader).GetTypeInfo().Assembly.GetManifestResourceStream("Engine.Resources.Unlit.vsh");
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new StreamReader(stream).ReadToEnd();
         }
 
         public static string GetUnlitPshString() {
             Stream stream = typeof(Shader).GetTypeInfo().Assembly.GetManifestResourceStream("Engine.Resources.Unlit.psh");
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new StreamReader(stream).ReadToEnd();
         }
 
@@ -89,7 +89,7 @@ namespace Engine.Graphics {
         }
 
         public static ShaderMacro[] PrepareShaderMacros(bool useVertexColor, bool useTexture, bool useAdditiveColor, bool useAlphaThreshold) {
-            List<ShaderMacro> list = [];
+            List<ShaderMacro> list = new global::System.Collections.Generic.List<global::Engine.Graphics.ShaderMacro>() {  };
             if (useVertexColor) {
                 list.Add(new ShaderMacro("USE_VERTEXCOLOR"));
             }

@@ -23,7 +23,7 @@ namespace Game {
         public ButtonWidget m_recipesButton;
         public Screen m_previousScreen;
 
-        public List<string> m_categories = [];
+        public List<string> m_categories = new global::System.Collections.Generic.List<string>() {  };
         public int m_categoryIndex;
         public int m_listCategoryIndex = -1;
         public const string fName = "RecipaediaScreen";
@@ -134,7 +134,7 @@ namespace Game {
             string text = m_categories[m_categoryIndex];
             m_blocksList.ScrollPosition = 0f;
             m_blocksList.ClearItems();
-            List<Order> orders = [];
+            List<Order> orders = new global::System.Collections.Generic.List<global::Game.RecipaediaScreen.Order>() {  };
             foreach (Block item in BlocksManager.Blocks) {
                 foreach (int creativeValue in item.GetCreativeValues()) {
                     if (string.IsNullOrEmpty(text)

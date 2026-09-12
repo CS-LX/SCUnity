@@ -29,15 +29,15 @@ namespace Game {
 
         public SubsystemAmbientSounds m_subsystemAmbientSounds;
 
-        public Dictionary<Point3, float> m_expansionProbabilities = [];
+        public Dictionary<Point3, float> m_expansionProbabilities = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, float>() {  };
 
-        public Dictionary<Point3, FireData> m_fireData = [];
+        public Dictionary<Point3, FireData> m_fireData = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.SubsystemFireBlockBehavior.FireData>() {  };
 
-        public DynamicArray<Point3> m_firePointsCopy = [];
+        public DynamicArray<Point3> m_firePointsCopy = new global::Engine.DynamicArray<global::Engine.Point3>() {  };
 
-        public Dictionary<Point3, float> m_toBurnAway = [];
+        public Dictionary<Point3, float> m_toBurnAway = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, float>() {  };
 
-        public Dictionary<Point3, float> m_toExpand = [];
+        public Dictionary<Point3, float> m_toExpand = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, float>() {  };
 
         public int m_copyIndex;
 
@@ -55,7 +55,7 @@ namespace Game {
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
-        public override int[] HandledBlocks => [104];
+        public override int[] HandledBlocks => new int[] { 104 };
 
         public bool IsCellOnFire(int x, int y, int z) {
             for (int i = 0; i < 4; i++) {

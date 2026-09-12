@@ -38,9 +38,9 @@ namespace Game {
         }
 
         public void OpenManageSelectDialog() {
-            List<string> list = [LanguageControl.Get(fName, 1), LanguageControl.Get(fName, 2)];
+            List<string> list = new global::System.Collections.Generic.List<string>() { LanguageControl.Get(fName, 1), LanguageControl.Get(fName, 2) };
             if (m_isAdmin) {
-                list = [LanguageControl.Get(fName, 1), LanguageControl.Get(fName, 2), "用户管理"];
+                list = new global::System.Collections.Generic.List<string>() { LanguageControl.Get(fName, 1), LanguageControl.Get(fName, 2), "用户管理" };
             }
             DialogsManager.ShowDialog(
                 null,
@@ -74,13 +74,8 @@ namespace Game {
                 Task.Run(async () => {
                         try {
 #if WINDOWS
-                            KeyValuePair<string, string[]>[] filters = [
-                                new(LanguageControl.Get(fName, "ExtensionName", ".scworld"), ["*.scworld"]),
-                                new(LanguageControl.Get(fName, "ExtensionName", ".scbtex"), ["*.scbtex", "*.png", "*.webp", "*.astc", "*.astcsrgb"]),
-                                new(LanguageControl.Get(fName, "ExtensionName", ".scskin"), ["*.scskin"]),
-                                new(LanguageControl.Get(fName, "ExtensionName", ".scfpack"), ["*.scfpack"]),
-                                new(LanguageControl.Get(fName, "ExtensionName", ".scmod"), ["*.scmod"])
-                            ];
+                            KeyValuePair<string, string[]>[] filters = new global::System.Collections.Generic.KeyValuePair<string, string[]>[] {                                 new(LanguageControl.Get(fName, "ExtensionName", ".scworld"), new string[] { "*.scworld" }),                                 new(LanguageControl.Get(fName, "ExtensionName", ".scbtex"), new string[] { "*.scbtex", "*.png", "*.webp", "*.astc", "*.astcsrgb" }),                                 new(LanguageControl.Get(fName, "ExtensionName", ".scskin"), new string[] { "*.scskin" }),                                 new(LanguageControl.Get(fName, "ExtensionName", ".scfpack"), new string[] { "*.scfpack" }),                                 new(LanguageControl.Get(fName, "ExtensionName", ".scmod"), new string[] { "*.scmod" })
+ };
                             (Stream stream, string fileName) = await Storage.ChooseFile(LanguageControl.Get(fName, "3"), filters);
 #else
                             KeyValuePair<string, string[]>[] filters = [

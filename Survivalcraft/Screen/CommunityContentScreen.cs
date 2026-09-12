@@ -48,7 +48,7 @@ namespace Game {
         public bool m_isAdmin;
         public bool m_isCNLanguageType;
 
-        public Dictionary<string, IEnumerable<object>> m_itemsCache = [];
+        public Dictionary<string, IEnumerable<object>> m_itemsCache = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.IEnumerable<object>>() {  };
 
         public SchubExternalContentProvider m_provider;
 
@@ -204,7 +204,7 @@ namespace Game {
                 PopulateList(null);
             }
             if (m_changeFilterButton.IsClicked) {
-                List<object> list = [string.Empty];
+                List<object> list = new global::System.Collections.Generic.List<object>() { string.Empty };
                 foreach (ExternalContentType item in from ExternalContentType t in EnumUtils.GetEnumValues<ExternalContentType>()
                     where ExternalContentManager.IsEntryTypeDownloadSupported(t)
                     select t) {
@@ -465,6 +465,15 @@ namespace Game {
             }
         }
 
+        void ClearCurrentResults() {
+            var roots = new HashSet<TreeViewNode>(m_treePanel.Nodes);
+            foreach (string key in m_itemsCache.Where(pair => pair.Value.OfType<TreeViewNode>().Any(roots.Contains))
+                .Select(pair => pair.Key).ToArray()) {
+                m_itemsCache.Remove(key);
+            }
+            m_treePanel.Clear();
+        }
+
         public void PopulateList(string cursor, bool force = false) {
             string text = string.Empty;
             if (SettingsManager.CommunityContentMode == CommunityContentMode.Strict) {
@@ -492,10 +501,10 @@ namespace Game {
                     }
                     return;
                 }
-                m_treePanel.Clear();
+                ClearCurrentResults();
             }
             if (force) {
-                m_treePanel.Clear();
+                ClearCurrentResults();
             }
             CancellableBusyDialog busyDialog = new(LanguageControl.Get(fName, 2), false);
             DialogsManager.ShowDialog(null, busyDialog);

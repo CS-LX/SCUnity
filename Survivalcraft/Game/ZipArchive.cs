@@ -12,7 +12,7 @@ namespace Game {
 
         public bool KeepStreamOpen;
 
-        public List<ZipArchiveEntry> Files = [];
+        public List<ZipArchiveEntry> Files = new global::System.Collections.Generic.List<global::Game.ZipArchiveEntry>() {  };
 
         public Stream ZipFileStream;
 
@@ -209,7 +209,7 @@ namespace Game {
         public void WriteLocalHeader(ZipArchiveEntry _zfe) {
             long position = ZipFileStream.Position;
             byte[] bytes = Encoding.UTF8.GetBytes(_zfe.FilenameInZip);
-            ZipFileStream.Write([80, 75, 3, 4, 20, 0], 0, 6);
+            ZipFileStream.Write(new byte[] { 80, 75, 3, 4, 20, 0 }, 0, 6);
             ZipFileStream.Write(BitConverter.GetBytes((ushort)(_zfe.EncodeUTF8 ? 2048 : 0)), 0, 2);
             ZipFileStream.Write(BitConverter.GetBytes((ushort)_zfe.Method), 0, 2);
             ZipFileStream.Write(BitConverter.GetBytes(DateTimeToDosTime(_zfe.ModifyTime)), 0, 4);
@@ -225,16 +225,8 @@ namespace Game {
             byte[] bytes = uTF.GetBytes(_zfe.FilenameInZip);
             byte[] bytes2 = uTF.GetBytes(_zfe.Comment);
             ZipFileStream.Write(
-                [
-                    80,
-                    75,
-                    1,
-                    2,
-                    23,
-                    11,
-                    20,
-                    0
-                ],
+                new byte[] {                     80,                     75,                     1,                     2,                     23,                     11,                     20,                     0
+ },
                 0,
                 8
             );
@@ -259,16 +251,8 @@ namespace Game {
         public void WriteEndRecord(uint _size, uint _offset) {
             byte[] bytes = Encoding.UTF8.GetBytes(Comment);
             ZipFileStream.Write(
-                [
-                    80,
-                    75,
-                    5,
-                    6,
-                    0,
-                    0,
-                    0,
-                    0
-                ],
+                new byte[] {                     80,                     75,                     5,                     6,                     0,                     0,                     0,                     0
+ },
                 0,
                 8
             );

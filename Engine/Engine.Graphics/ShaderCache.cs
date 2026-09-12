@@ -24,9 +24,9 @@ namespace Engine.Graphics {
         /// 实际缓存路径 = 根目录/GPU平台子目录
         /// </summary>
         public static string CacheDirectory {
-            get => field;
+            get => m_unity_CacheDirectory;
             set {
-                field = value;
+                m_unity_CacheDirectory = value;
                 s_effectiveCacheDir = null; // 重置，下次访问时重新计算
             }
         }
@@ -76,9 +76,9 @@ namespace Engine.Graphics {
             if (IsInitialized) {
                 return;
             }
-            m_sources = [];
-            m_shaderObjectCache = [];
-            m_programCache = [];
+            m_sources = new global::System.Collections.Generic.Dictionary<string, string>() {  };
+            m_shaderObjectCache = new global::System.Collections.Generic.Dictionary<int, uint>() {  };
+            m_programCache = new global::System.Collections.Generic.Dictionary<string, global::Engine.Graphics.Shader>() {  };
             IsInitialized = true;
         }
 
@@ -357,7 +357,7 @@ namespace Engine.Graphics {
                 uint formatValue = BitConverter.ToUInt32(fileData, 0);
                 int binaryLength = fileData.Length - 4;
                 uint programHandle = GLWrapper.GL.CreateProgram();
-                GLWrapper.GL.ProgramBinary(programHandle, (GLEnum)formatValue, fileData.AsSpan(4, binaryLength), (uint)binaryLength);
+                GLWrapper.GL.ProgramBinary<byte>(programHandle, (GLEnum)formatValue, fileData.AsSpan(4, binaryLength), (uint)binaryLength);
                 GLWrapper.GL.GetProgram(programHandle, ProgramPropertyARB.LinkStatus, out int status);
                 if (status == 0) {
                     GLWrapper.GL.DeleteProgram(programHandle);
@@ -450,5 +450,6 @@ namespace Engine.Graphics {
             m_sources.Clear();
             IsInitialized = false;
         }
-    }
+
+        private static string m_unity_CacheDirectory;    }
 }

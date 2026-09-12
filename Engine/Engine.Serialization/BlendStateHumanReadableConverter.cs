@@ -1,4 +1,4 @@
-﻿using Engine.Graphics;
+using Engine.Graphics;
 
 namespace Engine.Serialization {
     [HumanReadableConverter(typeof(BlendState))]

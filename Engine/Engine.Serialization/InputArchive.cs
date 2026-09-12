@@ -1,6 +1,6 @@
 namespace Engine.Serialization {
     public abstract class InputArchive : Archive {
-        Dictionary<int, object> m_objectById = [];
+        Dictionary<int, object> m_objectById = new global::System.Collections.Generic.Dictionary<int, object>() {  };
 
         DynamicArray<object> m_stack = new();
 

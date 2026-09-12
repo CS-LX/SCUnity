@@ -4,7 +4,7 @@ namespace Game {
 
         public float m_lastStoredVoltage;
 
-        public Dictionary<int, float> m_voltagesHistory = [];
+        public Dictionary<int, float> m_voltagesHistory = new global::System.Collections.Generic.Dictionary<int, float>() {  };
 
         public abstract int DelaySteps { get; }
 

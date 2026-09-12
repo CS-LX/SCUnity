@@ -16,11 +16,11 @@ namespace Game {
 
         public int m_nodesCacheIndex;
 
-        public DynamicArray<Node> m_nodesCache = [];
+        public DynamicArray<Node> m_nodesCache = new global::Engine.DynamicArray<global::Game.AStar<T>.Node>() {  };
 
-        public DynamicArray<Node> m_openHeap = [];
+        public DynamicArray<Node> m_openHeap = new global::Engine.DynamicArray<global::Game.AStar<T>.Node>() {  };
 
-        public DynamicArray<T> m_neighbors = [];
+        public DynamicArray<T> m_neighbors = new global::Engine.DynamicArray<T>() {  };
 
         public float PathCost { get; set; }
 

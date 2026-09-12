@@ -8,7 +8,7 @@ namespace Game {
     public static class DatabaseManager {
         public static GameDatabase m_gameDatabase;
 
-        public static Dictionary<string, ValuesDictionary> m_valueDictionaries = [];
+        public static Dictionary<string, ValuesDictionary> m_valueDictionaries = new global::System.Collections.Generic.Dictionary<string, global::TemplatesDatabase.ValuesDictionary>() {  };
 
         public static GameDatabase GameDatabase {
             get {

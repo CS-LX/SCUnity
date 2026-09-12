@@ -10,7 +10,7 @@ namespace Game {
         }
 
         static UserManager() {
-            m_users = [];
+            m_users = new global::System.Collections.Generic.List<global::Game.UserInfo>() {  };
             string text;
             try {
                 string path = ModsManager.UserDataPath;

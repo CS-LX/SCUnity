@@ -14,7 +14,7 @@ namespace Game {
 
         public static string fName = "SubsystemBoatBlockBehavior";
 
-        public override int[] HandledBlocks => [178];
+        public override int[] HandledBlocks => new int[] { 178 };
 
         public override bool OnUse(Ray3 ray, ComponentMiner componentMiner) {
             _ = componentMiner.Inventory;

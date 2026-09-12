@@ -12,9 +12,9 @@ namespace GameEntitySystem {
 
         public DatabaseObject m_projectTemplate;
 
-        public List<Subsystem> m_subsystems = [];
+        public List<Subsystem> m_subsystems = new global::System.Collections.Generic.List<global::GameEntitySystem.Subsystem>() {  };
 
-        public Dictionary<Entity, bool> m_entities = [];
+        public Dictionary<Entity, bool> m_entities = new global::System.Collections.Generic.Dictionary<global::GameEntitySystem.Entity, bool>() {  };
 
         public virtual GameDatabase GameDatabase => m_gameDatabase;
 
@@ -44,7 +44,7 @@ namespace GameEntitySystem {
                 m_gameDatabase = gameDatabase;
                 m_projectData = projectData;
                 m_projectTemplate = m_projectData.ValuesDictionary.DatabaseObject;
-                Dictionary<string, Subsystem> dictionary = [];
+                Dictionary<string, Subsystem> dictionary = new global::System.Collections.Generic.Dictionary<string, global::GameEntitySystem.Subsystem>() {  };
                 foreach (ValuesDictionary item in from x in projectData.ValuesDictionary.Values
                                                   select x as ValuesDictionary
                     into x
@@ -76,7 +76,7 @@ namespace GameEntitySystem {
                         m_subsystems.Add(subsystem);
                     }
                 }
-                Dictionary<Subsystem, bool> loadedSubsystems = [];
+                Dictionary<Subsystem, bool> loadedSubsystems = new global::System.Collections.Generic.Dictionary<global::GameEntitySystem.Subsystem, bool>() {  };
                 List<Entity> entities = new();
                 if (projectData.EntityDataList != null) {
                     entities = InitializeEntities(projectData.EntityDataList);
@@ -163,13 +163,13 @@ namespace GameEntitySystem {
         }
 
         public virtual Entity FindEntity(int EntityID) {
-            return Entities.FirstOrDefault(entity => entity.Id == EntityID, null);
+            return Entities.FirstOrDefault(entity => entity.Id == EntityID);
         }
 
         public virtual Entity CreateEntity(ValuesDictionary valuesDictionary, int entityId = 0) {
             try {
                 Entity entity = new(this, valuesDictionary, entityId);
-                IdToEntityMap idToEntityMap = new([]);
+                IdToEntityMap idToEntityMap = new(new global::System.Collections.Generic.Dictionary<int, global::GameEntitySystem.Entity>() {  });
                 entity.InternalLoadEntity(valuesDictionary, idToEntityMap);
                 return entity;
             }
@@ -223,7 +223,7 @@ namespace GameEntitySystem {
 
         public virtual List<Entity> InitializeEntities(EntityDataList entityDataList) {
             List<Entity> list = new(entityDataList.EntitiesData.Count);
-            Dictionary<int, Entity> dictionary = [];
+            Dictionary<int, Entity> dictionary = new global::System.Collections.Generic.Dictionary<int, global::GameEntitySystem.Entity>() {  };
             foreach (EntityData entitiesDatum in entityDataList.EntitiesData) {
                 try {
                     Entity entity = new(this, entitiesDatum.ValuesDictionary, entitiesDatum.Id);
@@ -265,7 +265,7 @@ namespace GameEntitySystem {
             IEnumerable<Entity> enumerable = entities as Entity[] ?? entities.ToArray();
             Dictionary<Entity, bool> dictionary = DetermineNotOwnedEntities(enumerable);
             int num = 1;
-            Dictionary<Entity, int> dictionary2 = [];
+            Dictionary<Entity, int> dictionary2 = new global::System.Collections.Generic.Dictionary<global::GameEntitySystem.Entity, int>() {  };
             EntityToIdMap entityToIdMap = new(dictionary2);
             foreach (Entity key in dictionary.Keys) {
                 dictionary2.Add(key, num);
@@ -273,7 +273,7 @@ namespace GameEntitySystem {
             }
             EntityDataList entityDataList = new() { EntitiesData = new List<EntityData>(dictionary.Keys.Count) };
             foreach (Entity key2 in enumerable) {
-                EntityData entityData = new() { Id = key2.Id, ValuesDictionary = [] };
+                EntityData entityData = new() { Id = key2.Id, ValuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  } };
                 entityData.ValuesDictionary.DatabaseObject = key2.ValuesDictionary.DatabaseObject;
                 key2.InternalSaveEntity(entityData.ValuesDictionary, entityToIdMap);
                 entityDataList.EntitiesData.Add(entityData);
@@ -282,10 +282,10 @@ namespace GameEntitySystem {
         }
 
         public virtual ProjectData Save() {
-            ProjectData projectData = new() { ValuesDictionary = [] };
+            ProjectData projectData = new() { ValuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  } };
             projectData.ValuesDictionary.DatabaseObject = ProjectTemplate;
             foreach (Subsystem subsystem in Subsystems) {
-                ValuesDictionary valuesDictionary = [];
+                ValuesDictionary valuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  };
                 subsystem.Save(valuesDictionary);
                 if (valuesDictionary.Count > 0) {
                     projectData.ValuesDictionary.SetValue(subsystem.ValuesDictionary.DatabaseObject.Name, valuesDictionary);
@@ -336,8 +336,8 @@ namespace GameEntitySystem {
         }
 
         public static Dictionary<Entity, bool> DetermineNotOwnedEntities(IEnumerable<Entity> entities) {
-            Dictionary<Entity, bool> dictionary = [];
-            List<Entity> list = [];
+            Dictionary<Entity, bool> dictionary = new global::System.Collections.Generic.Dictionary<global::GameEntitySystem.Entity, bool>() {  };
+            List<Entity> list = new global::System.Collections.Generic.List<global::GameEntitySystem.Entity>() {  };
             foreach (Entity entity in entities) {
                 dictionary.Add(entity, true);
                 List<Entity> list2 = entity.InternalGetOwnedEntities();

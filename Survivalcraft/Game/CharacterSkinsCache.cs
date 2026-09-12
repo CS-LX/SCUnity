@@ -2,7 +2,7 @@ using Engine.Graphics;
 
 namespace Game {
     public class CharacterSkinsCache {
-        public Dictionary<string, Texture2D> m_textures = [];
+        public Dictionary<string, Texture2D> m_textures = new global::System.Collections.Generic.Dictionary<string, global::Engine.Graphics.Texture2D>() {  };
 
         public bool ContainsTexture(Texture2D texture) => m_textures.ContainsValue(texture);
 

@@ -6,11 +6,11 @@ namespace Game {
             public float Damage;
         }
 
-        public Dictionary<Point3, TrapValue> m_trapValues = [];
+        public Dictionary<Point3, TrapValue> m_trapValues = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.SubsystemGrassTrapBlockBehavior.TrapValue>() {  };
 
-        public List<Point3> m_toRemove = [];
+        public List<Point3> m_toRemove = new global::System.Collections.Generic.List<global::Engine.Point3>() {  };
 
-        public override int[] HandledBlocks => [87];
+        public override int[] HandledBlocks => new int[] { 87 };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

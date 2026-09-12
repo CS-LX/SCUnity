@@ -12,7 +12,7 @@ namespace Game {
     public static class FileAssociationManager {
         public static string ProgIdBase = $"SurvivalcraftApi_{ModsManager.ShortAPIVersionString}";
         public static string VersionedExeName = $"Survivalcraft_{ModsManager.ShortAPIVersionString}.exe";
-        public static string[] SupportedExtensions = [".scworld", ".scbtex", ".scskin", ".scfpack", ".scmod" /*, ".scmodList"*/];
+        public static string[] SupportedExtensions = new string[] { ".scworld", ".scbtex", ".scskin", ".scfpack", ".scmod" /*, ".scmodList"*/ };
         public const string fName = "FileAssociationManager";
 
         public static void Initialize() {

@@ -8,9 +8,9 @@ namespace Engine {
 
         public static int? m_mainThreadId;
 
-        public static List<ActionInfo> m_actionInfos = [];
+        public static List<ActionInfo> m_actionInfos = new global::System.Collections.Generic.List<global::Engine.Dispatcher.ActionInfo>() {  };
 
-        public static List<ActionInfo> m_currentActionInfos = [];
+        public static List<ActionInfo> m_currentActionInfos = new global::System.Collections.Generic.List<global::Engine.Dispatcher.ActionInfo>() {  };
 
         public static int MainThreadId => m_mainThreadId ?? throw new InvalidOperationException("Dispatcher is not initialized.");
 

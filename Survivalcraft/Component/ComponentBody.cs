@@ -25,13 +25,13 @@ namespace Game {
         public struct CollisionBox {
             public CollisionBox() { }
 
-            public int BlockValue;
+            public int BlockValue = default;
 
-            public Vector3 BlockVelocity;
+            public Vector3 BlockVelocity = default;
 
-            public ComponentBody ComponentBody;
+            public ComponentBody ComponentBody = default;
 
-            public BoundingBox Box;
+            public BoundingBox Box = default;
 
             /// <summary>
             ///     模组如果需要添加或使用额外信息，可以在这个ValuesDictionary读写元素
@@ -61,19 +61,19 @@ namespace Game {
 
         public ComponentHealth m_componentHealth;
 
-        public DynamicArray<CollisionBox> m_collisionBoxes = [];
+        public DynamicArray<CollisionBox> m_collisionBoxes = new global::Engine.DynamicArray<global::Game.ComponentBody.CollisionBox>() {  };
 
-        public DynamicArray<ComponentBody> m_componentBodies = [];
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
-        public DynamicArray<IMovingBlockSet> m_movingBlockSets = [];
+        public DynamicArray<IMovingBlockSet> m_movingBlockSets = new global::Engine.DynamicArray<global::Game.IMovingBlockSet>() {  };
 
-        public DynamicArray<CollisionBox> m_bodiesCollisionBoxes = [];
+        public DynamicArray<CollisionBox> m_bodiesCollisionBoxes = new global::Engine.DynamicArray<global::Game.ComponentBody.CollisionBox>() {  };
 
-        public DynamicArray<CollisionBox> m_movingBlocksCollisionBoxes = [];
+        public DynamicArray<CollisionBox> m_movingBlocksCollisionBoxes = new global::Engine.DynamicArray<global::Game.ComponentBody.CollisionBox>() {  };
 
         public ComponentBody m_parentBody;
 
-        public List<ComponentBody> m_childBodies = [];
+        public List<ComponentBody> m_childBodies = new global::System.Collections.Generic.List<global::Game.ComponentBody>() {  };
 
         public Vector3 m_velocity;
 
@@ -268,7 +268,7 @@ namespace Game {
         public virtual Action<Attackment> Attacked { get; set; }
 
         static ComponentBody() {
-            List<Vector3> list = [];
+            List<Vector3> list = new global::System.Collections.Generic.List<global::Engine.Vector3>() {  };
             for (int i = -2; i <= 2; i++) {
                 for (int j = -2; j <= 2; j++) {
                     for (int k = -2; k <= 2; k++) {

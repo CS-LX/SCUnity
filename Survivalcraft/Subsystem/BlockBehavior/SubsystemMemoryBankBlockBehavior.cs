@@ -2,7 +2,7 @@ using Engine;
 
 namespace Game {
     public class SubsystemMemoryBankBlockBehavior : SubsystemEditableItemBehavior<MemoryBankData> {
-        public override int[] HandledBlocks => [186];
+        public override int[] HandledBlocks => new int[] { 186 };
         public static string fName = "MemoryBankBlockBehavior";
 
         public SubsystemMemoryBankBlockBehavior() : base(186) { }

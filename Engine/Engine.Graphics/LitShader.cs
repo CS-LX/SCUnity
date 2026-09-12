@@ -269,13 +269,13 @@ namespace Engine.Graphics {
 
         public static string GetLitVshString() {
             Stream stream = typeof(Shader).GetTypeInfo().Assembly.GetManifestResourceStream("Engine.Resources.Lit.vsh");
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new StreamReader(stream).ReadToEnd();
         }
 
         public static string GetLitPshString() {
             Stream stream = typeof(Shader).GetTypeInfo().Assembly.GetManifestResourceStream("Engine.Resources.Lit.psh");
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             return new StreamReader(stream).ReadToEnd();
         }
 
@@ -297,7 +297,7 @@ namespace Engine.Graphics {
             bool useFog,
             bool useAlphaThreshold,
             int maxInstancesCount) {
-            List<ShaderMacro> list = [];
+            List<ShaderMacro> list = new global::System.Collections.Generic.List<global::Engine.Graphics.ShaderMacro>() {  };
             if (lightsCount > 0) {
                 list.Add(new ShaderMacro("USE_LIGHTING"));
             }

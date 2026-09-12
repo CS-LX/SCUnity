@@ -25,9 +25,9 @@ namespace TemplatesDatabase {
 
         public List<DatabaseObjectType> m_allowedInheritanceParents;
 
-        public List<DatabaseObjectType> m_allowedNestingChildren = [];
+        public List<DatabaseObjectType> m_allowedNestingChildren = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObjectType>() {  };
 
-        public List<DatabaseObjectType> m_allowedInheritanceChildren = [];
+        public List<DatabaseObjectType> m_allowedInheritanceChildren = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObjectType>() {  };
 
         public DatabaseObjectType m_nestedValueType;
 
@@ -91,7 +91,7 @@ namespace TemplatesDatabase {
                 }
             }
             else {
-                m_allowedNestingParents = [];
+                m_allowedNestingParents = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObjectType>() {  };
             }
             if (allowedInheritanceParents != null) {
                 m_allowedInheritanceParents = allowedInheritanceParents.Distinct().ToList();
@@ -100,7 +100,7 @@ namespace TemplatesDatabase {
                 }
             }
             else {
-                m_allowedInheritanceParents = [];
+                m_allowedInheritanceParents = new global::System.Collections.Generic.List<global::TemplatesDatabase.DatabaseObjectType>() {  };
             }
         }
 

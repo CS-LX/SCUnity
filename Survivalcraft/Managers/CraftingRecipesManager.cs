@@ -5,7 +5,7 @@ using XmlUtilities;
 
 namespace Game {
     public static class CraftingRecipesManager {
-        public static List<CraftingRecipe> m_recipes = [];
+        public static List<CraftingRecipe> m_recipes = new global::System.Collections.Generic.List<global::Game.CraftingRecipe>() {  };
         public static List<CraftingRecipe> Recipes => m_recipes;
         public static string fName = "CraftingRecipesManager";
 
@@ -117,7 +117,7 @@ namespace Game {
                 }
                 dictionary.Add(item2.Name.LocalName[0], item2.Value);
             }
-            string[] array = item.Value.Trim().Split(["\n"], StringSplitOptions.None);
+            string[] array = item.Value.Trim().Split(new string[] { "\n" }, StringSplitOptions.None);
             for (int i = 0; i < array.Length; i++) {
                 int num = array[i].IndexOf('"');
                 int num2 = array[i].LastIndexOf('"');
@@ -189,7 +189,7 @@ namespace Game {
                 return result2;
             }
             if (!string.IsNullOrEmpty(result)) {
-                string[] array = result.Split([':'], StringSplitOptions.None);
+                string[] array = result.Split(new char[] { ':' }, StringSplitOptions.None);
                 int blockIndex = BlocksManager.GetBlockIndex(array[0], true);
                 return Terrain.MakeBlockValue(blockIndex, 0, array.Length == 2 ? int.Parse(array[1], CultureInfo.InvariantCulture) : 0);
             }
@@ -212,7 +212,7 @@ namespace Game {
                 data = data_R;
                 return;
             }
-            string[] array = ingredient.Split([':'], StringSplitOptions.None);
+            string[] array = ingredient.Split(new char[] { ':' }, StringSplitOptions.None);
             craftingId = array[0];
             data = array.Length >= 2 ? new int?(int.Parse(array[1], CultureInfo.InvariantCulture)) : null;
         }

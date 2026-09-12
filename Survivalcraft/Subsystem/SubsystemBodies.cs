@@ -5,11 +5,11 @@ namespace Game {
     public class SubsystemBodies : Subsystem, IUpdateable {
         public const float m_areaSize = 8f;
 
-        public DynamicArray<ComponentBody> m_componentBodies = [];
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
-        public Dictionary<ComponentBody, Point2> m_areaByComponentBody = [];
+        public Dictionary<ComponentBody, Point2> m_areaByComponentBody = new global::System.Collections.Generic.Dictionary<global::Game.ComponentBody, global::Engine.Point2>() {  };
 
-        public Dictionary<Point2, DynamicArray<ComponentBody>> m_componentBodiesByArea = [];
+        public Dictionary<Point2, DynamicArray<ComponentBody>> m_componentBodiesByArea = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, global::Engine.DynamicArray<global::Game.ComponentBody>>() {  };
 
         public Dictionary<ComponentBody, Point2>.KeyCollection Bodies => m_areaByComponentBody.Keys;
 
@@ -126,7 +126,7 @@ namespace Game {
             Point2 point = new((int)MathF.Floor(position.X / 8f), (int)MathF.Floor(position.Z / 8f));
             m_areaByComponentBody.Add(componentBody, point);
             if (!m_componentBodiesByArea.TryGetValue(point, out DynamicArray<ComponentBody> value)) {
-                value = [];
+                value = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
                 m_componentBodiesByArea.Add(point, value);
             }
             value.Add(componentBody);
@@ -148,7 +148,7 @@ namespace Game {
                 m_areaByComponentBody[componentBody] = point;
                 m_componentBodiesByArea[point2].Remove(componentBody);
                 if (!m_componentBodiesByArea.TryGetValue(point, out DynamicArray<ComponentBody> value)) {
-                    value = [];
+                    value = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
                     m_componentBodiesByArea.Add(point, value);
                 }
                 value.Add(componentBody);

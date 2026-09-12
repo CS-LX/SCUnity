@@ -11,11 +11,10 @@ namespace Game {
 
         public BoundingBox[][] m_collisionBoxes = new BoundingBox[24][];
 
-        public static Color[] m_colors = [new(100, 40, 20), new(90, 30, 20), new(100, 30, 30), new(80, 20, 10)];
+        public static Color[] m_colors = new global::Engine.Color[] { new(100, 40, 20), new(90, 30, 20), new(100, 30, 30), new(80, 20, 10) };
 
-        public static Vector2[] m_offsets = [
-            0.15f * new Vector2(-0.8f, -1f), 0.15f * new Vector2(1f, -0.75f), 0.15f * new Vector2(-0.65f, 1f), 0.15f * new Vector2(0.9f, 0.7f)
-        ];
+        public static Vector2[] m_offsets = new global::Engine.Vector2[] {             0.15f * new Vector2(-0.8f, -1f), 0.15f * new Vector2(1f, -0.75f), 0.15f * new Vector2(-0.65f, 1f), 0.15f * new Vector2(0.9f, 0.7f)
+ };
 
         public override void Initialize() {
             int num = 63;
@@ -50,7 +49,7 @@ namespace Game {
                             Color.White
                         );
                     m_blockMeshes[num2].TransformTextureCoordinates(Matrix.CreateTranslation(num % 16 / 16f, num / 16 / 16f, 0f));
-                    m_collisionBoxes[num2] = [m_blockMeshes[num2].CalculateBoundingBox()];
+                    m_collisionBoxes[num2] = new global::Engine.BoundingBox[] { m_blockMeshes[num2].CalculateBoundingBox() };
                 }
             }
             m_standaloneBlockMesh = new BlockMesh();

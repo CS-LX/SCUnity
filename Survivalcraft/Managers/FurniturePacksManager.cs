@@ -12,7 +12,7 @@ namespace Game {
 
         public static event Action<string> FurniturePackDeleted;
 
-        static FurniturePacksManager() => m_furniturePackNames = [];
+        static FurniturePacksManager() => m_furniturePackNames = new global::System.Collections.Generic.List<string>() {  };
 
         public static void Initialize() {
             Storage.CreateDirectory(FurniturePacksDirectoryName);

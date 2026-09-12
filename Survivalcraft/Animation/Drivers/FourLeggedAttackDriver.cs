@@ -11,7 +11,7 @@ namespace Game.Animation.Drivers {
         public AnimationBlendMode BlendMode => AnimationBlendMode.Override;
 
         public string[] TargetBones => mTargetBones;
-        string[] mTargetBones = ["Head", "Neck"];
+        string[] mTargetBones = new string[] { "Head", "Neck" };
 
         // 参数名称
         public string ButtFactorParam { get; set; } = "ButtFactor";

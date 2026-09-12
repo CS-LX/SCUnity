@@ -11,21 +11,15 @@ namespace Game {
         public static string fName = "SubsystemBowBlockBehavior";
         public Random m_random = new();
 
-        public Dictionary<ComponentMiner, double> m_aimStartTimes = [];
+        public Dictionary<ComponentMiner, double> m_aimStartTimes = new global::System.Collections.Generic.Dictionary<global::Game.ComponentMiner, double>() {  };
 
         int m_bowBlockIndex;
         int m_arrowBlockIndex;
 
-        public ArrowBlock.ArrowType[] m_supportedArrowTypes = [
-            ArrowBlock.ArrowType.WoodenArrow,
-            ArrowBlock.ArrowType.StoneArrow,
-            ArrowBlock.ArrowType.CopperArrow,
-            ArrowBlock.ArrowType.IronArrow,
-            ArrowBlock.ArrowType.DiamondArrow,
-            ArrowBlock.ArrowType.FireArrow
-        ];
+        public ArrowBlock.ArrowType[] m_supportedArrowTypes = new global::Game.ArrowBlock.ArrowType[] {             ArrowBlock.ArrowType.WoodenArrow,             ArrowBlock.ArrowType.StoneArrow,             ArrowBlock.ArrowType.CopperArrow,             ArrowBlock.ArrowType.IronArrow,             ArrowBlock.ArrowType.DiamondArrow,             ArrowBlock.ArrowType.FireArrow
+ };
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override bool OnEditInventoryItem(IInventory inventory, int slotIndex, ComponentPlayer componentPlayer) {
             componentPlayer.ComponentGui.ModalPanelWidget = componentPlayer.ComponentGui.ModalPanelWidget == null

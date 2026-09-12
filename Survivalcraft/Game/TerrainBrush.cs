@@ -65,7 +65,7 @@ namespace Game {
             }
         }
 
-        public Dictionary<int, Cell> m_cellsDictionary = [];
+        public Dictionary<int, Cell> m_cellsDictionary = new global::System.Collections.Generic.Dictionary<int, global::Game.TerrainBrush.Cell>() {  };
 
         public Cell[] m_cells;
 

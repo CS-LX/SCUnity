@@ -8,7 +8,7 @@ namespace Game {
 
         Random m_random = new();
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
             if (!CanSupportFallenLeaves(SubsystemTerrain.Terrain.GetCellValue(x, y - 1, z))) {

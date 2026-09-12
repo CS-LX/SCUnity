@@ -12,9 +12,9 @@ namespace Game {
 
         public SubsystemTime m_subsystemTime;
 
-        public HashSet<Point3> m_leavesToCheck = [];
+        public HashSet<Point3> m_leavesToCheck = new global::System.Collections.Generic.HashSet<global::Engine.Point3>() {  };
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

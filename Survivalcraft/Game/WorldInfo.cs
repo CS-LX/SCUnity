@@ -12,6 +12,6 @@ namespace Game {
 
         public WorldSettings WorldSettings = new();
 
-        public List<PlayerInfo> PlayerInfos = [];
+        public List<PlayerInfo> PlayerInfos = new global::System.Collections.Generic.List<global::Game.PlayerInfo>() {  };
     }
 }

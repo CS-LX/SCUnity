@@ -28,9 +28,9 @@ namespace Game {
 
         WorldSettings m_originalWorldSettings;
 
-        public ValuesDictionary m_worldSettingsData = [];
+        public ValuesDictionary m_worldSettingsData = new global::TemplatesDatabase.ValuesDictionary() {  };
 
-        public ValuesDictionary m_originalWorldSettingsData = [];
+        public ValuesDictionary m_originalWorldSettingsData = new global::TemplatesDatabase.ValuesDictionary() {  };
 
         public bool m_changingGameModeAllowed;
 

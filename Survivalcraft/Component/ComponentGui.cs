@@ -178,7 +178,7 @@ namespace Game {
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
-        public int[] DrawOrders => [9];
+        public int[] DrawOrders => new int[] { 9 };
 
         public virtual void DisplayLargeMessage(string largeText, string smallText, float duration, float delay) {
             m_message = new Message { LargeText = largeText, SmallText = smallText, Duration = duration, StartTime = Time.RealTime + delay };

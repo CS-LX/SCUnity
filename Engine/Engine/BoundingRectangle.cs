@@ -24,7 +24,7 @@ namespace Engine {
         }
 
         public BoundingRectangle(IEnumerable<Vector2> points) {
-            ArgumentNullException.ThrowIfNull(points);
+            if (points is null) throw new ArgumentNullException("points");
             Min = new Vector2(float.PositiveInfinity);
             Max = new Vector2(float.NegativeInfinity);
             foreach (Vector2 point in points) {

@@ -180,7 +180,7 @@ namespace Game {
 
         public Terrain m_terrain;
 
-        public DynamicArray<LightSource> m_lightSources = [];
+        public DynamicArray<LightSource> m_lightSources = new global::Engine.DynamicArray<global::Game.TerrainUpdater.LightSource>() {  };
 
         public UpdateStatistics m_statistics = new();
 
@@ -206,7 +206,7 @@ namespace Game {
 
         public int m_synchronousUpdateFrame;
 
-        public Dictionary<int, UpdateLocation?> m_pendingLocations = [];
+        public Dictionary<int, UpdateLocation?> m_pendingLocations = new global::System.Collections.Generic.Dictionary<int, global::Game.TerrainUpdater.UpdateLocation?>() {  };
 
         public static int ChunkUpdates;
 
@@ -229,10 +229,10 @@ namespace Game {
             m_subsystemBlockBehaviors = m_subsystemTerrain.Project.FindSubsystem<SubsystemBlockBehaviors>(true);
             m_subsystemAnimatedTextures = m_subsystemTerrain.Project.FindSubsystem<SubsystemAnimatedTextures>(true);
             m_terrain = subsystemTerrain.Terrain;
-            m_updateParameters.Chunks = [];
-            m_updateParameters.Locations = [];
-            m_threadUpdateParameters.Chunks = [];
-            m_threadUpdateParameters.Locations = [];
+            m_updateParameters.Chunks = new global::Game.TerrainChunk[] {  };
+            m_updateParameters.Locations = new global::System.Collections.Generic.Dictionary<int, global::Game.TerrainUpdater.UpdateLocation>() {  };
+            m_threadUpdateParameters.Chunks = new global::Game.TerrainChunk[] {  };
+            m_threadUpdateParameters.Locations = new global::System.Collections.Generic.Dictionary<int, global::Game.TerrainUpdater.UpdateLocation>() {  };
             SettingsManager.SettingChanged += SettingsManager_SettingChanged;
         }
 
@@ -627,15 +627,9 @@ namespace Game {
         public virtual List<TerrainChunk> DetermineSynchronousUpdateChunks(Vector3 viewPosition, Vector3 viewDirection) {
             Vector3 vector = Vector3.Normalize(Vector3.Cross(viewDirection, Vector3.UnitY));
             Vector3 v = Vector3.Normalize(Vector3.Cross(viewDirection, vector));
-            Vector3[] obj = [
-                viewPosition,
-                viewPosition + 6f * viewDirection,
-                viewPosition + 6f * viewDirection - 6f * vector,
-                viewPosition + 6f * viewDirection + 6f * vector,
-                viewPosition + 6f * viewDirection - 2f * v,
-                viewPosition + 6f * viewDirection + 2f * v
-            ];
-            List<TerrainChunk> list = [];
+            Vector3[] obj = new global::Engine.Vector3[] {                 viewPosition,                 viewPosition + 6f * viewDirection,                 viewPosition + 6f * viewDirection - 6f * vector,                 viewPosition + 6f * viewDirection + 6f * vector,                 viewPosition + 6f * viewDirection - 2f * v,                 viewPosition + 6f * viewDirection + 2f * v
+ };
+            List<TerrainChunk> list = new global::System.Collections.Generic.List<global::Game.TerrainChunk>() {  };
             Vector3[] array = obj;
             foreach (Vector3 vector2 in array) {
                 TerrainChunk chunkAtCell = m_terrain.GetChunkAtCell(Terrain.ToCell(vector2.X), Terrain.ToCell(vector2.Z));

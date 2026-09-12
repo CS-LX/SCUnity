@@ -34,11 +34,11 @@ namespace Engine.Input {
 
         public static double m_keyNextRepeatTime = 0.04;
 
-        static bool[] m_keysDownArray = new bool[Enum.GetValues<Key>().Length];
+        static bool[] m_keysDownArray = new bool[((Key[])System.Enum.GetValues(typeof(Key))).Length];
 
-        static bool[] m_keysDownOnceArray = new bool[Enum.GetValues<Key>().Length];
+        static bool[] m_keysDownOnceArray = new bool[((Key[])System.Enum.GetValues(typeof(Key))).Length];
 
-        static double[] m_keysDownRepeatArray = new double[Enum.GetValues<Key>().Length];
+        static double[] m_keysDownRepeatArray = new double[((Key[])System.Enum.GetValues(typeof(Key))).Length];
 
         static Key? m_lastKey;
 
@@ -81,9 +81,9 @@ namespace Engine.Input {
             bool passwordMode,
             Action<string> enter,
             Action cancel) {
-            ArgumentNullException.ThrowIfNull(title);
-            ArgumentNullException.ThrowIfNull(description);
-            ArgumentNullException.ThrowIfNull(defaultText);
+            if (title is null) throw new ArgumentNullException("title");
+            if (description is null) throw new ArgumentNullException("description");
+            if (defaultText is null) throw new ArgumentNullException("defaultText");
 #if ANDROID
             // VR headsets on Android cannot show native AlertDialog (causes hang).
             if (!IsAndroidDialogAvailable) {
@@ -225,12 +225,7 @@ namespace Engine.Input {
         }
 
         internal static void Initialize() {
-#if !MOBILE && !BROWSER
-            m_keyboard = Window.m_inputContext.Keyboards[0];
-            m_keyboard.KeyDown += KeyDownHandler;
-            m_keyboard.KeyUp += KeyUpHandler;
-            m_keyboard.KeyChar += KeyPressHandler;
-#endif
+m_keyboard=Window.m_inputContext.Keyboards[0];m_keyboard.KeyDown+=KeyDownHandler;m_keyboard.KeyUp+=KeyUpHandler;m_keyboard.KeyChar+=KeyPressHandler;Clear();
         }
 
         internal static void Dispose() { }

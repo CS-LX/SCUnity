@@ -81,8 +81,8 @@ namespace Game {
             m_standaloneColoredBlockMesh.TransformTextureCoordinates(
                 Matrix.CreateTranslation(m_coloredTextureSlot % 16 / 16f, m_coloredTextureSlot / 16 / 16f, 0f)
             );
-            m_collisionBoxes[0] = [new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 1f))];
-            m_collisionBoxes[1] = [new BoundingBox(new Vector3(0f, 0.5f, 0f), new Vector3(1f, 1f, 1f))];
+            m_collisionBoxes[0] = new global::Engine.BoundingBox[] { new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, 0.5f, 1f)) };
+            m_collisionBoxes[1] = new global::Engine.BoundingBox[] { new BoundingBox(new Vector3(0f, 0.5f, 0f), new Vector3(1f, 1f, 1f)) };
             base.Initialize();
         }
 

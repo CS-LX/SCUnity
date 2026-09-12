@@ -68,13 +68,13 @@ namespace Engine.Media {
         public class ColladaRoot {
             public static readonly XNamespace Namespace = "http://www.collada.org/2005/11/COLLADASchema";
 
-            public readonly Dictionary<string, ColladaNameId> ObjectsById = [];
+            public readonly Dictionary<string, ColladaNameId> ObjectsById = new global::System.Collections.Generic.Dictionary<string, global::Engine.Media.Collada.ColladaNameId>() {  };
 
             public readonly ColladaAsset Asset;
 
-            public readonly List<ColladaLibraryGeometries> LibraryGeometries = [];
+            public readonly List<ColladaLibraryGeometries> LibraryGeometries = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaLibraryGeometries>() {  };
 
-            public readonly List<ColladaLibraryVisualScenes> LibraryVisualScenes = [];
+            public readonly List<ColladaLibraryVisualScenes> LibraryVisualScenes = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaLibraryVisualScenes>() {  };
 
             public readonly ColladaScene Scene;
 
@@ -169,7 +169,7 @@ namespace Engine.Media {
         }
 
         public class ColladaLibraryVisualScenes {
-            public List<ColladaVisualScene> VisualScenes = [];
+            public List<ColladaVisualScene> VisualScenes = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaVisualScene>() {  };
 
             public ColladaLibraryVisualScenes() { }
 
@@ -187,7 +187,7 @@ namespace Engine.Media {
         }
 
         public class ColladaLibraryGeometries {
-            public List<ColladaGeometry> Geometries = [];
+            public List<ColladaGeometry> Geometries = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaGeometry>() {  };
 
             public ColladaLibraryGeometries() { }
 
@@ -220,7 +220,7 @@ namespace Engine.Media {
         }
 
         public class ColladaVisualScene : ColladaNameId {
-            public List<ColladaNode> ChildNodes = [];
+            public List<ColladaNode> ChildNodes = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaNode>() {  };
 
             public ColladaVisualScene(ColladaRoot colladaRoot) : base(colladaRoot, "Scene") { }
 
@@ -241,9 +241,9 @@ namespace Engine.Media {
         public class ColladaNode : ColladaNameId {
             public Matrix Transform = Matrix.Identity;
 
-            public List<ColladaNode> Children = [];
+            public List<ColladaNode> Children = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaNode>() {  };
 
-            public List<ColladaGeometry> Geometries = [];
+            public List<ColladaGeometry> Geometries = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaGeometry>() {  };
 
             public ColladaNode(ColladaRoot colladaRoot, ModelData modelData, ModelBoneData modelBoneData) : base(colladaRoot, modelBoneData.Name) {
                 Transform = modelBoneData.Transform;
@@ -384,11 +384,11 @@ namespace Engine.Media {
         }
 
         public class ColladaMesh {
-            public List<ColladaSource> Sources = [];
+            public List<ColladaSource> Sources = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaSource>() {  };
 
             public ColladaVertices Vertices;
 
-            public List<ColladaPolygons> Polygons = [];
+            public List<ColladaPolygons> Polygons = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaPolygons>() {  };
 
             public unsafe ColladaMesh(ColladaRoot colladaRoot,
                 ColladaGeometry colladaGeometry,
@@ -613,11 +613,11 @@ namespace Engine.Media {
         }
 
         public class ColladaPolygons {
-            public List<ColladaInput> Inputs = [];
+            public List<ColladaInput> Inputs = new global::System.Collections.Generic.List<global::Engine.Media.Collada.ColladaInput>() {  };
 
-            public List<int> VCount = [];
+            public List<int> VCount = new global::System.Collections.Generic.List<int>() {  };
 
-            public List<int> P = [];
+            public List<int> P = new global::System.Collections.Generic.List<int>() {  };
 
             public ColladaPolygons() { }
 
@@ -847,7 +847,7 @@ namespace Engine.Media {
         }
 
         public static bool IsColladaStream(Stream stream) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             bool result = false;
             long position = stream.Position;
             try {

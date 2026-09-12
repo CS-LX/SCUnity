@@ -9,7 +9,7 @@ namespace Game {
         public ButtonWidget m_nextRecipeButton;
 
         public int m_recipeIndex;
-        public List<CraftingRecipe> m_craftingRecipes = [];
+        public List<CraftingRecipe> m_craftingRecipes = new global::System.Collections.Generic.List<global::Game.CraftingRecipe>() {  };
         public int RecipesCount;
         public const string fName = "RecipaediaRecipesScreen";
 

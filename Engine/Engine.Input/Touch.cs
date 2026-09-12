@@ -21,7 +21,7 @@ namespace Engine.Input {
         }
 #endif
 
-        static List<TouchLocation> m_touchLocations = [];
+        static List<TouchLocation> m_touchLocations = new global::System.Collections.Generic.List<global::Engine.Input.TouchLocation>() {  };
 
         public static ReadOnlyList<TouchLocation> TouchLocations => new(m_touchLocations);
 

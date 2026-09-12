@@ -451,7 +451,7 @@ namespace Engine.Media {
                     }
                 }
                 int finalVertexCount = uwPos != null ? uwPos.Length : positions.Count;
-                MorphTargetTexture morphTex = new(finalVertexCount, morphTargetCount, morphAttributes);
+                MorphTargetTexture morphTex = new(finalVertexCount, morphTargetCount, new ReadOnlySetAdapter<string>(morphAttributes));
                 // 转为数组列表用于 UploadData
                 IReadOnlyList<Vector3>[] mpList = ToEngineVector3List(morphPositions);
                 IReadOnlyList<Vector3>[] mnList = ToEngineVector3List(morphNormals);

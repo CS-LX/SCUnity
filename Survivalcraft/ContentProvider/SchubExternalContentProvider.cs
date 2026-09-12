@@ -218,18 +218,7 @@ namespace Game {
                         string nickName = data.GetProperty("nickName").GetString() ?? string.Empty;
                         SettingsManager.ScpboxUserInfo += $"昵称：{nickName}";
                         SettingsManager.ScpboxUserInfo += $"\n账号：{data.GetProperty("user").GetString()}";
-                        SettingsManager.ScpboxUserInfo += $"\n登录时间：{TimeZoneInfo.ConvertTimeFromUtc(
-                            new DateTime(
-                                1970,
-                                1,
-                                1,
-                                0,
-                                0,
-                                0,
-                                DateTimeKind.Utc
-                            ).AddSeconds(data.GetProperty("loginTime").GetInt64()),
-                            TimeZoneInfo.Local
-                        )}";
+                        SettingsManager.ScpboxUserInfo += $"\n登录时间：{TimeZoneInfo.ConvertTimeFromUtc(                             new DateTime(                                 1970,                                 1,                                 1,                                 0,                                 0,                                 0,                                 DateTimeKind.Utc                             ).AddSeconds(data.GetProperty("loginTime").GetInt64()),                             TimeZoneInfo.Local                         )}";
                         DialogsManager.ShowDialog(
                             null,
                             new MessageDialog(

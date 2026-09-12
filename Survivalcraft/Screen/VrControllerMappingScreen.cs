@@ -15,19 +15,13 @@ namespace Game {
         public BevelledButtonWidget m_resetButton;
         public BevelledButtonWidget m_gameHelpButton;
         public bool IsWaitingForInput;
-        public Dictionary<string, bool> m_conflicts = [];
+        public Dictionary<string, bool> m_conflicts = new global::System.Collections.Generic.Dictionary<string, bool>() {  };
 
-        static readonly string[] VrActions = [
-            "VrJump", "VrInteract", "VrAim", "VrEditItem",
-            "VrToggleMount", "VrToggleCrouch", "VrToggleInventory",
-            "VrToggleClothing", "VrHit", "VrDig", "VrDrop",
-            "VrScrollLeft", "VrScrollRight", "VrToggleFly", "VrSwitchCameraMode"
-        ];
+        static readonly string[] VrActions = new string[] {             "VrJump", "VrInteract", "VrAim", "VrEditItem",             "VrToggleMount", "VrToggleCrouch", "VrToggleInventory",             "VrToggleClothing", "VrHit", "VrDig", "VrDrop",             "VrScrollLeft", "VrScrollRight", "VrToggleFly", "VrSwitchCameraMode"
+ };
 
-        static readonly string[][] VrCompatibleGroups = [
-            ["VrInteract", "VrAim"],
-            ["VrHit", "VrDig"]
-        ];
+        static readonly string[][] VrCompatibleGroups = new string[][] {             new string[] { "VrInteract", "VrAim" },             new string[] { "VrHit", "VrDig" }
+ };
 
         public VrControllerMappingScreen() {
             XElement node = ContentManager.Get<XElement>("Screens/KeyboardMappingScreen");
@@ -147,7 +141,7 @@ namespace Game {
                     return;
                 }
                 // Poll all buttons on both controllers
-                foreach (VrControllerButton button in System.Enum.GetValues<VrControllerButton>()) {
+                foreach (VrControllerButton button in ((VrControllerButton[])System.Enum.GetValues(typeof(VrControllerButton)))) {
                     if (button == VrControllerButton.Null || button == VrControllerButton.Menu) continue;
                     // Check left controller
                     if (VrManager.IsButtonDownOnce(VrController.Left, button)) {
@@ -199,7 +193,7 @@ namespace Game {
                 if (btn == VrControllerButton.Null) continue;
                 var key = (ctrl, btn);
                 if (!bindingToActions.TryGetValue(key, out var list)) {
-                    list = [];
+                    list = new global::System.Collections.Generic.List<string>() {  };
                     bindingToActions[key] = list;
                 }
                 list.Add(action);
@@ -247,7 +241,7 @@ namespace Game {
             return Tk(btn.ToString());
         }
 
-        readonly Dictionary<string, ContainerWidget> m_widgetsByAction = [];
+        readonly Dictionary<string, ContainerWidget> m_widgetsByAction = new global::System.Collections.Generic.Dictionary<string, global::Game.ContainerWidget>() {  };
 
         public class VrMappingItem {
             public string ActionName;

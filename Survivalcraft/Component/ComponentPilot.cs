@@ -34,7 +34,7 @@ namespace Game {
 
         public Vector3? m_lastStuckCheckPosition;
 
-        public DynamicArray<ComponentBody> m_nearbyBodies = [];
+        public DynamicArray<ComponentBody> m_nearbyBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
         public double m_nextBodiesUpdateTime;
 

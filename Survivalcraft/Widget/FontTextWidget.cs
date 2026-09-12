@@ -20,7 +20,7 @@ namespace Game {
 
         public bool m_ellipsis;
 
-        public List<string> m_lines = [];
+        public List<string> m_lines = new global::System.Collections.Generic.List<string>() {  };
 
         public Vector2? m_linesSize;
 
@@ -272,7 +272,7 @@ namespace Game {
             }
             availableWidth += 0.1f;
             m_lines.Clear();
-            string[] array = (Text ?? string.Empty).Split(["\n"], StringSplitOptions.None);
+            string[] array = (Text ?? string.Empty).Split(new string[] { "\n" }, StringSplitOptions.None);
             string text = "...";
             float x = Font.MeasureText(text, new Vector2(FontScale), FontSpacing).X;
             if (WordWrap) {

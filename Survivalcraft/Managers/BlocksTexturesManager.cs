@@ -6,7 +6,7 @@ using Image = Engine.Media.Image;
 namespace Game {
     public static class BlocksTexturesManager {
         public const string fName = "BlocksTexturesManager";
-        public static List<string> m_blockTextureNames = [];
+        public static List<string> m_blockTextureNames = new global::System.Collections.Generic.List<string>() {  };
 
         public static Texture2D DefaultBlocksTexture { get; set; }
 

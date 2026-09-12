@@ -15,7 +15,7 @@ namespace Game {
 
         public string m_path;
         public bool m_listDirty;
-        public Dictionary<string, bool> m_downloadedFiles = [];
+        public Dictionary<string, bool> m_downloadedFiles = new global::System.Collections.Generic.Dictionary<string, bool>() {  };
         public IExternalContentProvider m_externalContentProvider = ExternalContentManager.DefaultProvider;
         public const string fName = "ExternalContentScreen";
 

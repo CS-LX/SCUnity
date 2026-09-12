@@ -9,7 +9,7 @@ namespace TemplatesDatabase {
 
         public ReadOnlyList<DatabaseObjectType> m_databaseObjectTypes;
 
-        public Dictionary<Guid, DatabaseObject> m_databaseObjectsByGuid = [];
+        public Dictionary<Guid, DatabaseObject> m_databaseObjectsByGuid = new global::System.Collections.Generic.Dictionary<global::System.Guid, global::TemplatesDatabase.DatabaseObject>() {  };
 
         public IList<DatabaseObjectType> DatabaseObjectTypes => m_databaseObjectTypes;
 

@@ -73,7 +73,7 @@ namespace Game {
                     boundingBox.Max.Y = 0.4f;
                     boundingBox.Max.Z += num4;
                 }
-                m_collisionBoxesBySize[j] = [boundingBox];
+                m_collisionBoxesBySize[j] = new global::Engine.BoundingBox[] { boundingBox };
             }
             base.Initialize();
         }

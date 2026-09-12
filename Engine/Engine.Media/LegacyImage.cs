@@ -7,22 +7,22 @@ namespace Engine.Media {
         public readonly Color[] Pixels;
 
         public LegacyImage(LegacyImage image) {
-            ArgumentNullException.ThrowIfNull(image);
+            if (image is null) throw new ArgumentNullException("image");
             Width = image.Width;
             Height = image.Height;
             Pixels = (Color[])image.Pixels.Clone();
         }
 
         public LegacyImage(Image image) {
-            ArgumentNullException.ThrowIfNull(image);
+            if (image is null) throw new ArgumentNullException("image");
             Width = image.Width;
             Height = image.Height;
             Pixels = (Color[])image.Pixels.Clone();
         }
 
         public LegacyImage(int width, int height) {
-            ArgumentOutOfRangeException.ThrowIfNegative(width);
-            ArgumentOutOfRangeException.ThrowIfNegative(height);
+            if (width < 0) throw new ArgumentOutOfRangeException("width");
+            if (height < 0) throw new ArgumentOutOfRangeException("height");
             Width = width;
             Height = height;
             Pixels = new Color[width * height];
@@ -50,8 +50,8 @@ namespace Engine.Media {
         }
 
         public static IEnumerable<LegacyImage> GenerateMipmaps(LegacyImage image, int maxLevelsCount = int.MaxValue) {
-            ArgumentNullException.ThrowIfNull(image);
-            ArgumentOutOfRangeException.ThrowIfNegative(maxLevelsCount);
+            if (image is null) throw new ArgumentNullException("image");
+            if (maxLevelsCount < 0) throw new ArgumentOutOfRangeException("maxLevelsCount");
             if (maxLevelsCount == 0) {
                 yield break;
             }

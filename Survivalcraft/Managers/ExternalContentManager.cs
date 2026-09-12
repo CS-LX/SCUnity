@@ -14,21 +14,20 @@ namespace Game {
         public static ReadOnlyList<IExternalContentProvider> Providers => new(m_providers);
 
         public static void Initialize() {
-            m_providers = [
+            m_providers = new global::System.Collections.Generic.List<global::Game.IExternalContentProvider>() {
 #if !ANDROID
                 new DiskExternalContentProvider(),
 #endif
 #if ANDROID
                 new AndroidSdCardExternalContentProvider(),
 #endif
-                new SchubExternalContentProvider(),
-                new DropboxExternalContentProvider()
-            ];
+                new SchubExternalContentProvider(),                 new DropboxExternalContentProvider()
+ };
         }
 
         public static ExternalContentType ExtensionToType(string extension) {
             extension = extension.ToLower();
-            foreach (ExternalContentType value in Enum.GetValues<ExternalContentType>()) {
+            foreach (ExternalContentType value in ((ExternalContentType[])System.Enum.GetValues(typeof(ExternalContentType)))) {
                 if (GetEntryTypeExtensions(value).FirstOrDefault(e => e == extension) != null) {
                     return value;
                 }

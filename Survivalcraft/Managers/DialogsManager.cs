@@ -12,11 +12,11 @@ namespace Game {
             public CoverWidget CoverWidget = new() { OutlineColor = Color.Transparent, FillColor = new Color(0, 0, 0, 192), IsHitTestVisible = true };
         }
 
-        public static Dictionary<Dialog, AnimationData> m_animationData = [];
+        public static Dictionary<Dialog, AnimationData> m_animationData = new global::System.Collections.Generic.Dictionary<global::Game.Dialog, global::Game.DialogsManager.AnimationData>() {  };
 
-        public static List<Dialog> m_dialogs = [];
+        public static List<Dialog> m_dialogs = new global::System.Collections.Generic.List<global::Game.Dialog>() {  };
 
-        public static List<Dialog> m_toRemove = [];
+        public static List<Dialog> m_toRemove = new global::System.Collections.Generic.List<global::Game.Dialog>() {  };
 
         public static ReadOnlyList<Dialog> Dialogs => new(m_dialogs);
 

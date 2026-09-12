@@ -61,3 +61,10 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Unity source packages use stable LF line endings.
+*.cs text eol=lf
+*.meta text eol=lf
+*.asmdef text eol=lf
+*.rsp text eol=lf
+*.json text eol=lf

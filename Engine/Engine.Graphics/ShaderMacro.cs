@@ -14,7 +14,7 @@ namespace Engine.Graphics {
             if (string.IsNullOrEmpty(name)) {
                 throw new ArgumentNullException(nameof(name));
             }
-            ArgumentNullException.ThrowIfNull(value);
+            if (value is null) throw new ArgumentNullException("value");
             for (int i = 0; i < name.Length; i++) {
                 if ((i == 0 && m_nameChars1.IndexOf(name[i]) == -1)
                     || (i > 0 && m_nameChars2.IndexOf(name[i]) == -1)) {

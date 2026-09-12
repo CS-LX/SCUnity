@@ -11,7 +11,7 @@ namespace Game {
             public int Count;
         }
 
-        public List<Slot> m_slots = [];
+        public List<Slot> m_slots = new global::System.Collections.Generic.List<global::Game.ComponentInventoryBase.Slot>() {  };
 
         public Random m_random = new();
 

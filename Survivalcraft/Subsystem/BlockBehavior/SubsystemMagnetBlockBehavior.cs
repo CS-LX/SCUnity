@@ -6,11 +6,11 @@ namespace Game {
     public class SubsystemMagnetBlockBehavior : SubsystemBlockBehavior {
         public SubsystemPlayers m_subsystemPlayers;
 
-        public DynamicArray<Vector3> m_magnets = [];
+        public DynamicArray<Vector3> m_magnets = new global::Engine.DynamicArray<global::Engine.Vector3>() {  };
 
         public const int MaxMagnets = 8;
 
-        public override int[] HandledBlocks => [167];
+        public override int[] HandledBlocks => new int[] { 167 };
 
         public int MagnetsCount => m_magnets.Count;
 

@@ -2,7 +2,7 @@ namespace Engine.Serialization {
     public abstract class OutputArchive : Archive {
         int m_nextObjectId = 1;
 
-        Dictionary<object, int> m_idByObject = [];
+        Dictionary<object, int> m_idByObject = new global::System.Collections.Generic.Dictionary<object, int>() {  };
 
         protected OutputArchive(int version, object context) : base(version, context) { }
 

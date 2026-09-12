@@ -11,7 +11,7 @@ namespace Game {
             public object[] Parameters;
         }
 
-        public static Dictionary<string, Screen> m_screens = [];
+        public static Dictionary<string, Screen> m_screens = new global::System.Collections.Generic.Dictionary<string, global::Game.Screen>() {  };
         public static AnimationData m_animationData;
         public static PrimitivesRenderer2D m_pr2 = new();
         public static PrimitivesRenderer3D m_pr3 = new();
@@ -33,7 +33,7 @@ namespace Game {
         /// </summary>
         public static Screen PreviousScreen { get; set; }
 
-        public static Stack<Screen> HistoryStack { get; } = [];
+        public static Stack<Screen> HistoryStack { get; } = new global::System.Collections.Generic.Stack<global::Game.Screen>() {  };
 
         public static Screen TopOfHistoryScreen => HistoryStack.TryPeek(out Screen screen) ? screen : null;
 

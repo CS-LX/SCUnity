@@ -38,7 +38,7 @@ namespace Game {
             if (m_isIncendiary) {
                 m_blockMesh.TransformTextureCoordinates(Matrix.CreateTranslation(-0.25f, 0f, 0f));
             }
-            m_collisionBoxes = [blockMesh.CalculateBoundingBox()];
+            m_collisionBoxes = new global::Engine.BoundingBox[] { blockMesh.CalculateBoundingBox() };
             m_standaloneBlockMesh.AppendModelMeshPart(
                 model.FindMesh("Keg").MeshParts[0],
                 boneAbsoluteTransform * Matrix.CreateTranslation(0f, -0.5f, 0f),

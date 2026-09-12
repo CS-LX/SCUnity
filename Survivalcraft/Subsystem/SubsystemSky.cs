@@ -108,7 +108,7 @@ namespace Game {
             new VertexElement(12, VertexElementFormat.NormalizedByte4, VertexElementSemantic.Color)
         );
 
-        public Dictionary<GameWidget, SkyDome> m_skyDomes = [];
+        public Dictionary<GameWidget, SkyDome> m_skyDomes = new global::System.Collections.Generic.Dictionary<global::GameWidget, global::Game.SubsystemSky.SkyDome>() {  };
 
         public VertexBuffer m_starsVertexBuffer;
 
@@ -136,15 +136,15 @@ namespace Game {
 
         public bool FogEnabled = true;
 
-        public int[] m_drawOrders = [-100, 5, 105];
+        public int[] m_drawOrders = new int[] { -100, 5, 105 };
 
-        public float[] m_cloudsLayerRadii = [0f, 0.8f, 0.95f, 1f];
+        public float[] m_cloudsLayerRadii = new float[] { 0f, 0.8f, 0.95f, 1f };
 
         public Color[] m_cloudsLayerColors = new Color[5];
 
-        public static int[] m_lightValuesMoonless = [0, 3, 6, 9, 12, 15];
+        public static int[] m_lightValuesMoonless = new int[] { 0, 3, 6, 9, 12, 15 };
 
-        public static int[] m_lightValuesNormal = [3, 5, 8, 10, 13, 15];
+        public static int[] m_lightValuesNormal = new int[] { 3, 5, 8, 10, 13, 15 };
 
         public virtual float SkyLightIntensity { get; set; }
 
@@ -221,7 +221,7 @@ namespace Game {
             if (m_subsystemGameInfo.WorldSettings.EnvironmentBehaviorMode != 0) {
                 return;
             }
-            DynamicArray<ComponentBody> dynamicArray = [];
+            DynamicArray<ComponentBody> dynamicArray = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
             m_subsystemBodies.FindBodiesAroundPoint(new Vector2(targetPosition.X, targetPosition.Z), 4f, dynamicArray);
             for (int i = 0; i < dynamicArray.Count; i++) {
                 ComponentBody componentBody = dynamicArray.Array[i];

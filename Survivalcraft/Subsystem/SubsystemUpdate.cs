@@ -28,12 +28,12 @@ namespace Game {
 
         public int DefaultFixedUpdateStep => m_subsystemTime.DefaultFixedUpdateStep;
 
-        public Dictionary<IUpdateable, UpdateableInfo> m_updateables = [];
+        public Dictionary<IUpdateable, UpdateableInfo> m_updateables = new global::System.Collections.Generic.Dictionary<global::Game.IUpdateable, global::Game.SubsystemUpdate.UpdateableInfo>() {  };
 
-        public Dictionary<IUpdateable, bool> m_toAddOrRemove = [];
+        public Dictionary<IUpdateable, bool> m_toAddOrRemove = new global::System.Collections.Generic.Dictionary<global::Game.IUpdateable, bool>() {  };
 
-        public List<IUpdateable> m_sortedUpdateables = [];
-        public Dictionary<Type, DebugInfo> m_debugInfos = [];
+        public List<IUpdateable> m_sortedUpdateables = new global::System.Collections.Generic.List<global::Game.IUpdateable>() {  };
+        public Dictionary<Type, DebugInfo> m_debugInfos = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Game.DebugInfo>() {  };
         public Stopwatch m_debugStopwatch = new();
         public bool UpdateTimeDebug = false;
 

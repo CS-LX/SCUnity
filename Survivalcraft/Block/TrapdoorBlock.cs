@@ -39,7 +39,7 @@ namespace Game {
                         Color.White
                     );
                 m_blockMeshesByData[i].GenerateSidesData();
-                m_collisionBoxesByData[i] = [m_blockMeshesByData[i].CalculateBoundingBox()];
+                m_collisionBoxesByData[i] = new global::Engine.BoundingBox[] { m_blockMeshesByData[i].CalculateBoundingBox() };
             }
             m_standaloneBlockMesh.AppendModelMeshPart(
                 model.FindMesh("Trapdoor").MeshParts[0],

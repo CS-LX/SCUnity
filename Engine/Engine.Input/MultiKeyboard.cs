@@ -11,18 +11,18 @@ public static class MultiKeyboard {
         public char? LastChar;
         // ReSharper restore MemberHidesStaticFromOuterClass
 
-        public bool[] KeysDownArray = new bool[Enum.GetValues<Key>().Length];
+        public bool[] KeysDownArray = new bool[((Key[])System.Enum.GetValues(typeof(Key))).Length];
 
-        public bool[] KeysDownOnceArray = new bool[Enum.GetValues<Key>().Length];
+        public bool[] KeysDownOnceArray = new bool[((Key[])System.Enum.GetValues(typeof(Key))).Length];
 
-        public double[] KeysDownRepeatArray = new double[Enum.GetValues<Key>().Length];
+        public double[] KeysDownRepeatArray = new double[((Key[])System.Enum.GetValues(typeof(Key))).Length];
     }
 
     static double KeyFirstRepeatTime = 0.3;
 
     static double KeyNextRepeatTime = 0.04;
 
-    static KeyboardData[] _KeyboardData = [new(), new(), new(), new()];
+    static KeyboardData[] _KeyboardData = new global::MultiKeyboard.KeyboardData[] { new(), new(), new(), new() };
 
     // ReSharper disable UnusedAutoPropertyAccessor.Global
     public static bool BackButtonQuitsApp { get; set; }

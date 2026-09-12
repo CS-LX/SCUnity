@@ -1,3 +1,5 @@
+// Preserve the upstream obsolete API marker; the .NET Framework base lacks it.
+#pragma warning disable CS0809
 using System.Runtime.Serialization;
 
 namespace Engine.Animation {
@@ -47,9 +49,7 @@ namespace Engine.Animation {
         /// <param name="info">The object that holds the serialized object data.</param>
         /// <param name="context">The contextual information about the source or destination.</param>
         [Obsolete(
-            "This API supports obsolete formatter-based serialization. It should not be called or extended by application code.",
-            DiagnosticId = "SYSLIB0051",
-            UrlFormat = "https://aka.ms/dotnet-warnings/{0}"
+            "This API supports obsolete formatter-based serialization. It should not be called or extended by application code."
         )]
         public override void GetObjectData(SerializationInfo info, StreamingContext context) {
             base.GetObjectData(info, context);
@@ -57,3 +57,4 @@ namespace Engine.Animation {
         }
     }
 }
+#pragma warning restore CS0809

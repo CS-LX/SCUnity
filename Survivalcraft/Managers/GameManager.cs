@@ -18,7 +18,7 @@ namespace Game {
 
         public static WorldInfo WorldInfo => m_worldInfo;
 
-        public static List<Func<bool>> SyncDispatcher = [];
+        public static List<Func<bool>> SyncDispatcher = new global::System.Collections.Generic.List<global::System.Func<bool>>() {  };
 
         public static event Action<Project> ProjectDisposed;
 

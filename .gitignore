@@ -354,3 +354,11 @@ docs/superpowers/
 
 # macOS
 .DS_Store
+
+# Editable Unity packages: keep stable importer and compiler configuration.
+!/Engine/**/*.meta
+!/EntitySystem/**/*.meta
+!/Survivalcraft/**/*.meta
+!/Engine/csc.rsp
+!/EntitySystem/csc.rsp
+!/Survivalcraft/csc.rsp

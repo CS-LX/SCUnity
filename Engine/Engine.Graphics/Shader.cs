@@ -28,8 +28,8 @@ namespace Engine.Graphics {
         public int m_program;
         public int m_vertexShader;
         public int m_pixelShader;
-        public Dictionary<VertexDeclaration, VertexAttributeData[]> m_vertexAttributeDataByDeclaration = [];
-        public List<ShaderAttributeData> m_shaderAttributeData = [];
+        public Dictionary<VertexDeclaration, VertexAttributeData[]> m_vertexAttributeDataByDeclaration = new global::System.Collections.Generic.Dictionary<global::Engine.Graphics.VertexDeclaration, global::Engine.Graphics.Shader.VertexAttributeData[]>() {  };
+        public List<ShaderAttributeData> m_shaderAttributeData = new global::System.Collections.Generic.List<global::Engine.Graphics.Shader.ShaderAttributeData>() {  };
         public ShaderParameter m_glymulParameter;
 
         public string DebugName {
@@ -54,9 +54,9 @@ namespace Engine.Graphics {
         public virtual void PrepareForDrawingOverride() { }
 
         public virtual void InitializeShader(string vertexShaderCode, string pixelShaderCode, ShaderMacro[] shaderMacros) {
-            ArgumentNullException.ThrowIfNull(vertexShaderCode);
-            ArgumentNullException.ThrowIfNull(pixelShaderCode);
-            ArgumentNullException.ThrowIfNull(shaderMacros);
+            if (vertexShaderCode is null) throw new ArgumentNullException("vertexShaderCode");
+            if (pixelShaderCode is null) throw new ArgumentNullException("pixelShaderCode");
+            if (shaderMacros is null) throw new ArgumentNullException("shaderMacros");
             m_vertexShaderCode = vertexShaderCode;
             m_pixelShaderCode = pixelShaderCode;
             m_shaderMacros = (ShaderMacro[])shaderMacros.Clone();
@@ -262,8 +262,8 @@ namespace Engine.Graphics {
 
         public virtual void CompileShaders() {
             DeleteShaders();
-            Dictionary<string, string> dictionary = [];
-            Dictionary<string, string> dictionary2 = [];
+            Dictionary<string, string> dictionary = new global::System.Collections.Generic.Dictionary<string, string>() {  };
+            Dictionary<string, string> dictionary2 = new global::System.Collections.Generic.Dictionary<string, string>() {  };
             ParseShaderMetadata(m_vertexShaderCode, dictionary, dictionary2);
             ParseShaderMetadata(m_pixelShaderCode, dictionary, dictionary2);
             string @string = PrependShaderMacros(m_vertexShaderCode, m_shaderMacros, true);
@@ -314,8 +314,8 @@ namespace Engine.Graphics {
                 m_shaderAttributeData.Add(new ShaderAttributeData { Location = attribLocation, Semantic = value });
             }
             GLWrapper.GL.GetProgram(program, ProgramPropertyARB.ActiveUniforms, out int params5);
-            List<ShaderParameter> list = [];
-            Dictionary<string, ShaderParameter> dictionary3 = [];
+            List<ShaderParameter> list = new global::System.Collections.Generic.List<global::Engine.Graphics.ShaderParameter>() {  };
+            Dictionary<string, ShaderParameter> dictionary3 = new global::System.Collections.Generic.Dictionary<string, global::Engine.Graphics.ShaderParameter>() {  };
             for (int j = 0; j < params5; j++) {
                 GLWrapper.GL.GetActiveUniform(
                     program,
@@ -397,8 +397,8 @@ namespace Engine.Graphics {
 
             GLWrapper.GL.GetProgram((uint)m_program, ProgramPropertyARB.ActiveUniforms, out int uniformCount);
 
-            List<ShaderParameter> list = [];
-            Dictionary<string, ShaderParameter> dict = [];
+            List<ShaderParameter> list = new global::System.Collections.Generic.List<global::Engine.Graphics.ShaderParameter>() {  };
+            Dictionary<string, ShaderParameter> dict = new global::System.Collections.Generic.Dictionary<string, global::Engine.Graphics.ShaderParameter>() {  };
 
             for (uint i = 0; i < uniformCount; i++) {
                 GLWrapper.GL.GetActiveUniform(

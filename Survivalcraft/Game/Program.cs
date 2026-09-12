@@ -26,7 +26,7 @@ namespace Game {
     public static class Program {
         public static double m_frameBeginTime;
         public static double m_cpuEndTime;
-        public static List<Uri> m_urisToHandle = [];
+        public static List<Uri> m_urisToHandle = new global::System.Collections.Generic.List<global::System.Uri>() {  };
 #if WINDOWS
         public static Mutex m_mutex;
         public static bool m_mutexHandled;
@@ -36,7 +36,7 @@ namespace Game {
 
         public static float LastCpuFrameTime { get; set; }
 
-        public static Dictionary<string, string> StartupParameters = [];
+        public static Dictionary<string, string> StartupParameters = new global::System.Collections.Generic.Dictionary<string, string>() {  };
 
         public static event Action<Uri> HandleUri;
 #if ANDROID || BROWSER
@@ -263,7 +263,7 @@ namespace Game {
                 ScreensManager.Initialize();
                 APIUpdateManager.Initialize();
 #if WINDOWS
-                VrManager.SetBackend(new Engine.VR.WindowsOpenXrVrBackend());
+                VrManager.SetBackend(null);
 #elif ANDROID
                 VrManager.SetBackend(new Engine.VR.AndroidOpenXrVrBackend());
 #endif

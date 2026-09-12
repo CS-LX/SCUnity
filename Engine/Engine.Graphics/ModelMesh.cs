@@ -1,6 +1,6 @@
 namespace Engine.Graphics {
     public class ModelMesh : IDisposable {
-        public List<ModelMeshPart> m_meshParts = [];
+        public List<ModelMeshPart> m_meshParts = new global::System.Collections.Generic.List<global::Engine.Graphics.ModelMeshPart>() {  };
 
         public BoundingBox m_boundingBox;
 
@@ -46,8 +46,8 @@ namespace Engine.Graphics {
             PrimitiveType primitiveType = PrimitiveType.TriangleList,
             System.Numerics.Matrix4x4[] instanceMatrices = null,
             int instanceCount = 0) {
-            ArgumentNullException.ThrowIfNull(vertexBuffer);
-            ArgumentNullException.ThrowIfNull(indexBuffer);
+            if (vertexBuffer is null) throw new ArgumentNullException("vertexBuffer");
+            if (indexBuffer is null) throw new ArgumentNullException("indexBuffer");
             if (startIndex < 0
                 || indicesCount < 0
                 || startIndex + indicesCount > indexBuffer.IndicesCount) {

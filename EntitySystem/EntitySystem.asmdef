@@ -1,0 +1,15 @@
+{
+  "name": "EntitySystem",
+  "references": [
+    "Engine"
+  ],
+  "includePlatforms": [
+    "Editor",
+    "WindowsStandalone64"
+  ],
+  "allowUnsafeCode": true,
+  "overrideReferences": true,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "noEngineReferences": true
+}

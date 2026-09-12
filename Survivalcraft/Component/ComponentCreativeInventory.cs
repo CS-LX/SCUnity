@@ -17,7 +17,7 @@ namespace Game {
             }
         }
 
-        public List<int> m_slots = [];
+        public List<int> m_slots = new global::System.Collections.Generic.List<int>() {  };
 
         public int m_activeSlotIndex;
 
@@ -67,7 +67,7 @@ namespace Game {
             for (int i = 0; i < OpenSlotsCount; i++) {
                 m_slots.Add(0);
             }
-            List<Order> orders = [];
+            List<Order> orders = new global::System.Collections.Generic.List<global::Game.ComponentCreativeInventory.Order>() {  };
             foreach (Block item in BlocksManager.Blocks) {
                 foreach (int creativeValue in item.GetCreativeValues()) {
                     orders.Add(new Order(item, item.GetDisplayOrder(creativeValue), creativeValue));

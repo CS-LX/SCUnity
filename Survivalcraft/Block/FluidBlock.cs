@@ -16,7 +16,7 @@ namespace Game {
             for (int i = 0; i < 16; i++) {
                 float num = 0.875f * MathUtils.Saturate(1f - i / (float)MaxLevel);
                 m_heightByLevel[i] = num;
-                m_boundingBoxesByLevel[i] = [new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, num, 1f))];
+                m_boundingBoxesByLevel[i] = new global::Engine.BoundingBox[] { new BoundingBox(new Vector3(0f, 0f, 0f), new Vector3(1f, num, 1f)) };
             }
         }
 

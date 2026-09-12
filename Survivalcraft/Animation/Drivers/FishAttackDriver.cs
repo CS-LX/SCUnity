@@ -11,7 +11,7 @@ namespace Game.Animation.Drivers {
         public AnimationBlendMode BlendMode => AnimationBlendMode.Override;
 
         public string[] TargetBones => mTargetBones;
-        string[] mTargetBones = ["Jaw"];
+        string[] mTargetBones = new string[] { "Jaw" };
 
         // 参数名称
         public string BitingPhaseParam { get; set; } = "BitingPhase";

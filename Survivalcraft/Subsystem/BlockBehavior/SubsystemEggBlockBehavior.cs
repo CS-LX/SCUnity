@@ -14,7 +14,7 @@ namespace Game {
 
         public const string fName = "SubsystemEggBlockBehavior";
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override bool OnHitAsProjectile(CellFace? cellFace, ComponentBody componentBody, WorldItem worldItem) {
             int data = Terrain.ExtractData(worldItem.Value);

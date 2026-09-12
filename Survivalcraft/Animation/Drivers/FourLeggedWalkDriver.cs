@@ -15,15 +15,8 @@ namespace Game.Animation.Drivers {
         // 目标骨骼 - 行走时需要控制的所有骨骼
         public string[] TargetBones => mTargetBones;
 
-        string[] mTargetBones = [
-            "Body",
-            "Leg1",
-            "Leg2",
-            "Leg3",
-            "Leg4",
-            "Head",
-            "Neck"
-        ];
+        string[] mTargetBones = new string[] {             "Body",             "Leg1",             "Leg2",             "Leg3",             "Leg4",             "Head",             "Neck"
+ };
 
         // 输入参数名称
         public string SpeedParam { get; set; } = "Speed";
@@ -51,9 +44,9 @@ namespace Game.Animation.Drivers {
         // ========== 可配置的动画参数 ==========
 
         // 步态相位偏移 (Leg1, Leg2, Leg3, Leg4)
-        public float[] WalkPhases { get; set; } = [0.0f, 0.5f, 0.25f, 0.75f];
-        public float[] TrotPhases { get; set; } = [0.0f, 0.5f, 0.5f, 0.0f];
-        public float[] CanterPhases { get; set; } = [0.0f, 0.25f, 0.15f, 0.4f];
+        public float[] WalkPhases { get; set; } = new float[] { 0.0f, 0.5f, 0.25f, 0.75f };
+        public float[] TrotPhases { get; set; } = new float[] { 0.0f, 0.5f, 0.5f, 0.0f };
+        public float[] CanterPhases { get; set; } = new float[] { 0.0f, 0.25f, 0.15f, 0.4f };
 
         // 步态速度系数（从原始组件代码提取）
         // Canter: 0.7f, Trot/Walk: 1.0f

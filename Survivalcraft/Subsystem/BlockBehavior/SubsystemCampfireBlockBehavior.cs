@@ -11,7 +11,7 @@ namespace Game {
 
         public SubsystemAmbientSounds m_subsystemAmbientSounds;
 
-        public Dictionary<Point3, FireParticleSystem> m_particleSystemsByCell = [];
+        public Dictionary<Point3, FireParticleSystem> m_particleSystemsByCell = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.FireParticleSystem>() {  };
 
         public float m_fireSoundVolume;
 
@@ -19,13 +19,13 @@ namespace Game {
 
         public int m_updateIndex;
 
-        public List<Point3> m_toReduce = [];
+        public List<Point3> m_toReduce = new global::System.Collections.Generic.List<global::Engine.Point3>() {  };
 
         public Dictionary<Point3, FireParticleSystem>.KeyCollection Campfires => m_particleSystemsByCell.Keys;
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public virtual void Update(float dt) {
             if (m_subsystemTime.PeriodicGameTimeEvent(5.0, 0.0)) {

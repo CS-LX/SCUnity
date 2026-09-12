@@ -1,6 +1,6 @@
 namespace Engine.Input {
     public class KeyboardInput {
-        public static List<char> Chars = [];
+        public static List<char> Chars = new global::System.Collections.Generic.List<char>() {  };
         public static bool _DeletePressed;
 
         public static bool DeletePressed {

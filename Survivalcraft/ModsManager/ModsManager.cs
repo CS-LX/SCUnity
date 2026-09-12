@@ -39,8 +39,8 @@ public static class ModsManager {
     [Obsolete("使用ApiVersionString")] public const ApiVersionEnum ApiVersion = ApiVersionEnum.Version180;
 
 #if !ANDROID
-    public static string ExternalPath => "app:";
-    public static string DocPath = "app:/doc";
+    public static string ExternalPath => "data:";
+    public static string DocPath = "data:/doc";
     public static string WorldsDirectoryName = $"{DocPath}/Worlds";
 #endif
 #if ANDROID
@@ -64,7 +64,7 @@ public static class ModsManager {
     public static string ConfigsPath { get; } = $"{DocPath}/Configs.xml";
     public static string LogPath { get; } = $"{ExternalPath}/Bugs";
     public static string ModsPath = $"{ExternalPath}/Mods";
-    public static bool IsAndroid => OperatingSystem.IsAndroid();
+    public static bool IsAndroid => false;
     //public static bool IsAndroid => VersionsManager.Platform == Platform.Android;
 
     internal static ModEntity SurvivalCraftModEntity;
@@ -75,9 +75,16 @@ public static class ModsManager {
         public string languageType = string.Empty;
     }
 
-    public class ModHook(string name) {
-        public string HookName = name;
-        public List<ModLoader> Loaders = [];
+    public class ModHook{
+
+        public ModHook(string name)
+{
+    this.HookName = name;
+    this.Loaders = new global::System.Collections.Generic.List<global::Game.ModLoader>()
+    {
+    };
+}        public string HookName ;
+        public List<ModLoader> Loaders ;
 
         public void Add(ModLoader modLoader) {
             Loaders.Add(modLoader);
@@ -89,26 +96,26 @@ public static class ModsManager {
     }
 
     static bool AllowContinue = true;
-    public static Dictionary<string, string> Configs = [];
+    public static Dictionary<string, string> Configs = new global::System.Collections.Generic.Dictionary<string, string>() {  };
     /// <summary>
     /// 所有模组，含禁用的
     /// </summary>
-    public static List<ModEntity> ModListAll = [];
+    public static List<ModEntity> ModListAll = new global::System.Collections.Generic.List<global::Game.ModEntity>() {  };
     /// <summary>
     /// 所有已启用的模组
     /// </summary>
-    public static List<ModEntity> ModList = [];
+    public static List<ModEntity> ModList = new global::System.Collections.Generic.List<global::Game.ModEntity>() {  };
     /// <summary>
     /// 含所有已启用的模组
     /// </summary>
-    public static Dictionary<string, ModEntity> PackageNameToModEntity = [];
-    public static List<ModLoader> ModLoaders = [];
+    public static Dictionary<string, ModEntity> PackageNameToModEntity = new global::System.Collections.Generic.Dictionary<string, global::Game.ModEntity>() {  };
+    public static List<ModLoader> ModLoaders = new global::System.Collections.Generic.List<global::Game.ModLoader>() {  };
 
     //仅手动禁用的
-    public static Dictionary<string, HashSet<string>> DisabledMods = [];
+    public static Dictionary<string, HashSet<string>> DisabledMods = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.HashSet<string>>() {  };
 
-    public static Dictionary<string, ModHook> ModHooks = [];
-    public static Dictionary<string, Assembly> Dlls = [];
+    public static Dictionary<string, ModHook> ModHooks = new global::System.Collections.Generic.Dictionary<string, global::ModsManager.ModHook>() {  };
+    public static Dictionary<string, Assembly> Dlls = new global::System.Collections.Generic.Dictionary<string, global::System.Reflection.Assembly>() {  };
 
     public static bool GetModEntity(string packagename, out ModEntity modEntity) {
         modEntity = ModList.Find(px => px.modInfo.PackageName == packagename);
@@ -152,7 +159,7 @@ public static class ModsManager {
         }
     }
 
-    public static Dictionary<KeyValuePair<ModHook, ModLoader>, bool> m_hookBugLogged = [];
+    public static Dictionary<KeyValuePair<ModHook, ModLoader>, bool> m_hookBugLogged = new global::System.Collections.Generic.Dictionary<global::System.Collections.Generic.KeyValuePair<global::ModsManager.ModHook, global::Game.ModLoader>, bool>() {  };
 
     public static bool TryInvoke(ModHook modHook, ModLoader modLoader, Func<ModLoader, bool> action) {
         try {
@@ -171,7 +178,7 @@ public static class ModsManager {
         }
     }
 
-    public static Dictionary<string, PriorityQueue<ModLoader, long>> m_tempModHooks = [];
+    public static Dictionary<string, PriorityQueue<ModLoader, long>> m_tempModHooks = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.PriorityQueue<global::Game.ModLoader, long>>() {  };
     static ushort m_registerHookTimes = 0;
 
     /// <summary>
@@ -516,7 +523,7 @@ public static class ModsManager {
         Dictionary<ModEntity, List<ModEntity>> adjList = new(ReferenceEqualityComparer.Instance);
         foreach (ModEntity mod in orderedMods) {
             inDegree[mod] = 0;
-            adjList[mod] = [];
+            adjList[mod] = new global::System.Collections.Generic.List<global::Game.ModEntity>() {  };
         }
         // 3. 构建依赖图
         foreach (ModEntity mod in orderedMods) {
@@ -545,7 +552,7 @@ public static class ModsManager {
             }
         }
         // 4. 稳定拓扑排序 (Kahn算法变形)
-        List<ModEntity> sortedResult = [];
+        List<ModEntity> sortedResult = new global::System.Collections.Generic.List<global::Game.ModEntity>() {  };
         List<ModEntity> remainingMods = new(orderedMods);
         while (remainingMods.Count > 0) {
             // 寻找第一个入度为 0（即所有前置模组都已加载）的模组
@@ -655,7 +662,7 @@ public static class ModsManager {
 #if BROWSER
         throw new NotSupportedException("MD5 is not supported on browser. Use GetSha256 instead.");
 #else
-        byte[] data = MD5.HashData(Encoding.Default.GetBytes(input));
+        byte[] data = Game.MonoBcl.HashMD5(Encoding.UTF8.GetBytes(input));
         StringBuilder sBuilder = new();
         for (int i = 0; i < data.Length; i++) {
             sBuilder.Append(data[i].ToString("x2"));
@@ -665,7 +672,7 @@ public static class ModsManager {
     }
 
     public static string GetSha256(string input) {
-        byte[] data = SHA256.HashData(Encoding.Default.GetBytes(input));
+        byte[] data = Game.MonoBcl.HashSHA256(Encoding.UTF8.GetBytes(input));
         StringBuilder sBuilder = new();
         for (int i = 0; i < data.Length; i++) {
             sBuilder.Append(data[i].ToString("x2"));
@@ -693,7 +700,7 @@ public static class ModsManager {
         XElement target,
         string ignoreAttribute,
         out XElement result) {
-        string[] array1 = target.Value.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        string[] array1 = target.Value.SplitTrimmed('\n');
         for (int i = 0; i < array1.Length; i++) {
             string str = array1[i];
             int left = str.IndexOf('"');
@@ -717,7 +724,7 @@ public static class ModsManager {
                         return false;
                     }
                 }
-                string[] array2 = ele.Value.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                string[] array2 = ele.Value.SplitTrimmed('\n');
                 for (int i = 0; i < array2.Length; i++) {
                     string str = array2[i];
                     int left = str.IndexOf('"');
@@ -737,7 +744,7 @@ public static class ModsManager {
                 clothesRoot.Add(element);
                 continue;
             }
-            List<XAttribute> newAttributes = [];
+            List<XAttribute> newAttributes = new global::System.Collections.Generic.List<global::System.Xml.Linq.XAttribute>() {  };
             foreach (XAttribute attribute in element.Attributes()) {
                 string localName = attribute.Name.LocalName;
                 if (localName.StartsWith("new-") || localName.StartsWith("New-")) {
@@ -841,9 +848,9 @@ public static class ModsManager {
     }
 
     public static FrozenDictionary<string, string> ImportantDatabaseClasses;
-    public static Dictionary<string, List<ClassSubstitute>> ClassSubstitutes = [];
-    public static Dictionary<string, List<ClassSubstitute>> OldClassSubstitutes = [];
-    public static Dictionary<string, ClassSubstitute> SelectedClassSubstitutes = [];
+    public static Dictionary<string, List<ClassSubstitute>> ClassSubstitutes = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<global::ModsManager.ClassSubstitute>>() {  };
+    public static Dictionary<string, List<ClassSubstitute>> OldClassSubstitutes = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<global::ModsManager.ClassSubstitute>>() {  };
+    public static Dictionary<string, ClassSubstitute> SelectedClassSubstitutes = new global::System.Collections.Generic.Dictionary<string, global::ModsManager.ClassSubstitute>() {  };
 
     //对于关键（绑定了API1.7新的ModLoader接口的）组件，对修改行为进行检查报错
     //修饰就是用的internal，不提供其他模组的调用权限
@@ -930,7 +937,7 @@ public static class ModsManager {
                         else {
                             ClassSubstitutes.Add(
                                 guid,
-                                [new ClassSubstitute("survivalcraft", oldElement.Attribute("Value")!.Value), new ClassSubstitute(modPackageName, newAttribute.Value)]
+                                new global::System.Collections.Generic.List<global::ModsManager.ClassSubstitute>() { new ClassSubstitute("survivalcraft", oldElement.Attribute("Value")!.Value), new ClassSubstitute(modPackageName, newAttribute.Value) }
                             );
                         }
                     }
@@ -946,7 +953,7 @@ public static class ModsManager {
     }
     public static void DealWithClassSubstitutes() {
         if (ClassSubstitutes.Count > 0) {
-            Queue<(string, XElement)> needToSolves = [];
+            Queue<(string, XElement)> needToSolves = new global::System.Collections.Generic.Queue<(string, global::System.Xml.Linq.XElement)>() {  };
             foreach ((string guid, List<ClassSubstitute> substitutes) in ClassSubstitutes) {
                 // 如果有 2 个或更多候选项
                 if (substitutes.Count >= 2 && FindElementByGuid(DatabaseManager.DatabaseNode, guid, out XElement element)) {

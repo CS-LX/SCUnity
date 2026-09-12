@@ -8,6 +8,6 @@ namespace Game {
 
         public double? LastVisitedTime;
 
-        public List<SpawnEntityData> SpawnsData = [];
+        public List<SpawnEntityData> SpawnsData = new global::System.Collections.Generic.List<global::Game.SpawnEntityData>() {  };
     }
 }

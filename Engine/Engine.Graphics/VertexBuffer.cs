@@ -86,7 +86,7 @@ namespace Engine.Graphics {
         public override int GetGpuMemoryUsage() => VertexDeclaration.VertexStride * VerticesCount;
 
         public void InitializeVertexBuffer(VertexDeclaration vertexDeclaration, int verticesCount) {
-            ArgumentNullException.ThrowIfNull(vertexDeclaration);
+            if (vertexDeclaration is null) throw new ArgumentNullException("vertexDeclaration");
             if (verticesCount <= 0) {
                 throw new ArgumentException("verticesCount must be greater than 0.");
             }
@@ -98,7 +98,7 @@ namespace Engine.Graphics {
             VerifyNotDisposed();
             int num = Utilities.SizeOf<T>();
             int vertexStride = VertexDeclaration.VertexStride;
-            ArgumentNullException.ThrowIfNull(source);
+            if (source is null) throw new ArgumentNullException("source");
             if (sourceStartIndex < 0
                 || sourceCount < 0
                 || sourceStartIndex + sourceCount > source.Length) {

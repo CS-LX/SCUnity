@@ -18,7 +18,7 @@ namespace Game {
 
         public SubsystemTimeOfDay m_subsystemTimeOfDay;
 
-        public Dictionary<Point3, SaplingData> m_saplings = [];
+        public Dictionary<Point3, SaplingData> m_saplings = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.SubsystemSaplingBlockBehavior.SaplingData>() {  };
 
         public Dictionary<Point3, SaplingData>.ValueCollection.Enumerator m_enumerator;
 
@@ -26,7 +26,7 @@ namespace Game {
 
         public StringBuilder m_stringBuilder = new();
 
-        public override int[] HandledBlocks => [119];
+        public override int[] HandledBlocks => new int[] { 119 };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
@@ -96,7 +96,7 @@ namespace Game {
         }
 
         public SaplingData LoadSaplingData(string data) {
-            string[] array = data.Split([";"], StringSplitOptions.None);
+            string[] array = data.Split(new string[] { ";" }, StringSplitOptions.None);
             if (array.Length != 3) {
                 throw new InvalidOperationException("Invalid sapling data string.");
             }

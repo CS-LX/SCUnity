@@ -145,7 +145,7 @@ namespace Game {
                 );
             }
             if (m_changeFilterButton.IsClicked) {
-                List<object> list = [string.Empty];
+                List<object> list = new global::System.Collections.Generic.List<object>() { string.Empty };
                 foreach (OriginalExternalContentType item in from OriginalExternalContentType t in EnumUtils
                         .GetEnumValues<OriginalExternalContentType>()
                     where IsEntryTypeDownloadSupported(t)
@@ -235,7 +235,7 @@ namespace Game {
                 m_listPanel.ScrollPosition = 0f;
                 return;
             }
-            object[] prefixItems = !string.IsNullOrEmpty(cursor) ? m_listPanel.Items.Where(i => i is OriginalCommunityContentEntry).ToArray() : [];
+            object[] prefixItems = !string.IsNullOrEmpty(cursor) ? m_listPanel.Items.Where(i => i is OriginalCommunityContentEntry).ToArray() : new object[] {  };
             m_populatingListCount++;
             OriginalCommunityContentManager.List(
                 cursor,

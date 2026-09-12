@@ -4,7 +4,7 @@ using TemplatesDatabase;
 
 namespace Game {
     public class ComponentSleep : Component, IUpdateable {
-        public Dictionary<string, Func<string>> m_conditionsToSleep = [];
+        public Dictionary<string, Func<string>> m_conditionsToSleep = new global::System.Collections.Generic.Dictionary<string, global::System.Func<string>>() {  };
 
         public SubsystemPlayers m_subsystemPlayers;
 

@@ -1,0 +1,7 @@
+{
+  "name": "com.scunity.survivalcraft",
+  "version": "1.9.0",
+  "displayName": "Survivalcraft Survivalcraft (Source)",
+  "unity": "6000.3",
+  "description": "Unity Mono source port; upstream SCAPI1.9 history retained."
+}

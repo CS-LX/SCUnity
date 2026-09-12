@@ -27,7 +27,7 @@ namespace Engine.Media {
         /// <param name="filePath">模型文件路径（.gltf 或 .glb）</param>
         /// <returns>ModelData 实例</returns>
         public static ModelData LoadFromFile(string filePath) {
-            ArgumentNullException.ThrowIfNull(filePath);
+            if (filePath is null) throw new ArgumentNullException("filePath");
             string basePath = Path.GetDirectoryName(filePath);
             LoadExternalStreamCallback = relativePath => {
                 string fullPath = Path.Combine(basePath, relativePath);
@@ -44,7 +44,7 @@ namespace Engine.Media {
         /// <param name="basePath">模型数据流的基路径（用于加载外部资源）</param>
         /// <returns>ModelData 实例</returns>
         public static ModelData Load(Stream stream, string basePath = null) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
 
             BYTES FileReaderCallback(string assetName) {
                 string path = basePath == null ? assetName : Storage.CombinePaths(basePath.Replace('\\', '/'), assetName);

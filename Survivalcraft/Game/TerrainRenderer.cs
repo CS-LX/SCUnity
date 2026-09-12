@@ -26,11 +26,11 @@ namespace Game {
             MaxLod = 4f
         };
 
-        public DynamicArray<TerrainChunk> m_chunksToDraw = [];
+        public DynamicArray<TerrainChunk> m_chunksToDraw = new global::Engine.DynamicArray<global::Game.TerrainChunk>() {  };
 
-        public static DynamicArray<int> m_tmpIndices = [];
-        public static DynamicArray<ushort> m_tmpIndices16 = [];
-        public static DynamicArray<TerrainVertex> m_tmpVertices = [];
+        public static DynamicArray<int> m_tmpIndices = new global::Engine.DynamicArray<int>() {  };
+        public static DynamicArray<ushort> m_tmpIndices16 = new global::Engine.DynamicArray<ushort>() {  };
+        public static DynamicArray<TerrainVertex> m_tmpVertices = new global::Engine.DynamicArray<global::Game.TerrainVertex>() {  };
 
         public static bool DrawChunksMap;
 

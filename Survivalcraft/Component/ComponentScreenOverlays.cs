@@ -32,7 +32,7 @@ namespace Game {
 
         public bool m_isUnderWater;
 
-        public static int[] m_drawOrders = [1101];
+        public static int[] m_drawOrders = new int[] { 1101 };
 
         public float BlackoutFactor { get; set; }
 

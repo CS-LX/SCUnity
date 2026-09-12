@@ -27,18 +27,27 @@ namespace Engine.Media {
             }
         }
 
-        public class Glyph(char code, Vector2 texCoord1, Vector2 texCoord2, Vector2 offset, float width) {
-            public readonly char Code = code;
+        public class Glyph{
 
-            public readonly bool IsBlank = texCoord1 == texCoord2;
+        public Glyph(char code, Vector2 texCoord1, Vector2 texCoord2, Vector2 offset, float width)
+{
+    this.Code = code;
+    this.IsBlank = texCoord1 == texCoord2;
+    this.TexCoord1 = texCoord1;
+    this.TexCoord2 = texCoord2;
+    this.Offset = offset;
+    this.Width = width;
+}            public readonly char Code ;
 
-            public readonly Vector2 TexCoord1 = texCoord1;
+            public readonly bool IsBlank ;
 
-            public readonly Vector2 TexCoord2 = texCoord2;
+            public readonly Vector2 TexCoord1 ;
 
-            public readonly Vector2 Offset = offset;
+            public readonly Vector2 TexCoord2 ;
 
-            public readonly float Width = width;
+            public readonly Vector2 Offset ;
+
+            public readonly float Width ;
         }
 
         public class KerningSettings {
@@ -103,7 +112,7 @@ namespace Engine.Media {
 
         public static BitmapFont Initialize(Texture2D texture, Stream GlyphsStream, Vector2? customGlyphOffset = null) {
             try {
-                char[] splitters = [(char)0x20, (char)0x09]; // 空格和制表符
+                char[] splitters = new char[] { (char)0x20, (char)0x09 }; // 空格和制表符
                 BitmapFont bitmapFont = new();
                 StreamReader streamReader = new(GlyphsStream);
                 string firstLine = streamReader.ReadLine();
@@ -399,7 +408,7 @@ namespace Engine.Media {
             }
             int num5 = firstCode;
             float num6 = 0f;
-            List<Glyph> list3 = [];
+            List<Glyph> list3 = new global::System.Collections.Generic.List<global::Engine.Media.BitmapFont.Glyph>() {  };
             for (int j = 0; j < list2.Count; j++) {
                 Vector2 texCoord;
                 Vector2 texCoord2;

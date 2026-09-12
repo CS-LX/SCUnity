@@ -17,11 +17,11 @@ namespace Game {
                 Cause = cause;
             }
 
-            public double Day;
+            public double Day = default;
 
-            public Vector3 Location;
+            public Vector3 Location = default;
 
-            public string Cause;
+            public string Cause = default;
 
             public void Load(string s) {
                 string[] array = s.Split(',', StringSplitOptions.RemoveEmptyEntries);
@@ -56,7 +56,7 @@ namespace Game {
             public ValuesDictionary ValuesDictionaryForMods = new();
         }
 
-        public List<DeathRecord> m_deathRecords = [];
+        public List<DeathRecord> m_deathRecords = new global::System.Collections.Generic.List<global::Game.PlayerStats.DeathRecord>() {  };
 
         [Stat] public double DistanceTravelled;
 

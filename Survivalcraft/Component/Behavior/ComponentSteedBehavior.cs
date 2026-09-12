@@ -22,9 +22,9 @@ namespace Game {
 
         public Random m_random = new();
 
-        public DynamicArray<ComponentBody> m_bodies = [];
+        public DynamicArray<ComponentBody> m_bodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
-        public float[] m_speedLevels = [-0.33f, 0f, 0.33f, 0.66f, 1f];
+        public float[] m_speedLevels = new float[] { -0.33f, 0f, 0.33f, 0.66f, 1f };
 
         public int m_speedLevel;
 

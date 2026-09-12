@@ -12,15 +12,8 @@ namespace Game.Animation.Drivers {
 
         public string[] TargetBones => mTargetBones;
 
-        string[] mTargetBones = [
-            "Body",
-            "Head",
-            "Neck",
-            "Leg1",
-            "Leg2",
-            "Leg3",
-            "Leg4"
-        ];
+        string[] mTargetBones = new string[] {             "Body",             "Head",             "Neck",             "Leg1",             "Leg2",             "Leg3",             "Leg4"
+ };
 
         // 参数名称
         public string DeathPhaseParam { get; set; } = "DeathPhase";
@@ -103,7 +96,7 @@ namespace Game.Animation.Drivers {
             // Legs 骨骼 - 从当前角度平滑过渡到放松状态
             // 原始实现: m_legAngle * (1 - DeathPhase)
             float deathFactor = 1f - _deathPhase;
-            float[] legAngles = [_legAngle1, _legAngle2, _legAngle3, _legAngle4];
+            float[] legAngles = new float[] { _legAngle1, _legAngle2, _legAngle3, _legAngle4 };
             for (int i = 0; i < 4; i++) {
                 ModelBone bone = model.FindBone($"Leg{i + 1}", false);
                 if (bone != null) {

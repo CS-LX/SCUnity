@@ -13,7 +13,7 @@ namespace Game {
 
         public TexturedBatch3D m_batch;
 
-        public static int[] m_drawOrders = [200];
+        public static int[] m_drawOrders = new int[] { 200 };
 
         public int[] DrawOrders => m_drawOrders;
 

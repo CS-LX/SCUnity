@@ -107,7 +107,7 @@ namespace Engine.Audio {
         void Initialize<T>(T[] data, int startIndex, int itemsCount, int channelsCount, int samplingFrequency) where T : unmanaged {
             int num = Utilities.SizeOf<T>();
             InitializeProperties(itemsCount * num / channelsCount / 2, channelsCount, samplingFrequency);
-            ArgumentNullException.ThrowIfNull(data);
+            if (data is null) throw new ArgumentNullException("data");
             if (startIndex + itemsCount > data.Length) {
                 throw new ArgumentOutOfRangeException(nameof(itemsCount));
             }

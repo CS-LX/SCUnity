@@ -40,7 +40,7 @@ namespace Game {
 
         public float? m_gameTimeFactorSleep = 60f;
 
-        public HashSet<DelayedExecutionRequest> m_delayedExecutionsRequests = [];
+        public HashSet<DelayedExecutionRequest> m_delayedExecutionsRequests = new global::System.Collections.Generic.HashSet<global::Game.SubsystemTime.DelayedExecutionRequest>() {  };
 
         public SubsystemPlayers m_subsystemPlayers;
 
@@ -96,7 +96,7 @@ namespace Game {
                 }
             );
             m_gameTime += m_gameTimeDelta;
-            HashSet<DelayedExecutionRequest> toRemove = [];
+            HashSet<DelayedExecutionRequest> toRemove = new global::System.Collections.Generic.HashSet<global::Game.SubsystemTime.DelayedExecutionRequest>() {  };
             foreach (DelayedExecutionRequest delayedExecutionRequest in m_delayedExecutionsRequests) {
                 if (delayedExecutionRequest.GameTime >= 0
                     && GameTime >= delayedExecutionRequest.GameTime) {

@@ -47,7 +47,7 @@ namespace Game {
                     return string.Empty;
                 }
                 shaderTextTemp = shaderTextTemp.Replace("\n", "$");
-                string[] lines = shaderTextTemp.Split(['$'], StringSplitOptions.RemoveEmptyEntries);
+                string[] lines = shaderTextTemp.Split(new char[] { '$' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int l = 0; l < lines.Length; l++) {
                     lines[l] = lines[l].Trim();
                     if (lines[l].StartsWith("//")) {

@@ -11,7 +11,7 @@ namespace Game.Animation.Drivers {
         public AnimationBlendMode BlendMode => AnimationBlendMode.Additive;
 
         public string[] TargetBones => mTargetBones;
-        string[] mTargetBones = ["Hand1", "Hand2"];
+        string[] mTargetBones = new string[] { "Hand1", "Hand2" };
 
         // 参数名称
         public string PunchPhaseParam { get; set; } = "PunchPhase";

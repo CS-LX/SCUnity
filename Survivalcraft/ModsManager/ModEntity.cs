@@ -10,15 +10,15 @@ namespace Game {
         public ModInfo modInfo;
         public Texture2D Icon;
         public ZipArchive ModArchive;
-        public Dictionary<string, ZipArchiveEntry> ModFiles = [];
-        public List<Type> BlockTypes = [];
+        public Dictionary<string, ZipArchiveEntry> ModFiles = new global::System.Collections.Generic.Dictionary<string, global::Game.ZipArchiveEntry>() {  };
+        public List<Type> BlockTypes = new global::System.Collections.Generic.List<global::System.Type>() {  };
         public string ModFilePath;
         public bool IsDisabled;
         public ModDisableReason DisableReason = ModDisableReason.Unknown;
         public long Size;
         public bool IsDependencyChecked;
         public string LoadAfter;
-        public static HashSet<string> InvalidDllNames = ["Survivalcraft.dll", "Engine.dll", "EntitySystem.dll"];
+        public static HashSet<string> InvalidDllNames = new global::System.Collections.Generic.HashSet<string>() { "Survivalcraft.dll", "Engine.dll", "EntitySystem.dll" };
         public const string fName = "ModEntity";
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Game {
         }
         public List<ModLoader> Loaders {
             get; set;
-        } = [];
+        } = new global::System.Collections.Generic.List<global::Game.ModLoader>() {  };
 
         ModLoader ModLoader_;
 
@@ -352,7 +352,7 @@ namespace Game {
         }
 
         public virtual void HandleAssembly(Assembly assembly) {
-            List<Type> blockTypes = [];
+            List<Type> blockTypes = new global::System.Collections.Generic.List<global::System.Type>() {  };
 #pragma warning disable IL2026
             Type[] types = assembly.GetTypes();
 #pragma warning restore IL2026

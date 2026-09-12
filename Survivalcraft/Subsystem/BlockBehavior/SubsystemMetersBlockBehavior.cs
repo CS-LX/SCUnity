@@ -9,9 +9,9 @@ namespace Game {
 
         public SubsystemSky m_subsystemSky;
 
-        public Dictionary<Point3, int> m_thermometersByPoint = [];
+        public Dictionary<Point3, int> m_thermometersByPoint = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, int>() {  };
 
-        public DynamicArray<Point3> m_thermometersToSimulate = [];
+        public DynamicArray<Point3> m_thermometersToSimulate = new global::Engine.DynamicArray<global::Engine.Point3>() {  };
 
         public int m_thermometersToSimulateIndex;
 
@@ -23,11 +23,11 @@ namespace Game {
 
         public const int m_radius = 32;
 
-        public DynamicArray<int> m_toVisit = [];
+        public DynamicArray<int> m_toVisit = new global::Engine.DynamicArray<int>() {  };
 
         public int[] m_visited = new int[8192];
 
-        public override int[] HandledBlocks => [120, 121];
+        public override int[] HandledBlocks => new int[] { 120, 121 };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 
@@ -126,7 +126,7 @@ namespace Game {
             out float targetTemperatureFlux,
             out float environmentTemperature) {
             m_toVisit.Count = 0;
-            Array.Clear(m_visited);
+            Array.Clear(m_visited,0,m_visited.Length);
             Terrain terrain = SubsystemTerrain.Terrain;
             float num = 0f;
             float num2 = 0f;

@@ -18,9 +18,9 @@ namespace Game {
             public readonly RunningAverage AverageTime = new(5f);
         }
 
-        public static Dictionary<string, Metric> m_metrics = [];
+        public static Dictionary<string, Metric> m_metrics = new global::System.Collections.Generic.Dictionary<string, global::Game.Profiler.Metric>() {  };
 
-        public static List<Metric> m_sortedMetrics = [];
+        public static List<Metric> m_sortedMetrics = new global::System.Collections.Generic.List<global::Game.Profiler.Metric>() {  };
 
         public static int m_maxNameLength;
 

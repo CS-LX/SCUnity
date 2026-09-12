@@ -5,18 +5,18 @@ namespace Game {
     public struct MovingBlocksRaycastResult {
         public MovingBlocksRaycastResult() { }
 
-        public Ray3 Ray;
+        public Ray3 Ray = default;
 
-        public IMovingBlockSet MovingBlockSet;
+        public IMovingBlockSet MovingBlockSet = default;
 
-        public float Distance;
+        public float Distance = default;
         public Vector3 HitPoint() => Ray.Position + Ray.Direction * Distance;
 
-        public MovingBlock MovingBlock;
+        public MovingBlock MovingBlock = default;
 
-        public int CollisionBoxIndex;
+        public int CollisionBoxIndex = default;
 
-        public BoundingBox? BlockBoundingBox;
+        public BoundingBox? BlockBoundingBox = default;
 
         public int BlockValue => MovingBlock?.Value ?? -1;
 

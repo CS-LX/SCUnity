@@ -3,7 +3,7 @@ using TemplatesDatabase;
 
 namespace Game {
     public class SubsystemBottomSuckerBlockBehavior : SubsystemInWaterBlockBehavior {
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public int m_seaUrchinBlockValue;
 

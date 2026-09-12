@@ -10,7 +10,7 @@ namespace Game {
 
         public byte[] m_buffer = new byte[131072];
 
-        public Dictionary<Point2, int> m_chunkOffsets = [];
+        public Dictionary<Point2, int> m_chunkOffsets = new global::System.Collections.Generic.Dictionary<global::Engine.Point2, int>() {  };
 
         public Stream m_stream;
 

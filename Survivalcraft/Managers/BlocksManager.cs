@@ -31,13 +31,13 @@ namespace Game {
 
         public static FluidBlock[] m_fluidBlocks = new FluidBlock[1024];
 
-        public static List<string> m_categories = [];
+        public static List<string> m_categories = new global::System.Collections.Generic.List<string>() {  };
 
         public static DrawBlockEnvironmentData m_defaultEnvironmentData = new();
 
         public static Vector4[] m_slotTexCoords = new Vector4[256];
 
-        public static Dictionary<ImageExtrusionKey, BlockMesh> m_imageExtrusionsCache = [];
+        public static Dictionary<ImageExtrusionKey, BlockMesh> m_imageExtrusionsCache = new global::System.Collections.Generic.Dictionary<global::Game.BlocksManager.ImageExtrusionKey, global::Game.BlockMesh>() {  };
 
         public static Block[] Blocks => m_blocks;
 
@@ -65,8 +65,8 @@ namespace Game {
             public static BlockAllocateDataComparer Instance = new();
 
             public int Compare(BlockAllocateData u1, BlockAllocateData u2) {
-                ArgumentNullException.ThrowIfNull(u1);
-                ArgumentNullException.ThrowIfNull(u2);
+                if (u1 is null) throw new ArgumentNullException("u1");
+                if (u2 is null) throw new ArgumentNullException("u2");
                 //首先比对是否已分配，未分配的排前面
                 int blockAllocate = (u1.Allocated ? 1 : 0) - (u2.Allocated ? 1 : 0);
                 if (blockAllocate != 0) {
@@ -445,7 +445,7 @@ namespace Game {
         }
 
         public static Block[] FindBlocksByCraftingId(string craftingId) {
-            List<Block> blocks = [];
+            List<Block> blocks = new global::System.Collections.Generic.List<global::Game.Block>() {  };
             foreach (Block c in Blocks) {
                 if (c.MatchCrafingId(craftingId)) {
                     blocks.Add(c);

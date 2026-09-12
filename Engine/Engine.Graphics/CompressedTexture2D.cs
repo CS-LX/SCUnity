@@ -92,7 +92,7 @@ namespace Engine.Graphics {
             SetDataInternal(mipLevel, source);
         }
 
-        public void SetDataInternal(int mipLevel, int imageSize, nint source) {
+        public unsafe void SetDataInternal(int mipLevel, int imageSize, nint source) {
             int width = MathUtils.Max(Width >> mipLevel, 1);
             int height = MathUtils.Max(Height >> mipLevel, 1);
             GLWrapper.GL.CompressedTexImage2D(
@@ -103,7 +103,7 @@ namespace Engine.Graphics {
                 (uint)height,
                 0,
                 (uint)imageSize,
-                in source
+                (void*)source
             );
         }
 

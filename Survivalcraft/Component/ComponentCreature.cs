@@ -51,7 +51,7 @@ namespace Game {
             DisplayName = valuesDictionary.GetValue<string>("DisplayName");
             if (DisplayName.StartsWith('[')
                 && DisplayName.EndsWith(']')) {
-                string[] lp = DisplayName.Substring(1, DisplayName.Length - 2).Split([":"], StringSplitOptions.RemoveEmptyEntries);
+                string[] lp = DisplayName.Substring(1, DisplayName.Length - 2).Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
                 DisplayName = LanguageControl.GetDatabase("DisplayName", lp[1]);
             }
             m_killVerbs = HumanReadableConverter.ValuesListFromString<string>(',', valuesDictionary.GetValue<string>("KillVerbs"));

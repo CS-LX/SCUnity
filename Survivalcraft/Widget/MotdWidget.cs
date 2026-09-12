@@ -12,7 +12,7 @@ namespace Game {
 
         public CanvasWidget m_containerWidget;
 
-        public List<LineData> m_lines = [];
+        public List<LineData> m_lines = new global::System.Collections.Generic.List<global::Game.MotdWidget.LineData>() {  };
 
         public int m_currentLineIndex;
 
@@ -144,7 +144,7 @@ namespace Game {
                 StackPanelWidget stackPanelWidget = new() {
                     Direction = LayoutDirection.Vertical, HorizontalAlignment = WidgetAlignment.Center, VerticalAlignment = WidgetAlignment.Center
                 };
-                string[] array = line.Text.Replace("\r", "").Split(["\n"], StringSplitOptions.None);
+                string[] array = line.Text.Replace("\r", "").Split(new string[] { "\n" }, StringSplitOptions.None);
                 for (int i = 0; i < array.Length; i++) {
                     string text = array[i].Trim();
                     if (!string.IsNullOrEmpty(text)) {

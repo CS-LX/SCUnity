@@ -16,7 +16,7 @@ namespace GameEntitySystem {
         public ProjectData(GameDatabase gameDatabase, DatabaseObject projectTemplate, ValuesDictionary overrides)
             // ReSharper restore UnusedParameter.Local
         {
-            ValuesDictionary = [];
+            ValuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  };
             ValuesDictionary.PopulateFromDatabaseObject(projectTemplate);
             if (overrides != null) {
                 ValuesDictionary.ApplyOverrides(overrides);
@@ -36,7 +36,7 @@ namespace GameEntitySystem {
                 }
                 databaseObject = gameDatabase.Database.FindDatabaseObject(attributeValue2, gameDatabase.ProjectTemplateType, true);
             }
-            ValuesDictionary = [];
+            ValuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  };
             ValuesDictionary.PopulateFromDatabaseObject(databaseObject);
             XElement xElement = XmlUtils.FindChildElement(projectNode, "Subsystems", false);
             if (xElement != null) {

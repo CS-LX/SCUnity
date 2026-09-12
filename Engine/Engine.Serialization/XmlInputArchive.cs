@@ -7,7 +7,7 @@ namespace Engine.Serialization {
         public XElement Node { get; private set; }
 
         public XmlInputArchive(XElement node, int version = 0, object context = null) : base(version, context) {
-            ArgumentNullException.ThrowIfNull(node);
+            if (node is null) throw new ArgumentNullException("node");
             Node = node;
         }
 

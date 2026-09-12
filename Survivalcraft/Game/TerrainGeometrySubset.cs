@@ -1,8 +1,8 @@
 namespace Game {
     public class TerrainGeometrySubset : IDisposable {
-        public TerrainGeometryDynamicArray<TerrainVertex> Vertices = [];
+        public TerrainGeometryDynamicArray<TerrainVertex> Vertices = new global::Game.TerrainGeometryDynamicArray<global::Game.TerrainVertex>() {  };
 
-        public TerrainGeometryDynamicArray<int> Indices = [];
+        public TerrainGeometryDynamicArray<int> Indices = new global::Game.TerrainGeometryDynamicArray<int>() {  };
 
         public object m_tag;
 

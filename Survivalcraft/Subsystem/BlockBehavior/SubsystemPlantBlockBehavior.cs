@@ -13,19 +13,8 @@ namespace Game {
 
         public Random m_random = new();
 
-        public override int[] HandledBlocks => [
-            19,
-            20,
-            24,
-            25,
-            28,
-            99,
-            131,
-            244,
-            132,
-            174,
-            204
-        ];
+        public override int[] HandledBlocks => new int[] {             19,             20,             24,             25,             28,             99,             131,             244,             132,             174,             204
+ };
 
         /// <summary>
         ///     该方法进行封装，不再允许覆盖

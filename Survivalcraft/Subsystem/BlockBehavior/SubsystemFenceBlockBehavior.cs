@@ -1,6 +1,6 @@
 namespace Game {
     public class SubsystemFenceBlockBehavior : SubsystemBlockBehavior {
-        public override int[] HandledBlocks => [];
+        public override int[] HandledBlocks => new int[] {  };
 
         public override void OnNeighborBlockChanged(int x, int y, int z, int neighborX, int neighborY, int neighborZ) {
             int cellValue = SubsystemTerrain.Terrain.GetCellValue(x, y, z);

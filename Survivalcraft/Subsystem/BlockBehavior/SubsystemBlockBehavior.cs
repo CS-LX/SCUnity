@@ -4,7 +4,7 @@ using TemplatesDatabase;
 
 namespace Game {
     public abstract class SubsystemBlockBehavior : Subsystem {
-        public virtual int[] HandledBlocks => [];
+        public virtual int[] HandledBlocks => new int[] {  };
 
         public SubsystemTerrain SubsystemTerrain { get; set; }
 

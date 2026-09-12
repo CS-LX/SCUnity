@@ -25,7 +25,7 @@ namespace GameEntitySystem {
                 }
                 databaseObject = gameDatabase.Database.FindDatabaseObject(attributeValue2, gameDatabase.EntityTemplateType, true);
             }
-            ValuesDictionary = [];
+            ValuesDictionary = new global::TemplatesDatabase.ValuesDictionary() {  };
             ValuesDictionary.PopulateFromDatabaseObject(databaseObject);
             ValuesDictionary.ApplyOverrides(entityNode);
         }

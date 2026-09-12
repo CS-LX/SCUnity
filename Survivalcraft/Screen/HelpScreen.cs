@@ -15,7 +15,7 @@ namespace Game {
         [Obsolete]
         public Screen m_previousScreen;
 
-        public Dictionary<string, HelpTopic> m_topics = [];
+        public Dictionary<string, HelpTopic> m_topics = new global::System.Collections.Generic.Dictionary<string, global::Game.HelpTopic>() {  };
 
         /// <summary>
         ///     点击帮助条目时执行
@@ -49,7 +49,7 @@ namespace Game {
                     if (displa != null
                         && displa.GetValueKind() == JsonValueKind.String) {
                         if (displa.GetValue<string>()
-                                .Split([","], StringSplitOptions.None)
+                                .Split(new string[] { "," }, StringSplitOptions.None)
                                 .FirstOrDefault(s => s.Trim().Equals(VersionsManager.PlatformString, StringComparison.CurrentCultureIgnoreCase))
                             == null) {
                             continue;
@@ -62,7 +62,7 @@ namespace Game {
                     string attributeValue2 = Title != null && Title.GetValueKind() == JsonValueKind.String ? Title.GetValue<string>() : string.Empty;
                     string text = string.Empty;
                     if (value != null) {
-                        string[] array = value.GetValue<string>().Split(["\n"], StringSplitOptions.None);
+                        string[] array = value.GetValue<string>().Split(new string[] { "\n" }, StringSplitOptions.None);
                         foreach (string text2 in array) {
                             text = $"{text}{text2.Trim()} ";
                         }

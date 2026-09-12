@@ -5,7 +5,7 @@ using TemplatesDatabase;
 namespace Game {
     public class ComponentChaseBehavior : ComponentBehavior, IUpdateable {
         // ReSharper disable UnusedMember.Local
-        Dictionary<ModLoader, Action> Hooks = [];
+        Dictionary<ModLoader, Action> Hooks = new global::System.Collections.Generic.Dictionary<global::Game.ModLoader, global::System.Action>() {  };
         // ReSharper restore UnusedMember.Local
 
         public SubsystemGameInfo m_subsystemGameInfo;
@@ -30,7 +30,7 @@ namespace Game {
 
         public ComponentCreatureModel m_componentCreatureModel;
 
-        public DynamicArray<ComponentBody> m_componentBodies = [];
+        public DynamicArray<ComponentBody> m_componentBodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
         public Random m_random = new();
 

@@ -7,19 +7,12 @@ namespace Game {
         public static bool TerrainRenderingEnabled = true;
         public static bool TerrainUpdaterEnabled = true;
 
-        public Dictionary<Point3, bool> m_modifiedCells = [];
+        public Dictionary<Point3, bool> m_modifiedCells = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, bool>() {  };
 
-        public DynamicArray<Point3> m_modifiedList = [];
+        public DynamicArray<Point3> m_modifiedList = new global::Engine.DynamicArray<global::Engine.Point3>() {  };
 
-        public static Point3[] m_neighborOffsets = [
-            new(0, 0, 0),
-            new(-1, 0, 0),
-            new(1, 0, 0),
-            new(0, -1, 0),
-            new(0, 1, 0),
-            new(0, 0, -1),
-            new(0, 0, 1)
-        ];
+        public static Point3[] m_neighborOffsets = new global::Engine.Point3[] {             new(0, 0, 0),             new(-1, 0, 0),             new(1, 0, 0),             new(0, -1, 0),             new(0, 1, 0),             new(0, 0, -1),             new(0, 0, 1)
+ };
 
         public SubsystemSky m_subsystemsky;
 
@@ -35,9 +28,9 @@ namespace Game {
 
         public SubsystemBlockBehaviors m_subsystemBlockBehaviors;
 
-        public List<BlockDropValue> m_dropValues = [];
+        public List<BlockDropValue> m_dropValues = new global::System.Collections.Generic.List<global::Game.BlockDropValue>() {  };
 
-        public static int[] m_drawOrders = [0, 100];
+        public static int[] m_drawOrders = new int[] { 0, 100 };
 
         public virtual SubsystemGameInfo SubsystemGameInfo { get; set; }
 

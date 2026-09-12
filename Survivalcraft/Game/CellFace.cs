@@ -10,15 +10,14 @@ namespace Game {
 
         public int Face;
 
-        public static readonly int[] m_oppositeFaces = [2, 3, 0, 1, 5, 4];
+        public static readonly int[] m_oppositeFaces = new int[] { 2, 3, 0, 1, 5, 4 };
 
-        public static readonly Point3[] m_faceToPoint3 = [new(0, 0, 1), new(1, 0, 0), new(0, 0, -1), new(-1, 0, 0), new(0, 1, 0), new(0, -1, 0)];
+        public static readonly Point3[] m_faceToPoint3 = new global::Engine.Point3[] { new(0, 0, 1), new(1, 0, 0), new(0, 0, -1), new(-1, 0, 0), new(0, 1, 0), new(0, -1, 0) };
 
-        public static readonly Vector3[] m_faceToVector3 = [
-            new(0f, 0f, 1f), new(1f, 0f, 0f), new(0f, 0f, -1f), new(-1f, 0f, 0f), new(0f, 1f, 0f), new(0f, -1f, 0f)
-        ];
+        public static readonly Vector3[] m_faceToVector3 = new global::Engine.Vector3[] {             new(0f, 0f, 1f), new(1f, 0f, 0f), new(0f, 0f, -1f), new(-1f, 0f, 0f), new(0f, 1f, 0f), new(0f, -1f, 0f)
+ };
 
-        public static readonly int[][] m_faceToTangents = [[1, 4, 3, 5], [4, 0, 5, 2], [4, 1, 5, 3], [0, 4, 2, 5], [0, 1, 2, 3], [1, 0, 3, 2]];
+        public static readonly int[][] m_faceToTangents = new int[][] { new int[] { 1, 4, 3, 5 }, new int[] { 4, 0, 5, 2 }, new int[] { 4, 1, 5, 3 }, new int[] { 0, 4, 2, 5 }, new int[] { 0, 1, 2, 3 }, new int[] { 1, 0, 3, 2 } };
 
         public Point3 Point {
             get => new(X, Y, Z);
@@ -125,16 +124,10 @@ namespace Game {
             Vector3 v1 = center + tangent1 - tangent2;
             Vector3 v2 = center + tangent1 + tangent2;
             Vector3 v3 = center - tangent1 + tangent2;
-            return [
-                // Triangle 1
-                v0,
-                v1,
-                v2,
-                // Triangle 2
-                v2,
-                v3,
-                v0
-            ];
+            return new global::Engine.Vector3[] {                 // Triangle 1
+                v0,                 v1,                 v2,                 // Triangle 2
+                v2,                 v3,                 v0
+ };
         }
 
         public override int GetHashCode() => (X << 11) + (Y << 7) + (Z << 3) + Face;

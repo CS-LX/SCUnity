@@ -29,11 +29,11 @@ namespace Game {
         public SubsystemFluidBlockBehavior m_subsystemFluidBlockBehavior;
 
         [Obsolete("该字段已弃用，掉落物被玩家的拾取逻辑被转移到ComponentPickableGathererPlayer中")]
-        public List<ComponentPlayer> m_tmpPlayers = [];
+        public List<ComponentPlayer> m_tmpPlayers = new global::System.Collections.Generic.List<global::Game.ComponentPlayer>() {  };
 
-        public List<Pickable> m_pickables = [];
+        public List<Pickable> m_pickables = new global::System.Collections.Generic.List<global::Game.Pickable>() {  };
 
-        public List<Pickable> m_pickablesToRemove = [];
+        public List<Pickable> m_pickablesToRemove = new global::System.Collections.Generic.List<global::Game.Pickable>() {  };
 
         public PrimitivesRenderer3D m_primitivesRenderer = new();
 
@@ -41,7 +41,7 @@ namespace Game {
 
         public DrawBlockEnvironmentData m_drawBlockEnvironmentData = new();
 
-        public static int[] m_drawOrders = [10];
+        public static int[] m_drawOrders = new int[] { 10 };
 
         public ReadOnlyList<Pickable> Pickables {
             get {

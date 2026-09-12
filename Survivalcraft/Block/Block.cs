@@ -182,7 +182,7 @@ namespace Game {
 
         public Random Random = new();
 
-        public static BoundingBox[] m_defaultCollisionBoxes = [new(Vector3.Zero, Vector3.One)];
+        public static BoundingBox[] m_defaultCollisionBoxes = new global::Engine.BoundingBox[] { new(Vector3.Zero, Vector3.One) };
         public virtual float GetDensity(int value) => Density;
 
         public virtual float GetFirstPersonScale(int value) => FirstPersonScale;

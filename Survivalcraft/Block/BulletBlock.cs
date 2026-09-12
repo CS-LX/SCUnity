@@ -11,11 +11,11 @@ namespace Game {
 
         public static int Index = 214;
 
-        public static float[] m_sizes = [1f, 1f, 0.33f];
+        public static float[] m_sizes = new float[] { 1f, 1f, 0.33f };
 
-        public static int[] m_textureSlots = [229, 231, 229];
+        public static int[] m_textureSlots = new int[] { 229, 231, 229 };
 
-        public static float[] m_weaponPowers = [80f, 0f, 3.6f];
+        public static float[] m_weaponPowers = new float[] { 80f, 0f, 3.6f };
 
         public static float[] m_explosionPressures = new float[3];
 
@@ -68,7 +68,7 @@ namespace Game {
         public override string GetDisplayName(SubsystemTerrain subsystemTerrain, int value) {
             int bulletType = (int)GetBulletType(Terrain.ExtractData(value));
             if (bulletType < 0
-                || bulletType >= Enum.GetValues<BulletType>().Length) {
+                || bulletType >= ((BulletType[])System.Enum.GetValues(typeof(BulletType))).Length) {
                 return string.Empty;
             }
             return LanguageControl.Get("BulletBlock", bulletType);

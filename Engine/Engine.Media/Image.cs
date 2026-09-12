@@ -14,17 +14,8 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace Engine.Media {
     public class Image {
-        public static IImageFormatConfigurationModule[] ImageSharpModules = [
-            new BmpConfigurationModule(),
-            new GifConfigurationModule(),
-            new JpegConfigurationModule(),
-            new PbmConfigurationModule(),
-            new PngConfigurationModule(),
-            new QoiConfigurationModule(),
-            new TgaConfigurationModule(),
-            new TiffConfigurationModule(),
-            new WebpConfigurationModule()
-        ];
+        public static IImageFormatConfigurationModule[] ImageSharpModules = new global::SixLabors.ImageSharp.Formats.IImageFormatConfigurationModule[] {             new BmpConfigurationModule(),             new GifConfigurationModule(),             new JpegConfigurationModule(),             new PbmConfigurationModule(),             new PngConfigurationModule(),             new QoiConfigurationModule(),             new TgaConfigurationModule(),             new TiffConfigurationModule(),             new WebpConfigurationModule()
+ };
 
         public static Configuration DefaultImageSharpConfiguration = new(ImageSharpModules) { PreferContiguousImageBuffers = true };
         public static DecoderOptions DefaultImageSharpDecoderOptions = new() { Configuration = DefaultImageSharpConfiguration };
@@ -66,17 +57,17 @@ namespace Engine.Media {
         public Image() {}
 
         public Image(Image image) {
-            ArgumentNullException.ThrowIfNull(image);
+            if (image is null) throw new ArgumentNullException("image");
             m_trueImage = image.m_trueImage.Clone();
         }
 
         public Image(Image<Rgba32> image) {
-            ArgumentNullException.ThrowIfNull(image);
+            if (image is null) throw new ArgumentNullException("image");
             m_trueImage = image;
         }
 
         public Image(LegacyImage image) {
-            ArgumentNullException.ThrowIfNull(image);
+            if (image is null) throw new ArgumentNullException("image");
             m_trueImage = new Image<Rgba32>(DefaultImageSharpConfiguration, image.Width, image.Height);
             ProcessPixelRows(accessor => {
                     Span<Color> pixels = image.Pixels.AsSpan();

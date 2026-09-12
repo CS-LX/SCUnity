@@ -4,7 +4,7 @@ using Engine.Graphics;
 
 namespace Game {
     public static class TextureAtlasManager {
-        public static Dictionary<string, Subtexture> m_subtextures = [];
+        public static Dictionary<string, Subtexture> m_subtextures = new global::System.Collections.Generic.Dictionary<string, global::Game.Subtexture>() {  };
         public static Texture2D AtlasTexture;
 
         public static void Clear() {
@@ -41,11 +41,11 @@ namespace Game {
         public static Subtexture GetSubtexture(string name) => GetSubtexture(name, true);
 
         public static void LoadTextureAtlas(Texture2D texture, string atlasDefinition, string prefix) {
-            string[] array = atlasDefinition.Split(['\n', '\r'], StringSplitOptions.RemoveEmptyEntries);
+            string[] array = atlasDefinition.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             int num = 0;
             while (true) {
                 if (num < array.Length) {
-                    string[] array2 = array[num].Split([' '], StringSplitOptions.RemoveEmptyEntries);
+                    string[] array2 = array[num].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     if (array2.Length < 5) {
                         break;
                     }

@@ -8,7 +8,7 @@ using XmlUtilities;
 namespace Game {
     public static class MotdManager {
         public class Message {
-            public List<Line> Lines = [];
+            public List<Line> Lines = new global::System.Collections.Generic.List<global::Game.MotdManager.Line>() {  };
         }
 
         public class Line {
@@ -49,7 +49,7 @@ namespace Game {
 
         public static bool CanDownloadMotd = true;
 
-        public static List<FilterMod> FilterModAll = [];
+        public static List<FilterMod> FilterModAll = new global::System.Collections.Generic.List<global::Game.MotdManager.FilterMod>() {  };
 
         public static Message m_message;
 

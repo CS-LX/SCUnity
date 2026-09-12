@@ -31,7 +31,7 @@ namespace Game {
 
         public static string fName = "EggBlock";
         public static int Index = 118;
-        public Dictionary<int, EggType> m_eggTypes = [];
+        public Dictionary<int, EggType> m_eggTypes = new global::System.Collections.Generic.Dictionary<int, global::Game.EggBlock.EggType>() {  };
         public ReadOnlyList<EggType> EggTypes => new(m_eggTypes.Values.ToList());
 
         public override void Initialize() {
@@ -47,7 +47,7 @@ namespace Game {
                     string value = item.GetNestedValue<string>("DisplayName");
                     if (value.StartsWith('[')
                         && value.EndsWith(']')) {
-                        string[] lp = value.Substring(1, value.Length - 2).Split([":"], StringSplitOptions.RemoveEmptyEntries);
+                        string[] lp = value.Substring(1, value.Length - 2).Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
                         value = LanguageControl.GetDatabase("DisplayName", lp[1]);
                     }
                     m_eggTypes[nestedValue] = new EggType {

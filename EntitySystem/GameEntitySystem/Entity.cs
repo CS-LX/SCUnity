@@ -90,7 +90,7 @@ namespace GameEntitySystem {
             }
             m_project = project;
             m_valuesDictionary = valuesDictionary;
-            List<KeyValuePair<int, Component>> list = [];
+            List<KeyValuePair<int, Component>> list = new global::System.Collections.Generic.List<global::System.Collections.Generic.KeyValuePair<int, global::GameEntitySystem.Component>>() {  };
             foreach (ValuesDictionary item in from x in valuesDictionary.Values
                 select x as ValuesDictionary
                 into x
@@ -197,7 +197,7 @@ namespace GameEntitySystem {
             List<Entity> list = null;
             foreach (Component component in m_components) {
                 IEnumerable<Entity> ownedEntities = component.GetOwnedEntities();
-                list = list ?? [];
+                list = list ?? new global::System.Collections.Generic.List<global::GameEntitySystem.Entity>() {  };
                 list.AddRange(ownedEntities);
             }
             return list;
@@ -216,7 +216,7 @@ namespace GameEntitySystem {
 
         public void InternalSaveEntity(ValuesDictionary valuesDictionary, EntityToIdMap entityToIdMap) {
             foreach (Component component in Components) {
-                ValuesDictionary valuesDictionary2 = [];
+                ValuesDictionary valuesDictionary2 = new global::TemplatesDatabase.ValuesDictionary() {  };
                 component.Save(valuesDictionary2, entityToIdMap);
                 if (valuesDictionary2.Count > 0) {
                     valuesDictionary.SetValue(component.ValuesDictionary.DatabaseObject.Name, valuesDictionary2);

@@ -26,7 +26,7 @@ namespace Game {
 
         public Vector2 m_corner2;
 
-        public DynamicArray<ComponentBody> m_bodies = [];
+        public DynamicArray<ComponentBody> m_bodies = new global::Engine.DynamicArray<global::Game.ComponentBody>() {  };
 
         public MotionDetectorElectricElement(SubsystemElectricity subsystemElectricity, CellFace cellFace) : base(subsystemElectricity, cellFace) {
             m_subsystemBodies = subsystemElectricity.Project.FindSubsystem<SubsystemBodies>(true);

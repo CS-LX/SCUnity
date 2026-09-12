@@ -106,7 +106,7 @@ namespace Game {
                 boundingBox.Max.X = MathUtils.Saturate(boundingBox.Max.X);
                 boundingBox.Max.Y = MathUtils.Saturate(boundingBox.Max.Y);
                 boundingBox.Max.Z = MathUtils.Saturate(boundingBox.Max.Z);
-                m_collisionBoxes[i] = [boundingBox];
+                m_collisionBoxes[i] = new global::Engine.BoundingBox[] { boundingBox };
             }
             m_standaloneBlockMesh.AppendModelMeshPart(
                 model.FindMesh("Post").MeshParts[0],

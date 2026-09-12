@@ -28,7 +28,7 @@ namespace Game {
             public Vector2 LastStick;
         }
 
-        static VrTouchTracker[] m_touchTrackers = [default, default];
+        static VrTouchTracker[] m_touchTrackers = new global::Game.VrManager.VrTouchTracker[] { default, default };
 
         public static void SetBackend(IVrBackend backend) => _backend = backend;
 

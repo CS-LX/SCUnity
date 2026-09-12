@@ -7,13 +7,13 @@ namespace Game {
     public class SubsystemGlow : Subsystem, IDrawable {
         public SubsystemSky m_subsystemSky;
 
-        public Dictionary<GlowPoint, bool> m_glowPoints = [];
+        public Dictionary<GlowPoint, bool> m_glowPoints = new global::System.Collections.Generic.Dictionary<global::Game.GlowPoint, bool>() {  };
 
         public PrimitivesRenderer3D m_primitivesRenderer = new();
 
         public TexturedBatch3D[] m_batchesByType = new TexturedBatch3D[4];
 
-        public static int[] m_drawOrders = [110];
+        public static int[] m_drawOrders = new int[] { 110 };
 
         public int[] DrawOrders => m_drawOrders;
 

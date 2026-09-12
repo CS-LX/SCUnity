@@ -48,7 +48,7 @@ namespace Game {
                             false,
                             Color.White
                         );
-                    m_collisionBoxesByIndex[num] = [m_blockMeshesByIndex[num].CalculateBoundingBox()];
+                    m_collisionBoxesByIndex[num] = new global::Engine.BoundingBox[] { m_blockMeshesByIndex[num].CalculateBoundingBox() };
                 }
             }
             Matrix matrix3 = Matrix.CreateRotationY(-(float)Math.PI / 2f) * Matrix.CreateRotationZ((float)Math.PI / 2f);

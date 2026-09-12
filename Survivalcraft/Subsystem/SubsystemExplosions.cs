@@ -119,17 +119,17 @@ namespace Game {
         public struct ExplosionData {
             public ExplosionData() { }
 
-            public int X;
+            public int X = default;
 
-            public int Y;
+            public int Y = default;
 
-            public int Z;
+            public int Z = default;
 
-            public float Pressure;
+            public float Pressure = default;
 
-            public bool IsIncendiary;
+            public bool IsIncendiary = default;
 
-            public bool NoExplosionSound;
+            public bool NoExplosionSound = default;
 
             /// <summary>
             ///     模组如果需要添加或使用额外信息，可以在这个ValuesDictionary读写元素
@@ -171,7 +171,7 @@ namespace Game {
 
         public SubsystemFireBlockBehavior m_subsystemFireBlockBehavior;
 
-        public List<ExplosionData> m_queuedExplosions = [];
+        public List<ExplosionData> m_queuedExplosions = new global::System.Collections.Generic.List<global::Game.SubsystemExplosions.ExplosionData>() {  };
 
         public SparseSpatialArray<float> m_pressureByPoint;
 
@@ -179,7 +179,7 @@ namespace Game {
 
         public int m_projectilesCount;
 
-        public Dictionary<Projectile, bool> m_generatedProjectiles = [];
+        public Dictionary<Projectile, bool> m_generatedProjectiles = new global::System.Collections.Generic.Dictionary<global::Game.Projectile, bool>() {  };
 
         public Random m_random = new();
 

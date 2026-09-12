@@ -9,9 +9,9 @@ using XmlUtilities;
 namespace Game {
     public class Widget : IDisposable {
         public class DrawContext {
-            public List<DrawItem> m_drawItems = [];
+            public List<DrawItem> m_drawItems = new global::System.Collections.Generic.List<global::Game.Widget.DrawItem>() {  };
 
-            public static List<DrawItem> m_drawItemsCache = [];
+            public static List<DrawItem> m_drawItemsCache = new global::System.Collections.Generic.List<global::Game.Widget.DrawItem>() {  };
 
             public readonly PrimitivesRenderer2D PrimitivesRenderer2D = new();
 
@@ -551,7 +551,7 @@ namespace Game {
                             );
                         }
                         object obj = HumanReadableConverter.ConvertFromString(parameters[1].ParameterType, attribute.Value);
-                        methodInfo.Invoke(null, [this, obj]);
+                        methodInfo.Invoke(null, new object[] { this, obj });
                     }
                     else {
                         PropertyInfo propertyInfo = runtimeProperties.FirstOrDefault(pi => pi.Name == attribute.Name.LocalName);

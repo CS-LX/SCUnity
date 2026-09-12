@@ -209,9 +209,9 @@ namespace Game {
             string value2 = valuesDictionary.GetValue<string>("Values");
             int num = 0;
             int[] array = new int[value * value * value];
-            string[] array2 = value2.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            string[] array2 = value2.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < array2.Length; i++) {
-                string[] array3 = array2[i].Split(['*'], StringSplitOptions.None);
+                string[] array3 = array2[i].Split(new char[] { '*' }, StringSplitOptions.None);
                 if (array3.Length != 2) {
                     throw new InvalidOperationException(LanguageControl.Get(fName, 2));
                 }
@@ -1072,7 +1072,7 @@ namespace Game {
             Subdivision result = default;
             result.TotalVolume = box.Width * box.Height * box.Depth;
             result.MinVolume = result.TotalVolume;
-            result.Boxes = [box];
+            result.Boxes = new global::System.Collections.Generic.List<global::Engine.Box>() { box };
             if (depth < 2) {
                 for (int num2 = box.Bottom - 1; num2 >= box.Top + 1; num2--) {
                     Box box2 = CalculateBox(new Box(box.Left, box.Top, box.Near, box.Width, num2 - box.Top, box.Depth), precedingEmptySpaces);

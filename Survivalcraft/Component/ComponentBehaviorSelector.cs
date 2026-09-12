@@ -5,7 +5,7 @@ namespace Game {
     public class ComponentBehaviorSelector : Component, IUpdateable {
         public ComponentCreature m_componentCreature;
 
-        public List<ComponentBehavior> m_behaviors = [];
+        public List<ComponentBehavior> m_behaviors = new global::System.Collections.Generic.List<global::Game.ComponentBehavior>() {  };
 
         public static bool ShowAIBehavior;
 

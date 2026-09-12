@@ -12,15 +12,8 @@ namespace Game.Animation.Drivers {
 
         public string[] TargetBones => mTargetBones;
 
-        string[] mTargetBones = [
-            "Body",
-            "Wing1",
-            "Wing2",
-            "Leg1",
-            "Leg2",
-            "Head",
-            "Neck"
-        ];
+        string[] mTargetBones = new string[] {             "Body",             "Wing1",             "Wing2",             "Leg1",             "Leg2",             "Head",             "Neck"
+ };
 
         // 参数名称
         public string FlyPhaseParam { get; set; } = "FlyPhase";

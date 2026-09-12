@@ -1,4 +1,4 @@
-﻿namespace Game {
+namespace Game {
     // Only for class Camera
     public enum VrEye {
         Left = 0,

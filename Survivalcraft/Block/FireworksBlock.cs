@@ -23,27 +23,11 @@ namespace Game {
 
         public BlockMesh[] m_finsBlockMeshes = new BlockMesh[2];
 
-        public static readonly string[] HeadNames = [
-            "HeadConeSmall",
-            "HeadConeLarge",
-            "HeadCylinderSmall",
-            "HeadCylinderLarge",
-            "HeadSphere",
-            "HeadDiamondSmall",
-            "HeadDiamondLarge",
-            "HeadCylinderFlat"
-        ];
+        public static readonly string[] HeadNames = new string[] {             "HeadConeSmall",             "HeadConeLarge",             "HeadCylinderSmall",             "HeadCylinderLarge",             "HeadSphere",             "HeadDiamondSmall",             "HeadDiamondLarge",             "HeadCylinderFlat"
+ };
 
-        public static readonly Color[] FireworksColors = [
-            new(255, 255, 255),
-            new(85, 255, 255),
-            new(255, 85, 85),
-            new(85, 85, 255),
-            new(255, 255, 85),
-            new(85, 255, 85),
-            new(255, 170, 0),
-            new(255, 85, 255)
-        ];
+        public static readonly Color[] FireworksColors = new global::Engine.Color[] {             new(255, 255, 255),             new(85, 255, 255),             new(255, 85, 85),             new(85, 85, 255),             new(255, 255, 85),             new(85, 255, 85),             new(255, 170, 0),             new(255, 85, 255)
+ };
 
         public override void Initialize() {
             Model model = ContentManager.Get<Model>("Models/Fireworks");

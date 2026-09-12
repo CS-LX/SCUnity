@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+using System.Xml.Linq;
 
 namespace Game {
     public class SelectClassSubstituteDialog : Dialog {
@@ -56,7 +56,8 @@ namespace Game {
                         description = LanguageControl.GetDatabase(array[0], array[1]);
                     }
                 }
-                Children.Find<LabelWidget>("SelectClassSubstituteDialog.Description")?.Text = string.Format(
+                LabelWidget descriptionLabel = Children.Find<LabelWidget>("SelectClassSubstituteDialog.Description");
+                if (descriptionLabel != null) descriptionLabel.Text = string.Format(
                     LanguageControl.Get(fName, "2"),
                     substitutes.Count - 1,
                     substitutes[0].ClassName,

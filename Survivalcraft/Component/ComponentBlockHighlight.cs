@@ -25,7 +25,7 @@ namespace Game {
 
         public Geometry m_geometry;
 
-        public static int[] m_drawOrders = [1, 2000];
+        public static int[] m_drawOrders = new int[] { 1, 2000 };
 
         public Point3? NearbyEditableCell { get; set; }
 

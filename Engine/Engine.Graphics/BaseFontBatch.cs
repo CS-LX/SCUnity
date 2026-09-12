@@ -4,9 +4,9 @@ namespace Engine.Graphics {
     public abstract class BaseFontBatch : BaseBatch {
         public static UnlitShader m_shader = new(true, true, false, false);
 
-        public readonly DynamicArray<VertexPositionColorTexture> TriangleVertices = [];
+        public readonly DynamicArray<VertexPositionColorTexture> TriangleVertices = new global::Engine.DynamicArray<global::Engine.Graphics.VertexPositionColorTexture>() {  };
 
-        public readonly DynamicArray<int> TriangleIndices = [];
+        public readonly DynamicArray<int> TriangleIndices = new global::Engine.DynamicArray<int>() {  };
 
         public BitmapFont Font { get; set; }
 

@@ -1,3 +1,4 @@
+#if !SCUNITY
 using System.Runtime.InteropServices;
 
 namespace Engine.Graphics {
@@ -74,3 +75,4 @@ namespace Engine.Graphics {
         public static extern IntPtr GetProcAddress(string proc);
     }
 }
+#endif

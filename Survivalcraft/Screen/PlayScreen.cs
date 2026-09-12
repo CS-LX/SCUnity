@@ -43,9 +43,7 @@ namespace Game {
                 LanguageControl.Get("EnvironmentBehaviorMode", worldInfo.WorldSettings.EnvironmentBehaviorMode.ToString())
             );
             if (worldInfo.SerializationVersion != VersionsManager.SerializationVersion) {
-                labelWidget2.Text = $"{labelWidget2.Text} | {(string.IsNullOrEmpty(worldInfo.SerializationVersion)
-                    ? LanguageControl.GetContentWidgets("Usual", "Unknown")
-                    : $"({worldInfo.SerializationVersion})")}";
+                labelWidget2.Text = $"{labelWidget2.Text} | {(string.IsNullOrEmpty(worldInfo.SerializationVersion)                     ? LanguageControl.GetContentWidgets("Usual", "Unknown")                     : $"({worldInfo.SerializationVersion})")}";
             }
             ModsManager.HookAction(
                 "LoadWorldInfoWidget",
@@ -184,8 +182,8 @@ namespace Game {
                 m_modTipsTime = Time.RealTime;
                 flag |= ShowTips(item);
             }
-            List<ValuesDictionary> modsNotLoaded = [];
-            List<ValuesDictionary> modsVersionNotCapable = [];
+            List<ValuesDictionary> modsNotLoaded = new global::System.Collections.Generic.List<global::TemplatesDatabase.ValuesDictionary>() {  };
+            List<ValuesDictionary> modsVersionNotCapable = new global::System.Collections.Generic.List<global::TemplatesDatabase.ValuesDictionary>() {  };
             if (worldInfo != null) {
                 XElement projectNode = WorldsManager.GetProjectNode(worldInfo);
                 if (projectNode != null) {
@@ -331,7 +329,7 @@ namespace Game {
                 return true;
             }
             if (v1.Contains("~")) {
-                string[] versions = v1.Split(['~'], StringSplitOptions.RemoveEmptyEntries);
+                string[] versions = v1.Split(new char[] { '~' }, StringSplitOptions.RemoveEmptyEntries);
                 try {
                     double minv = double.Parse(versions[0]);
                     double maxv = double.Parse(versions[1]);
@@ -343,7 +341,7 @@ namespace Game {
                 }
             }
             if (v1.Contains(";")) {
-                string[] versions = v1.Split([';'], StringSplitOptions.RemoveEmptyEntries);
+                string[] versions = v1.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string v in versions) {
                     if (v == v2) {
                         return true;

@@ -7,9 +7,9 @@ namespace Game {
             public float Strength;
         }
 
-        public Dictionary<Point3, Particle> m_particlesByPoint = [];
+        public Dictionary<Point3, Particle> m_particlesByPoint = new global::System.Collections.Generic.Dictionary<global::Engine.Point3, global::Game.ExplosionParticleSystem.Particle>() {  };
 
-        public List<Particle> m_inactiveParticles = [];
+        public List<Particle> m_inactiveParticles = new global::System.Collections.Generic.List<global::Game.ExplosionParticleSystem.Particle>() {  };
 
         public Random m_random = new();
 

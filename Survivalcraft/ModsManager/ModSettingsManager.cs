@@ -113,9 +113,9 @@ namespace Game {
             try {
                 foreach (ModEntity modEntity in ModsManager.ModList) {
                     string packageName = modEntity.modInfo.PackageName;
-                    ValuesDictionary modKeyboardSettings = [];
-                    ValuesDictionary modGamepadSettings = [];
-                    ValuesDictionary modCameraSettings = [];
+                    ValuesDictionary modKeyboardSettings = new global::TemplatesDatabase.ValuesDictionary() {  };
+                    ValuesDictionary modGamepadSettings = new global::TemplatesDatabase.ValuesDictionary() {  };
+                    ValuesDictionary modCameraSettings = new global::TemplatesDatabase.ValuesDictionary() {  };
                     IEnumerable<KeyValuePair<string, object>> keysToAdd = modEntity.Loaders.SelectMany(item => item.GetKeyboardMappings()); //初始化模组默认键位设置
                     IEnumerable<KeyValuePair<string, object>> gamepadKeysToAdd = modEntity.Loaders.SelectMany(item => item.GetGamepadMappings()); //初始化模组默认键位设置
                     IEnumerable<KeyValuePair<string, int>> camerasToAdd = modEntity.Loaders.SelectMany(item => item.GetCameraList()); //初始化模组默认相机设置

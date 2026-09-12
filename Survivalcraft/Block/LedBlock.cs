@@ -5,16 +5,8 @@ using Engine.Graphics;
 namespace Game {
     public class LedBlock : MountedElectricElementBlock {
         public static int Index = 152;
-        public static readonly Color[] LedColors = [
-            new(255, 255, 255),
-            new(0, 255, 255),
-            new(255, 0, 0),
-            new(0, 0, 255),
-            new(255, 240, 0),
-            new(0, 255, 0),
-            new(255, 120, 0),
-            new(255, 0, 255)
-        ];
+        public static readonly Color[] LedColors = new global::Engine.Color[] {             new(255, 255, 255),             new(0, 255, 255),             new(255, 0, 0),             new(0, 0, 255),             new(255, 240, 0),             new(0, 255, 0),             new(255, 120, 0),             new(255, 0, 255)
+ };
         
         public BlockMesh[] m_standaloneBlockMeshesByColor = new BlockMesh[8];
         public BlockMesh[] m_blockMeshesByData = new BlockMesh[64];
@@ -84,7 +76,7 @@ namespace Game {
                         false,
                         color
                     );
-                    m_collisionBoxesByData[num] = [m_blockMeshesByData[num].CalculateBoundingBox()];
+                    m_collisionBoxesByData[num] = new global::Engine.BoundingBox[] { m_blockMeshesByData[num].CalculateBoundingBox() };
                 }
             }
         }

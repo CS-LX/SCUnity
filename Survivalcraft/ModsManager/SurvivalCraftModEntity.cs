@@ -13,26 +13,8 @@ namespace Game {
         public SurvivalCraftModEntity() {
             List<IContentReader.IContentReader> readers = new();
             readers.AddRange(
-                [
-                    new AssemblyReader(),
-                    new BitmapFontReader(),
-                    new DaeModelReader(),
-                    new ImageReader(),
-                    new JsonArrayReader(),
-                    new JsonObjectReader(),
-                    new JsonDocumentReader(),
-                    new IContentReader.JsonModelReader(),
-                    new MtllibStructReader(),
-                    new IContentReader.ObjModelReader(),
-                    new ShaderReader(),
-                    new SoundBufferReader(),
-                    new StreamingSourceReader(),
-                    new StringReader(),
-                    new SubtextureReader(),
-                    new Texture2DReader(),
-                    new XmlReader(),
-                    new ContentStreamReader()
-                ]
+                new global::Game.IContentReader.IContentReader[] {                     new AssemblyReader(),                     new BitmapFontReader(),                     new DaeModelReader(),                     new ImageReader(),                     new JsonArrayReader(),                     new JsonObjectReader(),                     new JsonDocumentReader(),                     new IContentReader.JsonModelReader(),                     new MtllibStructReader(),                     new IContentReader.ObjModelReader(),                     new ShaderReader(),                     new SoundBufferReader(),                     new StreamingSourceReader(),                     new StringReader(),                     new SubtextureReader(),                     new Texture2DReader(),                     new XmlReader(),                     new ContentStreamReader()
+ }
             );
             for (int i = 0; i < readers.Count; i++) {
                 ContentManager.ReaderList.Add(readers[i].Type, readers[i]);
@@ -74,7 +56,7 @@ namespace Game {
             ContentManager.Dispose("BlocksData");
         }
 
-        public override Assembly[] GetAssemblies() => [typeof(BlocksManager).Assembly];
+        public override Assembly[] GetAssemblies() => new global::System.Reflection.Assembly[] { typeof(BlocksManager).Assembly };
 
         public override void HandleAssembly(Assembly assembly) {
 #pragma warning disable IL2026

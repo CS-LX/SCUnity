@@ -2,24 +2,8 @@ using System.Text;
 
 namespace Game {
     public static class StringUtils {
-        public static char[] m_digits = [
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F'
-        ];
+        public static char[] m_digits = new char[] {             '0',             '1',             '2',             '3',             '4',             '5',             '6',             '7',             '8',             '9',             'A',             'B',             'C',             'D',             'E',             'F'
+ };
 
         public static int Compare(StringBuilder s1, string s2) {
             int num = 0;

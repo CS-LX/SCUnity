@@ -1,8 +1,14 @@
 namespace Game {
     public static class KeyCompatibleGroupsManager {
-        public class KeyCompatibleGroup(string groupId) {
-            public string GroupId { get; } = groupId;
-            readonly HashSet<string> keys = [];
+        public class KeyCompatibleGroup{
+
+        public KeyCompatibleGroup(string groupId)
+{
+    this.GroupId = groupId;
+    this.keys = new global::System.Collections.Generic.HashSet<string>()
+    {
+    };
+}            public string GroupId { get; }             readonly HashSet<string> keys ;
 
             public void AddKey(string key) => keys.Add(key);
 
@@ -17,7 +23,7 @@ namespace Game {
             public IReadOnlyCollection<string> Keys => keys;
         }
 
-        public static readonly Dictionary<string, KeyCompatibleGroup> m_compatibleGroups = [];
+        public static readonly Dictionary<string, KeyCompatibleGroup> m_compatibleGroups = new global::System.Collections.Generic.Dictionary<string, global::Game.KeyCompatibleGroupsManager.KeyCompatibleGroup>() {  };
 
         public static void Initialize() {
             m_compatibleGroups.Clear();
@@ -76,7 +82,7 @@ namespace Game {
         /// <param name="conflictKeys"></param>
         /// <returns></returns>
         public static bool HasConflict(List<string> list, out List<string> conflictKeys) {
-            conflictKeys = [];
+            conflictKeys = new global::System.Collections.Generic.List<string>() {  };
             if (list.Count <= 1) {
                 return false;
             }

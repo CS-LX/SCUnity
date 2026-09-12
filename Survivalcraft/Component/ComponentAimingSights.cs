@@ -15,7 +15,7 @@ namespace Game {
 
         public Vector3 m_sightsDirection;
 
-        public static int[] m_drawOrders = [2000];
+        public static int[] m_drawOrders = new int[] { 2000 };
 
         public bool IsSightsVisible { get; set; }
 

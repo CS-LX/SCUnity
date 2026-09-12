@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics;
-using System.Runtime.Intrinsics.X86;
+using Vector128 = SCUnity.Compatibility.Float4;
+using Sse = SCUnity.Compatibility.Float4;
 
 namespace Engine {
     public struct Vector2 : IEquatable<Vector2> {
@@ -121,10 +121,14 @@ namespace Engine {
             return num2;
         }
 
-        public static Vector2 Transform(Vector2 v, Matrix m) => new(v.X * m.M11 + v.Y * m.M21 + m.M41, v.X * m.M12 + v.Y * m.M22 + m.M42);
+        public static Vector2 Transform(Vector2 v, Matrix m) {
+            TransformRows(ref m, out var row1, out var row2, out var row4);
+            var r = row1 * Vector128.Create(v.X) + row2 * Vector128.Create(v.Y) + row4;
+            return new Vector2(r[0], r[1]);
+        }
 
         public static void Transform(ref Vector2 v, ref Matrix m, out Vector2 result) {
-            result = new Vector2(v.X * m.M11 + v.Y * m.M21 + m.M41, v.X * m.M12 + v.Y * m.M22 + m.M42);
+            result = Transform(v, m);
         }
 
         public static Vector2 Transform(Vector2 v, Quaternion q) {
@@ -154,13 +158,13 @@ namespace Engine {
         // 列主序转置：UnpackLow = (M11, M12, M21, M22)，低 64 位即行 1，高 64 位即行 2；
         // UnpackHigh = (M31, M32, M41, M42)，高 64 位即行 4。加法顺序与标量版一致，结果逐位相同
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void TransformRows(ref Matrix m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row4) {
-            Vector128<float> c1 = Vector128.LoadUnsafe(ref m.M11);
-            Vector128<float> c2 = Vector128.LoadUnsafe(ref m.M12);
-            Vector128<float> u = Sse.UnpackLow(c1, c2);
+        private static void TransformRows(ref Matrix m, out SCUnity.Compatibility.Float4 row1, out SCUnity.Compatibility.Float4 row2, out SCUnity.Compatibility.Float4 row4) {
+            SCUnity.Compatibility.Float4 c1 = Vector128.LoadUnsafe(ref m.M11);
+            SCUnity.Compatibility.Float4 c2 = Vector128.LoadUnsafe(ref m.M12);
+            SCUnity.Compatibility.Float4 u = Sse.UnpackLow(c1, c2);
             row1 = u;
             row2 = Sse.MoveHighToLow(u, u);
-            Vector128<float> w = Sse.UnpackHigh(c1, c2);
+            SCUnity.Compatibility.Float4 w = Sse.UnpackHigh(c1, c2);
             row4 = Sse.MoveHighToLow(w, w);
         }
 
@@ -171,10 +175,10 @@ namespace Engine {
             int destinationIndex,
             int count) {
             if (Sse.IsSupported) {
-                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out Vector128<float> row4);
+                TransformRows(ref m, out SCUnity.Compatibility.Float4 row1, out SCUnity.Compatibility.Float4 row2, out SCUnity.Compatibility.Float4 row4);
                 for (int i = 0; i < count; i++) {
                     Vector2 vector = sourceArray[sourceIndex + i];
-                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row4;
+                    SCUnity.Compatibility.Float4 r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y) + row4;
                     destinationArray[destinationIndex + i] = new Vector2(r[0], r[1]);
                 }
                 return;
@@ -188,10 +192,14 @@ namespace Engine {
             }
         }
 
-        public static Vector2 TransformNormal(Vector2 v, Matrix m) => new(v.X * m.M11 + v.Y * m.M21, v.X * m.M12 + v.Y * m.M22);
+        public static Vector2 TransformNormal(Vector2 v, Matrix m) {
+            TransformRows(ref m, out var row1, out var row2, out _);
+            var r = row1 * Vector128.Create(v.X) + row2 * Vector128.Create(v.Y);
+            return new Vector2(r[0], r[1]);
+        }
 
         public static void TransformNormal(ref Vector2 v, ref Matrix m, out Vector2 result) {
-            result = new Vector2(v.X * m.M11 + v.Y * m.M21, v.X * m.M12 + v.Y * m.M22);
+            result = TransformNormal(v, m);
         }
 
         public static void TransformNormal(Vector2[] sourceArray,
@@ -201,10 +209,10 @@ namespace Engine {
             int destinationIndex,
             int count) {
             if (Sse.IsSupported) {
-                TransformRows(ref m, out Vector128<float> row1, out Vector128<float> row2, out _);
+                TransformRows(ref m, out SCUnity.Compatibility.Float4 row1, out SCUnity.Compatibility.Float4 row2, out _);
                 for (int i = 0; i < count; i++) {
                     Vector2 vector = sourceArray[sourceIndex + i];
-                    Vector128<float> r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y);
+                    SCUnity.Compatibility.Float4 r = row1 * Vector128.Create(vector.X) + row2 * Vector128.Create(vector.Y);
                     destinationArray[destinationIndex + i] = new Vector2(r[0], r[1]);
                 }
                 return;

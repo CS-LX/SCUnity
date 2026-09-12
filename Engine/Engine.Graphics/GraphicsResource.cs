@@ -1,6 +1,6 @@
 namespace Engine.Graphics {
     public abstract class GraphicsResource : IDisposable {
-        public static HashSet<GraphicsResource> m_resources = [];
+        public static HashSet<GraphicsResource> m_resources = new global::System.Collections.Generic.HashSet<global::Engine.Graphics.GraphicsResource>() {  };
 
         public bool m_isDisposed;
 

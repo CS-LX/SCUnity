@@ -7,7 +7,7 @@ namespace Game {
     public class SubsystemParticles : Subsystem, IDrawable, IUpdateable {
         public SubsystemTime m_subsystemTime;
 
-        public Dictionary<ParticleSystemBase, bool> m_particleSystems = [];
+        public Dictionary<ParticleSystemBase, bool> m_particleSystems = new global::System.Collections.Generic.Dictionary<global::Game.ParticleSystemBase, bool>() {  };
 
         public PrimitivesRenderer3D PrimitivesRenderer = new();
 
@@ -15,9 +15,9 @@ namespace Game {
 
         public bool ParticleSystemsSimulate = true;
 
-        public int[] m_drawOrders = [300];
+        public int[] m_drawOrders = new int[] { 300 };
 
-        public List<ParticleSystemBase> m_endedParticleSystems = [];
+        public List<ParticleSystemBase> m_endedParticleSystems = new global::System.Collections.Generic.List<global::Game.ParticleSystemBase>() {  };
 
         public UpdateOrder UpdateOrder => UpdateOrder.Default;
 

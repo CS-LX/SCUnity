@@ -10,36 +10,14 @@ namespace Game {
 
         static PlantsManager() {
             m_treeBrushesByType = new List<TerrainBrush>[EnumUtils.GetEnumValues<TreeType>().Max() + 1];
-            m_treeTrunksByType = [9, 10, 11, 11, 255, 262];
-            m_treeLeavesByType = [
-                Terrain.MakeBlockValue(12, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring)),
-                Terrain.MakeBlockValue(13, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring)),
-                14,
-                225,
-                Terrain.MakeBlockValue(256, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring)),
-                Terrain.MakeBlockValue(263, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring))
-            ];
+            m_treeTrunksByType = new int[] { 9, 10, 11, 11, 255, 262 };
+            m_treeLeavesByType = new int[] {                 Terrain.MakeBlockValue(12, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring)),                 Terrain.MakeBlockValue(13, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring)),                 14,                 225,                 Terrain.MakeBlockValue(256, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring)),                 Terrain.MakeBlockValue(263, 0, DeciduousLeavesBlock.SetSeason(0, Season.Spring))
+ };
             Random random = new(33);
-            m_treeBrushesByType[0] = [];
+            m_treeBrushesByType[0] = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
             for (int i = 0; i < 16; i++) {
-                int[] array = [
-                    5,
-                    6,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    11,
-                    12,
-                    12,
-                    13,
-                    13,
-                    14,
-                    15,
-                    16,
-                    18
-                ];
+                int[] array = new int[] {                     5,                     6,                     7,                     8,                     9,                     10,                     11,                     11,                     12,                     12,                     13,                     13,                     14,                     15,                     16,                     18
+ };
                 int height4 = array[i];
                 int branchesCount = (int)MathUtils.Lerp(10f, 22f, i / 16f);
                 TerrainBrush item = CreateTreeBrush(
@@ -71,26 +49,10 @@ namespace Game {
                 );
                 m_treeBrushesByType[0].Add(item);
             }
-            m_treeBrushesByType[1] = [];
+            m_treeBrushesByType[1] = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
             for (int j = 0; j < 16; j++) {
-                int[] array2 = [
-                    4,
-                    5,
-                    6,
-                    7,
-                    7,
-                    8,
-                    8,
-                    9,
-                    9,
-                    9,
-                    10,
-                    10,
-                    10,
-                    11,
-                    11,
-                    12
-                ];
+                int[] array2 = new int[] {                     4,                     5,                     6,                     7,                     7,                     8,                     8,                     9,                     9,                     9,                     10,                     10,                     10,                     11,                     11,                     12
+ };
                 int height3 = array2[j];
                 int branchesCount2 = (int)MathUtils.Lerp(0f, 20f, j / 16f);
                 TerrainBrush item2 = CreateTreeBrush(
@@ -115,26 +77,10 @@ namespace Game {
                 );
                 m_treeBrushesByType[1].Add(item2);
             }
-            m_treeBrushesByType[2] = [];
+            m_treeBrushesByType[2] = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
             for (int k = 0; k < 16; k++) {
-                int[] array3 = [
-                    7,
-                    8,
-                    9,
-                    10,
-                    10,
-                    11,
-                    11,
-                    12,
-                    12,
-                    13,
-                    13,
-                    14,
-                    14,
-                    15,
-                    16,
-                    17
-                ];
+                int[] array3 = new int[] {                     7,                     8,                     9,                     10,                     10,                     11,                     11,                     12,                     12,                     13,                     13,                     14,                     14,                     15,                     16,                     17
+ };
                 int height2 = array3[k];
                 int branchesCount3 = height2 * 3;
                 TerrainBrush item3 = CreateTreeBrush(
@@ -164,28 +110,10 @@ namespace Game {
                 );
                 m_treeBrushesByType[2].Add(item3);
             }
-            m_treeBrushesByType[3] = [];
+            m_treeBrushesByType[3] = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
             for (int l = 0; l < 16; l++) {
-                int[] array4 = [
-                    20,
-                    21,
-                    22,
-                    23,
-                    24,
-                    24,
-                    25,
-                    25,
-                    26,
-                    26,
-                    27,
-                    27,
-                    28,
-                    28,
-                    29,
-                    30,
-                    31,
-                    32
-                ];
+                int[] array4 = new int[] {                     20,                     21,                     22,                     23,                     24,                     24,                     25,                     25,                     26,                     26,                     27,                     27,                     28,                     28,                     29,                     30,                     31,                     32
+ };
                 int height = array4[l];
                 int branchesCount4 = height * 3;
                 float startHeight = (0.3f + l % 4 * 0.05f) * height;
@@ -220,31 +148,14 @@ namespace Game {
                 );
                 m_treeBrushesByType[3].Add(item4);
             }
-            m_treeBrushesByType[4] = [];
+            m_treeBrushesByType[4] = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
             for (int m = 0; m < 16; m++) {
                 m_treeBrushesByType[4].Add(CreateMimosaBrush(random, MathUtils.Lerp(6f, 9f, m / 15f)));
             }
-            m_treeBrushesByType[5] = [];
+            m_treeBrushesByType[5] = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
             for (int n = 0; n < 16; n++) {
-                int[] array5 = [
-                    10,
-                    11,
-                    11,
-                    12,
-                    12,
-                    13,
-                    13,
-                    13,
-                    14,
-                    14,
-                    14,
-                    15,
-                    15,
-                    16,
-                    16,
-                    17,
-                    17
-                ];
+                int[] array5 = new int[] {                     10,                     11,                     11,                     12,                     12,                     13,                     13,                     13,                     14,                     14,                     14,                     15,                     15,                     16,                     16,                     17,                     17
+ };
                 int height5 = array5[n];
                 int branchesCount5 = height5 * 3;
                 TerrainBrush item5 = CreateTreeBrush(

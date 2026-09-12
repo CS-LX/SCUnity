@@ -252,23 +252,23 @@ namespace Game {
         public int OceanLevel => 64 + m_worldSettings.SeaLevelOffset;
 
         static TerrainContentsGenerator22() {
-            m_coalBrushes = [];
-            m_ironBrushes = [];
-            m_copperBrushes = [];
-            m_saltpeterBrushes = [];
-            m_sulphurBrushes = [];
-            m_diamondBrushes = [];
-            m_germaniumBrushes = [];
-            m_dirtPocketBrushes = [];
-            m_gravelPocketBrushes = [];
-            m_limestonePocketBrushes = [];
-            m_sandPocketBrushes = [];
-            m_basaltPocketBrushes = [];
-            m_granitePocketBrushes = [];
-            m_clayPocketBrushes = [];
-            m_waterPocketBrushes = [];
-            m_magmaPocketBrushes = [];
-            m_caveBrushesByType = [];
+            m_coalBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_ironBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_copperBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_saltpeterBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_sulphurBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_diamondBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_germaniumBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_dirtPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_gravelPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_limestonePocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_sandPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_basaltPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_granitePocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_clayPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_waterPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_magmaPocketBrushes = new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  };
+            m_caveBrushesByType = new global::System.Collections.Generic.List<global::System.Collections.Generic.List<global::Game.TerrainBrush>>() {  };
             CreateBrushes();
         }
 
@@ -2263,7 +2263,7 @@ namespace Game {
                 terrainBrush14.Compile();
                 m_granitePocketBrushes.Add(terrainBrush14);
             }
-            int[] array = [4, 6, 8];
+            int[] array = new int[] { 4, 6, 8 };
             for (int num65 = 0; num65 < 4 * array.Length; num65++) {
                 TerrainBrush terrainBrush15 = new();
                 int num66 = array[num65 / 4];
@@ -2297,7 +2297,7 @@ namespace Game {
                 terrainBrush15.Compile();
                 m_waterPocketBrushes.Add(terrainBrush15);
             }
-            int[] array2 = [8, 12, 14, 16];
+            int[] array2 = new int[] { 8, 12, 14, 16 };
             for (int num73 = 0; num73 < 4 * array2.Length; num73++) {
                 TerrainBrush terrainBrush16 = new();
                 int num74 = array2[num73 / 4];
@@ -2333,7 +2333,7 @@ namespace Game {
                 m_magmaPocketBrushes.Add(terrainBrush16);
             }
             for (int num82 = 0; num82 < 7; num82++) {
-                m_caveBrushesByType.Add([]);
+                m_caveBrushesByType.Add(new global::System.Collections.Generic.List<global::Game.TerrainBrush>() {  });
                 for (int num83 = 0; num83 < 3; num83++) {
                     TerrainBrush terrainBrush17 = new();
                     int num84 = 6 + 4 * num82;

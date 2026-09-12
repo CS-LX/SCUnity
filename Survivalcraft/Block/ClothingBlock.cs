@@ -7,7 +7,7 @@ namespace Game {
     public class ClothingBlock : Block {
         public static int Index = 203;
 
-        public Dictionary<int, ClothingData> m_clothingData = [];
+        public Dictionary<int, ClothingData> m_clothingData = new global::System.Collections.Generic.Dictionary<int, global::Game.ClothingData>() {  };
 
         public BlockMesh m_innerMesh;
 
@@ -15,12 +15,8 @@ namespace Game {
 
         public BlockMesh m_outerMesh;
 
-        public static Matrix[] m_slotTransforms = [
-            Matrix.CreateTranslation(0f, -1.5f, 0f) * Matrix.CreateScale(2.7f),
-            Matrix.CreateTranslation(0f, -1.1f, 0f) * Matrix.CreateScale(2.7f),
-            Matrix.CreateTranslation(0f, -0.5f, 0f) * Matrix.CreateScale(2.7f),
-            Matrix.CreateTranslation(0f, -0.1f, 0f) * Matrix.CreateScale(2.7f)
-        ];
+        public static Matrix[] m_slotTransforms = new global::Engine.Matrix[] {             Matrix.CreateTranslation(0f, -1.5f, 0f) * Matrix.CreateScale(2.7f),             Matrix.CreateTranslation(0f, -1.1f, 0f) * Matrix.CreateScale(2.7f),             Matrix.CreateTranslation(0f, -0.5f, 0f) * Matrix.CreateScale(2.7f),             Matrix.CreateTranslation(0f, -0.1f, 0f) * Matrix.CreateScale(2.7f)
+ };
 
         public virtual void LoadClothingData(XElement item) {
             if (item.Name.LocalName == "ClothingData") {

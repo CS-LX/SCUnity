@@ -69,22 +69,22 @@ namespace Game {
 
         public int MaxInstancesCount = 32;
 
-        public Dictionary<ComponentModel, ModelData> m_componentModels = [];
+        public Dictionary<ComponentModel, ModelData> m_componentModels = new global::System.Collections.Generic.Dictionary<global::Game.ComponentModel, global::Game.SubsystemModelsRenderer.ModelData>() {  };
 
-        public List<ModelData> m_modelsToPrepare = [];
+        public List<ModelData> m_modelsToPrepare = new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  };
 
-        public List<ModelData>[] m_modelsToDraw = [[], [], [], []];
+        public List<ModelData>[] m_modelsToDraw = new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>[] { new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  }, new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  }, new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  }, new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  } };
 
         // Pre-allocated buffers for skinning (avoid GC pressure)
         public Matrix[] m_jointMatricesBuffer;
-        public readonly List<ModelData> m_nonSkinnedModelsBuffer = [];
-        public readonly List<ModelData> m_skinnedModelsBuffer = [];
+        public readonly List<ModelData> m_nonSkinnedModelsBuffer = new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  };
+        public readonly List<ModelData> m_skinnedModelsBuffer = new global::System.Collections.Generic.List<global::Game.SubsystemModelsRenderer.ModelData>() {  };
 
         public static bool DisableDrawingModels = false;
 
         public int ModelsDrawn;
 
-        public int[] m_drawOrders = [-10000, 1, 99, 201];
+        public int[] m_drawOrders = new int[] { -10000, 1, 99, 201 };
 
         public PrimitivesRenderer3D PrimitivesRenderer => m_primitivesRenderer;
 

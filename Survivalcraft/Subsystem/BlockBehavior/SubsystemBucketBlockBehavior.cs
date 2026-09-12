@@ -18,17 +18,8 @@ namespace Game {
         public int m_waterBlockIndex;
         public int m_magmaBlockIndex;
 
-        public override int[] HandledBlocks => [
-            BlocksManager.GetBlockIndex<EmptyBucketBlock>(),
-            BlocksManager.GetBlockIndex<WaterBucketBlock>(),
-            BlocksManager.GetBlockIndex<MagmaBucketBlock>(),
-            BlocksManager.GetBlockIndex<MilkBucketBlock>(),
-            245,
-            251,
-            252,
-            129,
-            128
-        ];
+        public override int[] HandledBlocks => new int[] {             BlocksManager.GetBlockIndex<EmptyBucketBlock>(),             BlocksManager.GetBlockIndex<WaterBucketBlock>(),             BlocksManager.GetBlockIndex<MagmaBucketBlock>(),             BlocksManager.GetBlockIndex<MilkBucketBlock>(),             245,             251,             252,             129,             128
+ };
 
         public override bool OnUse(Ray3 ray, ComponentMiner componentMiner) {
             IInventory inventory = componentMiner.Inventory;

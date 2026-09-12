@@ -7,19 +7,19 @@ namespace Engine.Animation {
     public class ModelAnimation {
         public string Name { get; set; } = string.Empty;
         public float Duration { get; set; }
-        public List<AnimationChannel> Channels { get; set; } = [];
+        public List<AnimationChannel> Channels { get; set; } = new global::System.Collections.Generic.List<global::Engine.Animation.ModelAnimation.AnimationChannel>() {  };
 
         /// <summary>
         /// KHR_animation_pointer targets. Action&lt;float&gt; 接受时间（秒），
         /// 采样曲线并直接修改目标属性。
         /// </summary>
-        public List<Action<float>> PointerTargets { get; set; } = [];
+        public List<Action<float>> PointerTargets { get; set; } = new global::System.Collections.Generic.List<global::System.Action<float>>() {  };
 
         /// <summary>
         /// KHR_node_visibility targets. Action&lt;float, Model&gt; 接受时间（秒）和 Model，
         /// 采样曲线并设置对应 ModelMesh 的 IsVisible。
         /// </summary>
-        public List<Action<float, Model>> NodeVisibilityTargets { get; set; } = [];
+        public List<Action<float, Model>> NodeVisibilityTargets { get; set; } = new global::System.Collections.Generic.List<global::System.Action<float, global::Engine.Graphics.Model>>() {  };
 
         /// <summary>
         /// 动画通道，对应一个骨骼的某个属性
@@ -41,15 +41,15 @@ namespace Engine.Animation {
         /// 动画采样器
         /// </summary>
         public class AnimationSampler {
-            public float[] KeyTimes { get; set; } = [];
-            public Vector3[] Translations { get; set; } = [];
-            public Quaternion[] Rotations { get; set; } = [];
-            public Vector3[] Scales { get; set; } = [];
+            public float[] KeyTimes { get; set; } = new float[] {  };
+            public Vector3[] Translations { get; set; } = new global::Engine.Vector3[] {  };
+            public Quaternion[] Rotations { get; set; } = new global::Engine.Quaternion[] {  };
+            public Vector3[] Scales { get; set; } = new global::Engine.Vector3[] {  };
 
             /// <summary>
             /// Morph target weights per keyframe. Weights[i] is a float[] with one weight per morph target.
             /// </summary>
-            public float[][] Weights { get; set; } = [];
+            public float[][] Weights { get; set; } = new float[][] {  };
 
             public InterpolationType Interpolation { get; set; }
         }

@@ -13,9 +13,9 @@ namespace Game {
             public Vector2 TextureCoordinate;
         }
 
-        public DynamicArray<BlockMeshVertex> Vertices = [];
+        public DynamicArray<BlockMeshVertex> Vertices = new global::Engine.DynamicArray<global::Game.BlockMeshVertex>() {  };
 
-        public DynamicArray<int> Indices = [];
+        public DynamicArray<int> Indices = new global::Engine.DynamicArray<int>() {  };
 
         public DynamicArray<sbyte> Sides;
 
@@ -474,7 +474,7 @@ namespace Game {
         }
 
         public virtual void GenerateSidesData() {
-            Sides = [];
+            Sides = new global::Engine.DynamicArray<sbyte>() {  };
             Sides.Count = Indices.Count / 3;
             for (int i = 0; i < Sides.Count; i++) {
                 int num = Indices.Array[3 * i];

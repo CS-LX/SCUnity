@@ -162,8 +162,8 @@ namespace Engine.Media {
         }
 
         public static void Save(SoundData soundData, Stream stream) {
-            ArgumentNullException.ThrowIfNull(soundData);
-            ArgumentNullException.ThrowIfNull(stream);
+            if (soundData is null) throw new ArgumentNullException("soundData");
+            if (stream is null) throw new ArgumentNullException("stream");
             EngineBinaryWriter engineBinaryWriter = new(stream);
             WavHeader structure = default;
             structure.Riff = MakeFourCC("RIFF");
@@ -193,7 +193,7 @@ namespace Engine.Media {
         }
 
         public static void ReadHeaders(Stream stream, out FmtHeader fmtHeader, out DataHeader dataHeader, out long dataStart) {
-            ArgumentNullException.ThrowIfNull(stream);
+            if (stream is null) throw new ArgumentNullException("stream");
             if (!BitConverter.IsLittleEndian) {
                 throw new InvalidOperationException("Unsupported system endianness.");
             }

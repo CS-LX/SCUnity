@@ -112,7 +112,7 @@ namespace Game {
 
         public Terrain() {
             m_allChunks = new ChunksStorage();
-            m_allocatedChunks = [];
+            m_allocatedChunks = new global::System.Collections.Generic.HashSet<global::Game.TerrainChunk>() {  };
         }
 
         public virtual void Dispose() {
@@ -310,7 +310,7 @@ namespace Game {
 
         public static int ExtractBottomHeight(int value) => (value & BottomHeightMask) >> BottomHeightShift;
 
-        public static int ExtractSunlightHeight(int value) => value >>> SunlightHeightShift;
+        public static int ExtractSunlightHeight(int value) => (int)((uint)value >> SunlightHeightShift);
 
         public static int ExtractHumidity(int value) => (value & HumidityMask) >> HumidityShift;
 

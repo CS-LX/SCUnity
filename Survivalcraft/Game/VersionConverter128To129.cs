@@ -78,7 +78,7 @@ namespace Game {
                     }
                 }
             }
-            string[] inventoryNames = ["Inventory", "CreativeInventory", "CraftingTable", "Chest", "Furnace", "Dispenser"];
+            string[] inventoryNames = new string[] { "Inventory", "CreativeInventory", "CraftingTable", "Chest", "Furnace", "Dispenser" };
             foreach (XElement item17 in projectNode.Element("Entities").Elements()) {
                 foreach (XElement item18 in from e in item17.Elements("Values")
                     where inventoryNames.Contains(XmlUtils.GetAttributeValue(e, "Name", string.Empty))

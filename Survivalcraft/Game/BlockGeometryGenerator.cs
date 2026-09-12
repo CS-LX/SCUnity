@@ -20,16 +20,8 @@ namespace Game {
             public float L111;
         }
 
-        public static Vector2[] m_textureCoordinates = [
-            new(0.001f, 0.999f),
-            new(0.999f, 0.999f),
-            new(0.999f, 0.001f),
-            new(0.001f, 0.001f),
-            new(0.001f, 0.999f),
-            new(0.999f, 0.999f),
-            new(0.999f, 0.001f),
-            new(0.001f, 0.001f)
-        ];
+        public static Vector2[] m_textureCoordinates = new global::Engine.Vector2[] {             new(0.001f, 0.999f),             new(0.999f, 0.999f),             new(0.999f, 0.001f),             new(0.001f, 0.001f),             new(0.001f, 0.999f),             new(0.999f, 0.999f),             new(0.999f, 0.001f),             new(0.001f, 0.001f)
+ };
 
         public Terrain Terrain;
 
@@ -43,7 +35,7 @@ namespace Game {
 
         public SubsystemPalette SubsystemPalette;
 
-        public DynamicArray<ElectricConnectionPath> m_tmpConnectionPaths = [];
+        public DynamicArray<ElectricConnectionPath> m_tmpConnectionPaths = new global::Engine.DynamicArray<global::Game.ElectricConnectionPath>() {  };
 
         public Point3 m_cornerLightsPosition;
 

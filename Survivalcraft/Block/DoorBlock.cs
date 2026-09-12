@@ -47,7 +47,7 @@ namespace Game {
                     );
                 BoundingBox boundingBox = m_blockMeshesByData[i].CalculateBoundingBox();
                 boundingBox.Max.Y = 1f;
-                m_collisionBoxesByData[i] = [boundingBox];
+                m_collisionBoxesByData[i] = new global::Engine.BoundingBox[] { boundingBox };
             }
             m_standaloneBlockMesh.AppendModelMeshPart(
                 model.FindMesh("Door").MeshParts[0],

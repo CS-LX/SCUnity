@@ -9,7 +9,7 @@ namespace Engine.Serialization {
         public XmlOutputArchive(string rootNodeName, int version = 0, object context = null) : this(new XElement(rootNodeName), version, context) { }
 
         public XmlOutputArchive(XElement node, int version = 0, object context = null) : base(version, context) {
-            ArgumentNullException.ThrowIfNull(node);
+            if (node is null) throw new ArgumentNullException("node");
             Node = node;
         }
 
