@@ -7,11 +7,9 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using H = Engine.UnityRuntime.Host;
 
-namespace SCUnity.Runtime
-{
+namespace SCUnity.Runtime {
     /// <summary>Unity owns the lifetime; the original game owns each frame's update and drawing.</summary>
-    public sealed class SurvivalcraftGame : MonoBehaviour
-    {
+    public sealed class SurvivalcraftGame : MonoBehaviour {
         [SerializeField] UniversalRenderPipelineAsset pipeline;
         PortRenderer portRenderer;
         PortInput input;
@@ -28,11 +26,9 @@ namespace SCUnity.Runtime
         public string DataDirectory { get; private set; }
         public string CurrentScreenName => Game.ScreensManager.CurrentScreen?.GetType().FullName;
 
-        void Start()
-        {
+        void Start() {
             Application.logMessageReceived += UnityLog;
-            try
-            {
+            try {
                 previousGraphicsPipeline = GraphicsSettings.defaultRenderPipeline;
                 previousQualityPipeline = QualitySettings.renderPipeline;
                 if (pipeline == null) throw new InvalidOperationException("Assign the Survivalcraft URP pipeline to this scene.");
@@ -41,9 +37,7 @@ namespace SCUnity.Runtime
                 string[] args = Environment.GetCommandLineArgs();
                 int index = Array.IndexOf(args, "-scunity-smoke-output");
                 string smokeOutput = index >= 0 ? Path.GetFullPath(args[index + 1]) : null;
-                DataDirectory = smokeOutput == null
-                    ? Path.Combine(Application.persistentDataPath, "Survivalcraft")
-                    : Path.Combine(smokeOutput, "data");
+                DataDirectory = smokeOutput == null ? Path.Combine(Application.persistentDataPath, "Survivalcraft") : Path.Combine(smokeOutput, "data");
                 int dataIndex = Array.IndexOf(args, "-scunity-data-path");
                 if (dataIndex >= 0) DataDirectory = Path.GetFullPath(args[dataIndex + 1]);
                 H.Configure(Path.Combine(Application.streamingAssetsPath, "Survivalcraft"), DataDirectory, Screen.width, Screen.height);
@@ -52,15 +46,7 @@ namespace SCUnity.Runtime
                 // The original updater/registry integration target the legacy executable.
                 // Keep them disabled until their Unity desktop implementations are ready.
                 desktopServices = new Harmony("scunity.desktop.services");
-                foreach (var item in new[] {
-                    new[] { "Game.APIUpdateManager", "Initialize" },
-                    new[] { "Game.MotdManager", "Update" },
-                    new[] { "Game.FileAssociationManager", "Initialize" },
-                    new[] { "Game.Program", "ToRestartHandler" }
-                })
-                    desktopServices.Patch(AccessTools.Method(typeof(Game.Program).Assembly.GetType(item[0], true), item[1]),
-                        new HarmonyMethod(typeof(SurvivalcraftGame), nameof(SkipLegacyService)));
-
+                foreach (var item in new[] { new[] { "Game.APIUpdateManager", "Initialize" }, new[] { "Game.MotdManager", "Update" }, new[] { "Game.FileAssociationManager", "Initialize" }, new[] { "Game.Program", "ToRestartHandler" } }) desktopServices.Patch(AccessTools.Method(typeof(Game.Program).Assembly.GetType(item[0], true), item[1]), new HarmonyMethod(typeof(SurvivalcraftGame), nameof(SkipLegacyService)));
                 portRenderer = new PortRenderer();
                 var audioObject = new GameObject("Survivalcraft audio");
                 audioObject.transform.SetParent(transform, false);
@@ -71,16 +57,16 @@ namespace SCUnity.Runtime
                 if (smokeOutput != null) smoke = new CoreLoopSmokeTest(this, smokeOutput);
                 Debug.Log("Survivalcraft core loop started. Data: " + DataDirectory);
             }
-            catch (Exception error) { Fail(error); }
+            catch (Exception error) {
+                Fail(error);
+            }
         }
 
         static bool SkipLegacyService() => false;
 
-        void Update()
-        {
+        void Update() {
             if (stopped) return;
-            try
-            {
+            try {
                 smoke?.Before();
                 input.Sample(smoke != null);
                 portRenderer.Begin();
@@ -89,24 +75,25 @@ namespace SCUnity.Runtime
                 smoke?.After();
                 if (!Engine.Window.IsCreated) ExitGame();
             }
-            catch (Exception error) { Fail(error); }
+            catch (Exception error) {
+                Fail(error);
+            }
         }
 
-        void UnityLog(string message, string stackTrace, LogType type)
-        {
-            if (type == LogType.Error || type == LogType.Exception || type == LogType.Assert)
+        void UnityLog(string message, string stackTrace, LogType type) {
+            if (type == LogType.Error
+                || type == LogType.Exception
+                || type == LogType.Assert)
                 Errors.Add(message + "\n" + stackTrace);
         }
 
-        void Fail(Exception error)
-        {
+        void Fail(Exception error) {
             Debug.LogException(error);
             smoke?.Fail(error);
             Stop();
         }
 
-        void ExitGame()
-        {
+        void ExitGame() {
             Stop();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -115,13 +102,13 @@ namespace SCUnity.Runtime
 #endif
         }
 
-        public void Stop()
-        {
+        public void Stop() {
             if (stopped) return;
             stopped = true;
-            try { H.Shutdown(); }
-            finally
-            {
+            try {
+                H.Shutdown();
+            }
+            finally {
                 input?.Dispose();
                 audioOutput?.StopOutput();
                 portRenderer?.Dispose();
@@ -136,16 +123,21 @@ namespace SCUnity.Runtime
         void OnApplicationQuit() => Stop();
         void OnDestroy() => Stop();
 
-        sealed class UnityGameLog : Engine.ILogSink
-        {
+        sealed class UnityGameLog : Engine.ILogSink {
             readonly SurvivalcraftGame owner;
-            public UnityGameLog(SurvivalcraftGame owner) { this.owner = owner; }
+
+            public UnityGameLog(SurvivalcraftGame owner) {
+                this.owner = owner;
+            }
+
             public void Dispose() { }
-            public void Log(Engine.LogType type, string message)
-            {
+
+            public void Log(Engine.LogType type, string message) {
                 if (type == Engine.LogType.Error) owner.Errors.Add(message);
-                if (type == Engine.LogType.Error) Debug.LogError(message);
-                else Debug.Log(message);
+                if (type == Engine.LogType.Error)
+                    Debug.LogError(message);
+                else
+                    Debug.Log(message);
             }
         }
     }
