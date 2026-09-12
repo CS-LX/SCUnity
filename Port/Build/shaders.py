@@ -11,7 +11,11 @@ import baseline as b
 
 
 def generate(check=False):
-    b.check_upstream(b.SHA)
+    if (b.PORT / "source-lock.json").exists():
+        import source_guard
+        source_guard.check_upstream(b.SHA)
+    else:
+        b.check_upstream(b.SHA)
     destination = b.ROOT / "Assets/SCUnity/Resources/Shaders"
     destination.mkdir(parents=True, exist_ok=True)
     seen = set()

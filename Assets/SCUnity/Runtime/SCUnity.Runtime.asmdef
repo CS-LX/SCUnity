@@ -3,17 +3,19 @@
   "references": [
     "Unity.RenderPipelines.Universal.Runtime",
     "Unity.RenderPipelines.Core.Runtime",
-    "Unity.InputSystem"
+    "Unity.InputSystem",
+    "Engine",
+    "EntitySystem",
+    "Survivalcraft"
   ],
   "overrideReferences": true,
   "precompiledReferences": [
-    "Engine.dll",
-    "EntitySystem.dll",
-    "Survivalcraft.dll",
     "0Harmony.dll",
     "Silk.NET.Input.Common.dll",
     "Silk.NET.Core.dll",
-    "Silk.NET.OpenXR.dll"
+    "Silk.NET.OpenXR.dll",
+    "System.Text.Json.dll",
+    "SixLabors.ImageSharp.dll"
   ],
   "autoReferenced": false
 }

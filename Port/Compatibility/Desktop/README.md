@@ -1,4 +1,4 @@
-# Desktop core-loop integration
+# Desktop core-loop integration (historical profile)
 
 This is the first integration into the main Unity project's `Assets/SCUnity`.
 It is an incremental implementation, not full desktop migration acceptance.
@@ -13,9 +13,14 @@ not attest to complete runtime behavior or API equivalence.
 Mono BCL compatibility helpers. `Projects` contains six project overrides.
 Every input/output and support file is hash checked. NuGet restores use committed
 locks. FLAC and ImageSharp are rebuilt using their previously validated source
-modules. No files in the upstream submodule are edited.
+modules. This historical generator never edits its pinned input. The active source-fork
+checkout is now edited directly, independently of this frozen profile.
 
-Build and install with `python Port/Build/desktop.py --unity <Unity.exe> --install`.
+The main project now uses editable source packages. Use
+`python Port/Build/source.py --unity <Unity.exe> --install --validate`.
+The old `desktop.py --install` path refuses to install core DLLs when source packages
+are active. The instructions below describe the historical precompiled profile,
+which requires its original pinned upstream checkout. See `Docs/UnitySourceIntegration.md`.
 Add `--validate` to build a full copy of the real main project and run the menu /
 settings / Escape interaction twice, each with independent data and evidence.
 The Player must have a visible normal window for URP execution; it closes after

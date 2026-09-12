@@ -19,6 +19,7 @@ namespace SCUnity.Runtime {
         AudioSmokeTest audio;
         WorldSmokeTest world;
         CommunitySearchSmokeTest community;
+        string[] sourceChecks;
         readonly bool worldRequested = Array.IndexOf(Environment.GetCommandLineArgs(), "-scunity-world-test") >= 0;
 
         public CoreLoopSmokeTest(SurvivalcraftGame game, string output) {
@@ -43,6 +44,7 @@ namespace SCUnity.Runtime {
                 && Game.ScreensManager.CurrentScreen is Game.MainMenuScreen
                 && !Game.ScreensManager.IsAnimating
                 && ticks > 40) {
+                sourceChecks = SourceCompilationSmokeTest.Run();
                 Click(true);
                 phase = 1;
                 ticks = 0;
@@ -158,6 +160,7 @@ namespace SCUnity.Runtime {
             };
             result.worldChecks = world?.Checks.ToArray();
             result.communityChecks = community?.Checks.ToArray();
+            result.sourceChecks = sourceChecks;
             result.audioBlocks = game.AudioBlocks;
             result.audioChecks = audio?.Checks.ToArray();
             try {
@@ -193,6 +196,7 @@ namespace SCUnity.Runtime {
             public long audioBlocks;
             public string[] audioChecks, worldChecks;
             public string[] communityChecks;
+            public string[] sourceChecks;
             public string screen, unityVersion, platform, entryPoint, error;
         }
     }

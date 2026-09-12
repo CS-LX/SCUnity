@@ -2,7 +2,11 @@
 
 本目录已建立阶段 0 的**静态、构建、运行、存档及模组参考基线**；阶段 1 已完成源码生成/Mono 能力验证、数学/序列化/完整 EntitySystem，以及 FLAC 和 ImageSharp 3.1.12 解码依赖适配。完整三个程序集与游戏宿主现已接入主项目，加载/主菜单/设置及音效/音乐输出已验收；世界渲染与完整 API/模组回归待完成，见 [桌面接入](Compatibility/Desktop/README.md)。阶段 0 见 [运行基线说明](Tests/RuntimeProbe/README.md)，阶段 1 见 [Mono 能力验证](Compatibility/README.md)、[基础模块](Compatibility/Foundation.md) 、[FLAC 原版对照验收](Compatibility/Flac.md) 和 [图像验收](Compatibility/Images.md)。
 
-## 运行
+## 当前源码接入
+
+主项目现由 Unity 编译三个核心源码包，使用 `Build/source.py --install --validate`；见 [源码说明](../Docs/UnitySourceIntegration.md)。`upstream-lock.json` 及原版证据保持冻结，`source-lock.json` 单独锁定可编辑的移植分支。下面的原版 `baseline.py verify` 命令要求原始上游检出，不应在源码移植分支上覆盖历史证据。当前目录的完整单元检查仍可运行 `python -X utf8 -m unittest discover -s Port/Tests`，生成器测试通过独立源码分支校验后仍归档原 SHA。
+
+## 历史基线运行
 
 要求 Windows x64、Git、Python 3.12 或更高版本、.NET SDK **10.0.100**。SDK 在 `Port/global.json` 中锁定；阶段 0 基线工具没有第三方 Python 或 NuGet 依赖。上游构建的首次恢复需要连接 nuget.org，后续可使用本机 NuGet 缓存。
 

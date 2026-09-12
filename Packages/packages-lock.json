@@ -467,6 +467,24 @@
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.subsystems": "1.0.0"
       }
+    },
+    "com.scunity.engine": {
+      "version": "file:../External/SurvivalcraftApi/Engine",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.scunity.entitysystem": {
+      "version": "file:../External/SurvivalcraftApi/EntitySystem",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.scunity.survivalcraft": {
+      "version": "file:../External/SurvivalcraftApi/Survivalcraft",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
     }
   }
 }

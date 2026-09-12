@@ -1,8 +1,10 @@
 using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEditor.Compilation;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -47,6 +49,19 @@ namespace SCUnity.Editor
                 if (hosts != 1) throw new InvalidOperationException("Game scene must contain one SurvivalcraftGame entry.");
                 string[] args = Environment.GetCommandLineArgs();
                 string player = args[Array.IndexOf(args, "-scunity-player") + 1];
+                var assemblies = CompilationPipeline.GetAssemblies(AssembliesType.Player);
+                var sourceReport = new System.Text.StringBuilder();
+                foreach (string name in new[] { "Engine", "EntitySystem", "Survivalcraft" }) {
+                    if (File.Exists("Assets/SCUnity/Plugins/Generated/" + name + ".dll"))
+                        throw new InvalidOperationException("Unexpected precompiled core: " + name);
+                    var assembly = assemblies.Single(a => a.name == name);
+                    if (assembly.sourceFiles.Length == 0 || assembly.sourceFiles.Any(p =>
+                        !p.Replace('\\', '/').Contains("External/SurvivalcraftApi/" + name + "/") &&
+                        !p.Replace('\\', '/').StartsWith("Packages/com.scunity." + name.ToLowerInvariant() + "/")))
+                        throw new InvalidOperationException("Core assembly is not compiled from the source package: " + name);
+                    sourceReport.AppendLine(name + ": " + assembly.sourceFiles.Length + " source files; " + assembly.outputPath);
+                }
+                File.WriteAllText(Path.Combine(Path.GetDirectoryName(player), "source-compilation.txt"), sourceReport.ToString());
                 var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
                     scenes = new[] { Scene }, target = BuildTarget.StandaloneWindows64,
                     locationPathName = player, options = BuildOptions.StrictMode

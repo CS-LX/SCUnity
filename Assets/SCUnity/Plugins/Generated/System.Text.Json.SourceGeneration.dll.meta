@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6ab3c256ef2c5ef3bab7570a15dceabc
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  isPreloaded: 0
+  isOverridable: 1
+  isExplicitlyReferenced: 1
+  validateReferences: 0
+  platformData:
+  - first:
+      Any:
+    second:
+      enabled: 0
+      settings: {}

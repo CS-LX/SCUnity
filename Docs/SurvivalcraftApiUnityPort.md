@@ -1,6 +1,6 @@
 # Survivalcraft API Windows 端迁移到 Unity 的执行计划
 
-> 状态：阶段 0 已完成；阶段 1 的 Mono、数学/序列化/完整 EntitySystem、FLAC 和 ImageSharp 已验收。完整三个程序集现已构建为 Unity Mono 目标，并已把原版加载、主菜单与设置交互的核心循环接入主项目 Assets/SCUnity/Scenes/Survivalcraft.unity。原版音效/流式音乐、初始平坦世界的地形/天空/模型与保存重载已接通；完整世界视觉对照与 API/模组回归仍未完成，当前是增量接入，范围见 [桌面说明](../Port/Compatibility/Desktop/README.md)。
+> 状态：阶段 0 已完成；阶段 1 的 Mono、数学/序列化/完整 EntitySystem、FLAC 和 ImageSharp 已验收。三个核心程序集已改为由 Unity 直接编译的本地源码包（2026-09-13），并已把原版加载、主菜单与设置交互的核心循环接入主项目 Assets/SCUnity/Scenes/Survivalcraft.unity。原版音效/流式音乐、初始平坦世界的地形/天空/模型与保存重载已接通；完整世界视觉对照与 API/模组回归仍未完成，当前是增量接入，范围见 [桌面说明](../Port/Compatibility/Desktop/README.md)。
 >
 > 调研日期：2026-09-12
 >
@@ -15,7 +15,7 @@
 - 游戏只运行在一个 Unity Player 进程和一个 Unity 窗口中。不得启动原 Windows 可执行文件，不得创建第二个 GLFW/SDL 窗口或 OpenGL 上下文，也不得嵌入一个继续独立运行完整游戏的外部宿主。
 - `Engine`、`EntitySystem`、`Survivalcraft` 继续作为三个同名程序集存在。原有 ECS、方块、地形、存档、Widget、Screen、Manager、Subsystem 和模组系统保留；Unity 提供窗口、生命周期、渲染设备、输入、音频、文件路径和平台集成服务。
 - 当前交付范围仅为 **Windows x86-64 桌面非 VR 模式**。上游现有 OpenXR/VR 后端不迁移、不接入 Unity XR，也不作为本轮完成条件。
-- Windows 首版固定使用 Unity **Mono** 脚本后端和 **.NET Framework** API Compatibility Level。兼容程序集由仓库内的独立 MSBuild 工具链编译为 `net48`，Unity 侧只编译少量 C# 9 桥接代码。
+- Windows 首版固定使用 Unity **Mono** 脚本后端和 **.NET Framework** API Compatibility Level。三个核心程序集由 Unity 自带 Roslyn 4.3.1 直接编译；仅核心包的 `csc.rsp` 启用 C# 10，以保留结构体构造语义。第三方依赖恢复独立于核心源码编译。
 - `.scmod` 的包结构、目录、元数据、依赖排序、资源覆盖、JavaScript、`ModLoader` 钩子、类型发现和 HarmonyX 语义都属于必须保留的兼容契约。
 - 当前模组模板直接目标为 `net10.0`。Unity 官方明确不支持加载以 .NET Core 为目标的托管插件，因此已经发布的 `net10.0` 模组 DLL 不能作为“无需重编译即可加载”的承诺。迁移版 SDK 将为相同 NuGet 包增加 `net48` 目标，保持源码、程序集名和公开 API，使现有模组只需重新编译并按原方式打包为 `.scmod`。
 - 不增加方块、玩法、界面、渲染效果或其他业务可见能力。新增代码限于兼容层、Unity 后端、构建工具、自动化验证和诊断代码。
@@ -60,7 +60,7 @@ Unity 不接管游戏规则。不得把每个 Entity 改成 GameObject，不得�
 | 变更类别 | 规则 |
 |---|---|
 | 兼容层、平台后端、桥接、构建脚本、测试与诊断 | 允许 |
-| 为兼容旧 API 而增加的 BCL shim/polyfill | 允许，必须隔离在 `Port/Compatibility` |
+| 为兼容旧 API 而增加的 BCL shim/polyfill | 允许，运行时实现在源码包 Properties，历史生成配置保留于 `Port/Compatibility` |
 | 上游业务源文件的语法降级或平台条件编译 | 仅允许机械变更，必须有补丁和理由 |
 | Block、Component、Subsystem、Widget、Screen、Manager、世界生成、存档规则 | 默认禁止修改业务行为 |
 | 新方块、新配方、新 UI、新玩法、新画面效果、新业务配置 | 禁止 |
@@ -68,7 +68,7 @@ Unity 不接管游戏规则。不得把每个 Entity 改成 GameObject，不得�
 
 ### 2.4 上游可持续迁移
 
-`External/SurvivalcraftApi` 永远作为只读、固定提交的真源。迁移代码不得直接改子模块，也不得长期维护一份无法追踪来源的手工复制源码。所有选择、排除、补丁和后端替换必须机器可读，并能在上游提交变化后重新生成和审计。
+按源码接入决策，`External/SurvivalcraftApi` 现为保留 SC 历史的可编辑移植分支。三个源码包在原路径上维护，主项目通过 Git 子模块固定提交；上游更新在源码分支 merge 或 cherry-pick，不在构建时覆盖用户编辑。`upstream-lock.json` 与历史补丁仍冻结，`source-lock.json` 单独追踪移植提交及上游祖先。详见 [源码接入说明](UnitySourceIntegration.md)。
 
 ### 2.5 核心循环与业务模块保全
 
@@ -124,11 +124,11 @@ Window.RenderFrameHandler
 
 ### 3.2 Unity 与上游工具链差距
 
-上游 Windows 目标为 `net10.0-windows`，语言版本为 preview。源码中已发现至少 877 处集合表达式匹配、13 处主构造函数、36 处 `required` 相关使用、37 处 `nint/nuint` 使用和 32 个含 `unsafe` 的文件。Unity 6 内置编译器仅支持 C# 9，因此不能把全部上游源码直接放进 `Assets` 编译。
+上游 Windows 目标为 `net10.0-windows`，语言版本为 preview。源码中已发现至少 877 处集合表达式匹配、13 处主构造函数、36 处 `required` 相关使用、37 处 `nint/nuint` 使用和 32 个含 `unsafe` 的文件。Unity 文档声明 C# 9 支持；本机 6000.3.12f1 自带 Roslyn 4.3.1，可通过程序集局部响应文件使用 C# 10。本次已将更高版本语法降级，并通过固定版本 Windows Mono 验收；不承诺其它 Unity 版本或平台。
 
 Unity 6 官方支持的托管插件目标是 .NET Standard 和 .NET Framework，不支持 .NET Core；其 `.NET Framework` 兼容级别包含 .NET Framework 4.8 与额外的 .NET Standard 2.1 API。因此选择：
 
-- 兼容程序集：外部 Roslyn 编译，`TargetFramework=net48`，`LangVersion=preview`，按需启用 unsafe。
+- 核心程序集：Unity 自带编译器，三个本地 UPM/asmdef，`LangVersion=10`，按需启用 unsafe。
 - Unity 桥接程序集：Unity 自带编译器，限制为 C# 9。
 - Windows Player：Mono，原因是运行时程序集加载、完整反射、动态代码和 HarmonyX 是模组契约的一部分。
 - IL2CPP：本次 Windows 兼容目标不支持；等价托管模组能力建立之前不得切换。
@@ -233,53 +233,31 @@ Unity 生命周期映射如下：
 ## 5. 可持续迁移仓库结构
 
 ```text
-External/SurvivalcraftApi/                 上游只读子模块
+External/SurvivalcraftApi/                 保留上游历史的源码移植子模块
+  Engine/ EntitySystem/ Survivalcraft/     三个 Unity 本地源码包及 asmdef/csc.rsp
 Port/
-  upstream-lock.json                       上游提交、版本和内容/API 指纹
-  SourceManifest.json                      文件选择、排除、替换与责任模块
-  Compatibility/
-    PublicApi.Shipped.txt                  当前 Windows API 基线
-    PublicApi.Exceptions.json              经审查的例外，默认应为空
-    Bcl/                                   .NET 10 → net48 的隔离 shim
-  Patches/                                 可重复应用的最小机械补丁
-  Overrides/
-    Engine.Unity/                          被排除平台文件的同 API 实现
-    Survivalcraft.Unity/                   入口和直接平台调用适配
-  Build/                                   三个兼容 csproj、生成与校验脚本
-  Tests/
-    CoreLoop/ Content/ Saves/ Mods/ Api/
-Assets/SurvivalcraftPort/
-  Runtime/                                 UnityFrameHost 和服务注册
-  Rendering/                               URP RendererFeature、Pass、Shader
-  Plugins/Generated/                       构建产生的三个兼容程序集及依赖
-  StreamingAssets/                         构建产生的 Content.zip/init.js
-Docs/
-  SurvivalcraftApiUnityPort.md             本计划
-  PortCompatibilityReport.md               实施期持续更新的差异登记
+  upstream-lock.json                      冻结的原版基线
+  source-lock.json                        当前源码分支提交、上游祖先和 Unity 版本
+  Compatibility/Desktop/                 历史可重放兼容配置
+  Dependencies/Unity/                     独立第三方依赖项目和包锁
+  Build/source.py                        依赖恢复、内容打包、源码验收
+  Tests/Baselines/unity-source/           源码编译/API/运行证据
+Assets/SCUnity/                           Unity 宿主、渲染、音频、输入与场景
+Assets/StreamingAssets/Survivalcraft/     Content.zip/init.js
 ```
 
-生成流程将所选上游源文件复制到忽略版本控制的暂存目录，验证源文件哈希，按固定顺序应用补丁，再用锁定版本的 SDK 编译。每个上游文件必须在 `SourceManifest.json` 中属于以下一种状态：
-
-- `preserve`：原样编译。
-- `patch`：仅应用可审计的机械兼容补丁。
-- `replace-backend`：由同命名空间、同公开 API 的 Unity 后端替换。
-- `exclude-platform`：只属于其他平台或本轮明确排除的 VR 后端，附明确理由。
-
-发现未分类的新文件、补丁不能应用、公开 API 发生未登记变化或内容指纹异常时，构建立即失败。
+源码只在迁移时转换一次，之后直接编辑和提交子模块。Unity 编译器读取原路径源码，构建脚本不得再用历史 profile 覆盖它们。历史 SourceManifest 与 Desktop profile 保留输入、排除和补丁依据。
 
 ## 6. 上游更新流程
 
-上游更新只能通过专门分支/PR 执行：
+1. 在源码分支 fetch 指定 SC 上游分支，审查文件、依赖和公开 API 差异。
+2. 精选修复使用 `git cherry-pick -x <commit>`；完整同步使用 merge，保留真实上游祖先。
+3. 在原路径解决冲突、适配新语法和运行时差异；不重写已有移植编辑。
+4. 更新第三方依赖或内容时显式审查包锁、内容清单和必要的基线变化。
+5. 更新源码提交、`source-lock.json` 和父仓库 gitlink，运行干净主项目副本的 Player、Editor、API 及单元检查。
+6. 验收通过后先推源码分支，再推父项目。完整命令见 [源码说明](UnitySourceIntegration.md)。
 
-1. 获取 `SCAPI1.9` 最新提交并更新子模块指针。
-2. 用上游原 Windows 工程构建基准 DLL 和 `Content.zip`。
-3. 生成旧/新提交的文件分类差异、依赖差异、公开 API 差异和内容清单差异。
-4. 要求所有新增/移动文件进入 `SourceManifest.json`；自动重放补丁，禁止手工覆盖暂存输出。
-5. 重新生成 `net48` 兼容程序集，并运行 API、主循环、存档、内容和模组测试。
-6. 对业务源码变化只做上游同步；对平台变化更新 Backend。若必须改变业务文件，只能提交最小补丁并在差异登记中说明。
-7. 全部门禁通过后，更新 `upstream-lock.json` 和子模块提交。
-
-普通构建始终使用已固定的子模块提交，不会因远端更新而不可重复。自动化可以定期报告新提交和预检结果，但不自动合并上游。
+普通 Unity 构建使用固定子模块提交，不会自动拉取或合并远端更新。原始 `upstream-lock.json` 与证据只有在专门的上游基线升级中才能变更。
 
 ## 7. 分阶段实施计划
 
@@ -379,7 +357,7 @@ Docs/
 |---|---|---|
 | 上游可构建 | 构建固定 SHA 的 Windows 版本 | 上游基线自身失败 |
 | 文件归属 | SourceManifest 与上游树比对 | 存在未分类或丢失文件 |
-| 补丁可重放 | 从干净子模块重新生成 | 补丁冲突或输出不确定 |
+| 源码可复现 | 固定源码 gitlink、上游祖先、包锁与 Unity 版本 | 检出漂移、未提交源码或外部核心 DLL |
 | 公开 API | APICompat/反射快照对比 | 未登记的签名、继承或程序集变化 |
 | 单进程 | 运行时进程、窗口和模块检查 | 启动外部游戏、第二窗口/图形上下文 |
 | 主循环 | 原 Windows 与 Unity 有序 trace 对比 | 帧级事件、Update/Draw/Hook 顺序变化 |
@@ -405,7 +383,7 @@ Docs/
 5. 模组可从原源码面向 Unity 目标重新编译；不把 `net10.0` DLL 直接加载列为虚假承诺。
 6. 方块、ECS、世界、存档、UI、音频、内容和同屏游戏等业务模块均已保全，或在最终报告中逐项列出无法达到的部分。
 7. 没有新增业务可见功能；全部本地差异都属于后端、桥接、兼容、构建或测试。
-8. 把子模块更新到新的 `SCAPI1.9` 提交后，自动化能够发现变化、重放迁移、运行门禁并给出具体冲突报告。
+8. 把子模块更新到新的 `SCAPI1.9` 提交后，在源码分支解决合并冲突后，自动化能够校验提交、运行门禁并报告具体差异。
 9. 交付物是 Windows x86-64 桌面非 VR Player；VR 未迁移且不影响非 VR 主循环、模组加载和业务模块验收。
 
 最终交付的 `PortCompatibilityReport.md` 至少包含：模块状态、模组类别状态、API 例外、存档差异、渲染差异、平台差异、证据链接、剩余影响和后续恢复条件。

@@ -14,6 +14,16 @@ import mono_probe as m
 
 
 class SourceGeneration(unittest.TestCase):
+    def setUp(self):
+        # Archive generation remains frozen at the original SHA. The active
+        # checkout is now its source-port descendant, validated by a separate guard.
+        if (g.b.PORT / "source-lock.json").exists():
+            import source_guard
+            from unittest.mock import patch
+            guard = patch.object(g.b, "check_upstream", source_guard.check_upstream)
+            guard.start()
+            self.addCleanup(guard.stop)
+
     def test_generation_is_reproducible_and_reports_incomplete_coverage(self):
         with tempfile.TemporaryDirectory(dir=b.PORT / ".artifacts", prefix="generation-test-") as directory:
             root = Path(directory)

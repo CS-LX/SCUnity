@@ -79,6 +79,8 @@ def build(workspace: Path, unity: Path, refresh_locks: bool = False) -> Path:
 
 
 def install(output: Path, unity: Path) -> dict:
+    if "com.scunity.engine" in b.read_json(b.ROOT / "Packages/manifest.json")["dependencies"]:
+        raise ValueError("Source packages are active. Use Port/Build/source.py --install; core DLL installation is disabled.")
     plugins = b.ROOT / "Assets/SCUnity/Plugins/Generated"
     plugins.mkdir(parents=True, exist_ok=True)
     framework = foundation.framework_path(unity)
@@ -109,9 +111,16 @@ def install(output: Path, unity: Path) -> dict:
     return files
 
 
+def snapshot_roots() -> tuple[str, ...]:
+    roots = ("Assets", "Packages", "ProjectSettings")
+    if "com.scunity.engine" in b.read_json(b.ROOT / "Packages/manifest.json")["dependencies"]:
+        roots += tuple("External/SurvivalcraftApi/" + name for name in b.ASSEMBLIES)
+    return roots
+
+
 def main_snapshot() -> dict:
     return {p.relative_to(b.ROOT).as_posix(): b.digest(p.read_bytes())
-            for name in ("Assets", "Packages", "ProjectSettings")
+            for name in snapshot_roots()
             for p in sorted((b.ROOT / name).rglob("*")) if p.is_file()}
 
 
@@ -119,7 +128,7 @@ def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test:
     shaders.generate(check=True)
     before = main_snapshot()
     project = workspace / "main-project"
-    for name in ("Assets", "Packages", "ProjectSettings"):
+    for name in snapshot_roots():
         shutil.copytree(b.ROOT / name, project / name)
     player = workspace / "player/SCUnity.exe"; player.parent.mkdir()
     print("Building a complete main-project snapshot; the open Editor stays in place...", flush=True)
@@ -149,6 +158,8 @@ def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test:
             raise ValueError("World/render/index assertions are incomplete: " + str(result))
         if community_test and len(result.get("communityChecks", [])) != 17:
             raise ValueError("Community search/thumbnail assertions are incomplete: " + str(result))
+        if len(snapshot_roots()) > 3 and len(result.get("sourceChecks", [])) != 14:
+            raise ValueError("Source compilation assertions are incomplete: " + str(result))
         runs.append(result)
     editor_output = workspace / "editor-validation"; editor_output.mkdir()
     print("Verifying two Editor Play/Stop cycles with Domain reload...", flush=True)

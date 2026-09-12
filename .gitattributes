@@ -1,1 +1,2 @@
 Port/Tests/ImageFixtures/*.image binary
+Port/Tests/**/*.tsv text eol=lf

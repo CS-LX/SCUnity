@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "sourceCommit": "faec7b78ea3709b5e3b3b0c374360c8181ac1296",
+  "url": "https://github.com/CS-LX/SCUnity.git",
+  "branch": "feature/unity-source-runtime",
+  "unity": "6000.3.12f1",
+  "languageVersion": "10",
+  "coreCompiler": "Unity bundled Roslyn 4.3.1"
+}
