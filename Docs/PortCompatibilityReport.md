@@ -2,7 +2,7 @@
 
 更新日期：2026-09-12。目标：Windows x86-64 桌面非 VR Unity Player。
 
-当前里程碑：**阶段 0 已建立参考基线；阶段 1 已完成 Mono 能力验证，以及数学/序列化/完整 EntitySystem 基础模块。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表记录真正 Unity Player 的结果。完整 Engine、Survivalcraft、游戏宿主和画面仍未完成。
+当前里程碑：**阶段 0 已建立参考基线；阶段 1 已完成 Mono 能力验证、数学/序列化/完整 EntitySystem 和 FLAC 解码依赖适配。** 下方“已建立的基线”为原版 `.NET 10` 结果；后续“阶段 1”表记录真正 Unity Player 的结果。完整 Engine、Survivalcraft、游戏宿主和画面仍未完成。
 
 ## 已建立的基线
 
@@ -36,7 +36,7 @@ API 工具统计 Engine 413、EntitySystem 22、Survivalcraft 1,290 个外部可
 | 启动与逐帧事件 trace | 已采集并验证原版 19 个帧边界调用、加载动作和采样 ECS/钩子顺序 | Unity 侧重跑同一契约；完整浮点状态和跨运行同优先级对象排序尚未承诺确定性 |
 | 存档样本 | 已生成新建、游玩后和重载存档；7 个真实用户样本通过导入/升级/备份恢复，其中包含真正的 2.3 → 2.4 | 后续在 Unity 重跑；尚未逐个游玩全部真实世界，未覆盖缺失 Project.bak 时的所有恢复分支 |
 | 模组样本 | 4 个可重建 `.scmod` 覆盖资源、CSV/XML、JS、动态 DLL、Reader、Block、Harmony 和错误样本；另采集 5 个实际社区模组 | 在 Unity 验证重新编译的模组；社区模组全部玩法仍需阶段 5 回归 |
-| `net48` 与 BCL/依赖 | 完整 EntitySystem 及 Engine 基础子集共 139 个源文件已编译并在 Unity Mono Player 运行；使用 Unity 实际 Framework 引用程序集 | 完整 Engine/Survivalcraft 及媒体/平台依赖继续适配 |
+| `net48` 与 BCL/依赖 | 完整 EntitySystem 及 Engine 基础子集共 139 个源文件已运行；FLAC 依赖另有 74 个第三方源文件原样重编译并验证 | 完整 Engine/Survivalcraft 及剩余媒体/平台依赖继续适配 |
 | 动态加载、Jint、HarmonyX | Mono 能力探针通过；真实 TypeCache 动态重扫与真实 Component 反射创建/加载/保存/销毁也已通过 | 接通 Game.ModLoader/.scmod 发现、初始化与完整钩子链路 |
 | 跨框架 API 对比 | 已按显式 BCL 重定向政策验证 Engine 子集 131、完整 EntitySystem 22 个类型，无未登记差异 | 扩展到完整三程序集；低层平台类型变化仍需逐项登记 |
 | 原 OpenGL/Silk 公开表面 | 快照保留低层平台类型；后端替换的 API 等价性未验证 | 针对每个外泄类型确定同 API 实现或有证据的例外；不能静默删除 |
@@ -73,6 +73,14 @@ API 工具统计 Engine 413、EntitySystem 22、Survivalcraft 1,290 个外部可
 两个 Vector2/3 标量变换在初次 Mono 对照中存在舍入差异，已用登记补丁固定为原版 float 运算顺序并重新通过逐字节验证。此结果不代表全部数学函数或世界模拟已实现跨运行时确定性，也没有代替真实存档和完整模组验收。
 
 原版默认对象信息序列化首次 `int[]` 的读回结果为 null，迁移版保持相同行为，已单独记录；正常数组回环测试关闭对象信息。这一上游行为未在迁移中修复。直接退回 ImageSharp 2 会失去原版部分格式/API 能力，诊断尝试没有纳入正式兼容产物；媒体后端仍需继续处理。
+
+## 阶段 1 新增：FLAC 解码依赖
+
+原版 NAudio.Flac.Unknown.Mod 1.0.4 为 net10.0。本次从包记录的固定源码提交重建同名同版本 net48 DLL，74 个 C# 文件没有修改；完整依赖 API 的 69 个类型、1,405 条规范化记录对照通过。
+
+Windows x64 Unity 6000.3.12f1 Mono Player 的 9 项检查组通过，构建 0 警告/0 错误。全部 334 个内置 FLAC 音效及 3 个已知 PCM 样本共 7,229,296 字节 PCM 与原版完全一致；跳转、读取结果、缓冲区和错误对照一致。两个工程 DLL 独立重建字节相同。新增 11 项工具/证据回归测试通过，总计 51 项通过。
+
+继承的 TotalTime 属性存在 BCL 毫秒取整差异：334 个样本不同，最大 0.4989 ms；只对该属性应用精确的取整规则，PCM/字节位置不豁免。原版 Async 预扫描在诊断中出现竞态异常，未修改也未标记通过；游戏使用的默认同步路径已验证。详细范围、原版已有流行为和重现命令见 [FLAC 说明](../Port/Compatibility/Flac.md)，实际证据见 [FlacEvidence](../Port/Tests/FlacEvidence/evidence-lock.json)。本模块没有接入 Unity Audio、游戏包装层或可视输出。
 
 ## 重现证据
 

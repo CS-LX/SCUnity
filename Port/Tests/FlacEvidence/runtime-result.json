@@ -1,0 +1,48 @@
+{
+    "schema": "scunity-flac-v1",
+    "unityVersion": "6000.3.12f1",
+    "platform": "WindowsPlayer",
+    "isEditor": false,
+    "isMono": true,
+    "pointerSize": 8,
+    "passed": true,
+    "error": "",
+    "checks": [
+        {
+            "name": "full-pcm-decode",
+            "passed": true
+        },
+        {
+            "name": "known-integer-pcm",
+            "passed": true
+        },
+        {
+            "name": "format-length-and-duration",
+            "passed": true
+        },
+        {
+            "name": "seek-behavior-recorded",
+            "passed": true
+        },
+        {
+            "name": "chunk-reads-and-buffer-bounds",
+            "passed": true
+        },
+        {
+            "name": "stream-disposal",
+            "passed": true
+        },
+        {
+            "name": "invalid-inputs-rejected",
+            "passed": true
+        },
+        {
+            "name": "sync-prescan-callback",
+            "passed": true
+        },
+        {
+            "name": "repeat-construction",
+            "passed": true
+        }
+    ]
+}

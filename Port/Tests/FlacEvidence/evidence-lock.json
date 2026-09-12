@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "hashBasis": "UTF-8 LF for text; exact compressed bytes for .gz",
+  "recorderSha256": "de6fa5c252efd061565e0b6468c4b51c2f5f00cd47b9fea9e3666dc985a98be8",
+  "files": {
+    "api-comparison.json": "bc32977e60d4d7cbed6f29ea0f648f11b37cbe7d073e7b9b93e9c1cf8811cd3d",
+    "build-summary.json": "5bdda2641b6a9b6fa321e9fd9dd653d11bf4cef16e6ee73589eb0815a7e85b06",
+    "candidate-api.txt.gz": "1ac90af0daa60908ca19d4c9ab4795f58793ea95f70c015941dbe70c6c336a50",
+    "counts.txt": "1ccb1100fb27867396ab0eb74e37c5182b3778de80a7071316d8f7d5f884e8e2",
+    "mono-durations.tsv": "16322ebd994979f00629b1e6d8850594d57aae92f53e996bfd86e9ae33c642c5",
+    "original-api.txt.gz": "617ab67b1b356da8efb1b3524c9bfbb87fdae8a342f6295170ed655cc30408d0",
+    "original-durations.tsv": "096266e72c7df21962054a809d5ffd37bfccbe6478f8e1cc759327895d4121b2",
+    "provenance.json": "3ccab01852a94c537fd7f52e3936173076240ee6f88fba45d9d8a3b0a6a436ca",
+    "runtime-result.json": "764e403b2f981843e60eae7096b525b77176fdcf1e778bcbf2d3a3bbf898808b"
+  }
+}

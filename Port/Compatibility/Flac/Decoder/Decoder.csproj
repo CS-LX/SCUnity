@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>NAudio.Flac</AssemblyName>
+    <Version>1.0.4</Version>
+    <InformationalVersion>1.0.4+1b4bfa22d02553948590a748199c27fad77e17fb</InformationalVersion>
+    <Company>Unknown</Company>
+    <Description>Flac (Free Lossless Audio Coded) support for NAudio.</Description>
+    <RepositoryUrl>https://github.com/XiaofengdiZhu/NAudio.Flac</RepositoryUrl>
+    <NoWarn>CS0414</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(FlacSources)/NAudio.Flac/**/*.cs" />
+    <PackageReference Include="NAudio.Core" Version="2.3.0" />
+  </ItemGroup>
+</Project>

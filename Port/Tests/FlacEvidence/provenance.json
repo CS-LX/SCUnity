@@ -1,0 +1,1816 @@
+{
+  "schemaVersion": 1,
+  "upstreamCommit": "98e5f58f779dba20503a095073451a40899549c4",
+  "sources": {
+    "Port/Build/flac.py": "e9b934bdf17518c423b8d752863e4a29818012d1f1a87d3f8d47a2ee7624ea41",
+    "Port/Build/foundation.py": "d373c20c4642b58824c1ae776f9e305f2073314973d85c9abc6e2070ca4f09cc",
+    "Port/Build/foundation_api.py": "964a37d2b3d5ee7990ab99e75d54200dabb74f3f5e8dd40a0565e90708cff753",
+    "Port/Build/generate_flac_fixtures.py": "987d154d1ae49e26ad917c778633f62bfe4581b67964eba1c5da520e50cc9e37",
+    "Port/Build/mono_probe.py": "e18604d4e3c212b1bec701ca6ec1a5aae983dbf3da82a420f929fafcd1f041d8",
+    "Port/Compatibility/Flac/Decoder/Decoder.csproj": "cd7f22193a30dddace9489c7b601b0c267bc36f448dda4f3b5f28763dee5f62a",
+    "Port/Compatibility/Flac/Decoder/packages.lock.json": "28adbab505f0ad3a5ed33e3fd67364f7efc213702c961d535771834e188fe6fe",
+    "Port/Compatibility/Flac/Directory.Build.props": "b6771288b26b67db5cf07e250653365f102fd2ee9d45f31b465112b880d1e77b",
+    "Port/Compatibility/Flac/Oracle/Oracle.csproj": "66a245264f0a487f5379f94e60c4765fa4a25ebbd1e6bc4a80e7faeb7aa69819",
+    "Port/Compatibility/Flac/Oracle/Program.cs": "6a4208d9b67b787ddead6ab9b65530aa6789d09cc2eaf7e213d45e85fd0ffb59",
+    "Port/Compatibility/Flac/Runner/Entry.cs": "e4e8ae4fdd8ea3ade469e4db856e7ed29e217f2d1647b1986e2d0a9132508995",
+    "Port/Compatibility/Flac/Runner/packages.lock.json": "0c0451281444a08c314d49b78fcfa0d78815bde24af16ff211f8d0c0a4860444",
+    "Port/Compatibility/Flac/Runner/Runner.csproj": "6a97c4fbd47e2463992449d5d97e8d352d82c40c08219a0f6a8aea7f817e47ec",
+    "Port/Dependencies/Flac/LICENSE": "ca2abdf695884c77ea4b4a5b64ca7b732d9d9dbade4eebc1c2e76c53e9e3bc83",
+    "Port/Dependencies/Flac/runtime-policy.json": "7b266bb777a0a7442dd65ba8b1c733570cfca3d6c2dc4634d426a83f704ff443",
+    "Port/Dependencies/Flac/source-lock.json": "b88976778f186c3080a28d402c112970e5340d0f3d12b93d4dcf39f6f3a9b892",
+    "Port/Dependencies/Flac/source.zip": "e0fbcc985e887bbb8325872a161ba9f9fc43e712d997d602354de5bdc83f6a81",
+    "Port/Tests/FlacFixtures/fixtures.json": "32a93364b0d4badb06dcc5ca75cd0d8565ab8b02c22f5472b010bdff812e230b",
+    "Port/Tests/FlacFixtures/mono-8000-16.flac": "22c1ee61aaf8450cae75d0aa8f4027e0e2dc89d531320a69d3b38ae525bae0dc",
+    "Port/Tests/FlacFixtures/mono-8000-16.pcm": "c7cb71b45bc882482618293961c4ff12a9d9c7c4a878666801b8a61af7dd53bc",
+    "Port/Tests/FlacFixtures/stereo-44100-16.flac": "b1150807de448e7b80a12dd97ebeef3973b4f421a83d3dc72bbb272aa6ba3535",
+    "Port/Tests/FlacFixtures/stereo-44100-16.pcm": "bebc98d00fa2411892c1ad6a68dd00de92b4973ca2f83973b496412486b3daba",
+    "Port/Tests/FlacFixtures/stereo-96000-24.flac": "b2279794d77d73ea9bb986893cdcded2f2fb95f501792b7da754181e53765119",
+    "Port/Tests/FlacFixtures/stereo-96000-24.pcm": "951158f86e809f98754969ecbf5b7d0b58c9e07a6c5b881ea711f5602be492d9",
+    "Port/Tests/FlacUnity/Editor/BuildFlac.cs": "d742bec7936fe3e266f9704057e6c5acebd0e46715617a43e555d725f4e6a171",
+    "Port/Tests/FlacUnity/Runtime/FlacBehaviour.cs": "e6ab8092dbea66c8719a9d44c71bf21f41b980c2eb663cdc864928550353420d",
+    "ProjectSettings/ProjectVersion.txt": "76b9472c75cfe6e8b4824be2840d7a762cc52402b8f65ca0b01d6faebef347f2"
+  },
+  "unityVersion": "6000.3.12f1",
+  "dotnetSdk": "10.0.100",
+  "unityEditorSha256": "651dcae39a9d9d956f98f6d9d36535900f548b5dc99550297ffe442eb1106733",
+  "unityReferenceAssemblies": {
+    "Accessibility.dll": "9507e08441d4c83f9f3d95aea43bc7bf029bd9365ce2592490b22e72dfab26e7",
+    "Commons.Xml.Relaxng.dll": "2ba5d35420dd67017d83c19aa92c289c4e6122729e621884a8fd0d85eee86a78",
+    "cscompmgd.dll": "a521001ecfbea4c19fa13e990fb61f0e5a93e2e300fc455901822db1a015390c",
+    "CustomMarshalers.dll": "734dc3428d2a97268a5d9993252fb173f11ccf29bef358e998b17b8dfdd793c6",
+    "Facades/Microsoft.Win32.Primitives.dll": "0e70ef3ae765d4e429d6a210358afee42e71848431328020808a76921002122d",
+    "Facades/netstandard.dll": "3b20c3bb5da550371635c8ff930c2a3404d4f51fc9a7d8e530c99f99cadf1699",
+    "Facades/System.AppContext.dll": "95a1524a337a0e967ac4e23fce8d4b02e0681479a86fe15327823844355cd4db",
+    "Facades/System.Buffers.dll": "ac128c3c138ee6f6a397615d23eb248c85614e69defa7afc8d33d49087100233",
+    "Facades/System.Collections.Concurrent.dll": "bea496d6dcb322f28d0b2341fff91838fcea9940654bcfa6b218ba42eefedcc0",
+    "Facades/System.Collections.dll": "f84e0a371e52a533d933d2c835efeb6a96b08d7da0008d6ab2242d980f1d7e46",
+    "Facades/System.Collections.NonGeneric.dll": "874f96623a7971b402cba236aab49e550d52786641701d43ae172c952fb9ef26",
+    "Facades/System.Collections.Specialized.dll": "900a35b9a013806db1043fa504d0ea8ca7f61db142bb8826557835ebd0a55af6",
+    "Facades/System.ComponentModel.Annotations.dll": "f3315940bb42a3fe8d07b9b34c94b4597c75b494302df722122c4a2911ccfffb",
+    "Facades/System.ComponentModel.dll": "3e95f1a35c1788f2b34af0e27946c7e4a4e3c0172bcce4b843c8677b788e7a11",
+    "Facades/System.ComponentModel.EventBasedAsync.dll": "25d642c437951b1f5d50676ccdec7284d1a1efbd25561a40d79c856f7ce2a795",
+    "Facades/System.ComponentModel.Primitives.dll": "acaf33f2e91f83d744276ef2b8245cb48a78d88a798eef5499048dc15bbfcaee",
+    "Facades/System.ComponentModel.TypeConverter.dll": "84ff0c6eb1830d3951f18dbf551ddbb8a81bd92eafa6064ab120fb005ba4982f",
+    "Facades/System.Console.dll": "20613cd1602b4a2ab79386d1b42cec0a83eee3d00f8e955abfa2a0cefb3d88c1",
+    "Facades/System.Data.Common.dll": "226fc9d84a1f2aa883e6db932062e1467dd687bead20c299fa1243c66c0f2c0a",
+    "Facades/System.Diagnostics.Contracts.dll": "9666ae0d143a6d3529fad8984677f6c7105728f6c64f453676f168e8fb964086",
+    "Facades/System.Diagnostics.Debug.dll": "34f9376f3aeec0da52bd9f56a3cb96ab29272c0f2ab36646144e4e4a60826b7c",
+    "Facades/System.Diagnostics.FileVersionInfo.dll": "f6f514800cf3543ce3d71cdc5d24119d0374acde950eef780179e0187739b579",
+    "Facades/System.Diagnostics.Process.dll": "bfc1d49e5ce9eb820027644eb228a550e0dedb4172097749b97f6d2a52a86393",
+    "Facades/System.Diagnostics.StackTrace.dll": "8905f767326006eaee279049cc2538aa0e76a59b5109466d513e42b670bc7463",
+    "Facades/System.Diagnostics.TextWriterTraceListener.dll": "211be7b185a6a6656e2d8ef774b29aac3ed4d337210b3fa7f41a1c19c7119bee",
+    "Facades/System.Diagnostics.Tools.dll": "e96b8bfa656b24195b5ddbed5ec43aa251d0fb22b262bdc1c26a6a21de9add5c",
+    "Facades/System.Diagnostics.TraceSource.dll": "f2afb80a833ff38b4acfdd18a7253741b0b9a51a72ff61254bbf72bb03b6a0e0",
+    "Facades/System.Drawing.Primitives.dll": "00a4ce24c70b4f29b67c74774ab81b21bed253d8fd835b8dc9bc92c3c21c45ad",
+    "Facades/System.Dynamic.Runtime.dll": "15e4752e92054ab4ae65ac433c72cfb7937f4d2cbce48c58437b1b1d89723b71",
+    "Facades/System.Globalization.Calendars.dll": "04f7980f8b3d7e2f516418ee6c1bde006a358dcf99b2cceb1fd3d16d8789c1c7",
+    "Facades/System.Globalization.dll": "4e9eb12e49fa58904a3b2402aa3811297d65a28d6499239609a2735d3724c337",
+    "Facades/System.Globalization.Extensions.dll": "64929dbc8b5d1fefa1fb24c996259caf23a34ca9814eead6679db1b8a0df82f9",
+    "Facades/System.IO.Compression.ZipFile.dll": "509d3d9e5b5b7e7a32b35b4865443c013916141eeeaed4979cf696be644a7ff9",
+    "Facades/System.IO.dll": "c5288c373f4e41ae45c5b2a8f4ac6b5d68d22e28cd956024070bd94b0ed41dc5",
+    "Facades/System.IO.FileSystem.dll": "2ce8a9fa98f853d95439a24a3fb7117c619d44cc1ac383a8944ef33055abaf1d",
+    "Facades/System.IO.FileSystem.DriveInfo.dll": "50945cee237616367e649c762d989857b34464c52fab8d7b77258a4f23bad9bc",
+    "Facades/System.IO.FileSystem.Primitives.dll": "fe91a21541f8143b717379b5ab4716a3d4cc170adc8ab5998f7cfff35ff38b5a",
+    "Facades/System.IO.FileSystem.Watcher.dll": "ff5b79eefdc4defd88b7906658f4bedd0083944887d1b154424730e94d949e55",
+    "Facades/System.IO.IsolatedStorage.dll": "b9cf9bc8a7a5b9bef1b81294d8fc15da919dbf6e880131194390e3d32a73e7fe",
+    "Facades/System.IO.MemoryMappedFiles.dll": "362d9afeb570763025fa78698ba461cead8faaec20514a220075ab3f0e5a0ac6",
+    "Facades/System.IO.Pipes.dll": "313db96a0282de9376c471f5af64075f22b101544affee0bb781eee6dfe9b897",
+    "Facades/System.IO.UnmanagedMemoryStream.dll": "0dbd15db47d662035c6a52363fe0ce0cf22ff4226de9cc9bed75ff275ae86200",
+    "Facades/System.Linq.dll": "97d3bcde64d1c1884330554e75edbf0791ef1c3e5aa831db3ba6d9cd3f377d09",
+    "Facades/System.Linq.Expressions.dll": "e8b623417716403a478465fb4906f4f181639aaa895ad298fc092d7e2c731a22",
+    "Facades/System.Linq.Parallel.dll": "426ec85eda5596db68a6c14b603f98a1d43cbab92b0783f233c05fbee9952811",
+    "Facades/System.Linq.Queryable.dll": "024d17e6ae98d4ea56f07869643a0d464af47ff7d837db1e569e6464e6edab5f",
+    "Facades/System.Memory.dll": "a6ca0c07281e587e03efa0042f9a48c13e5cc53a9c0ab005ff4573fcc6657b2e",
+    "Facades/System.Net.Http.Rtc.dll": "dd5a88a7e5e1ee9df07e6e4e5b053f9f52aa4e4993da5c74c0ad4bea2f2f7c1f",
+    "Facades/System.Net.NameResolution.dll": "9f0cbf7943ea42cb8ac2fffa3a9b9b3986712549b97626472932c5bf99de6eb0",
+    "Facades/System.Net.NetworkInformation.dll": "8ba75c2f9c337407968838d936472272cbd98248a8bb16b4e8cf9b6bfec804b2",
+    "Facades/System.Net.Ping.dll": "f6e7756ebd90c708b8ef8afaf459822bfdd15a15f80be46b8de1085bca4e8f9a",
+    "Facades/System.Net.Primitives.dll": "bdb1580746ea3e41752249a342af0eb140821b7850eb3a01329cda1d76863077",
+    "Facades/System.Net.Requests.dll": "08e011eee889ecff6200b316ee4a3c6693ba8a97d61eea30b1e7fd438adc88c6",
+    "Facades/System.Net.Security.dll": "93f108d9dd3334551531c93f5a98a45dae2a635a08705e66aaefa06343eecb84",
+    "Facades/System.Net.Sockets.dll": "3900768a66073ce12c67934748584292ba0cc3c10e613c9e2c4c280d81813e0e",
+    "Facades/System.Net.WebHeaderCollection.dll": "b418b7bac3fb1ba125de733e82b956d9c98f3e2789ac4a449c200c4654f78c97",
+    "Facades/System.Net.WebSockets.Client.dll": "3dfc5c488d14fc44502cb18f277c4f26163019fd0dd8a283bf78782a3d45f905",
+    "Facades/System.Net.WebSockets.dll": "4f1510be5a1760fae21a97710427012b168fb96f32ba77037690eeb358420572",
+    "Facades/System.ObjectModel.dll": "f8867e17cb0746323073275b7fd2d0f37d4c17f97c4d00c3479503575084e816",
+    "Facades/System.Reflection.DispatchProxy.dll": "27a02ef402846ee204b78ff7dd0cfede2d72ad1428bfc11af85db1e9fb6da8a1",
+    "Facades/System.Reflection.dll": "9e6442bee0ccf14efffc95defec5651b58fb33104a7fcf6fccf3913e9bb09738",
+    "Facades/System.Reflection.Emit.dll": "abd6dfeefafa60599e8a5f0c628459b11c0431099847263ae67568b12ddc2855",
+    "Facades/System.Reflection.Emit.ILGeneration.dll": "b21849b0956088a46f6b6f8e2ea22b59fc8d5bc8fac2466f693aca152217d873",
+    "Facades/System.Reflection.Emit.Lightweight.dll": "fbf930badb304f8970267bdeb7db30d86445026ccc042a1e2f4f171125655e3e",
+    "Facades/System.Reflection.Extensions.dll": "aec29396ed672ea9fe1b8f3091e1445f87447f22369b531d32fde36f3c43542a",
+    "Facades/System.Reflection.Primitives.dll": "387c47b07a331e8ceee469dc4b4bbb3651823daa6c6556912850a9138e754a63",
+    "Facades/System.Resources.Reader.dll": "e7f55c37975fb7e22dc0b386d6237f014d22064c37860a5a2f09ee1bbc4f7b9e",
+    "Facades/System.Resources.ResourceManager.dll": "03d6db9ad69c0493629b74d3bb7d5d182497df4ff6d605e2c61a00f4a3c2ec09",
+    "Facades/System.Resources.Writer.dll": "ed99eb2db493c9a131422f5f608416e9d58724cdb5b4f388bfac25813c518bed",
+    "Facades/System.Runtime.CompilerServices.VisualC.dll": "82b3c1eb78e36919fcb1f65c233f829105d2ea26daf65ce4254987c66f25e706",
+    "Facades/System.Runtime.dll": "67755c37816bd9b0811067fb5721fff3ae9ed598cc5f7d4ab685bf2929ce70ff",
+    "Facades/System.Runtime.Extensions.dll": "e672d1d1b128f185eba5ea6f63cfcdaf20cda48638d96ff4846f109e245346ae",
+    "Facades/System.Runtime.Handles.dll": "efdb80d2dea56fdd5821fe13083196933a21c1ecc55bf3572c5624c5306476b6",
+    "Facades/System.Runtime.InteropServices.dll": "2ea619fee24916dbbba7533f1109c5536e10d280abbc8f13f6b11b8c49eb56f7",
+    "Facades/System.Runtime.InteropServices.RuntimeInformation.dll": "94f0f8bb5f484476510cf80d65b9e6daa5732abc69ce7f3a86dd6755248e5f46",
+    "Facades/System.Runtime.InteropServices.WindowsRuntime.dll": "15f7bf54aa0b317379f579ce1dd00a6dcac9bbc41d1921de4e04bb1107795980",
+    "Facades/System.Runtime.Numerics.dll": "5a7dd020dca51c58a37e34e015e3e8e9558b3d535233aae1544456677c91b8bc",
+    "Facades/System.Runtime.Serialization.Formatters.dll": "994463f988dc9b75af0386cf259df3f803566e24f7f7a10f5c5b915fc5b0a6b6",
+    "Facades/System.Runtime.Serialization.Json.dll": "b09733d3caae9f67636d2abb93e023f7f3b61e31c0ba75b748ae8ff3c2d97455",
+    "Facades/System.Runtime.Serialization.Primitives.dll": "ca601331d732336546757d43a27138c164a2a93c521dc52c6c0466ce544d8ce3",
+    "Facades/System.Runtime.Serialization.Xml.dll": "331b6a5bc12133ea6ffe332cab77a4b3446d1e8df9431b23c62137ae70a0f721",
+    "Facades/System.Security.Claims.dll": "6dc2b88fee35bc921b00953cf6c569cd0ac8027de655fd64d73fddd269e53ef9",
+    "Facades/System.Security.Cryptography.Algorithms.dll": "e9c085a6ddf8ac98bbe51976ee3918af713b8affcd81ce3281213468ee70471a",
+    "Facades/System.Security.Cryptography.Csp.dll": "1292e245052b56e9fcf6f5ba3da08c4c51dc6e3eb571f98705f76136a7e46ccc",
+    "Facades/System.Security.Cryptography.Encoding.dll": "f0358a2c9e4abb94c6c5d16a0193e30ef38e004898778db2db1406936aebde1b",
+    "Facades/System.Security.Cryptography.Primitives.dll": "17a62a776bebbb2e95947689afa67b4ef730944825f5bb6e7db10dfa558a2211",
+    "Facades/System.Security.Cryptography.X509Certificates.dll": "cf6bbb72d38bd9d435b620a57f02e5e5a3fce51b690921add601c4a2bd39e405",
+    "Facades/System.Security.Principal.dll": "57fd8163f3e303da3b3b4bd013554433c3fa9db3b905915903aad2287fea488e",
+    "Facades/System.Security.SecureString.dll": "66738faa411eeeffa6920933f5af6bb1ef1dd43d7f7566ad383aef83df9b279d",
+    "Facades/System.ServiceModel.Duplex.dll": "6a32745908ea7875d5045c822501008f1bb0836d877a4b722f7919250f32c776",
+    "Facades/System.ServiceModel.Http.dll": "648703953fcd7ea397d5978447ae2c943b403a1cc6b12dadf8e117c60fd9c051",
+    "Facades/System.ServiceModel.NetTcp.dll": "0f2bb21c09415b0c38847c52695f8b5e49fead656458d65f02c859bb43782ad1",
+    "Facades/System.ServiceModel.Primitives.dll": "2bc09f454fa1b9f42c8baaba42af7bf414060d95ec6580b6d70220addc69e9fb",
+    "Facades/System.ServiceModel.Security.dll": "18ce85a3cce8df673e02fd98533f6861a1a34a97a21dbc61af2badbcb90c3cc1",
+    "Facades/System.Text.Encoding.dll": "fe8607ab56d9f456bd69f6f12ed88b27537282bc97faf5d7eaf696403248e992",
+    "Facades/System.Text.Encoding.Extensions.dll": "845e469167f70a5d3b0d17b42a4ad5f121568af9d0ea8d73e640757262d064b8",
+    "Facades/System.Text.RegularExpressions.dll": "bf446ab48b09037f07d5e0828620b340de9f282d7dd8fa67df3f25d83e1b8f19",
+    "Facades/System.Threading.dll": "7a28b6cffea2f721701d7c27b2b39dcaa484d281971b53413cfd72acc9874243",
+    "Facades/System.Threading.Overlapped.dll": "c562ee030d66bd68d76b5175957865ee0e4ee3867edd6edf6e3b7e1a736ec182",
+    "Facades/System.Threading.Tasks.dll": "f2b2198ee4acfb4ef7d6d07cfe037acc5681e8a1c894931a7a170c38d3afe944",
+    "Facades/System.Threading.Tasks.Extensions.dll": "6455c1307c4de0e5875856b0c18b9ec449d9e541904759f5a310744303f1fd18",
+    "Facades/System.Threading.Tasks.Parallel.dll": "c7fdfade96f5cfce459c6771a83f47305a26bd536b51ca54815bc4c8a26ffc54",
+    "Facades/System.Threading.Thread.dll": "3fe5a363d4c12c57e88af4d866aae65eca0f750943b2d824307aeb490caa223a",
+    "Facades/System.Threading.ThreadPool.dll": "9829de8ff80ed99415c5a18e35174c21b3bd118de3415d65dbc6bb57b5a93491",
+    "Facades/System.Threading.Timer.dll": "21b08c040fa6373bfe802d910be567c3e2dd55540bda6082d00469abf2738487",
+    "Facades/System.ValueTuple.dll": "702fe8344cb343f11f1cce895f4ecb5995207f8046ea06b13e55ea0b62cbc157",
+    "Facades/System.Xml.ReaderWriter.dll": "00bfeea19962bbec8a51dfe55e1bd8ad4cf02ef0c565fee880b3ceb84744bc8e",
+    "Facades/System.Xml.XDocument.dll": "eab5886d4285c69e03c9f5a5984eea68bd7a24b8e930c095ed559dced8e088de",
+    "Facades/System.Xml.XmlDocument.dll": "62049ed17429e37772f8cbc83bd5b65a500c7a979207f40aeb45d7f75d5b1917",
+    "Facades/System.Xml.XmlSerializer.dll": "a14f0e5e83dc393be95fab05eba94f83aac2a5aba8e16e4e3311cd2ea4779c53",
+    "Facades/System.Xml.XPath.dll": "59d920e0b80f5f9cefd52b0b88969f225483d8fce1a4e7723a369700c7fba93e",
+    "Facades/System.Xml.XPath.XDocument.dll": "231077479671377a327ae0c72da8c766f63c2dc412d14ebfaa0263f06a41d7a9",
+    "I18N.CJK.dll": "d284f8a4e1a1411be524de6d3a1ba91f7266a8850ce5c26116236737be451b6e",
+    "I18N.dll": "25d97e52f310e462e5b8ebd5bb4e52bd6ec7bac22c14cffb8503acf62bbfc87e",
+    "I18N.MidEast.dll": "4344b5ce901962d22163b02ebb3d14268952712fe028173b0dcdd43acd4a9c44",
+    "I18N.Other.dll": "46eef24700beb9f0706eddd2173fed4fdf6a49884e39a6659994ec760e2832b5",
+    "I18N.Rare.dll": "cbe93287eb3f57944c96bd704558b98305b5906e1017750ab998c5d51fc4e9f8",
+    "I18N.West.dll": "0aae22402b37e63e70d1df62ff3250655fe3d86a509a6154b3861fa1aacfeedc",
+    "IBM.Data.DB2.dll": "f79f2620398c8348da37d7bfb09dcea92d81c6f297aa2399bd8b72e8046866f7",
+    "Microsoft.Build.dll": "4b103fd3250e19cf15aeffa65499ba5d6fece52a2a346c00ac27375c002a65bc",
+    "Microsoft.Build.Engine.dll": "7c9a2c38a69648aba94c8c36f3fd28eaff922851acc053e5d7a9fde4df28e733",
+    "Microsoft.Build.Framework.dll": "f353f86838b59343a6913036a3851ce454c31b38f3ceda2fc5be4cd655e89c65",
+    "Microsoft.Build.Tasks.v4.0.dll": "aaf96540c78b07ab6c752b59b8adf4bb5e7efb19eb38e1cf264d956fc1537ff7",
+    "Microsoft.Build.Utilities.v4.0.dll": "495523ad5d53a46c722d2fb160c58fe938a9846a1ee1af3ae9f01beaefb00c63",
+    "Microsoft.CSharp.dll": "78b521c40b3031fdbb0fa3df65ab6347ad56f564edb13251965b47013a934f24",
+    "Microsoft.VisualBasic.dll": "e9893db220f3d071182ac3a7731ef6bed02e5c5ec09bdd5a607b177c62ff4519",
+    "Microsoft.VisualC.dll": "c91c402d6e524d364f546844671cd7aa842e95779945f3c2276a29e06cdff3fc",
+    "Microsoft.Web.Infrastructure.dll": "fa3d2894ca00edc1d8239e41664b88b8fbc1f701d0d72623c8ddaad8c7d60fec",
+    "Mono.C5.dll": "5cf92d47ca03e11b81b5d12cd362499322c2dc2ca016418a59619b9a08a12b74",
+    "Mono.Cairo.dll": "23c03ee541f6bb9c05426c43200a37b9bc02123a1ebf9f2bf84da22bb8aeceb4",
+    "Mono.CodeContracts.dll": "4ac03b3308fab27aa08e299f447a86a89a15a272288fa5d2c3b8722f9f636dd5",
+    "Mono.CompilerServices.SymbolWriter.dll": "08514a4ea33a25f91bd550073cc916a9559fc89306faf7a0d116c30a5ad28be8",
+    "Mono.CSharp.dll": "a79c8b23ea0b420d7c3bcece7b756158b8b4fc52675f2599afa546dd19a1aa15",
+    "Mono.Data.Sqlite.dll": "9a70030f944d9d2f9efa712f00a14be0c014d78722aef0f0dfc727ca302aeb01",
+    "Mono.Data.Tds.dll": "1243a69552651294fcd6db5004f307a518f6060cc6a1834e3c9b8a4eeafc2960",
+    "Mono.Debugger.Soft.dll": "91e2364724f047f7d90da0e6902fd30fa9e1c6badf2e229799f0acea65df2376",
+    "Mono.Http.dll": "341b4ebb790b4897237a4061244ae6907f5e473f5354f86cf39811dcce2cc5b6",
+    "Mono.Management.dll": "88e977143e3d5eb064e6270250b9b867d751b6fbb16106118eff571813d88158",
+    "Mono.Messaging.dll": "edb68ccffa93fde7044b7107023df5b7235beb7326bd83cdf6265058d3a8e571",
+    "Mono.Messaging.RabbitMQ.dll": "94d2df2698e88df72b9e9add2f0227c171992b182b9c3946dac3005b635bfd45",
+    "Mono.Options.dll": "d580596dca203887506b426ffaea31563f51aea7d6b67b720142e272bce94b85",
+    "Mono.Parallel.dll": "313eae8318b325a1fd3b7ce0c1c8aca637ed52e48dd76ce193a434c24fe51e72",
+    "Mono.Posix.dll": "13a1e0fc3f6727eaabdf1707ab680a14719bfe6183f8606a67955ce9c26d1f05",
+    "Mono.Security.dll": "6d7cb7b8be2eee28cd6e8222835c439835b1550ed5360c16d9cf0460317ef84e",
+    "Mono.Security.Win32.dll": "29425caaa82e507778512ffa67b651611816d94a38665401358a77d141b914e5",
+    "Mono.Simd.dll": "422e9ad44a14a5f133e61ad79bad38832dcd7e9eadece1c0e3781bd5c063aaa1",
+    "Mono.Tasklets.dll": "0c1e9ef44e530998988ed49bd894d447ba01ca2fba4b5dbdeeab548b5f742f96",
+    "Mono.WebBrowser.dll": "f9810dbd75ac9bce9dffdbfe7e9d8c7fed5498bf62944ff65bb926bc5eee273d",
+    "mscorlib.dll": "800371597a06660e3f20251785d44cdab5edc681b9aa4b09120ad4a7ab2f9478",
+    "Novell.Directory.Ldap.dll": "e2afc8eeeb3550ef8f3216fe58e7d46ec5115ff4932e93a1894508a1bca849e5",
+    "PEAPI.dll": "239a30733e38a76598c1c5f240974e0587bf204c1a2ea263809e688d5f628f32",
+    "RabbitMQ.Client.dll": "d6b5dc0e8ae09a66387e5eabfaa81a2b8b68db5d49cab42d148ce9907ee4099b",
+    "SMDiagnostics.dll": "463869fa00737994b93dd480d997fcdd060a819f05190fb404365237e4622022",
+    "System.ComponentModel.Composition.dll": "673b2b71a9d0c83629676647c908c67048dc1e9b51d9b43c7561e72882abc693",
+    "System.ComponentModel.DataAnnotations.dll": "de63103d6555e13b53ccb096c09db9bbd0e97779d8593768f2d8cf2b692b02e4",
+    "System.Configuration.dll": "856feafa39c88147637b577d11750f8124380ab56cef210e6498acf6020f6be9",
+    "System.Configuration.Install.dll": "1437da0db940917f8a4bed7e4e0ad08ad19bcaa60bd9849a83178db5e03e4eb6",
+    "System.Core.dll": "a87b470d5878d9fa7bb3201c86d8e5fd62fdccc7ce6e4241a77b07a7510005f7",
+    "System.Data.DataSetExtensions.dll": "1d9c2e9d867f5521cf80bbd37b3dcb0291ae9bb98dbc49365ff35c866c1697b4",
+    "System.Data.dll": "045eb935b721514205f762ed39ea033f68ef647ccf7ecb9c65e513261841f5d6",
+    "System.Data.Entity.dll": "54f954734db2f55b2069ced01baaf4e184f92b64b5323f96a0f94fbe92355503",
+    "System.Data.Linq.dll": "2b25a4dcd5ac03db9204fff271af2bc00764765a9ce6e37627dc4e024a2f64d5",
+    "System.Data.OracleClient.dll": "d959f274aec052eab56cd3d0d91fea6200d461000eb5014ef8f8ee9bee02ba5c",
+    "System.Data.Services.Client.dll": "b3438ffc6682c929694871799b14c3a541a150f4df4b072d3d22b8326b7e8af3",
+    "System.Data.Services.dll": "03412a683ed850032c1a46215a6b2815e6aace3801cbdd42cca2b4f3fa536ef0",
+    "System.Deployment.dll": "36c3c5b0fa6f3c7eaafbadd49026d358e19c2a9ffec9214e9ef0a266c430b47a",
+    "System.Design.dll": "3d3ffcfbf06708e22ad128a58d1fa649daa920628d8b0e5cee09dbe2edad054a",
+    "System.Diagnostics.Tracing.dll": "0ff8ef0e5c200db44aa381bb435f800d347ac2a5b4e9c51ca5a9bcf493a4efdc",
+    "System.DirectoryServices.dll": "89d01fc3bc2334613e2fc1a0b2c016c16679add49934f610baaef160f280fed6",
+    "System.DirectoryServices.Protocols.dll": "ea60103a12794d4e11bc2ed3a184c28158b9d80fb1f01f1cada8306760305f9e",
+    "System.dll": "cfb1aaefd49dcabcd4abcce2d15592d6acca29e6fac1a418ec41aab9b71a1c6d",
+    "System.Drawing.Design.dll": "747ae5f9e704e7d177d6cfb19ef6f56e8e4f50d503c6f182eee68323be2d10a6",
+    "System.Drawing.dll": "4b54159d6acafa0a00f90eefdc3273f573539d8150c5f718a4992298ecb2aaab",
+    "System.Dynamic.dll": "6bf38b6e3e22fcdd85f1e8b16874714d84fc43993e437f8187b1b46a04c82cce",
+    "System.EnterpriseServices.dll": "787e9dd7966433bb931dfea9420509676fe82b4f61805f95b4738da7e6e7504e",
+    "System.IdentityModel.dll": "353417837be9ab419bb3b673791e066a06d369c8a6f5f9e5ba813df8050dcfa5",
+    "System.IdentityModel.Selectors.dll": "18b0eec450ee651ff858743ac2e19ae55443af1e7505a954148378b28d2c1799",
+    "System.IO.Compression.dll": "b8f7557c6b517f82a47643a344198cd7dd2b6310e3b1ea55da09298888519833",
+    "System.IO.Compression.FileSystem.dll": "ace98e3269c9d21d7a5a86d1bd5f975921a228101c37b1f202d943b1c5c2a68e",
+    "System.Json.dll": "123103f58b0f57c75e2b90f399690e9fa8225a6c3b4571508a1c5fefa9cf3958",
+    "System.Json.Microsoft.dll": "d0061252ec60d92c7df7cc5cda7f3d116f96d28fc4e781736d7d7293b2028b24",
+    "System.Management.dll": "deec64a34d54e3455f68fe5f1d9556a620f268efed095956e8edcbe0016feed5",
+    "System.Messaging.dll": "6d251573e0918d2d720ba696bf2eedc8a898643eed9de097ed70db53194649e9",
+    "System.Net.dll": "9fdd34e5ec8f05c972591bcd36daec8d5d8d6995503af0c60509fc547832dda5",
+    "System.Net.Http.dll": "ecb4f41d4573dec929660dfb04c46a0c31be415ce4befd2369bc34b3de2cd8f8",
+    "System.Net.Http.Formatting.dll": "f988667db207ddf55d943832c253618e7ec9f63d4accd22921ccf2f78a83ff39",
+    "System.Net.Http.WebRequest.dll": "54e838d05745770cffa68c54d2f627e20e70ada8dedcc6adbaa7314717be2a50",
+    "System.Numerics.dll": "3acd08429a7ce3028ad0be4134ff5c603a14a202c39a08499b188b9018d34d3a",
+    "System.Numerics.Vectors.dll": "395e47e04869f6a5ba90bb005918a3ff755c1bcefe58994bfe4f035563e98d32",
+    "System.Reactive.Core.dll": "82d62303614c65bb751ec21dfe5dc9c237a85de81b404b9f7cb661b6e5c31fc2",
+    "System.Reactive.Debugger.dll": "3c5606e86af5ebf00a01d497b7d5cc512f8381f407846cc882316e6fdad6c6cb",
+    "System.Reactive.Experimental.dll": "ade769b70fca2de6604b636e3632d83cd9882505f404f609b24069c5dbdde3e8",
+    "System.Reactive.Interfaces.dll": "1abd251750cf54a3065aabb9f64dc3ab946a5069c04f03ea15f810a36a5903a0",
+    "System.Reactive.Linq.dll": "dbb864d066e1dc9fc563654abc79c71db49a6df89fbe8ed3d2733cb34cb3b6f6",
+    "System.Reactive.Observable.Aliases.dll": "66b57b8bb51916d4fd75985936150ab606ec5e7a9e3d4710f4bf88e854a517b4",
+    "System.Reactive.PlatformServices.dll": "877f385258ac010899650e8bf4d2a1b595e43bd8f1566bb29a3d12e7009dca48",
+    "System.Reactive.Providers.dll": "11b0f6f911f82c624d4161086ac78362e3165404de502f803168a87ca8695a90",
+    "System.Reactive.Runtime.Remoting.dll": "80d4f84f118955ea67ef27f658dc77866c3672ae980f96eb04a530e743004ecf",
+    "System.Reactive.Windows.Forms.dll": "18aabffd13357c8cc3705c7a9c7ed131c54e28dc019385b86662547b635b1309",
+    "System.Reactive.Windows.Threading.dll": "440fb194faba1628748c65c1ce632d6dfe7602a68477fd50df8c2f993145676e",
+    "System.Reflection.Context.dll": "104758d140f449406f025565bdc1abe6cc68f5ac6489c28f0e5bdc3b40772a2c",
+    "System.Runtime.Caching.dll": "aeb580d84bcdd2c3aae7be5ec17db48125ee85d50987e02288ef9e63c48b129d",
+    "System.Runtime.DurableInstancing.dll": "a9f02df270d69d57ee4587b56be5ff39b1596f6a172c7a964b0cc8bb9e31b2dd",
+    "System.Runtime.Remoting.dll": "d62222331b6ffcce4b2adfcd7527a6c5bd378431d9b6bcadcfb844aa600b7825",
+    "System.Runtime.Serialization.dll": "9f28b56d5a2675066cc22f62eb9af8244e8e9ccc17ba97a49b5c9d59bac824a9",
+    "System.Runtime.Serialization.Formatters.Soap.dll": "b6b6dd0f891141ac3d4fe729024a983f44e069066fb09c695084f17d4630981e",
+    "System.Security.dll": "edab79ba6e373972bc1d072cc071d8415bd1e2f54e3dd9c1e3f316c25590e3d2",
+    "System.ServiceModel.Activation.dll": "660cc132eb58a3a363d3785a36098411927c305980a8872c537319a1a3899756",
+    "System.ServiceModel.Discovery.dll": "e97f2bae67e6021c60a555aceabf8d3d110540a26a37b9af2572cfb4e3396b9c",
+    "System.ServiceModel.dll": "3c59beb540cb5ee3dce3263b0e510630f53d44bfae71c8d9dd7c4df187ff97e3",
+    "System.ServiceModel.Routing.dll": "8a08239e8537e059f176414122ca1eaab6b779a5ba37b651462122bb9abcfb10",
+    "System.ServiceModel.Web.dll": "b578680cecf136ecd6d31f8072a869767ed5c33990dcc9bfeb49108dee447862",
+    "System.ServiceProcess.dll": "670f9cf76140591e67e3ca162ce143ca1c69ebf7c4fc60934332b18ef291a5e5",
+    "System.Threading.Tasks.Dataflow.dll": "a7a9245cc21b87b2da64786ca30e755df2320d0c3a1ce90954ee0437b9904359",
+    "System.Transactions.dll": "0b2e0053fe55acde33f356c967db6b179e500d0b1e6a4232474a1a0babc88069",
+    "System.Web.Abstractions.dll": "2b73789de8dba5865fd83d8fda22c88b305ef4b29105be8fc6d356cd0d631225",
+    "System.Web.ApplicationServices.dll": "1c13aff55c413b3b5f2e60c1161b6a21cc112465eeed951c845030a0ce9e4e59",
+    "System.Web.dll": "77724849ba006938302768498e526470f053d30186a3e9aa135806599ca82e01",
+    "System.Web.DynamicData.dll": "e30aae21cc0b083cb41deb86e068e36a34a98723f28e3687bae5f78f8ff8e26e",
+    "System.Web.Extensions.Design.dll": "084092925c8d32620870db1d416391274d7a7b4964a5818c02abe5a41e249c1b",
+    "System.Web.Extensions.dll": "219bb5cfea5f1fe6ac03358a4d57b774efd21b6d7ebeed7490f81b9d1ace274c",
+    "System.Web.Http.dll": "6f3dd8b64e9bb9cbfe3a1358a471a3ee3cbbac558ec011fd17af8d607c299862",
+    "System.Web.Http.SelfHost.dll": "9192d541392182550674098dcabaac905d167bf1abbf31b259d3f6b008a4a764",
+    "System.Web.Http.WebHost.dll": "d30d3bf649a5c17de9b0bc5e542ba8591de06a35068d06704b3391a530eb0463",
+    "System.Web.Mobile.dll": "2a7c2a5c74e7873272097db28eb1a3de9512283f1dc63434659a049c76d7ca65",
+    "System.Web.Mvc.dll": "33a9ea193272667a849efef0078ed555368db23debe24d8f081ba7b7c3611e65",
+    "System.Web.Razor.dll": "34477452daf16b9076ed51875ec56f82ce6fb7052344c48169f88881947503e9",
+    "System.Web.RegularExpressions.dll": "0bf95bea3d10a8999e2d5f9e310995b9acebf3cd88acf0d79751dc8095c02055",
+    "System.Web.Routing.dll": "42c776eb1608e62455008ae6799945fc3ef1d7af19f5bc48367e664c2a0d6c34",
+    "System.Web.Services.dll": "30373b82d3411a58f029543040351e05fcf530cd9844b0aa9a5534fcb59aa55f",
+    "System.Web.WebPages.Deployment.dll": "814fc5481b72314899a2dc38f51c7c70cf281f8d16aca202a2161680aca983b7",
+    "System.Web.WebPages.dll": "5a764f7a5a1b021a5a52497b6f3748e80c22a10dfcc55854248807f9a017e290",
+    "System.Web.WebPages.Razor.dll": "9249b05dbc55d4df78600017578359b083e5c0fbad7ff47619d0d6c629adb0d1",
+    "System.Windows.dll": "9f1ba40d48452cd58038d879cc323a9bf49daf71e059c5269e0b3a968b4824f8",
+    "System.Windows.Forms.DataVisualization.dll": "5d0a59b5b43cf8cc1b99c71d9b4ed50eeab34b4e4cc7ee3d2a5d1a2148264bbe",
+    "System.Windows.Forms.dll": "8e48c1bca2a85178c522a58583c0c0a0a85a85759b188b0620f8f614ae9f2424",
+    "System.Workflow.Activities.dll": "4fa86ce54404d5ec1bf2f3ed22a26befb4854ad02b187b6c45dc428f9aa0311e",
+    "System.Workflow.ComponentModel.dll": "3e4e565e3ce83b02041e34e8406fd0223c73a5a1f548f21588fc2a4a6b57edf1",
+    "System.Workflow.Runtime.dll": "0f4e60c86527444c66fb78c9a6c348e4494c8941cb4956e6a09763aa6a400c5d",
+    "System.Xaml.dll": "4ff919e074bd62f2871cea782750c0eea3d411c5d7776f5a92ee05e635ec10a8",
+    "System.Xml.dll": "e014fb786edfaba4e0cc714f162944dc55883f0bdbc33b90dd0ec5dfef175705",
+    "System.Xml.Linq.dll": "30c6a9ac36ee1b08e23028b135f6152de336b069dea7bbb0f5e6340cbaac6c6a",
+    "System.Xml.Serialization.dll": "ef62fd99ac566027b8b5d282302687c017f9a9a12bc27bc38b7099e53c1b48a2",
+    "WebMatrix.Data.dll": "9a3954a9b2f1ddd53dadf1da7c8827298bf836480ce0eb8bfafbd2bd9ba24a0c",
+    "WindowsBase.dll": "045f62b722b59fe2de52d2f86ec4804903fa9928e96f6a68e49ab3fe0a4cd1be"
+  },
+  "originalAssemblies": {
+    "NAudio.Flac.dll": "a01b58ea3010d6749e94a7f0ea51ff0ac0f3188a6a59328e6d5a7474000f003e",
+    "NAudio.Core.dll": "4f8d8c4140146674b103c8a3c46fbc4c768a86c0012a167168e3f7da2b3e5c09"
+  },
+  "bundle": {
+    "plugins/NAudio.Core.dll": "4f8d8c4140146674b103c8a3c46fbc4c768a86c0012a167168e3f7da2b3e5c09",
+    "plugins/NAudio.Flac.dll": "8d709cae42b9b00309893dc6a6381aaf6fdc972224a2df7463f78b429b3cce4d",
+    "plugins/SCUnity.Flac.Runner.dll": "5ee02dc46c841755af1b744db1ec7c62bbd248ff18c3fc876d0982c9f0f4887a"
+  },
+  "runtimeAssemblies": {
+    "Assembly-CSharp.dll": "7dd2d73110dadecdf395fd9e09cd4bba112bda763e8e3fbb3093d8eaaa596e2b",
+    "Mono.Security.dll": "618009319dbf3ae374f9b5dc0d0522e1e1bdd172200c120a5471747b7991a584",
+    "mscorlib.dll": "6c76e06e6d44cf0f39bf59e6a90770968b70093ad4c1572dfbc5e46e431c5fbf",
+    "NAudio.Core.dll": "4f8d8c4140146674b103c8a3c46fbc4c768a86c0012a167168e3f7da2b3e5c09",
+    "NAudio.Flac.dll": "8d709cae42b9b00309893dc6a6381aaf6fdc972224a2df7463f78b429b3cce4d",
+    "netstandard.dll": "6ae62e082dc494a2433984177f60ca4db5fae69b1f360a8b33754172b310b8c5",
+    "SCUnity.Flac.Runner.dll": "5ee02dc46c841755af1b744db1ec7c62bbd248ff18c3fc876d0982c9f0f4887a",
+    "System.ComponentModel.Composition.dll": "0c3e81771a5fe9657bea02887996de72606c3cb247e4fbe413f743f40e2af244",
+    "System.Configuration.dll": "04907729e87a101e62d3a5c93cfa16688bee745d05440d6daa0c541964be27ab",
+    "System.Core.dll": "a5e7d47313da0eca0b92a901a30498f5e970916faf63b70b74dd62b09760ed72",
+    "System.Data.DataSetExtensions.dll": "498f14c37d83f946a47a79e01de777e62f269ee9c3820f2026b59ab1c1b9222f",
+    "System.Data.dll": "427478545ce66b632414ca838088ea073f250ed16b21c70005f48cb571350e47",
+    "System.dll": "7019d6b6dbfa07cf30f62e7d3ccb969f70cbf001fd72112938ffb535c7f75d81",
+    "System.Drawing.dll": "e182e688223acedb8135227e8fbff17d5ed22f47f81141aa9cb96ef1ab9926fc",
+    "System.EnterpriseServices.dll": "84af394ad863e31407eb2b9555ca7e96a9f1966630f5d7f0eec54f0011f6babc",
+    "System.IO.Compression.dll": "80421a67b4162a5f1b4aad6a8327c6d1fb4b04dedd39dae14a770b812594fae2",
+    "System.IO.Compression.FileSystem.dll": "2730d2a27f9362259a406ea14727e5f0a71bc21a6825be94f8623a84bd9f9c79",
+    "System.Net.Http.dll": "3cd3ac19050d5031c13644cd87958ad8029b79ce16c7747faf3d0542e7fb45a3",
+    "System.Numerics.dll": "ac9224b32355a09f09b706cab568384f64cf8116825c5911cef1e13221c61c38",
+    "System.Runtime.Serialization.dll": "1152ef687dbe39e0ccb6b9a68f6501004415a729072df29abab3bc7c66840217",
+    "System.Security.dll": "2101a4dd4475285f96b1ac3ba1715a52aa8067690709e675cc49a9eb8ed901a4",
+    "System.ServiceModel.Internals.dll": "888ec94a59c127854871b76afa49fdcefdf723c0f0b6fd78e87f73a8495b63b5",
+    "System.Transactions.dll": "f65dbc257d26a361dcc01edd58bf3e542d186c8ee492a4f7a62b0dd7d59f7050",
+    "System.Xml.dll": "79194220adfcf027a334c87b1adcc6d07b9660a4061e04b3d9500c10d30f7d49",
+    "System.Xml.Linq.dll": "4f5d6bf313cbf091e7bff83d07dd03ed93d0ecb3ddb025ae786aadd6b5f477fb",
+    "UnityEngine.AccessibilityModule.dll": "a5d2b476a615a5dd430254877ee63c6678e131159a5d6e61f02e383a6a4ceddc",
+    "UnityEngine.AdaptivePerformanceModule.dll": "9a9763066b8c69020bf7bc0dca09cc0e3f4a574bb427eecd762a30f62638cd72",
+    "UnityEngine.AIModule.dll": "b64487dfb7a22a0c9b43a7ec41a54c559e36a638d4ce66bed77bd534f7e86379",
+    "UnityEngine.AMDModule.dll": "9b78ba9bf3c62db80486f120da572102c4fbf39c1fcb36c9a61e5b3a18c5c85d",
+    "UnityEngine.AndroidJNIModule.dll": "47ec38060b1ce359ae1c5510ea8db9ddf09388dfe10f3cca8d7c430db59ae28e",
+    "UnityEngine.AnimationModule.dll": "0a5cc4da83a12b35d4fe2db1d890b43cce168498b342a34fc34760ac0c4d4d10",
+    "UnityEngine.ARModule.dll": "f8a28ff9f1a30d82edc14c0cd6cc41870bbff34dd0fdcd9e63e6a92d67af0fcb",
+    "UnityEngine.AssetBundleModule.dll": "9792e104a565802f038723ab770cac64d82452a3e607232107417513513b243e",
+    "UnityEngine.AudioModule.dll": "b508d20655d60299a9adef021a4ec3be6412b898ab850045e99521b4771e3ac7",
+    "UnityEngine.ClothModule.dll": "4c3fe88c792321654de9e9c388e253adb2e4c99f3583affbd6844ae4558b51e4",
+    "UnityEngine.ClusterInputModule.dll": "ea5f5096d3e27148232e477b03c1b7ca62431bd99843d02d783054dbd1d314b9",
+    "UnityEngine.ClusterRendererModule.dll": "ef5b9e34d28e218dd3309e9d481051c885223e75e41ed85e3f55ce3de32dbff7",
+    "UnityEngine.ContentLoadModule.dll": "111d91eb1986c8c5ea9bb1daf2d44f1a252e2311f9e8995ec77afde13a25f063",
+    "UnityEngine.CoreModule.dll": "fa21f00cbb37a591cf2cd2b0df6fd8d9f9bc70d0ca7884c5e6b683784e39c35d",
+    "UnityEngine.CrashReportingModule.dll": "3eb3cc245c6088a2188b45fd9b4a7dd767ba27a1729d1d3d361e7f8f0629abc4",
+    "UnityEngine.DirectorModule.dll": "b99987a9d1958c012bcf75994b876703b3066b3fb5ab3abafcdf98263e07379c",
+    "UnityEngine.dll": "6e59af41304e769285ff7de683ac0369baeb9d06fd72fcda82f0aff7365969fe",
+    "UnityEngine.DSPGraphModule.dll": "4f356f95126b0464b959df4b16ed284c43c0cfb304799dad6bec68324f9a260a",
+    "UnityEngine.GameCenterModule.dll": "e739eb28baa802ef9b46bc288772b4546448ad2fa66898db34db20caed205ad9",
+    "UnityEngine.GIModule.dll": "e4f5fe2895ec02bd1e03301ba84e15e7d84e918ca98624130a86eae3f81ad62a",
+    "UnityEngine.GraphicsStateCollectionSerializerModule.dll": "8a377d274b10d8ae0162f212975aeb7d209ddcc135b8673449dbce31cbc12183",
+    "UnityEngine.GridModule.dll": "6722a5623c178c5f3e5d8c9a255cc3dc58957654eaed59fd8b8b8c35ce0aa51d",
+    "UnityEngine.HierarchyCoreModule.dll": "6202ff67ac2f93e687c8a784287f9c0e4520ee78f321f9e797917cff0acfc690",
+    "UnityEngine.HierarchyModule.dll": "ac8efd58f3e1eac034af7403f95841824a294a4ceaaec4aa47bbeb4f1ad971ec",
+    "UnityEngine.HotReloadModule.dll": "031da0e5213af3a97ebeaec99beefc4f11309edb9085a99ffb29116c61014dc8",
+    "UnityEngine.IdentifiersModule.dll": "3061f2bb5e61526fbfb404c580f70602240eba61ee9866f5c92111fc47e9d3ff",
+    "UnityEngine.ImageConversionModule.dll": "8947b89728e815ea2d8634d92534efffbaf3c71bb1814a2790b9892b5d09a316",
+    "UnityEngine.IMGUIModule.dll": "09c560d92f2b3dd5f0cb1f5233e186e900a70116bafcf7deede39503ec33a03a",
+    "UnityEngine.InputForUIModule.dll": "9274da567ddc30fdfd1f887b764245e5672c8b304a48c75c602ec1402e01a24b",
+    "UnityEngine.InputLegacyModule.dll": "b89fc4b0fa1fb5eccf960d5bd49be51fe34ee4ac0f394c4abb526c87d68d9c4a",
+    "UnityEngine.InputModule.dll": "3a9f4c30892abd4a1af5b425ce6229416069384b8a4e8a044370019ed86075cb",
+    "UnityEngine.InsightsModule.dll": "3d4fd74da6a7a34cd61ca3661b3305c3a1f7e056a9cb4433631b8a4c159f457f",
+    "UnityEngine.JSONSerializeModule.dll": "2520cfbb0adc62d84e8faa06500af1dcf62fc78d2b9c242d2e941bdc3e6e22ad",
+    "UnityEngine.LocalizationModule.dll": "78f948c5a93fa0c8578202a4d97b3d6a92f10232bdb87deca221bb495ed54c92",
+    "UnityEngine.MarshallingModule.dll": "927bca7cf998b0170267ab890370dd2a978df03ce037600103454c170e070173",
+    "UnityEngine.MultiplayerModule.dll": "697258e6b349fda786dc55d08cd8268b43ddd7571d176839d5e1f9657cabeb33",
+    "UnityEngine.NVIDIAModule.dll": "4d03e8c0fc12107e5861b3fc424778c1935471aeecace78a9c40a893a40c5fa2",
+    "UnityEngine.ParticleSystemModule.dll": "d11cc9f6b14a610d12e1b1d95621fe95a5adffe2792f3f48965874211ff016c8",
+    "UnityEngine.PerformanceReportingModule.dll": "4ce68b3b6f9036558e57c6ff6136bcc626fa0637b3a1c933a571e61a523d715e",
+    "UnityEngine.Physics2DModule.dll": "554442836e90ccc8975405ee99ed227fb99ddee1eb353f95cec634eca57a5456",
+    "UnityEngine.PhysicsBackendPhysXModule.dll": "d606bf26bf0ca5e624c6d4a3e5b91f2ec7bf1fea3fc5df3195c9a506b6274191",
+    "UnityEngine.PhysicsModule.dll": "9c8188af1cb79c5772e8d7d458abbb06162833515c9971d52a36ca0a1ef6f3aa",
+    "UnityEngine.PropertiesModule.dll": "33025367b8cf67b7a5ff0f7418b43ac816ce9a2554bc385190f843dbd0c11e62",
+    "UnityEngine.RenderAs2DModule.dll": "6b19866631d14374024dfbbceb45b54107b535374ba4a311915668f1ee4f3d8b",
+    "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll": "ec54cc9f57d7104395457612dcaf508a3a1e6a0dc32398fb2245be5caf5b57d7",
+    "UnityEngine.ScreenCaptureModule.dll": "3ca6b9b00bc595dc10a5e2a11d038b4028c27b606d5d2a02a41a04cb11612ca4",
+    "UnityEngine.ShaderRuntimeModule.dll": "0886ece16f1eea32c4091d409431c763ec413467d8cc220abd677fd3ad931fdb",
+    "UnityEngine.ShaderVariantAnalyticsModule.dll": "52dc53d36f1cf8ee5bed332d132295f0a744a2e94bae46f1ec72d370f8fc1d2a",
+    "UnityEngine.SharedInternalsModule.dll": "f71103406c98040aafcb93e20cb16d58ef58a4e019d0c7a1c55a6a8f935a692b",
+    "UnityEngine.SpriteMaskModule.dll": "5a5e31c400b40f7e2c386793e47ebdc6dab2a3e2fec39919911832cd80af1f87",
+    "UnityEngine.SpriteShapeModule.dll": "ba32c9e67ca548c639beac9651006b2386822f03ec423d7ccd76b7d3cd94f132",
+    "UnityEngine.StreamingModule.dll": "b8e4d2b19e1359da8758cfb6901e88b6512bf7f8698e8ca161e3d1f7e1e7a191",
+    "UnityEngine.SubstanceModule.dll": "9c7f8e5a26fa8c12d8552f971289499a186e8f75d65e6f9bf32f648d3d579d0a",
+    "UnityEngine.SubsystemsModule.dll": "45592f86b2574e8226326831a5cc3daf681584c4ea55eefbb01c860d4b1412b8",
+    "UnityEngine.TerrainModule.dll": "36aa5e6a4b4bfb9916d9ae0c14dbbc057b59c1375338341e7274fe46e6f977db",
+    "UnityEngine.TerrainPhysicsModule.dll": "51b01b63f646b0c4a693c9564a62be80f75f4d06d4330854fedec5f36a38b760",
+    "UnityEngine.TextCoreFontEngineModule.dll": "d5d286a60de985c8913e8cf951341a4f7eeb54ae25230be0ce0e4d5ec97cd10a",
+    "UnityEngine.TextCoreTextEngineModule.dll": "a7cb7e44033b46211b0a00d8d6ca0eb4d169e8699db29f4c38ae686925343897",
+    "UnityEngine.TextRenderingModule.dll": "f8f33cda700104054931780fb1e357e13621155df74e200a61ec7571494a2242",
+    "UnityEngine.TilemapModule.dll": "de1cec1a31aa1aee642c6153400b1d998c5867fdc23afdbd710b9b1426ecbc80",
+    "UnityEngine.TLSModule.dll": "042b7dfc4ff727fb924801b4a9dda148205d873fb3a4fd67f7d721b26c7f64fa",
+    "UnityEngine.UIElementsModule.dll": "d0dfeb94b15c4ff0956704925a17f2420206ea7fde663e9c85b207da5c77bffc",
+    "UnityEngine.UIModule.dll": "3223040c1aed84578b41de585f2a88d5990261b87a615ed2215590c9055c3f18",
+    "UnityEngine.UmbraModule.dll": "4ec3254865b74fa52e305031b06ce4d119f6f4f25c90bbf25bc1e375a44b8b45",
+    "UnityEngine.UnityAnalyticsCommonModule.dll": "070c2bfa3014dcd5b0457fe61dc5376ed39de99fece92bc5ccdbe67c20146f39",
+    "UnityEngine.UnityAnalyticsModule.dll": "3baeba7e6a1676a0c634b72a349719efc7268653ade49fa58df132143f5726af",
+    "UnityEngine.UnityConnectModule.dll": "0924a4c73a078d34e5b2e7e75924d38e6a5077fd0631166c3d6950540a20c190",
+    "UnityEngine.UnityConsentModule.dll": "1d5ea4055721fd20cd8274e1804a2c418802da26f1c7d4561cd54a16e0ee8aa7",
+    "UnityEngine.UnityCurlModule.dll": "9e9a9d03171fc475fcca0672da467560339c5b07c7b0a202b1d49365d240025b",
+    "UnityEngine.UnityWebRequestAssetBundleModule.dll": "941754f97255c24811e87913aca638cb14158be4592cae974e53a60589eff8ad",
+    "UnityEngine.UnityWebRequestAudioModule.dll": "9a4332f5656965fbfc489534dcc0954ccac0b6481aba7e018808c3fb3380e24e",
+    "UnityEngine.UnityWebRequestModule.dll": "1443aa1d86d570ce99991e6e16a137533099b25d22033d328842a7d89f2319d9",
+    "UnityEngine.UnityWebRequestTextureModule.dll": "03b34e14d420ef563426f6560df5f011450858e2888f84b580318d4581c90949",
+    "UnityEngine.UnityWebRequestWWWModule.dll": "4542f50150b93213e5634822559d08f213e9a8c5537ab6f0c6313ee4e298db7e",
+    "UnityEngine.VectorGraphicsModule.dll": "d75862c23d13618199458f62c5889403e01f257ca9b5f62c814f5306ceec4018",
+    "UnityEngine.VehiclesModule.dll": "e1ee9ae2f64a04aa58b9f0a3737b9ecf04392e5c55b6302e72ca6f9e753587b9",
+    "UnityEngine.VFXModule.dll": "9ceb757c13bcaf37d18d95d3734d1a22e284045c478748e8ac1471abc39e19b0",
+    "UnityEngine.VideoModule.dll": "957b464028d27605d105afa39ca2ea8ac0eb2878f62488395a98cada12aedd18",
+    "UnityEngine.VirtualTexturingModule.dll": "d4c8487ba67d2ff636247047c63000c4dc7192ad479f95ce94629f98d53f397b",
+    "UnityEngine.VRModule.dll": "95d0a4f1f253961d79579b0b8ac4f3a81b7ac93373f76506c8b1ba6eb766e41c",
+    "UnityEngine.WindModule.dll": "a54edf8e11da45b8a5f4e0b3888c478c1f2842feff8dfb312eb8a6626537bdd7",
+    "UnityEngine.XRModule.dll": "60a8b62550363476ba9cb31dbcc256940952b1efb0374047ab95b574fc098fc3"
+  },
+  "fixtures": {
+    "upstream/Audio/BlockPlaced.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/BlockPlaced.flac",
+      "sha256": "31395ea264ecaf526eb658598478f9c587178c5b24d9580099830dc19fe52b9b"
+    },
+    "upstream/Audio/Bow.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Bow.flac",
+      "sha256": "f4fad6f8e7403305e9871b322981367ae7c65ee45de990d5ff5cf5d87273ade1"
+    },
+    "upstream/Audio/Click.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Click.flac",
+      "sha256": "f4918d13d6bbf9a1e191a3ea26bb80809fb4d71b521f469845ac26269ef6fd1b"
+    },
+    "upstream/Audio/Creatures/BearAngry/BearAngry1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearAngry/BearAngry1.flac",
+      "sha256": "a96f9f0b0e9ac5938d1788970c3b5a069884825e31401c9ede77b042e5e60b1f"
+    },
+    "upstream/Audio/Creatures/BearAngry/BearAngry2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearAngry/BearAngry2.flac",
+      "sha256": "3c912045864602507bd86de7467bb133444582fd6cdb4bf4ad00254544e9af74"
+    },
+    "upstream/Audio/Creatures/BearAngry/BearAngry3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearAngry/BearAngry3.flac",
+      "sha256": "b7e46924f36eb016abaced8ac5391af5250fa45cd0d6f062acc7e48537553268"
+    },
+    "upstream/Audio/Creatures/BearAngry/BearAngry4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearAngry/BearAngry4.flac",
+      "sha256": "6131a1ce03c14c2ad7e1bb9c66ebc089ed70ba18452274601aa01a2eeba64c56"
+    },
+    "upstream/Audio/Creatures/BearAngry/BearAngry5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearAngry/BearAngry5.flac",
+      "sha256": "1ef81c52e8f6513035b5acaf3e3555425626dd57464f8ac56b1fb30d3f1eb0cd"
+    },
+    "upstream/Audio/Creatures/BearIdle/BearIdle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearIdle/BearIdle1.flac",
+      "sha256": "b1eadaaf32a6608c4b76bc685ae7d9cdf90776c0501aa7a3491ca2b31490cc0c"
+    },
+    "upstream/Audio/Creatures/BearIdle/BearIdle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearIdle/BearIdle2.flac",
+      "sha256": "75b8c48c3d701f8d7fd7da75a856821f9ba32748778ddfbeba9740bc449546e2"
+    },
+    "upstream/Audio/Creatures/BearIdle/BearIdle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearIdle/BearIdle3.flac",
+      "sha256": "44d620b1568f7f88b9485dfc4f7720a304276978e62d03ac52ae0d4a686d5961"
+    },
+    "upstream/Audio/Creatures/BearIdle/BearIdle4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearIdle/BearIdle4.flac",
+      "sha256": "d8cdf7146cb9c3018d1bfe7a8ddb54b40452cf1a1f60390794bdf87f0c1a05be"
+    },
+    "upstream/Audio/Creatures/BearIdle/BearIdle5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BearIdle/BearIdle5.flac",
+      "sha256": "8e69e9545cbbf6cd40675b956e44bd1596c04ba68881530e56063adb0b339b3a"
+    },
+    "upstream/Audio/Creatures/Bison/Bison1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Bison/Bison1.flac",
+      "sha256": "d2c30cbeb4c41e56a9e9c9223de3001f954e97d1cbebcbbfe2fb28ce8c7c1316"
+    },
+    "upstream/Audio/Creatures/Bison/Bison2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Bison/Bison2.flac",
+      "sha256": "630ec525592fa807c03b60b5307740baaa154d90000e000216ec8f7f1b14ddb0"
+    },
+    "upstream/Audio/Creatures/Bison/Bison3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Bison/Bison3.flac",
+      "sha256": "d8bd3cd9b393482ec662757a6fff22aba433872579e85e8619c9ce41ec41d738"
+    },
+    "upstream/Audio/Creatures/Bison/Bison4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Bison/Bison4.flac",
+      "sha256": "2e7e0217f2da79c3e40cf1e1324dd3c595d55c13b667c9dc44491cb9daccba57"
+    },
+    "upstream/Audio/Creatures/BisonAngry/BisonAngry1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BisonAngry/BisonAngry1.flac",
+      "sha256": "edf263cc63e2fea25f2c720bf7a264f3da8c693be0e9d519cd6139c292e1afb1"
+    },
+    "upstream/Audio/Creatures/BisonAngry/BisonAngry2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/BisonAngry/BisonAngry2.flac",
+      "sha256": "32151ed5fabcc1af511319ebf33992001a2b607b22e6a73e92f5df3bbd4f1304"
+    },
+    "upstream/Audio/Creatures/Camel/Camel1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Camel/Camel1.flac",
+      "sha256": "87e2c67f4883274d8507f7cdd41cd566719af984293ce02201579e9ccfbc6a49"
+    },
+    "upstream/Audio/Creatures/Camel/Camel2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Camel/Camel2.flac",
+      "sha256": "bc4dab103bc5232505c3b2492205c6b0a054a7cef5b7e099baf195cc8b4097e8"
+    },
+    "upstream/Audio/Creatures/Camel/Camel3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Camel/Camel3.flac",
+      "sha256": "cc7b4e12badd52ad5c8aede6cb58112975dc32be787b4056b8babc7e03c592cb"
+    },
+    "upstream/Audio/Creatures/Camel/Camel4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Camel/Camel4.flac",
+      "sha256": "6a24c757df2313d406b362b38c1e4660d9a88306564a200de8fa99a9ce115ef0"
+    },
+    "upstream/Audio/Creatures/Camel/Camel5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Camel/Camel5.flac",
+      "sha256": "c8756f9bf67614f632ed1aa56bb556f3f0e32fe0eca8320ea63b1748a06526f0"
+    },
+    "upstream/Audio/Creatures/CowIdle/CowIdle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/CowIdle/CowIdle1.flac",
+      "sha256": "23bccf46242f656e773a73b5fad65e665a9ff372e26c1ad46d80fb7e8fee49d0"
+    },
+    "upstream/Audio/Creatures/CowIdle/CowIdle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/CowIdle/CowIdle2.flac",
+      "sha256": "2d99075f754502dd63094e3a54b2f82aa46b57aa8849e9b20f4b7776560200cf"
+    },
+    "upstream/Audio/Creatures/CowIdle/CowIdle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/CowIdle/CowIdle3.flac",
+      "sha256": "48ac280d58e197be009ce86a2489c18c8fcb03471939a2d9723264a164bd1be8"
+    },
+    "upstream/Audio/Creatures/CowIdle/CowIdle4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/CowIdle/CowIdle4.flac",
+      "sha256": "e01f1ec07356a5e48c028d8e853d57d3a4a2596f24837ed395a0b07bfca39dd1"
+    },
+    "upstream/Audio/Creatures/CowIdle/CowIdle5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/CowIdle/CowIdle5.flac",
+      "sha256": "50b5cd8af6db783ba4afe4b08f82a80b87445e94409373cdb82d14c3451033e0"
+    },
+    "upstream/Audio/Creatures/CowIdle/CowIdle6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/CowIdle/CowIdle6.flac",
+      "sha256": "3bf8cd95da97f069f0f9d7992c7800c424dc70dc01437ec2443b96e7d8bc39c9"
+    },
+    "upstream/Audio/Creatures/Donkey/Donkey1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Donkey/Donkey1.flac",
+      "sha256": "2a20861306841266c2b7f365d55f268fc61e4622e5be73824b4a905a9bc024df"
+    },
+    "upstream/Audio/Creatures/Duck/Duck1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Duck/Duck1.flac",
+      "sha256": "40bba14bb00b94ce5ac79c836ae7419d799bd85c7807b4927c8a92a8d8682496"
+    },
+    "upstream/Audio/Creatures/Duck/Duck2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Duck/Duck2.flac",
+      "sha256": "2e29c4507ff4debc3707921d1af15c5d8b5f534c469ca83844d38b6d3ccceff6"
+    },
+    "upstream/Audio/Creatures/Duck/Duck3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Duck/Duck3.flac",
+      "sha256": "b3d50040097f22318ee5fc232979c59b7286c8541af0e2d9f83b4b71ff10f164"
+    },
+    "upstream/Audio/Creatures/Duck/Duck4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Duck/Duck4.flac",
+      "sha256": "230920f714e7f97cc6bafd2fbbc828ae5ea0d550b43f726c8237e400a0d0ba89"
+    },
+    "upstream/Audio/Creatures/Duck/Duck5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Duck/Duck5.flac",
+      "sha256": "38f929e4c37b8d9550883adbd641db1c0220aa2b509a2b18edb0d64583b97bd6"
+    },
+    "upstream/Audio/Creatures/FemaleCough/FemaleCough1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemaleCough/FemaleCough1.flac",
+      "sha256": "9039b720bec372dfa0fe1ac284942ed0055c05e5256bf6ff43e8778bb8015f90"
+    },
+    "upstream/Audio/Creatures/FemaleMoan/FemaleMoan1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemaleMoan/FemaleMoan1.flac",
+      "sha256": "f83c24407468465591c592667a270f0a8ff678d096c8df26d4c056a57cc50674"
+    },
+    "upstream/Audio/Creatures/FemalePain/FemalePain1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemalePain/FemalePain1.flac",
+      "sha256": "bedb3d791b5fed343d61ec139545faca9e5eea3698243c55f34cbb6b3cde089a"
+    },
+    "upstream/Audio/Creatures/FemalePuke/FemalePuke1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemalePuke/FemalePuke1.flac",
+      "sha256": "f27eaf29f1992cdf6c35bb3ddea730402188fafd6ee4761552878d222da42078"
+    },
+    "upstream/Audio/Creatures/FemaleSneeze/FemaleSneeze1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemaleSneeze/FemaleSneeze1.flac",
+      "sha256": "7e6072428f1d95aaf9a645cc7f62d136be952acb0d9972d40b6296b841fb6548"
+    },
+    "upstream/Audio/Creatures/FemaleYellFast/FemaleYellFast1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemaleYellFast/FemaleYellFast1.flac",
+      "sha256": "7b5f6ed9b1c50cd9c05a86b542f0394393cb0be06dc57ccd199fa87f8c444c06"
+    },
+    "upstream/Audio/Creatures/FemaleYellSlow/FemaleYellSlow1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/FemaleYellSlow/FemaleYellSlow1.flac",
+      "sha256": "eb5367d6fbf8964fdb15bff52015bb1be83ef91865521dbf8bb3829c9560b3d7"
+    },
+    "upstream/Audio/Creatures/Gnu/Gnu1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Gnu/Gnu1.flac",
+      "sha256": "300c9179ff7fa72bf2dffae99a03ef0d94c720615732caeb9f0ed28064f2c278"
+    },
+    "upstream/Audio/Creatures/Gnu/Gnu2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Gnu/Gnu2.flac",
+      "sha256": "d5bfacda2011a646d034809ec6f960d2da5db9eb7d9fe557269bdecfe4cb7a8b"
+    },
+    "upstream/Audio/Creatures/Horse/Horse1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Horse/Horse1.flac",
+      "sha256": "a278d98ffde8610e37562fec21719c6262c9f5a478398fc850713bf03bb43d3b"
+    },
+    "upstream/Audio/Creatures/Horse/Horse2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Horse/Horse2.flac",
+      "sha256": "36e19d60b78bba370ca11cf6098e83cd46c5c94f333160e46079cc9adece14a5"
+    },
+    "upstream/Audio/Creatures/Horse/Horse3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Horse/Horse3.flac",
+      "sha256": "8166bd3e6fd60552e359dab0a12d00c5beac937dc123cb4d03cd699d7de676b1"
+    },
+    "upstream/Audio/Creatures/Horse/Horse4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Horse/Horse4.flac",
+      "sha256": "b5de919ade1bf1b2460d7486c5d080663d4da7537a375a7bf865c6cedf152dff"
+    },
+    "upstream/Audio/Creatures/Horse/Horse5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Horse/Horse5.flac",
+      "sha256": "456f4c4657647485c006a7d864ffe8035a14ea8e3ed935ce94996c2d64b867f0"
+    },
+    "upstream/Audio/Creatures/Horse/Horse6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Horse/Horse6.flac",
+      "sha256": "beae34065c38b4fac8859fe5f75881801629734ba952558a776e851da50b736e"
+    },
+    "upstream/Audio/Creatures/HumanEat/HumanEat1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HumanEat/HumanEat1.flac",
+      "sha256": "2feaaf5f760d0465d35638a0e54cf59f89e9eaf725cbad9deaafe41999f7c02c"
+    },
+    "upstream/Audio/Creatures/HyenaHowl/HyenaHowl1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HyenaHowl/HyenaHowl1.flac",
+      "sha256": "275dc3776a65bf88d4db424e783cb8092ecdbe8bc760ba84c28377168ec4a064"
+    },
+    "upstream/Audio/Creatures/HyenaHowl/HyenaHowl2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HyenaHowl/HyenaHowl2.flac",
+      "sha256": "1e4d45e05dcd04e6e2a5c485881dc95e5219d3a0c489cead52c81164bfad864f"
+    },
+    "upstream/Audio/Creatures/HyenaHowl/HyenaHowl3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HyenaHowl/HyenaHowl3.flac",
+      "sha256": "f319ce88b77998e468177c9a9a48c3ea8a624a91cfbe3ab3ca6b1076454e3a9b"
+    },
+    "upstream/Audio/Creatures/HyenaPain/HyenaPain1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HyenaPain/HyenaPain1.flac",
+      "sha256": "16eb3976911dbd0ae502748f1e0db269c16934aa93d5bc7e1cddb193fb85929f"
+    },
+    "upstream/Audio/Creatures/HyenaPain/HyenaPain2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HyenaPain/HyenaPain2.flac",
+      "sha256": "0220394c4ba0f194463a8a23bb422e6352f201fd61fef3b67e76585ce61e2651"
+    },
+    "upstream/Audio/Creatures/HyenaPain/HyenaPain3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/HyenaPain/HyenaPain3.flac",
+      "sha256": "437d0462fe4eb2e345f558f209acc2b2adbfbdf8e10685e9f70e5a5dc5bf71ac"
+    },
+    "upstream/Audio/Creatures/LeopardIdle/LeopardIdle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardIdle/LeopardIdle1.flac",
+      "sha256": "fadc38839df9db42528ec8d4694e335b397c93ada864cf85ac82a01d5c9db5f0"
+    },
+    "upstream/Audio/Creatures/LeopardIdle/LeopardIdle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardIdle/LeopardIdle2.flac",
+      "sha256": "8c0553411c3602926f53b64411eafb4181a7d6dc9b33c843fb02710d1b2448f6"
+    },
+    "upstream/Audio/Creatures/LeopardIdle/LeopardIdle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardIdle/LeopardIdle3.flac",
+      "sha256": "367c9d32e20620519647d761ada6086f2d457ad030464a3326d8e516b2f03ea4"
+    },
+    "upstream/Audio/Creatures/LeopardIdle/LeopardIdle4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardIdle/LeopardIdle4.flac",
+      "sha256": "6309842d55898f015f58b091cccab7398d77d455d5c909aa8910c4f6dc2a8a3c"
+    },
+    "upstream/Audio/Creatures/LeopardRoar/LeopardRoar1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardRoar/LeopardRoar1.flac",
+      "sha256": "17a7d33862357e94206d9d7bcb67c8a0758d44ecd708b4720abfc3a6f16d3fd9"
+    },
+    "upstream/Audio/Creatures/LeopardRoar/LeopardRoar2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardRoar/LeopardRoar2.flac",
+      "sha256": "687fb10e0bbd22255ca65bf4c3de7c93aa10e27bbf46182cce5d83d171f9cf41"
+    },
+    "upstream/Audio/Creatures/LeopardRoar/LeopardRoar3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LeopardRoar/LeopardRoar3.flac",
+      "sha256": "02e5e47e79e05bb8f80809ba9d7e280ab54a939c4966fb58d12daf52709960bc"
+    },
+    "upstream/Audio/Creatures/LionIdle/LionIdle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionIdle/LionIdle1.flac",
+      "sha256": "2c065b600d754a94e48459ce2bd2d02771d147f0712e816c2505e6ce964c6f82"
+    },
+    "upstream/Audio/Creatures/LionIdle/LionIdle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionIdle/LionIdle2.flac",
+      "sha256": "8307d86d9fda98debe4c94276b4342f5c710ea127b9ef51ecf194efb6099ebb4"
+    },
+    "upstream/Audio/Creatures/LionIdle/LionIdle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionIdle/LionIdle3.flac",
+      "sha256": "ac6d2503536ec168d20d08148c02f404e6d75af099a288c7d147616e97833b14"
+    },
+    "upstream/Audio/Creatures/LionIdle/LionIdle4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionIdle/LionIdle4.flac",
+      "sha256": "1ed40c3559acf8097c74081cb34512950e6b700d3af4d885a2f3efab30e8f135"
+    },
+    "upstream/Audio/Creatures/LionIdle/LionIdle5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionIdle/LionIdle5.flac",
+      "sha256": "3b60d73e13a2d46e310469e390594bbe6c8c01431456fded70a9f276f4923e82"
+    },
+    "upstream/Audio/Creatures/LionIdle/LionIdle6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionIdle/LionIdle6.flac",
+      "sha256": "d82ec6ca39dab1459b64fc27e86691db877eb4a369c36feddc8b7a74cce9cb42"
+    },
+    "upstream/Audio/Creatures/LionRoar/LionRoar1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionRoar/LionRoar1.flac",
+      "sha256": "8d7436c4d2e773fed58039602e192d0d5348d1350d1108949eb9247e8b3a299e"
+    },
+    "upstream/Audio/Creatures/LionRoar/LionRoar2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionRoar/LionRoar2.flac",
+      "sha256": "f4fad281cf999cee5bf9cfd0573fea94d685cc26b92c66f05dc5940035d247d8"
+    },
+    "upstream/Audio/Creatures/LionRoar/LionRoar3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionRoar/LionRoar3.flac",
+      "sha256": "743fdca7792c1b3b9adabdf720e5326ee8d1373a0fcd6986e57f138353e8d6ad"
+    },
+    "upstream/Audio/Creatures/LionRoar/LionRoar4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/LionRoar/LionRoar4.flac",
+      "sha256": "c616be657cba4495b19369492d80cb4fc061ec54b8426b1cca76c393e8aa2c03"
+    },
+    "upstream/Audio/Creatures/MaleCough/MaleCough1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleCough/MaleCough1.flac",
+      "sha256": "7e13dc292e79727334e4ff072a8f9255a4733cd1e48bd3db5ed2036def05866b"
+    },
+    "upstream/Audio/Creatures/MaleMoan/MaleMoan1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleMoan/MaleMoan1.flac",
+      "sha256": "3996f3a9e3130b3bb2c41e9782e0ec3db41be36d6e1d9b91cb35af80926e6862"
+    },
+    "upstream/Audio/Creatures/MaleMoan/MaleMoan2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleMoan/MaleMoan2.flac",
+      "sha256": "dd96ead6e5ab84b7e2d8fe14f594601bfc2d52c554980e502e3bf412a36c2216"
+    },
+    "upstream/Audio/Creatures/MaleMoan/MaleMoan3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleMoan/MaleMoan3.flac",
+      "sha256": "b05868bc0a25ad8ab1b9bfae66212bcb4b41c66ceabb6328cd8bdf697df1c72a"
+    },
+    "upstream/Audio/Creatures/MaleMoan/MaleMoan4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleMoan/MaleMoan4.flac",
+      "sha256": "7480f362e02253f97bbb06a89e5dd5b9bbe32fe216450453caa30a722fedd18a"
+    },
+    "upstream/Audio/Creatures/MalePain/MalePain1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MalePain/MalePain1.flac",
+      "sha256": "adbd7b58cd7a3adfc8ad284a5fa651954b251a1d72d7cc158acab99162077feb"
+    },
+    "upstream/Audio/Creatures/MalePuke/MalePuke1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MalePuke/MalePuke1.flac",
+      "sha256": "01763334b87d83b3c2ec584cc48fe352661b2be450fa18673c42204388d7d06e"
+    },
+    "upstream/Audio/Creatures/MaleSneeze/MaleSneeze1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleSneeze/MaleSneeze1.flac",
+      "sha256": "df0d9a79f71080a7393313031aeecf6cd4fdc24ee6332c8bc9bee21eafbfc3e1"
+    },
+    "upstream/Audio/Creatures/MaleYellFast/MaleYellFast1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleYellFast/MaleYellFast1.flac",
+      "sha256": "2892f95cda12fe7b617fb00aaf6abfa59ae6bbbefc30ecf67b994042b1309fb6"
+    },
+    "upstream/Audio/Creatures/MaleYellFast/MaleYellFast2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleYellFast/MaleYellFast2.flac",
+      "sha256": "11390281a4d33bf5b0a6f58b25ad7495b7c4a61a736d832918d0625e07138cca"
+    },
+    "upstream/Audio/Creatures/MaleYellSlow/HorseYellSlow1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleYellSlow/HorseYellSlow1.flac",
+      "sha256": "0205f27034c2a40779dd1864c8c6415ae42c24ae2d4c4e16c87c03992ba69906"
+    },
+    "upstream/Audio/Creatures/MaleYellSlow/HorseYellSlow2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/MaleYellSlow/HorseYellSlow2.flac",
+      "sha256": "6f840987cdb838c3341e9e46560510d025ea920eec3c638f18a5b371db540c7f"
+    },
+    "upstream/Audio/Creatures/Moose/Moose1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Moose/Moose1.flac",
+      "sha256": "3e18f5560e8dc2de4543dbf67314808630a5dc22c8c8ff323b09586b6c015bc5"
+    },
+    "upstream/Audio/Creatures/Moose/Moose2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Moose/Moose2.flac",
+      "sha256": "35e46e588232f32d2193c67f641cd5e9a538f6e7760139600199c296c2e23d7a"
+    },
+    "upstream/Audio/Creatures/Moose/Moose3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Moose/Moose3.flac",
+      "sha256": "0e3786a254c582837ab76c7608d372c4ad939ae9656922daf6014cf845b094d0"
+    },
+    "upstream/Audio/Creatures/Moose/Moose4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Moose/Moose4.flac",
+      "sha256": "b97ecf0f2e6ada7df834d203918e2278c2cc239fa45aa3c1244d3f88814f0559"
+    },
+    "upstream/Audio/Creatures/Pigeon/Pigeon1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Pigeon/Pigeon1.flac",
+      "sha256": "79b2d58360e63c023e44e6eb73f5642627f9edb66de6d062bf4bd34ec0d392f4"
+    },
+    "upstream/Audio/Creatures/Pigeon/Pigeon2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Pigeon/Pigeon2.flac",
+      "sha256": "5d2a82184ac2de614f6d0b1e0296a804fce4c68cfd330256ff4b8c979a896c37"
+    },
+    "upstream/Audio/Creatures/Pigeon/Pigeon3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Pigeon/Pigeon3.flac",
+      "sha256": "64882897ca39974557d9118c4bc8463c1d0d15d93bf351e3d8b7f2a0634fe363"
+    },
+    "upstream/Audio/Creatures/Pigeon/Pigeon4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Pigeon/Pigeon4.flac",
+      "sha256": "c105b5ad22a8306fb72aac25703915173f79b8227836ff7c78b2878096a6c046"
+    },
+    "upstream/Audio/Creatures/Pigeon/Pigeon5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Pigeon/Pigeon5.flac",
+      "sha256": "100a1323812e7c94ed73d8f96358718e627ae8027943f5e88202b80afa26c511"
+    },
+    "upstream/Audio/Creatures/Pigeon/Pigeon6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Pigeon/Pigeon6.flac",
+      "sha256": "beaca0a16505a2f1ab27281fb8733d0c3e5ccf5668b48bcca4012c6eecfd11d1"
+    },
+    "upstream/Audio/Creatures/PigeonPain/PigeonPain1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/PigeonPain/PigeonPain1.flac",
+      "sha256": "bb5a03fb0ce25183a0e72667b3a4087feb74c166ebed8d5b3d4c297676a43016"
+    },
+    "upstream/Audio/Creatures/PigeonPain/PigeonPain2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/PigeonPain/PigeonPain2.flac",
+      "sha256": "ca5efaaf28f827fb8e08b2d19c67198249cf8540037db497fac8779bf81e3324"
+    },
+    "upstream/Audio/Creatures/PigeonPain/PigeonPain3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/PigeonPain/PigeonPain3.flac",
+      "sha256": "3f9261ecf3672aef529972e5db3b431d78493d73d68833e1dc89c417fb0bf079"
+    },
+    "upstream/Audio/Creatures/PigeonPain/PigeonPain4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/PigeonPain/PigeonPain4.flac",
+      "sha256": "22fb9297b6c8a1da78e52f7844100925f0931d0d2f0ec63d5a399e82cbec2a73"
+    },
+    "upstream/Audio/Creatures/PigeonRare/PigeonRare1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/PigeonRare/PigeonRare1.flac",
+      "sha256": "c90da7b305bf394bde82ba86364195dfdb2fd398628cffe822261762445bece1"
+    },
+    "upstream/Audio/Creatures/PigeonRare/PigeonRare2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/PigeonRare/PigeonRare2.flac",
+      "sha256": "d17385721597e49e0c539c4ad7f47fea9c9c688e34b993478c71487a1926e266"
+    },
+    "upstream/Audio/Creatures/Raven/Raven1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Raven/Raven1.flac",
+      "sha256": "ae4d6933d9ae5695721a4bbf2ffb6298248154b831a872400d2bb751093a13f6"
+    },
+    "upstream/Audio/Creatures/Raven/Raven2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Raven/Raven2.flac",
+      "sha256": "d243d81ec49482d2ac00c60a8fb48c4167b48753563608720e54b189b9d054a1"
+    },
+    "upstream/Audio/Creatures/Raven/Raven3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Raven/Raven3.flac",
+      "sha256": "b6cc60b01d6a17281f6526c8ead6912ec423bb615965dd78f0c95edb51bb6d8f"
+    },
+    "upstream/Audio/Creatures/Raven/Raven4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Raven/Raven4.flac",
+      "sha256": "4d845b6610e7f069ac9923c44547b0367f6c14bc30874c817064bc9f1734491e"
+    },
+    "upstream/Audio/Creatures/Raven/Raven5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Raven/Raven5.flac",
+      "sha256": "4fae3de015195bef6026d44dde3ebb41fbe8aa797e4ddd2e6b41ebb4358d1d74"
+    },
+    "upstream/Audio/Creatures/Reindeer/Reindeer1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Reindeer/Reindeer1.flac",
+      "sha256": "8502e7a202f8c2409abe2e6591ed9e24705fcac69634c7692e1ec01bfcdd9e32"
+    },
+    "upstream/Audio/Creatures/Reindeer/Reindeer2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Reindeer/Reindeer2.flac",
+      "sha256": "232475d9d3b186fce28e5dffc32c06277a3b7a374cc6f0738057e75505282e57"
+    },
+    "upstream/Audio/Creatures/Rhino/Rhino1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Rhino/Rhino1.flac",
+      "sha256": "dfed3b3e40c099b11687104853700409b073e97aa8e6848d177cbacad48ebbf4"
+    },
+    "upstream/Audio/Creatures/Rhino/Rhino2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Rhino/Rhino2.flac",
+      "sha256": "b2bb60b8cfa667eb84f23d6fa974d4255e376a29ef25f0bb4c90510c3795d92a"
+    },
+    "upstream/Audio/Creatures/Rhino/Rhino3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Rhino/Rhino3.flac",
+      "sha256": "b358ea5d8425d6e2d92df745907808b3e4b0d25ca64d5ee6240c09cd7952029b"
+    },
+    "upstream/Audio/Creatures/Rhino/Rhino4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Rhino/Rhino4.flac",
+      "sha256": "174893dfec877faa78f64c87365de8259f43288fbd47eafda7c7601f9f95946b"
+    },
+    "upstream/Audio/Creatures/Rhino/Rhino5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Rhino/Rhino5.flac",
+      "sha256": "7220efa369fbf231f980a258f15516b9f48b5b01587c26d33b04282bc397a7c2"
+    },
+    "upstream/Audio/Creatures/Seagull/Seagull1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Seagull/Seagull1.flac",
+      "sha256": "0004d4fa416a844d3c1fedc1b113066b08807e8da0d9b5eb96acf32d616d3c17"
+    },
+    "upstream/Audio/Creatures/Seagull/Seagull2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Seagull/Seagull2.flac",
+      "sha256": "0abf1358e49c691a09956267b37fe86ebe0da72290435a36c3d0dc64fa075a15"
+    },
+    "upstream/Audio/Creatures/Seagull/Seagull3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Seagull/Seagull3.flac",
+      "sha256": "070cd5fce8ef93450325953349b5eab71633340c1faa7ec0f0b3a5da65adb8d0"
+    },
+    "upstream/Audio/Creatures/Seagull/Seagull4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Seagull/Seagull4.flac",
+      "sha256": "81433c9e8fad29b31ea26e2c777d4ba11bf62b89baf1cfbd2590a3add244e688"
+    },
+    "upstream/Audio/Creatures/Seagull/Seagull5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Seagull/Seagull5.flac",
+      "sha256": "e93ce79a88f9c97c69d436add969000ad9145f1b537743f742e6fa556532d5d1"
+    },
+    "upstream/Audio/Creatures/Seagull/Seagull6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Seagull/Seagull6.flac",
+      "sha256": "81e2f2678fa2d0e22dcd2f8444d68963476066df3f44643c9d43aca479c83c0e"
+    },
+    "upstream/Audio/Creatures/Sparrow/Sparrow1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Sparrow/Sparrow1.flac",
+      "sha256": "6d34741f7f124cba87be790d8142ff9ecbf02066aea7d2c33e178606f0be8897"
+    },
+    "upstream/Audio/Creatures/Sparrow/Sparrow2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Sparrow/Sparrow2.flac",
+      "sha256": "fef7180a7c556a3de10df3b9a98f2e7fc76a039630ebd011ed3e2d2ff8ab543b"
+    },
+    "upstream/Audio/Creatures/Sparrow/Sparrow3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Sparrow/Sparrow3.flac",
+      "sha256": "24b6c1ee8647b2cc38c5760eb6f78501beb58e0df4c6f4c4ffed72494aadfb98"
+    },
+    "upstream/Audio/Creatures/Sparrow/Sparrow4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Sparrow/Sparrow4.flac",
+      "sha256": "54c6243206c5d33211fc7e114c80c0921cf71717684313684bd3ad61281fbb79"
+    },
+    "upstream/Audio/Creatures/Sparrow/Sparrow5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Sparrow/Sparrow5.flac",
+      "sha256": "973676a6bb8e71b9630e7e5a4e08c37cc4ca2b22f242a32f72a171d0adcf6062"
+    },
+    "upstream/Audio/Creatures/TigerIdle/TigerIdle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/TigerIdle/TigerIdle1.flac",
+      "sha256": "f400f35c7a60a515acbf01b1d41d69c2ce534898515a182f332dffa787a44a5f"
+    },
+    "upstream/Audio/Creatures/TigerIdle/TigerIdle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/TigerIdle/TigerIdle2.flac",
+      "sha256": "2806b948f2e24b519ac7ab40347a587cb8581c6ded03f44070f03e62a62c0f4e"
+    },
+    "upstream/Audio/Creatures/TigerIdle/TigerIdle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/TigerIdle/TigerIdle3.flac",
+      "sha256": "b72b2f867ba9a5ba7c83dbbe3e6bcfc2518fdc6d3b3745e61d6db7d1e1483b41"
+    },
+    "upstream/Audio/Creatures/TigerRoar/TigerRoar1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/TigerRoar/TigerRoar1.flac",
+      "sha256": "b191313c80a115fadd099b8149562e178d381293c8890c1f1ffa620276b7893a"
+    },
+    "upstream/Audio/Creatures/TigerRoar/TigerRoar2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/TigerRoar/TigerRoar2.flac",
+      "sha256": "1b060e18f69018926641d2f3677bc3eb11adc76e286f964db93507d64e83cbf2"
+    },
+    "upstream/Audio/Creatures/TigerRoar/TigerRoar3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/TigerRoar/TigerRoar3.flac",
+      "sha256": "2e40ca0f1a164afd55766d4bce44e724ecad14e7099d39e0090484a784d69458"
+    },
+    "upstream/Audio/Creatures/WhaleBlow/WhaleBlow1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WhaleBlow/WhaleBlow1.flac",
+      "sha256": "f63d527db0ab75797b184e6f06a056ee5789eb24d789e98ddc5863749b17633d"
+    },
+    "upstream/Audio/Creatures/WhaleBlow/WhaleBlow2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WhaleBlow/WhaleBlow2.flac",
+      "sha256": "6eb7c4897b0c02e904ba628e07f8adb3dce67cbbe2b8b525eb521cb9a28dbd72"
+    },
+    "upstream/Audio/Creatures/WhaleBlow/WhaleBlow3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WhaleBlow/WhaleBlow3.flac",
+      "sha256": "349444df06beda09ff7f5ed6972b5bba4f9c9350ef55a01374646d8534a17762"
+    },
+    "upstream/Audio/Creatures/WildboarIdle/WildboarIdle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarIdle/WildboarIdle1.flac",
+      "sha256": "01cbd3fb2732905e2ce1c5ff6c7d8cdf596ba9d9e9dd320608e7bfe8501d77a7"
+    },
+    "upstream/Audio/Creatures/WildboarIdle/WildboarIdle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarIdle/WildboarIdle2.flac",
+      "sha256": "827d49e6de9d2558bfff07c70285b2d27d9da11f67e32771cb6c75fe4f95a4f7"
+    },
+    "upstream/Audio/Creatures/WildboarIdle/WildboarIdle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarIdle/WildboarIdle3.flac",
+      "sha256": "00649ba6e9ece4f9805993e257d2f764edc47407c5d9130e2fc482d261a1b8a5"
+    },
+    "upstream/Audio/Creatures/WildboarIdle/WildboarIdle4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarIdle/WildboarIdle4.flac",
+      "sha256": "6a092760638bb71fc3b5c0d03eda21d2e3376067cd82f38fcd027f85d0a9f104"
+    },
+    "upstream/Audio/Creatures/WildboarIdle/WildboarIdle5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarIdle/WildboarIdle5.flac",
+      "sha256": "fa3314517664567585b84d9eb4a1425404ce250ee8411ab42fa2371383db38cc"
+    },
+    "upstream/Audio/Creatures/WildboarIdle/WildboarIdle6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarIdle/WildboarIdle6.flac",
+      "sha256": "b8946ffe156c9a8e509931c5f0def7d957d9a5a5b9b0ab8bf59cf6e9348f8063"
+    },
+    "upstream/Audio/Creatures/WildboarPain/WildboarPain1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarPain/WildboarPain1.flac",
+      "sha256": "409cac7e2fd90ebb899607c9d1d7b8e4e412d8c0ac54e943bc028154639e5140"
+    },
+    "upstream/Audio/Creatures/WildboarPain/WildboarPain2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarPain/WildboarPain2.flac",
+      "sha256": "5d8834fc026cdedfafdf748746f0a8bc3cebbad465adcbc31590211053e95b63"
+    },
+    "upstream/Audio/Creatures/WildboarPain/WildboarPain3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WildboarPain/WildboarPain3.flac",
+      "sha256": "ad23062993f5c49c52b1be729231029e9ca3c6f27706b56febfe35d9edcd2d70"
+    },
+    "upstream/Audio/Creatures/Wings/Wings1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/Wings/Wings1.flac",
+      "sha256": "6f2db266fa5edff728f47f5f2d2d38dc60262f859972ec36e0cc4e1559966446"
+    },
+    "upstream/Audio/Creatures/WolfBark/WolfBark1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfBark/WolfBark1.flac",
+      "sha256": "d8adea5cc97c15e8734c554b632be56ab498a7db0890e8e739518d9e473d0443"
+    },
+    "upstream/Audio/Creatures/WolfBark/WolfBark2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfBark/WolfBark2.flac",
+      "sha256": "4f02bac5ece61c21e6e251f2866f5598538c3e24310b29a606f951e881b9662d"
+    },
+    "upstream/Audio/Creatures/WolfBark/WolfBark3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfBark/WolfBark3.flac",
+      "sha256": "5d8f2b5d25490c7ba39fe890e4f5887c98e37199a3d648294166d1c5e2f7e744"
+    },
+    "upstream/Audio/Creatures/WolfBark/WolfBark4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfBark/WolfBark4.flac",
+      "sha256": "5448065f7d53af64d0ff0f18fe5560dbcaaa0d73e9be171f8798bbb066ad96cc"
+    },
+    "upstream/Audio/Creatures/WolfGrowl/WolfGrowl1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfGrowl/WolfGrowl1.flac",
+      "sha256": "cfee2c40489b67b8b29d235421144f77a43ec3c70b027ef31d019d242b060577"
+    },
+    "upstream/Audio/Creatures/WolfGrowl/WolfGrowl2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfGrowl/WolfGrowl2.flac",
+      "sha256": "2484098d6b3ef6e57efe962ca955e6bde3a9bf084c62b8c0a1adbb6e001ea470"
+    },
+    "upstream/Audio/Creatures/WolfGrowl/WolfGrowl3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfGrowl/WolfGrowl3.flac",
+      "sha256": "b7a6239de75630f87560f501fa3ea095e0bd14f2b50e144f4d27d4ad6eccfc1b"
+    },
+    "upstream/Audio/Creatures/WolfGrowl/WolfGrowl4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfGrowl/WolfGrowl4.flac",
+      "sha256": "92e658caebda468fb7ac95124657ec66eb9927aa2de66ac77ba3b308fbb2ff01"
+    },
+    "upstream/Audio/Creatures/WolfGrowl/WolfGrowl5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfGrowl/WolfGrowl5.flac",
+      "sha256": "c6dc5faf217e8bdcf8bdcb439176fe5030bfdcd65d92667db4d8ff7df74da9d4"
+    },
+    "upstream/Audio/Creatures/WolfGrowl/WolfGrowl6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfGrowl/WolfGrowl6.flac",
+      "sha256": "de16e6c8cf3d44fab3bde79ce816f47f0ef4324d43191e0a76198ae4da9c3c91"
+    },
+    "upstream/Audio/Creatures/WolfHowl/WolfHowl1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfHowl/WolfHowl1.flac",
+      "sha256": "c1e1323a45757ee2d0baa2a04c1cf7c9a8288b1070346a4da696b170cc461b58"
+    },
+    "upstream/Audio/Creatures/WolfHowl/WolfHowl2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfHowl/WolfHowl2.flac",
+      "sha256": "9c43f271cf0c7670c77b9cb3f1b9f82c50b897737503b4bff1223505bd07e3e4"
+    },
+    "upstream/Audio/Creatures/WolfHowl/WolfHowl3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfHowl/WolfHowl3.flac",
+      "sha256": "ee242b65091835aa3670cd19f448e6d70c5d99083a8c0721ceb5a918ec8234c7"
+    },
+    "upstream/Audio/Creatures/WolfHowl/WolfHowl4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfHowl/WolfHowl4.flac",
+      "sha256": "a10384443f55f2ee9b3dcca79012715a7b84c057bfb99badfa459f9aff171608"
+    },
+    "upstream/Audio/Creatures/WolfHowl/WolfHowl5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Creatures/WolfHowl/WolfHowl5.flac",
+      "sha256": "51584642a0724cdc7cf4f8eed0e62c72004f4d8e7a1c1a1b2733033f7dbe0fd0"
+    },
+    "upstream/Audio/CrossbowBoing.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/CrossbowBoing.flac",
+      "sha256": "c26a122db8f435e93e9f3c756d5656bbba9b434357bb1f12e5b1fde59181f769"
+    },
+    "upstream/Audio/CrossbowDraw.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/CrossbowDraw.flac",
+      "sha256": "6981ce92e8468a06acb9c1862ee8fdf143a2720b28f803640340f85ae2c8a8bf"
+    },
+    "upstream/Audio/Crushed.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Crushed.flac",
+      "sha256": "f0a58c05425581d2ad04498f644851983883bc3098eab5a2968ac8a1c9e46752"
+    },
+    "upstream/Audio/DispenserDispense.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/DispenserDispense.flac",
+      "sha256": "3a507073c956116b1d5251276fed0983cef72492afd2fc207ac86aeb27df6d1b"
+    },
+    "upstream/Audio/DispenserShoot.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/DispenserShoot.flac",
+      "sha256": "a91a303287b05e8c1d347e21988247ebc43f482545fba8069b4bfe3ae96b5bfc"
+    },
+    "upstream/Audio/Doors/DoorClose.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Doors/DoorClose.flac",
+      "sha256": "1ce3e79ad703785b76bae3f0db6f62c48fd225c5896c05402a1350f7fad2f306"
+    },
+    "upstream/Audio/Doors/DoorOpen.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Doors/DoorOpen.flac",
+      "sha256": "a3993abc227bd47b141b65116c261073bcb577b44b3bd39bd9345e235f8bec24"
+    },
+    "upstream/Audio/EggLaid.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/EggLaid.flac",
+      "sha256": "22c8081355ee1df737e9e13e7baecdf96b74c985c8d1980044063b8cb781e699"
+    },
+    "upstream/Audio/ExperienceCollected.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/ExperienceCollected.flac",
+      "sha256": "4e3166559f2cd7d6f41a1779aafb3fe3caa499de8c69d254f6921e269a261b56"
+    },
+    "upstream/Audio/Explosion1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Explosion1.flac",
+      "sha256": "72d7d4b56d5d1c0eaa5c16825a3e6b33068deeb501900802f02f20522b2fd9f4"
+    },
+    "upstream/Audio/Explosion2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Explosion2.flac",
+      "sha256": "45deb5d1396a74843d74d14c8f7a4604f23b9aec9df519a1d05ab7bc388e27e8"
+    },
+    "upstream/Audio/Explosion3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Explosion3.flac",
+      "sha256": "63442065a60340a8c15893c9d542598a3d8599140e8cefdb406a20e2bbd631ca"
+    },
+    "upstream/Audio/Explosion4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Explosion4.flac",
+      "sha256": "b30ef4e81c097050ad41beb727aeabf58578d91a77a611a8e4a1aa17f660db6b"
+    },
+    "upstream/Audio/Explosion5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Explosion5.flac",
+      "sha256": "32d4fa2f018d50147626252b399c481c29a4b040a338ad79de22f4ef81aa8b7d"
+    },
+    "upstream/Audio/Explosion6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Explosion6.flac",
+      "sha256": "5c8282cd560902c0859ff05d63e07336e68f1577cc765c98c2845b66e8bb23dc"
+    },
+    "upstream/Audio/Fire.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Fire.flac",
+      "sha256": "49b0809d880bcf038dc7b6ef6c81380fd61d07a1fbf76b0c60351dc4bc218dac"
+    },
+    "upstream/Audio/FireworksPop/FireworksPop1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/FireworksPop/FireworksPop1.flac",
+      "sha256": "e59e581e45c6ad9517edefa107c47159f1b865933ae73ba2fb3bf26d5dca6488"
+    },
+    "upstream/Audio/FireworksPop/FireworksPop2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/FireworksPop/FireworksPop2.flac",
+      "sha256": "ecbe02d540efd3cf02c8d1ebc987aee309e8af02e3f312dfec0491c73ac42c67"
+    },
+    "upstream/Audio/FireworksPop/FireworksPop3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/FireworksPop/FireworksPop3.flac",
+      "sha256": "cb693b3e6dce6b7fa2577538d5bac0c4ff4a16c1f1764af37ae2b4eb39adfc89"
+    },
+    "upstream/Audio/FireworksPop/FireworksPop4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/FireworksPop/FireworksPop4.flac",
+      "sha256": "d895a8198ba5e6837cfd852c1b95fdf4839f3e57e78181455b1a04c0bac811f3"
+    },
+    "upstream/Audio/FireworksWhoosh/FireworksWhoosh1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/FireworksWhoosh/FireworksWhoosh1.flac",
+      "sha256": "4f00f9e547139090d5b83da9aae074bf588edff9fa7bf9121ae877f5383b10d5"
+    },
+    "upstream/Audio/FireworksWhoosh/FireworksWhoosh2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/FireworksWhoosh/FireworksWhoosh2.flac",
+      "sha256": "d0aa0593a422e53e73c47e7e00f0409e45a27ce094801ee51702e3aedaa321ba"
+    },
+    "upstream/Audio/Footsteps/CanterDirt/CanterDirt1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/CanterDirt/CanterDirt1.flac",
+      "sha256": "e7a7af564d0e12f7bb04a07a0ba527ad6b3a1616c35bb1bfa0c01fbed55ec58c"
+    },
+    "upstream/Audio/Footsteps/CanterDirt/CanterDirt2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/CanterDirt/CanterDirt2.flac",
+      "sha256": "9aaf3566821fad1c49d7f59dce4321abf4f63c5bc4a4843c7bd87e8029603b67"
+    },
+    "upstream/Audio/Footsteps/CanterDirt/CanterDirt3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/CanterDirt/CanterDirt3.flac",
+      "sha256": "4d004cbf217209effd5a950c85bfeb37511714dd6297cefe00161cba8d8da9df"
+    },
+    "upstream/Audio/Footsteps/CanterDirt/CanterDirt4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/CanterDirt/CanterDirt4.flac",
+      "sha256": "072f9f0cc94d930f6b993f6c4607430c2f804d618044e992d9885107e190ad4c"
+    },
+    "upstream/Audio/Footsteps/Dirt/FootstepDirt1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Dirt/FootstepDirt1.flac",
+      "sha256": "41875b16421d8a8b07830ca376188612ae40db55d80fc1cdbe8fc44d00e11b28"
+    },
+    "upstream/Audio/Footsteps/Dirt/FootstepDirt2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Dirt/FootstepDirt2.flac",
+      "sha256": "16909697eccc912ccd6173a2d2bee0399259ecfd4e655fe54c995c7609d10172"
+    },
+    "upstream/Audio/Footsteps/Dirt/FootstepDirt3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Dirt/FootstepDirt3.flac",
+      "sha256": "33b9c04943899090ed8b10255a10832fa1f8c5d9a14f20cf07106f109653f4f6"
+    },
+    "upstream/Audio/Footsteps/Dirt/FootstepDirt4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Dirt/FootstepDirt4.flac",
+      "sha256": "b2ed5d7c5a4714a45b9ecef0f27deee125762a8e476ce730530ebfe5a72f1bbb"
+    },
+    "upstream/Audio/Footsteps/Dirt/FootstepDirt5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Dirt/FootstepDirt5.flac",
+      "sha256": "09e8279b52ced25aafbb2ccf9a4769ed1f6cf2905e1fa35c42299b745b01e0ad"
+    },
+    "upstream/Audio/Footsteps/HoovesStone/HoovesStone1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/HoovesStone/HoovesStone1.flac",
+      "sha256": "a8b6c6447703da85d2c5f7f79f7f9a6316e1ec160ce8b0e7e147dc48d87a4d35"
+    },
+    "upstream/Audio/Footsteps/HoovesStone/HoovesStone2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/HoovesStone/HoovesStone2.flac",
+      "sha256": "1d1a70dab2553c139edb1c9f218076d4274f6aaa48e75b7dad069aaf58c17331"
+    },
+    "upstream/Audio/Footsteps/HoovesStone/HoovesStone3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/HoovesStone/HoovesStone3.flac",
+      "sha256": "879600ba79a22ec45038d3022a2b1308137a0a3ff1dd63dd2a80a54538c4bbdf"
+    },
+    "upstream/Audio/Footsteps/Metal/FootstepMetal1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Metal/FootstepMetal1.flac",
+      "sha256": "b79e3f3ff55879e5782449ada89a9ca5d465978e995961891c9a926e1a113747"
+    },
+    "upstream/Audio/Footsteps/MetalLadder/FootstepMetalLadder1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/MetalLadder/FootstepMetalLadder1.flac",
+      "sha256": "3bbae1b951533c0f9c27b705ffa6e7ce92634418f2f8f51052473d79435b61af"
+    },
+    "upstream/Audio/Footsteps/MetalLadder/FootstepMetalLadder2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/MetalLadder/FootstepMetalLadder2.flac",
+      "sha256": "b407ce1ba4d5c5bdec013e3136777f5ca68c1200c4c1016aec774ed1a7a05372"
+    },
+    "upstream/Audio/Footsteps/MetalLadder/FootstepMetalLadder3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/MetalLadder/FootstepMetalLadder3.flac",
+      "sha256": "b79e3f3ff55879e5782449ada89a9ca5d465978e995961891c9a926e1a113747"
+    },
+    "upstream/Audio/Footsteps/Plant/FootstepPlant1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Plant/FootstepPlant1.flac",
+      "sha256": "d3e34882a821d727f4370846e9f9ff497c7a144acd6faabfab2f5e3838fea92b"
+    },
+    "upstream/Audio/Footsteps/Plant/FootstepPlant2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Plant/FootstepPlant2.flac",
+      "sha256": "456ce30cbf2dc063a337bb1fd82395ff9b6ef95dcc0afd199edfdbb89bf9e3fd"
+    },
+    "upstream/Audio/Footsteps/Plant/FootstepPlant3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Plant/FootstepPlant3.flac",
+      "sha256": "d782264bbdb7451fbe1975640bd10804637a7bde36916374063dc0619e36e4ea"
+    },
+    "upstream/Audio/Footsteps/Sand/FootstepsSand1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Sand/FootstepsSand1.flac",
+      "sha256": "5041a0c74f55ca6ddbe8be3d18e3cdceea28291a1f9855eb0134149c21c32e3b"
+    },
+    "upstream/Audio/Footsteps/Sand/FootstepsSand2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Sand/FootstepsSand2.flac",
+      "sha256": "fb196ff24aa254eb9bd128d1bb9d57644402dd58a4ab22b8967095d7ead39322"
+    },
+    "upstream/Audio/Footsteps/Sand/FootstepsSand3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Sand/FootstepsSand3.flac",
+      "sha256": "da63aab7075715b7b570d254a08c942938810819dd82a5e6bb870bfb3c77dfb7"
+    },
+    "upstream/Audio/Footsteps/Sand/FootstepsSand4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Sand/FootstepsSand4.flac",
+      "sha256": "1d560c6d88ae436b361fc3843173b00fe7e5c9d61f9da20e4dd1c6e02ca7520f"
+    },
+    "upstream/Audio/Footsteps/Snow/FootstepSnow1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Snow/FootstepSnow1.flac",
+      "sha256": "63527161c4d45d0e931d51a6de4e25d77faf3ef73601a54037f8ab3fa67099c5"
+    },
+    "upstream/Audio/Footsteps/Snow/FootstepSnow2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Snow/FootstepSnow2.flac",
+      "sha256": "620518676633c904c1d37cae0ac45afa1d373aabb7c226be74fa17d65f0a1ddb"
+    },
+    "upstream/Audio/Footsteps/Snow/FootstepSnow3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Snow/FootstepSnow3.flac",
+      "sha256": "f617b2ac2ad40e646beeb018078f73f6e31407e35a72464d96b0c5fd0137f8d3"
+    },
+    "upstream/Audio/Footsteps/Snow/FootstepSnow4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Snow/FootstepSnow4.flac",
+      "sha256": "25b08da6b6e5a54204ba6d5436dd0d552a8c0ea83cafedce7ceedf2e76aa4df5"
+    },
+    "upstream/Audio/Footsteps/Snow/FootstepSnow5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Snow/FootstepSnow5.flac",
+      "sha256": "b07826a58a6a0d5f3a90b7f1bc5b4efe9e9d032b59b828f41ec05c82beca7d57"
+    },
+    "upstream/Audio/Footsteps/Soft/FootstepSoft1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Soft/FootstepSoft1.flac",
+      "sha256": "a873bf740ae078ff19f763e1aff7d8c98ffebcdc169dc1a4fb250e33ef56f1ea"
+    },
+    "upstream/Audio/Footsteps/Soft/FootstepSoft2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Soft/FootstepSoft2.flac",
+      "sha256": "4a257ee35834aa36f8ad1c6756bfaca970ba71bd0ee86f09384ab0be1817819d"
+    },
+    "upstream/Audio/Footsteps/Squishy/FootstepSquishy1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Squishy/FootstepSquishy1.flac",
+      "sha256": "a1ff5e63145638f4960007ba7e989cbab4c339fa751f483fecd0c5fab5f1185c"
+    },
+    "upstream/Audio/Footsteps/Squishy/FootstepSquishy2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Squishy/FootstepSquishy2.flac",
+      "sha256": "57de383f0304c5c54456892344506c85116a68a47245b70ddeb95e091f96cf02"
+    },
+    "upstream/Audio/Footsteps/Squishy/FootstepSquishy3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Squishy/FootstepSquishy3.flac",
+      "sha256": "e11465631060aab013507883750f2a9dd6a7b6e71dd14e295f2060db76bea682"
+    },
+    "upstream/Audio/Footsteps/Squishy/FootstepSquishy4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Squishy/FootstepSquishy4.flac",
+      "sha256": "a2df223ffefe536c9f35f995aaa3acf2f949c80c7933692844d0f0e2d580d82b"
+    },
+    "upstream/Audio/Footsteps/Stone/FootstepStone1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Stone/FootstepStone1.flac",
+      "sha256": "506761c0c20c8285f8a19e6bc8a7e781a957f7e3245afd343af89317e137d240"
+    },
+    "upstream/Audio/Footsteps/Stone/FootstepStone2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Stone/FootstepStone2.flac",
+      "sha256": "5fa894bd0714d9a6e4970f26e1492c4d3301ffdb537b212ddf0b3fdf3aee0643"
+    },
+    "upstream/Audio/Footsteps/Water/FootstepWater1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Water/FootstepWater1.flac",
+      "sha256": "36b61bb331420fe221c6e66381965bd8bb6b9d221a21bef5ea3e6e329114cf0f"
+    },
+    "upstream/Audio/Footsteps/Water/FootstepWater2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Water/FootstepWater2.flac",
+      "sha256": "972cab509538cb10550f72f8ccafe27ac474d948e7044fd3ed169185afdbbafb"
+    },
+    "upstream/Audio/Footsteps/Water/FootstepWater3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Water/FootstepWater3.flac",
+      "sha256": "904c974e5e9fefc4d58fdc77cb9e2ecbefe655803602f95309d0147b23e7b559"
+    },
+    "upstream/Audio/Footsteps/Wood/FootstepWood1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Wood/FootstepWood1.flac",
+      "sha256": "153846c1c3109cf8117fef5d22c6226e4f25cca3535638844b15c392ec2ee56d"
+    },
+    "upstream/Audio/Footsteps/Wood/FootstepWood2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Wood/FootstepWood2.flac",
+      "sha256": "3b470b3194e4570ef9126416c927bf0dcd19870bc9ca776d0270d11094b78b6c"
+    },
+    "upstream/Audio/Footsteps/Wood/FootstepWood3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Wood/FootstepWood3.flac",
+      "sha256": "1a49857ee6ed13ab5adbffb0c864aee2a669f6a33ea1262bad80aeedce198d59"
+    },
+    "upstream/Audio/Footsteps/Wood/FootstepWood4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/Wood/FootstepWood4.flac",
+      "sha256": "eae174cdfda2190c7c672ce3774d4fc89594fbba7025281e275d141525860ab5"
+    },
+    "upstream/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder1.flac",
+      "sha256": "9e335bce9f3279e6da1496db4384de23cb0f71be4c471d89c683da462fe46bbf"
+    },
+    "upstream/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder2.flac",
+      "sha256": "08930b207d40a1d824631234fa966810db1f561f7d95758e01cafafc3b22280c"
+    },
+    "upstream/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder3.flac",
+      "sha256": "d7ec2986f0ced9a0b43e477a0ffd8df21d953219d12b6aaa56572e6b424cee8f"
+    },
+    "upstream/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Footsteps/WoodenLadder/FootstepWoodenLadder4.flac",
+      "sha256": "d6c56770b4029d2428f01293fef65952c07c0fc752b18c74d353e9a5bc8a0adb"
+    },
+    "upstream/Audio/Fuse.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Fuse.flac",
+      "sha256": "d9a4715ffe7bfec851858d16f0d86e8648c2ed2093b6b84e2b76f86b4115963b"
+    },
+    "upstream/Audio/HammerCock.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/HammerCock.flac",
+      "sha256": "6d6c32dc95a386bfa77425de0e95fdd764be0b6036b6569ae9b3cae23c1ab64b"
+    },
+    "upstream/Audio/HammerRelease.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/HammerRelease.flac",
+      "sha256": "25fa9c8f6939770384467bba99f64576abe97066b7e3f6bf91e40f93cb34d450"
+    },
+    "upstream/Audio/HammerUncock.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/HammerUncock.flac",
+      "sha256": "2e521e14a410724cb7a043fb77498238513ee473d49090a1302707030c7469b7"
+    },
+    "upstream/Audio/HumanPanting.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/HumanPanting.flac",
+      "sha256": "d89d8c5038229b78d35e2f9e625527829a2852ff91738760c913ab8c02e22fe5"
+    },
+    "upstream/Audio/Impacts/Body/ImpactBody1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Body/ImpactBody1.flac",
+      "sha256": "260d0bad2c1766c7bd055905879d4894eb978a04ded6327dda06d2a1994f4305"
+    },
+    "upstream/Audio/Impacts/Body/ImpactBody2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Body/ImpactBody2.flac",
+      "sha256": "cf4b27660c79a8f8b18560609d01b2501548e172774492c3c5fb46e36156408b"
+    },
+    "upstream/Audio/Impacts/Body/ImpactBody3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Body/ImpactBody3.flac",
+      "sha256": "d99b571af8d5469149f35255ef3a8fbf24118462cb3f493b38caa69f351b3736"
+    },
+    "upstream/Audio/Impacts/Body/ImpactBody4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Body/ImpactBody4.flac",
+      "sha256": "c202998d2116c6340d24ed1b93b8285c88ef10c3733998f43cf553f46a729f99"
+    },
+    "upstream/Audio/Impacts/Body/ImpactBody5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Body/ImpactBody5.flac",
+      "sha256": "5820cc5a82f3695e6805b3980e0b88e4e039b35f0d5162fb124902b6229ce554"
+    },
+    "upstream/Audio/Impacts/Body/ImpactBody6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Body/ImpactBody6.flac",
+      "sha256": "73d84f46c0368c18b73db17b757cdc757b06a4f6b054ee8073b686b5a99496b3"
+    },
+    "upstream/Audio/Impacts/Dirt/ImpactDirt1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Dirt/ImpactDirt1.flac",
+      "sha256": "9ec995387ec218fabb041fdb24de4aca16981bb0f4c43dd3ed2fa1f4e6bde252"
+    },
+    "upstream/Audio/Impacts/Dirt/ImpactDirt2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Dirt/ImpactDirt2.flac",
+      "sha256": "96d3ee92f93b8e4210270bdfc4cd9eb30b2e7e17aff841e3eb594743947e8173"
+    },
+    "upstream/Audio/Impacts/Glass/ImpactGlass1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Glass/ImpactGlass1.flac",
+      "sha256": "f90c657d24b6fb23f34b308fae17d4b29695e54e30c80735407c9d496b6fdd63"
+    },
+    "upstream/Audio/Impacts/Glass/ImpactGlass2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Glass/ImpactGlass2.flac",
+      "sha256": "c8c8b6ec22a3ad9db93e47ca118999c4529add1349cc655049869b7407c7152d"
+    },
+    "upstream/Audio/Impacts/Glass/ImpactGlass3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Glass/ImpactGlass3.flac",
+      "sha256": "d58e7b1f7ddd87857c947bf1c5a3013e1a7408987f9e09ce62aa0566d4c7e9b4"
+    },
+    "upstream/Audio/Impacts/Metal/ImpactMetal1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Metal/ImpactMetal1.flac",
+      "sha256": "3522cf71d59f66aa834d882cec16fb8eff7639ef8e863505c8d75699917d3150"
+    },
+    "upstream/Audio/Impacts/Metal/ImpactMetal2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Metal/ImpactMetal2.flac",
+      "sha256": "397788f66fbf6c6143aadb59afb85d0259ea5b1ab5217215eeb67a8b57effbf2"
+    },
+    "upstream/Audio/Impacts/Metal/ImpactMetal3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Metal/ImpactMetal3.flac",
+      "sha256": "ca7b02a4d09ae45d4503e93530566151f058aab066cf08062571cd5ec18b01be"
+    },
+    "upstream/Audio/Impacts/Plant/ImpactPlant1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Plant/ImpactPlant1.flac",
+      "sha256": "389c887f10ee4e571905b441f2b4baebc5ea0b8c874346cd5242fbe473df8256"
+    },
+    "upstream/Audio/Impacts/Soft/ImpactSoft1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Soft/ImpactSoft1.flac",
+      "sha256": "f0a58c05425581d2ad04498f644851983883bc3098eab5a2968ac8a1c9e46752"
+    },
+    "upstream/Audio/Impacts/Soft/ImpactSoft2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Soft/ImpactSoft2.flac",
+      "sha256": "f49f2e28a0f1cd3a7f6e4968f500744a98a52b47c08de65f546145b9471d42f7"
+    },
+    "upstream/Audio/Impacts/Soft/ImpactSoft3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Soft/ImpactSoft3.flac",
+      "sha256": "be37db24ff9d5f64733eeb4a8b93d55e6bab91b5994c4782789ff78274ade9fc"
+    },
+    "upstream/Audio/Impacts/Stone/ImpactStone1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Stone/ImpactStone1.flac",
+      "sha256": "5a7bbd0ca383b1e4ff1074f8c80702b917877804eaf5d93336521db5a282ab6b"
+    },
+    "upstream/Audio/Impacts/Stone/ImpactStone2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Stone/ImpactStone2.flac",
+      "sha256": "dbd16df987491e04702126bd04cdf07506bccbb549dca937ae071c36552ada48"
+    },
+    "upstream/Audio/Impacts/Stone/ImpactStone3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Stone/ImpactStone3.flac",
+      "sha256": "66c381244b965e012ad8389847c0c92c71269ecbfb7c1c09c3e4153d082e3c08"
+    },
+    "upstream/Audio/Impacts/Stone/ImpactStone4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Stone/ImpactStone4.flac",
+      "sha256": "8866b85aeb80a9ebba66ac0570bffc5980374681010382180a65d478395af948"
+    },
+    "upstream/Audio/Impacts/Wood/ImpactWood1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Wood/ImpactWood1.flac",
+      "sha256": "de25070fbe61496f55963e722f1718be62f79f477bf1e08d9b22632184dbef28"
+    },
+    "upstream/Audio/Impacts/Wood/ImpactWood2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Impacts/Wood/ImpactWood2.flac",
+      "sha256": "ada52dc685411e6ee455c445a1f291e436fc2dfaeb36a4458b5ad26c81a37ca7"
+    },
+    "upstream/Audio/Magma.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Magma.flac",
+      "sha256": "416de1eefea7d004c27bf6928435a3b26236e1556f8dfa28f50070f914ee5fc3"
+    },
+    "upstream/Audio/Match.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Match.flac",
+      "sha256": "59b02ca95a62c1ea084fb1365a0220c000356448fcb0af58eb4096e9b216b5b8"
+    },
+    "upstream/Audio/Milked.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Milked.flac",
+      "sha256": "592dafbf1433106bb3fa07a9bcc76fd701f99f4d00b8b492d12b748edf0f4824"
+    },
+    "upstream/Audio/MotionDetectorClick.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/MotionDetectorClick.flac",
+      "sha256": "f91af9d0c324112d9bf4f309a17e97c9a3928aa421922e20641209793571233e"
+    },
+    "upstream/Audio/MusketFire.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/MusketFire.flac",
+      "sha256": "e85f91bed370ede494a7712bea14e7f2b59e252117c38c9615afd133b1a10679"
+    },
+    "upstream/Audio/MusketMisfire.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/MusketMisfire.flac",
+      "sha256": "4889606e1c276735fb8bdfaf7bca9ae88f512b8e6bcd63f2c067739237f358a1"
+    },
+    "upstream/Audio/Paint/Paint1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Paint/Paint1.flac",
+      "sha256": "f99944e083b3c512ebf1a4959443d2b88e42d6520107465443eceac69de46c69"
+    },
+    "upstream/Audio/PickableCollected.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/PickableCollected.flac",
+      "sha256": "79bfca6bdda1f4f4d58ba78c8b4deb1511772761e9d6df01552768ec53d9df39"
+    },
+    "upstream/Audio/Piston.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Piston.flac",
+      "sha256": "31395ea264ecaf526eb658598478f9c587178c5b24d9580099830dc19fe52b9b"
+    },
+    "upstream/Audio/Rain.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Rain.flac",
+      "sha256": "f15de6f99a3ae62fa4a9e4312366bb1a1f036c6b86f801cdae3b8e01645c29bc"
+    },
+    "upstream/Audio/Ricochets/Ricochet1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Ricochets/Ricochet1.flac",
+      "sha256": "d85e5f2f2a31ddf14e013fb8d14d84db9f81be6e97183eaaf9bae18f53a4f7b3"
+    },
+    "upstream/Audio/Ricochets/Ricochet2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Ricochets/Ricochet2.flac",
+      "sha256": "20485911f3fef1871d8583e592227c3fe2e145aedacb62475265c872d782c263"
+    },
+    "upstream/Audio/Ricochets/Ricochet3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Ricochets/Ricochet3.flac",
+      "sha256": "76b134089ac2b88c685fb9ed167838aaa1dbf63c6d3a1ff557ef7b8d68f33a7f"
+    },
+    "upstream/Audio/Ricochets/Ricochet4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Ricochets/Ricochet4.flac",
+      "sha256": "78030f5c5c80e1f9fccbd3c7f1fdb1859324df065d0848a4e3bceaefc8164f68"
+    },
+    "upstream/Audio/Rowing/Rowing1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Rowing/Rowing1.flac",
+      "sha256": "81a928a7a864d7aaa8ec16c068d3d88c1df9c27937dc3df6559422b074e8044c"
+    },
+    "upstream/Audio/Rowing/Rowing2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Rowing/Rowing2.flac",
+      "sha256": "6d40d12ea8770e26fbbed8375814ce6f0cb17e56c3a08bbf8ab70af575697557"
+    },
+    "upstream/Audio/Shapeshift.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Shapeshift.flac",
+      "sha256": "a171e26eed2d9398c7bc5afb027dcacae31514dcb2ad5a72a3e456a361b389b7"
+    },
+    "upstream/Audio/Sinking.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Sinking.flac",
+      "sha256": "62834fe400d34d2b95da07d93d5121b1fafd194f9d1b1ee4245016f175d82bb4"
+    },
+    "upstream/Audio/SizzleLong.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SizzleLong.flac",
+      "sha256": "8af4169357ec1516bd648afe452c29330f2c8b7d32cd6e1440e970ec0edee577"
+    },
+    "upstream/Audio/Sizzles/Sizzle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Sizzles/Sizzle1.flac",
+      "sha256": "38226a03932690af5c7da53f08323eabe2692c02e4e8d0b84e9c2035b1b23dcb"
+    },
+    "upstream/Audio/Sizzles/Sizzle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Sizzles/Sizzle2.flac",
+      "sha256": "897328778c7905b64a741832f375276a8496364e0ca1df4d39d46671b5a6ecf5"
+    },
+    "upstream/Audio/Sizzles/Sizzle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Sizzles/Sizzle3.flac",
+      "sha256": "2619345bc527ce8823c7c493d91f23e1731a97b322a2349954b6d3d601d6ac79"
+    },
+    "upstream/Audio/SoundGenerator/BassC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/BassC4.flac",
+      "sha256": "fe53511553a40080c89d6f2e7aee04ce3bd324eb19fc38cab82984abf27c4a93"
+    },
+    "upstream/Audio/SoundGenerator/BassC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/BassC5.flac",
+      "sha256": "e9803cb12ff59eb0d49d22c0f9f7567d159750694b6771093c32c78aafb7fd1b"
+    },
+    "upstream/Audio/SoundGenerator/BassC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/BassC6.flac",
+      "sha256": "b9ff7812075a5126329ab9be2f7fe502dcdbfeb90ccafa67c38ddcda04d96f4e"
+    },
+    "upstream/Audio/SoundGenerator/BellC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/BellC4.flac",
+      "sha256": "1fe656e5ed5d9c8d27c40c6932a53225f64e53a806210ef973eb80b1c6f9b310"
+    },
+    "upstream/Audio/SoundGenerator/BellC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/BellC5.flac",
+      "sha256": "d6e7bb7b28439065ff4714bd3f9f2f1fbc3bdf36ba1129063d50ef2caea7d7a5"
+    },
+    "upstream/Audio/SoundGenerator/BellC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/BellC6.flac",
+      "sha256": "9bbb949f4a5ed19b49aa7ab68f45564a99b602e670f378b18511f05c3cf471df"
+    },
+    "upstream/Audio/SoundGenerator/DrumsBassDrum.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsBassDrum.flac",
+      "sha256": "c58e571cd03ed1096ebf04a5071ab71d9d4f138d2cf9d1351ea45135e01aa2e5"
+    },
+    "upstream/Audio/SoundGenerator/DrumsClosedHiHat.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsClosedHiHat.flac",
+      "sha256": "f8c248dbadc06bf9569cab402b5f87ea2ac0a11974bc112394e63c881c4eebd8"
+    },
+    "upstream/Audio/SoundGenerator/DrumsCrashCymbal.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsCrashCymbal.flac",
+      "sha256": "b4921452bf042ab4520df8821e231bb5922cfbf688646e142b03c64d8367c465"
+    },
+    "upstream/Audio/SoundGenerator/DrumsHandClap.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsHandClap.flac",
+      "sha256": "7247b0b5c5b3b470b4a7140d8d899d247e28d55fa0388fd180b85baf45a432c4"
+    },
+    "upstream/Audio/SoundGenerator/DrumsHighTom.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsHighTom.flac",
+      "sha256": "efb13a916a82a20da129e02afcda5ccd2a9c4aca58a72d01ee38596d1e271ddd"
+    },
+    "upstream/Audio/SoundGenerator/DrumsLowTom.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsLowTom.flac",
+      "sha256": "fbe31c9b5fbcd0add92414e11531c5229e3815d1c46881fcf9ec4597ab830e40"
+    },
+    "upstream/Audio/SoundGenerator/DrumsOpenHiHat.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsOpenHiHat.flac",
+      "sha256": "b28a7d371366b772d5a825de461f40039c896f85dc173d564acfc62fa05107e1"
+    },
+    "upstream/Audio/SoundGenerator/DrumsPedalHiHat.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsPedalHiHat.flac",
+      "sha256": "fd21db54a1f49eb708aab4ed1d11b858df8ac103c9bd714e031c4a8f6e9c8d41"
+    },
+    "upstream/Audio/SoundGenerator/DrumsRideCymbal.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsRideCymbal.flac",
+      "sha256": "594a3470b75ef88b14743c502f87412fe0fee1aa6282e2d1d5a03ecef10ff299"
+    },
+    "upstream/Audio/SoundGenerator/DrumsSnare.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/DrumsSnare.flac",
+      "sha256": "5a66214640b12d6726a07e1990f9f9248dacc952a25195da21caf0e0bee6841f"
+    },
+    "upstream/Audio/SoundGenerator/OrganC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/OrganC4.flac",
+      "sha256": "0ce2fee983d639f7f8b9ed4eb6dfb5f255ad035410ef909c15f8e5ba46671be6"
+    },
+    "upstream/Audio/SoundGenerator/OrganC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/OrganC5.flac",
+      "sha256": "48dec290b30bf32bafaf082e4a90a43b1aa30fe80eddb689ed8637443f786d29"
+    },
+    "upstream/Audio/SoundGenerator/PianoC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PianoC4.flac",
+      "sha256": "3a036bd61e7ea9df2b3132857c0d3bc1db220d19fdd01163f6b058e661e5e477"
+    },
+    "upstream/Audio/SoundGenerator/PianoC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PianoC5.flac",
+      "sha256": "5bd0ba52e306ad4b4491d6e46638f63fce8cd753ebd4dc8b6258d4659fc0f1ef"
+    },
+    "upstream/Audio/SoundGenerator/PianoC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PianoC6.flac",
+      "sha256": "927d820fcabc9a1836a4601b76e3e29e0b1a893b14c2d520d5fe7cbda1c19b13"
+    },
+    "upstream/Audio/SoundGenerator/PianoLongC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PianoLongC4.flac",
+      "sha256": "3e24a6f56e8afbb30043624c784f62e8199e347ec5f1d60b0c54cbf90328bccb"
+    },
+    "upstream/Audio/SoundGenerator/PianoLongC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PianoLongC5.flac",
+      "sha256": "a1a7123ad21587fd3d45737c394f963cfd3fb045c91865ac44769a0825fb192a"
+    },
+    "upstream/Audio/SoundGenerator/PianoLongC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PianoLongC6.flac",
+      "sha256": "8ed6f18c61aba5f14a774849ffd8e7638804e82bad1408bf507d79489ff80aff"
+    },
+    "upstream/Audio/SoundGenerator/PingC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PingC4.flac",
+      "sha256": "b7151bb6ef263a4452bf6ef09f1346463f7ee490d152bb802aa1c95b8ac33857"
+    },
+    "upstream/Audio/SoundGenerator/PingC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PingC5.flac",
+      "sha256": "66cac9e385c45404ee8108a434422d6b64d5b499596b3df20d9bda6f8bd25b68"
+    },
+    "upstream/Audio/SoundGenerator/PingC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/PingC6.flac",
+      "sha256": "2cea7b12f25520155c49f3ba720f5c043fb528bce4e1b69afd9dcc17e3aa756b"
+    },
+    "upstream/Audio/SoundGenerator/StringC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/StringC4.flac",
+      "sha256": "cc648c35e15c746e5b1ac4d14c040bc658a20328aa3a2c72cb5c77647d7cb0f3"
+    },
+    "upstream/Audio/SoundGenerator/StringC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/StringC5.flac",
+      "sha256": "e29c47224cfdb5f7de5a3e5a894e073fb5d8eaa8b7b0f6ae3bea4eb1eec272c7"
+    },
+    "upstream/Audio/SoundGenerator/StringC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/StringC6.flac",
+      "sha256": "9adbd02220b15e34e64ea9613644ac603adc7a74af7fab3394296e1f80d66c79"
+    },
+    "upstream/Audio/SoundGenerator/TrumpetC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/TrumpetC4.flac",
+      "sha256": "f05274b2fd4d1b22150164f3fa5cc5ee075c93f9c874f5a3e3c7dadfcb98133f"
+    },
+    "upstream/Audio/SoundGenerator/TrumpetC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/TrumpetC5.flac",
+      "sha256": "ebbb9d0bf5c7e7bdea8bbca0d098e679663ffe50cee0b336cc43a9e3ecae8134"
+    },
+    "upstream/Audio/SoundGenerator/TrumpetC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/TrumpetC6.flac",
+      "sha256": "1db7efe8fae2e256f966fa0fd6be6e90b44e6dd4accfa4d81947fb428fcea63a"
+    },
+    "upstream/Audio/SoundGenerator/VoiceC4.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/VoiceC4.flac",
+      "sha256": "42e59e8ffedcfb47b16e3c3ea110824d699f0f6d1aba9036cc3f95f41935361d"
+    },
+    "upstream/Audio/SoundGenerator/VoiceC5.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/VoiceC5.flac",
+      "sha256": "c63ff90c6126c5bbefe0ac44026f6705330e67010172abac4226ca2af7a94bd9"
+    },
+    "upstream/Audio/SoundGenerator/VoiceC6.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/SoundGenerator/VoiceC6.flac",
+      "sha256": "731b9cf25b0e723d71d2f0bb59372942ac25ce9646080de49a8a7c4a5e2fac8f"
+    },
+    "upstream/Audio/Spikes.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Spikes.flac",
+      "sha256": "2cef7e34dd6798dd607208dd592522524d3ed55ee5dc4ced264b036217e9ae76"
+    },
+    "upstream/Audio/Splashes/Splash1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Splashes/Splash1.flac",
+      "sha256": "aa7f5d09f4d3e1a966ceb8c6016a72a6af08078b512858088ecb7c87799bc770"
+    },
+    "upstream/Audio/Splashes/Splash2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Splashes/Splash2.flac",
+      "sha256": "389034c74946710b7690130d38b92a25bb0f14ed140088d5c346fd9b754d8cd9"
+    },
+    "upstream/Audio/Splashes/Splash3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Splashes/Splash3.flac",
+      "sha256": "c46f6702ef426c9ce3aacdad52197a8cfd039a561fec26da93047a0959035143"
+    },
+    "upstream/Audio/Swoosh.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Swoosh.flac",
+      "sha256": "8eb6e7ca12ccfca4675d98959ed8a5783017f3e6f135a9e82ad7f68bd167b49a"
+    },
+    "upstream/Audio/Throw.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Throw.flac",
+      "sha256": "457fa89dc68767a07d01646d603d4566afd8df2edc6a2523706e845702948c3c"
+    },
+    "upstream/Audio/ThunderFar/ThunderFar1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/ThunderFar/ThunderFar1.flac",
+      "sha256": "1d2649ad93e40d71846344ccd84ae37ae0a4b4eb2d44447bc2df95207fcc90de"
+    },
+    "upstream/Audio/ThunderFar/ThunderFar2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/ThunderFar/ThunderFar2.flac",
+      "sha256": "a9a4dfb41d12505ac8fbbe536b0ebf81552b151252696e51bb8bc2dad4e2d217"
+    },
+    "upstream/Audio/ThunderNear/ThunderNear1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/ThunderNear/ThunderNear1.flac",
+      "sha256": "f892adae3f3fbd92ddc6e3fecec8224dfcdc5c17a9b3db426278066a912ef804"
+    },
+    "upstream/Audio/ThunderNear/ThunderNear2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/ThunderNear/ThunderNear2.flac",
+      "sha256": "7a16bf3a534fbc689be091b51ba05d9e5e3817eca6511585757389bd5243058f"
+    },
+    "upstream/Audio/UI/ButtonClick.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/UI/ButtonClick.flac",
+      "sha256": "9a9f1e1bc8f01499f8d465df3adce1dc4da15c56a4dafe96d1f1dd13638bedb7"
+    },
+    "upstream/Audio/UI/ItemMoved.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/UI/ItemMoved.flac",
+      "sha256": "31395ea264ecaf526eb658598478f9c587178c5b24d9580099830dc19fe52b9b"
+    },
+    "upstream/Audio/UI/Message.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/UI/Message.flac",
+      "sha256": "d37814a1cf0c33b40d3662f9a4f293da6499ebbeb3946a05f0656bf1e9955190"
+    },
+    "upstream/Audio/Water.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Water.flac",
+      "sha256": "fdc69a654301491688985d5049a67389d6f4707da39bf27c894bea39bc3b225b"
+    },
+    "upstream/Audio/WaterFallIn/WaterFallIn1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/WaterFallIn/WaterFallIn1.flac",
+      "sha256": "8ea7e829d83d8c8e9537261fadface65b4fb3f078e128a7226f052a385bc7dfa"
+    },
+    "upstream/Audio/Whistle/Whistle1.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Whistle/Whistle1.flac",
+      "sha256": "c495c80b598dd84bcc966968498bc070571922e521ce72d64134cff3522c9d09"
+    },
+    "upstream/Audio/Whistle/Whistle2.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Whistle/Whistle2.flac",
+      "sha256": "b0568f467e01dd90641209abaf68a470e146304efbbbc3212f98caf4610b1a02"
+    },
+    "upstream/Audio/Whistle/Whistle3.flac": {
+      "source": "Survivalcraft/Content/Assets/Audio/Whistle/Whistle3.flac",
+      "sha256": "dac6b667d7c8658221daffd4fd205e91da3958defbea2258746811d09ce56b49"
+    },
+    "synthetic/mono-8000-16.flac": {
+      "source": "Port/Tests/FlacFixtures/mono-8000-16.flac",
+      "sha256": "22c1ee61aaf8450cae75d0aa8f4027e0e2dc89d531320a69d3b38ae525bae0dc"
+    },
+    "synthetic/mono-8000-16.pcm": {
+      "source": "Port/Tests/FlacFixtures/mono-8000-16.pcm",
+      "sha256": "c7cb71b45bc882482618293961c4ff12a9d9c7c4a878666801b8a61af7dd53bc"
+    },
+    "synthetic/stereo-44100-16.flac": {
+      "source": "Port/Tests/FlacFixtures/stereo-44100-16.flac",
+      "sha256": "b1150807de448e7b80a12dd97ebeef3973b4f421a83d3dc72bbb272aa6ba3535"
+    },
+    "synthetic/stereo-44100-16.pcm": {
+      "source": "Port/Tests/FlacFixtures/stereo-44100-16.pcm",
+      "sha256": "bebc98d00fa2411892c1ad6a68dd00de92b4973ca2f83973b496412486b3daba"
+    },
+    "synthetic/stereo-96000-24.flac": {
+      "source": "Port/Tests/FlacFixtures/stereo-96000-24.flac",
+      "sha256": "b2279794d77d73ea9bb986893cdcded2f2fb95f501792b7da754181e53765119"
+    },
+    "synthetic/stereo-96000-24.pcm": {
+      "source": "Port/Tests/FlacFixtures/stereo-96000-24.pcm",
+      "sha256": "951158f86e809f98754969ecbf5b7d0b58c9e07a6c5b881ea711f5602be492d9"
+    }
+  },
+  "corpus": {
+    "corpus.bin": {
+      "bytes": 13079859,
+      "sha256": "a1c1c6506fc852c194ab727f71fcb6ece396bf6a71924f9a2e65f91cae020e9d"
+    },
+    "repeat.bin": {
+      "bytes": 27170,
+      "sha256": "6399ff11d1965e9663fc9f2d2fd58c3b6e2049ecb0c261bad018143a4f90b07f"
+    },
+    "counts.txt": {
+      "bytes": 39,
+      "sha256": "1ccb1100fb27867396ab0eb74e37c5182b3778de80a7071316d8f7d5f884e8e2"
+    },
+    "durationComparison": {
+      "policy": "flac-inherited-totaltime-millisecond-rounding",
+      "samples": 337,
+      "differentSamples": 334,
+      "maxAbsoluteTicks": 4989,
+      "originalSha256": "096266e72c7df21962054a809d5ffd37bfccbe6478f8e1cc759327895d4121b2",
+      "monoSha256": "16322ebd994979f00629b1e6d8850594d57aae92f53e996bfd86e9ae33c642c5"
+    }
+  },
+  "checks": {
+    "full-pcm-decode": true,
+    "known-integer-pcm": true,
+    "format-length-and-duration": true,
+    "seek-behavior-recorded": true,
+    "chunk-reads-and-buffer-bounds": true,
+    "stream-disposal": true,
+    "invalid-inputs-rejected": true,
+    "sync-prescan-callback": true,
+    "repeat-construction": true
+  },
+  "api": {
+    "types": 69,
+    "records": 1405,
+    "unregisteredDifferences": 0
+  },
+  "reproducibleDlls": {
+    "NAudio.Flac.dll": "8d709cae42b9b00309893dc6a6381aaf6fdc972224a2df7463f78b429b3cce4d",
+    "SCUnity.Flac.Runner.dll": "5ee02dc46c841755af1b744db1ec7c62bbd248ff18c3fc876d0982c9f0f4887a"
+  },
+  "playerSha256": "b89b1e4d3d8ec95d9f6d600e4a852d95ddeae61f5572a9e7e22d7da5a7838f43",
+  "evidenceFiles": {
+    "runtime-result.json": "764e403b2f981843e60eae7096b525b77176fdcf1e778bcbf2d3a3bbf898808b",
+    "player/build-summary.json": "5bdda2641b6a9b6fa321e9fd9dd653d11bf4cef16e6ee73589eb0815a7e85b06",
+    "original-api.txt": "443e94ba1df9fb1c850477dec69fe5bc62c44316714d5cbcc6fdc6a0c19b86e8",
+    "candidate-api.txt": "110b1f50efc1b00db8d45500d3b1fc201e5a5a0aea54cfe664bfd6dbba9928a8",
+    "api-comparison.json": "bc32977e60d4d7cbed6f29ea0f648f11b37cbe7d073e7b9b93e9c1cf8811cd3d",
+    "fixtures.json": "a3d1c6e57f1c7ff5702bfe60bd8b0c34cc06f1c5e238e6faa0d126705c40cbe8",
+    "oracle-corpus/checks.json": "fa55be70e26a2606a225c64438c409629d48ab6a40996d78e31d23c61cee405c"
+  },
+  "scope": "NAudio.Flac 1.0.4 dependency retarget; no Engine audio wrappers, mixer, Unity Audio output or full game validation"
+}

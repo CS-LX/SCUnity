@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "flac-inherited-totaltime-millisecond-rounding",
+  "member": "NAudio.Wave.WaveStream.TotalTime (inherited by NAudio.Flac.FlacReader)",
+  "reason": "The unchanged NAudio.Core getter calls TimeSpan.FromSeconds(double). Unity Framework rounds to the nearest millisecond; the original .NET 10 result retains sub-millisecond ticks.",
+  "rule": "For these positive durations only: monoTicks == ((originalTicks + 5000) // 10000) * 10000, and abs(monoTicks-originalTicks) <= 5000.",
+  "scope": "TotalTime observations only. PCM, sample counts, byte positions, read return values, buffer contents, metadata and exceptions must remain byte-identical.",
+  "sources": [
+    "https://raw.githubusercontent.com/naudio/NAudio/v2.3.0/NAudio.Core/Wave/WaveStreams/WaveStream.cs",
+    "https://learn.microsoft.com/en-us/dotnet/api/system.timespan.fromseconds?view=netframework-4.8"
+  ]
+}

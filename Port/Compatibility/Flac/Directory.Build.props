@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <FlacTargetFramework Condition="'$(FlacTargetFramework)' == ''">net48</FlacTargetFramework>
+    <TargetFramework>$(FlacTargetFramework)</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
+    <EnableSourceLink>false</EnableSourceLink>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="netstandard"><HintPath>$(FrameworkPathOverride)/Facades/netstandard.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="RequireUnityFramework" BeforeTargets="GetReferenceAssemblyPaths" Condition="'$(TargetFramework)' == 'net48'">
+    <Error Condition="!Exists('$(FrameworkPathOverride)/mscorlib.dll')" Text="Use flac.py with the pinned Unity Framework profile." />
+  </Target>
+</Project>

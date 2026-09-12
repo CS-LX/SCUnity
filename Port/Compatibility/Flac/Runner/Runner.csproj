@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>SCUnity.Flac.Runner</AssemblyName></PropertyGroup>
+  <ItemGroup Condition="'$(OriginalAssemblies)' == ''"><ProjectReference Include="../Decoder/Decoder.csproj" /></ItemGroup>
+  <ItemGroup Condition="'$(OriginalAssemblies)' != ''">
+    <Reference Include="NAudio.Flac"><HintPath>$(OriginalAssemblies)/NAudio.Flac.dll</HintPath></Reference>
+    <Reference Include="NAudio.Core"><HintPath>$(OriginalAssemblies)/NAudio.Core.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

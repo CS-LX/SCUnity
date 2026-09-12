@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "cases": {
+    "mono-8000-16": {
+      "channels": 1,
+      "sampleRate": 8000,
+      "bitsPerSample": 16,
+      "frames": 5003,
+      "pcmSha256": "c7cb71b45bc882482618293961c4ff12a9d9c7c4a878666801b8a61af7dd53bc",
+      "flacSha256": "22c1ee61aaf8450cae75d0aa8f4027e0e2dc89d531320a69d3b38ae525bae0dc"
+    },
+    "stereo-44100-16": {
+      "channels": 2,
+      "sampleRate": 44100,
+      "bitsPerSample": 16,
+      "frames": 5003,
+      "pcmSha256": "bebc98d00fa2411892c1ad6a68dd00de92b4973ca2f83973b496412486b3daba",
+      "flacSha256": "b1150807de448e7b80a12dd97ebeef3973b4f421a83d3dc72bbb272aa6ba3535"
+    },
+    "stereo-96000-24": {
+      "channels": 2,
+      "sampleRate": 96000,
+      "bitsPerSample": 24,
+      "frames": 5003,
+      "pcmSha256": "951158f86e809f98754969ecbf5b7d0b58c9e07a6c5b881ea711f5602be492d9",
+      "flacSha256": "b2279794d77d73ea9bb986893cdcded2f2fb95f501792b7da754181e53765119"
+    }
+  },
+  "encoderVersion": "ffmpeg version 8.1-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "encoderSha256": "1a65d5b0b10d8d9a81d2824a3538046a40ed3607c906b335a166add87613f705",
+  "generatorSha256": "987d154d1ae49e26ad917c778633f62bfe4581b67964eba1c5da520e50cc9e37"
+}
