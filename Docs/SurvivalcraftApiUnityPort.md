@@ -14,6 +14,7 @@
 
 - 游戏只运行在一个 Unity Player 进程和一个 Unity 窗口中。不得启动原 Windows 可执行文件，不得创建第二个 GLFW/SDL 窗口或 OpenGL 上下文，也不得嵌入一个继续独立运行完整游戏的外部宿主。
 - `Engine`、`EntitySystem`、`Survivalcraft` 继续作为三个同名程序集存在。原有 ECS、方块、地形、存档、Widget、Screen、Manager、Subsystem 和模组系统保留；Unity 提供窗口、生命周期、渲染设备、输入、音频、文件路径和平台集成服务。
+- 当前交付范围仅为 **Windows x86-64 桌面非 VR 模式**。上游现有 OpenXR/VR 后端不迁移、不接入 Unity XR，也不作为本轮完成条件。
 - Windows 首版固定使用 Unity **Mono** 脚本后端和 **.NET Framework** API Compatibility Level。兼容程序集由仓库内的独立 MSBuild 工具链编译为 `net48`，Unity 侧只编译少量 C# 9 桥接代码。
 - `.scmod` 的包结构、目录、元数据、依赖排序、资源覆盖、JavaScript、`ModLoader` 钩子、类型发现和 HarmonyX 语义都属于必须保留的兼容契约。
 - 当前模组模板直接目标为 `net10.0`。Unity 官方明确不支持加载以 .NET Core 为目标的托管插件，因此已经发布的 `net10.0` 模组 DLL 不能作为“无需重编译即可加载”的承诺。迁移版 SDK 将为相同 NuGet 包增加 `net48` 目标，保持源码、程序集名和公开 API，使现有模组只需重新编译并按原方式打包为 `.scmod`。
@@ -50,7 +51,7 @@ Unity 拥有并提供以下运行时资源：
 | 输入 | Input System 采样物理设备 | Keyboard、Mouse、Touch、GamePad 的原静态状态和单帧事件 |
 | 音频 | Unity AudioSource/AudioClip/PCM 流 | Mixer、SoundBuffer、音量和播放控制语义 |
 | 存储 | `Application.streamingAssetsPath`、`persistentDataPath` 和 Windows 桥接 | `app:`、`data:`、`system:` 虚拟路径与存档布局 |
-| 平台能力 | Unity API 或同进程原生插件 | 剪贴板、IME、文件选择、URI、文件拖放、OpenXR |
+| 平台能力 | Unity API 或同进程原生插件 | 剪贴板、IME、文件选择、URI、文件拖放 |
 
 Unity 不接管游戏规则。不得把每个 Entity 改成 GameObject，不得把 Component/Subsystem 改成 MonoBehaviour，不得以 Unity Physics、Animator、uGUI 或 UI Toolkit 重写原有业务系统。
 
@@ -72,6 +73,17 @@ Unity 不接管游戏规则。不得把每个 Entity 改成 GameObject，不得�
 ### 2.5 核心循环与业务模块保全
 
 主循环调用顺序、ECS 更新顺序、绘制顺序、模组钩子顺序、内容合并顺序和存档格式都是回归基线。任何不能等价实现的模块必须进入差异登记表，说明影响、证据、尝试过的方案和恢复条件；不得静默删除或以新功能替代。
+
+### 2.6 当前平台范围
+
+| 范围 | 状态 |
+|---|---|
+| Windows x86-64 桌面 Player | 本轮必须完成 |
+| 键盘、鼠标、手柄、窗口/全屏、桌面音频和文件系统 | 本轮必须完成 |
+| OpenXR、头显显示、VR 控制器与 VR 交互 | 本轮明确不迁移 |
+| Android、iOS、Linux、Browser | 不在本轮范围 |
+
+为保护公开 API，共享的 VR 类型和成员如被三个兼容程序集公开引用，应保留其签名；Unity 桌面后端不注册 VR 服务，并稳定报告 VR 未启动。`Engine.Windows/VR`、Silk OpenXR 依赖及原 OpenGL 上下文绑定代码标记为 `exclude-platform`。依赖 VR 的模组仍能经过通用模组加载流程，但 VR 行为不属于本轮兼容验收，并在最终报告中标为“超出当前桌面范围”。
 
 ## 3. 调研结果
 
@@ -139,7 +151,7 @@ Unity 6 官方支持的托管插件目标是 .NET Standard 和 .NET Framework，
 | 需要换版本或实现 | ImageSharp 3.1.12、`NAudio.Flac.Unknown.Mod`、部分 .NET 10 BCL API | 换为 net48 可运行版本或写媒体/BCL 后端；像素、PCM 和异常行为需有对照测试 |
 | 由 Unity 取代 | Silk.NET.Windowing、OpenGLES、OpenAL、Input | 由生命周期、URP、Unity Audio 和 Input System 适配器实现 |
 | Windows 同进程桥接 | NativeFileDialog、TextCopy、ImeSharp、URI/文件关联 | 使用 Unity API 或小型原生插件，保持原调用语义 |
-| VR | Silk OpenXR | 基础循环稳定后接 Unity OpenXR；功能差异进入登记表 |
+| 本轮排除 | Silk OpenXR、`Engine.Windows/VR` | 不引入 Unity XR；保留必要公开类型签名，运行时稳定报告 VR 未启动 |
 
 已知需要 shim 或改写调用面的 BCL 包括 `System.Collections.Frozen`、`System.Threading.Lock`、`PriorityQueue<T>`、部分 `System.Text.Json.Nodes` 和新式参数检查 API。shim 必须是后端模块，不能改变业务算法和比较顺序。
 
@@ -251,7 +263,7 @@ Docs/
 - `preserve`：原样编译。
 - `patch`：仅应用可审计的机械兼容补丁。
 - `replace-backend`：由同命名空间、同公开 API 的 Unity 后端替换。
-- `exclude-platform`：只属于其他平台，附明确理由。
+- `exclude-platform`：只属于其他平台或本轮明确排除的 VR 后端，附明确理由。
 
 发现未分类的新文件、补丁不能应用、公开 API 发生未登记变化或内容指纹异常时，构建立即失败。
 
@@ -350,15 +362,14 @@ Docs/
 
 退出条件：除已登记且有证据的限制外，所有原加载行为和样本模组通过；任意失败不会破坏未涉事模组或游戏主循环。
 
-### 阶段 6：Windows 平台能力与稳定化
+### 阶段 6：Windows 桌面能力与稳定化
 
 工作项：
 
 - 恢复剪贴板、IME、文件选择、URI、拖放、文件关联和同进程重启语义。
-- 在基础画面和输入稳定后接 Unity OpenXR，逐项对照原 VR 接口。
 - 做长时间运行、设备丢失/分辨率切换、焦点切换、内存和 GC 压力测试。
 - 完成 Release 构建、干净安装、升级安装、崩溃日志和无开发环境机器验证。
-- 冻结最终 API、模块和模组兼容报告。
+- 确认构建不包含 Silk OpenXR、原 VR 后端或 Unity XR 运行依赖，并冻结最终 API、模块和模组兼容报告。
 
 退出条件：满足第 9 节的全部完成定义，所有例外均有用户可评估的报告。
 
@@ -395,6 +406,7 @@ Docs/
 6. 方块、ECS、世界、存档、UI、音频、内容和同屏游戏等业务模块均已保全，或在最终报告中逐项列出无法达到的部分。
 7. 没有新增业务可见功能；全部本地差异都属于后端、桥接、兼容、构建或测试。
 8. 把子模块更新到新的 `SCAPI1.9` 提交后，自动化能够发现变化、重放迁移、运行门禁并给出具体冲突报告。
+9. 交付物是 Windows x86-64 桌面非 VR Player；VR 未迁移且不影响非 VR 主循环、模组加载和业务模块验收。
 
 最终交付的 `PortCompatibilityReport.md` 至少包含：模块状态、模组类别状态、API 例外、存档差异、渲染差异、平台差异、证据链接、剩余影响和后续恢复条件。
 
@@ -420,7 +432,9 @@ Docs/
 | OpenGL → URP 的像素/排序差异 | 工作量最大，涉及大量绘制调用 | 先做命令 trace，再逐 Shader、状态和 RenderTarget 对照 |
 | WebP/FLAC 与当前包目标不兼容 | 不能只预转换内置资源，否则模组会失效 | 阶段 1 确定运行时解码器，阶段 3 做输出对照 |
 | 反射和动态类型 | API 面很大且用于数据库/模组 | Mono 固定、API 快照、TypeCache 和真实模组早期门禁 |
-| VR/IME/文件关联 | 平台耦合强 | 基础循环稳定后用同进程 Unity/原生桥接逐项恢复 |
+| IME/文件关联 | 平台耦合强 | 基础循环稳定后用同进程 Unity/原生桥接逐项恢复 |
+
+VR 不列为风险项或未完成模块：它是本轮明确排除的范围。若未来启动 VR 迁移，应单独制定 Unity OpenXR 适配计划和验收基线，不与当前桌面迁移混合实施。
 
 ## 12. 参考资料
 
