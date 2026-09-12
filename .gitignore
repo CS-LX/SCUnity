@@ -362,3 +362,6 @@ docs/superpowers/
 !/Engine/csc.rsp
 !/EntitySystem/csc.rsp
 !/Survivalcraft/csc.rsp
+
+# Content is packaged into the parent StreamingAssets directory.
+/Survivalcraft/Content.zip.meta
