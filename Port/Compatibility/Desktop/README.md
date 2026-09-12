@@ -4,7 +4,7 @@ This is the first integration into the main Unity project's `Assets/SCUnity`.
 It is an incremental implementation, not full desktop migration acceptance.
 
 `profile.json` replays 1,404 selected source files against upstream
-`98e5f58f779dba20503a095073451a40899549c4`: 1,335 unchanged, 67 exact patches,
+`98e5f58f779dba20503a095073451a40899549c4`: 1,333 unchanged, 69 exact patches,
 and two backend replacements. The 23 platform exclusions remain excluded from
 compilation. `scope: complete` records source inventory coverage only; it does
 not attest to complete runtime behavior or API equivalence.
@@ -29,6 +29,10 @@ save/dispose/reload, and pixel assertions for depth, target orientation and alph
 `python Port/Build/shaders.py --check` verifies the six generated original HLSL
 pairs (nine upstream asset pairs share six unique source identities).
 All diagnostic workspaces and detailed logs are under `Port/.artifacts`.
+Add `--community-test` to reproduce the Chinese community search/refresh path
+with deterministic server replies and real PNG decoding, input and GPU drawing.
+The 17 checks cover repeated searches, live result-cache reuse, force refresh,
+screen re-entry, shared icon ownership and visible thumbnail pixels.
 
 The main scene keeps the original `Engine`, `EntitySystem`, and `Survivalcraft`
 assembly names and calls the original entry point. Unity owns the frame loop,
@@ -94,3 +98,13 @@ the Unity host, which fails the frame visibly.
 
 Original source data and exact edits remain hash-checked; no upstream checkout
 was edited. See [world evidence](../../Tests/Baselines/desktop-world/README.md).
+
+The community search crash is another explicit upstream behavior correction.
+`TreeViewWidget` previously freed icons in `Clear` but removed their old rows only
+inside `Draw`, after `Widget.DrawContext` had already collected those rows. Search
+then rendered a disposed texture with handle zero. Rows now detach before icons
+are released, and node rows rebuild during measurement before draw collection.
+Search/force refresh also evict cache entries referencing trees being disposed;
+cache hits continue to reuse live trees. Node disposal preserves content-owned
+textures, tolerates collection/entry thumbnail sharing, and clears old subtextures.
+See [search regression evidence](../../Tests/Baselines/desktop-community-search/README.md).

@@ -115,7 +115,7 @@ def main_snapshot() -> dict:
             for p in sorted((b.ROOT / name).rglob("*")) if p.is_file()}
 
 
-def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test: bool = False) -> dict:
+def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test: bool = False, community_test: bool = False) -> dict:
     shaders.generate(check=True)
     before = main_snapshot()
     project = workspace / "main-project"
@@ -135,6 +135,7 @@ def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test:
         # A normally visible Player is required to execute URP on Windows.
         # Each invocation has an isolated data/result directory and closes itself.
         mono.execute([player, "-scunity-smoke-output", output, *(["-scunity-audio-test"] if audio_test else []), *(["-scunity-world-test"] if world_test else []),
+                      *(["-scunity-community-test"] if community_test else []),
                       "-logFile", output / "player.log"], output / "process.log", 300 if world_test else 120)
         result = b.read_json(output / "result.json")
         if (not all(result.get(key) is True for key in ("passed", "enteredSettingsWithMouse", "returnedWithEscape", "isMono"))
@@ -146,6 +147,8 @@ def validate(workspace: Path, unity: Path, audio_test: bool = False, world_test:
             raise ValueError("Unity DSP audio assertions are incomplete: " + str(result))
         if world_test and (len(result.get("worldChecks", [])) != 17 or result.get("screen") != "Game.GameScreen"):
             raise ValueError("World/render/index assertions are incomplete: " + str(result))
+        if community_test and len(result.get("communityChecks", [])) != 17:
+            raise ValueError("Community search/thumbnail assertions are incomplete: " + str(result))
         runs.append(result)
     editor_output = workspace / "editor-validation"; editor_output.mkdir()
     print("Verifying two Editor Play/Stop cycles with Domain reload...", flush=True)
@@ -178,6 +181,7 @@ def main() -> None:
     parser.add_argument("--refresh-package-locks", action="store_true")
     parser.add_argument("--audio-test", action="store_true", help="Also validate static/streamed PCM through the Unity listener")
     parser.add_argument("--world-test", action="store_true", help="Also validate world creation, rendering, models, saving/reloading and GPU states")
+    parser.add_argument("--community-test", action="store_true", help="Also validate community searches, thumbnail lifetime and result-cache refresh with fixture server replies")
     args = parser.parse_args(); os.environ["DOTNET_CLI_UI_LANGUAGE"] = "en"
     unity = args.unity.resolve()
     workspace = Path(tempfile.mkdtemp(prefix="desktop-", dir=b.PORT / ".artifacts"))
@@ -188,7 +192,7 @@ def main() -> None:
         if args.install: install(output, unity)
     if args.validate or args.validate_installed:
         if not (args.install or args.validate_installed): raise ValueError("--validate requires --install or --validate-installed")
-        validate(workspace, unity, args.audio_test, args.world_test)
+        validate(workspace, unity, args.audio_test, args.world_test, args.community_test)
     b.check_upstream(b.SHA)
     print("Completed. " + str(workspace), flush=True)
 

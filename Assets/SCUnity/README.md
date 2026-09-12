@@ -17,6 +17,8 @@
 自动测试仅在命令行显式传入 `-scunity-smoke-output <独立目录>` 时启用；附加 `-scunity-audio-test` 验证 Unity Listener 的真实输出，`-scunity-world-test` 验证初始世界及保存重载。验收证据见 `Port/Tests/Baselines/desktop-audio` 与 `desktop-world`。
 停止 Play 会关闭原游戏宿主并释放渲染、输入与音频资源；请保持 Unity 默认的进入 Play 时重载 Domain 设置。
 
+中文社区搜索的旧列表/缩略图释放顺序与失效结果缓存已修正。附加 `-scunity-community-test` 可在自动测试中验证重复搜索、强制刷新、退出重进、共享纹理和真实 GPU 缩略图；服务器响应使用固定样本，不访问真实社区服务。详见 `Port/Tests/Baselines/desktop-community-search`。
+
 项目 Windows 设置为 Mono、.NET Framework、Gamma，避免原版颜色发生二次线性化。
 场景运行期间选择专用 URP 管线，停止后恢复此前管线；原 SampleScene 与模板设置资源保留。
 旧可执行文件更新检查、MOTD 网络轮询、注册表文件关联和旧进程重启暂时由入口禁用，待 Unity 平台接入实现后恢复。

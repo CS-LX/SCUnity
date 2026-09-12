@@ -7823,9 +7823,22 @@
     },
     {
       "path": "Survivalcraft/Screen/CommunityContentScreen.cs",
-      "action": "preserve",
+      "action": "patch",
       "inputSha256": "19448fe3e1338f57c864e3a3724a5ad07178e9d00b43c834be44531f2057bae5",
-      "outputSha256": "19448fe3e1338f57c864e3a3724a5ad07178e9d00b43c834be44531f2057bae5"
+      "outputSha256": "843bbae3eff4704a4ddc61cdb715e82d0db34a891fc4ad7f252e1ac3c1b8831b",
+      "reason": "Evict cached result trees before disposing their thumbnails on a new search or forced refresh; cached queries must not resurrect disposed nodes.",
+      "edits": [
+        {
+          "old": "                m_treePanel.Clear();",
+          "new": "                ClearCurrentResults();",
+          "count": 2
+        },
+        {
+          "old": "        public void PopulateList(string cursor, bool force = false) {",
+          "new": "        void ClearCurrentResults() {\r\n            var roots = new HashSet<TreeViewNode>(m_treePanel.Nodes);\r\n            foreach (string key in m_itemsCache.Where(pair => pair.Value.OfType<TreeViewNode>().Any(roots.Contains))\r\n                .Select(pair => pair.Key).ToArray()) {\r\n                m_itemsCache.Remove(key);\r\n            }\r\n            m_treePanel.Clear();\r\n        }\r\n\r\n        public void PopulateList(string cursor, bool force = false) {",
+          "count": 1
+        }
+      ]
     },
     {
       "path": "Survivalcraft/Screen/ContentScreen.cs",
@@ -9165,9 +9178,42 @@
     },
     {
       "path": "Survivalcraft/Widget/TreeViewWidget.cs",
-      "action": "preserve",
+      "action": "patch",
       "inputSha256": "3b91ed27b37c1d9e317d0d35a43a1f45398fa398c8a36f63602d170b20ab9480",
-      "outputSha256": "3b91ed27b37c1d9e317d0d35a43a1f45398fa398c8a36f63602d170b20ab9480"
+      "outputSha256": "1526d7d09adcc9674d49889c6bbfd1e4073c349e8ae5da59f4299c8373c47228",
+      "reason": "Fix disposed thumbnail draws: rebuild rows before layout/draw collation, detach rows before releasing icons, and invalidate changed subtextures.",
+      "edits": [
+        {
+          "old": "        public override void MeasureOverride(Vector2 parentAvailableSize) {\r\n            base.MeasureOverride(parentAvailableSize);",
+          "new": "        public override void MeasureOverride(Vector2 parentAvailableSize) {\r\n            if (m_widgetsDirty) {\r\n                m_widgetsDirty = false;\r\n                UpdateNodes();\r\n            }\r\n            base.MeasureOverride(parentAvailableSize);",
+          "count": 1
+        },
+        {
+          "old": "            base.Draw(dc);\r\n            if (m_widgetsDirty) {\r\n                m_widgetsDirty = false;\r\n                UpdateNodes();\r\n            }",
+          "new": "            base.Draw(dc);",
+          "count": 1
+        },
+        {
+          "old": "        public void Clear(bool dispose = true) {\r\n            Nodes.ForEach",
+          "new": "        public void Clear(bool dispose = true) {\r\n            // Detach rows before freeing textures: draw items are collected before Draw.\r\n            Children.Clear();\r\n            if (m_selectedNode != null) m_selectedNode.Selected = false;\r\n            m_selectedNode = null;\r\n            Nodes.ForEach",
+          "count": 1
+        },
+        {
+          "old": "                if (m_subtexture == null\r\n                    && Icon != null) {",
+          "new": "                if (Icon == null) {\r\n                    m_subtexture = null;\r\n                    return null;\r\n                }\r\n                if (m_subtexture == null || m_subtexture.Texture != Icon) {",
+          "count": 1
+        },
+        {
+          "old": "            //Icon?.Dispose();\r\n            if (Icon != null) {",
+          "new": "            // Collection and entry nodes may share a thumbnail; content owns its assets.\r\n            if (Icon != null && !Icon.m_isDisposed && !ContentManager.IsContent(Icon)) {",
+          "count": 1
+        },
+        {
+          "old": "                Icon.Dispose();\r\n            }\r\n            GC.SuppressFinalize(this);",
+          "new": "                Icon.Dispose();\r\n            }\r\n            Icon = null;\r\n            m_subtexture = null;\r\n            GC.SuppressFinalize(this);",
+          "count": 1
+        }
+      ]
     },
     {
       "path": "Survivalcraft/Widget/UniformSpacingPanelWidget.cs",

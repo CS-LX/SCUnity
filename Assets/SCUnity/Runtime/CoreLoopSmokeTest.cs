@@ -20,6 +20,7 @@ namespace SCUnity.Runtime
         bool settingsEntered, returned, finished, disposed;
         AudioSmokeTest audio;
         WorldSmokeTest world;
+        CommunitySearchSmokeTest community;
         readonly bool worldRequested = Array.IndexOf(Environment.GetCommandLineArgs(), "-scunity-world-test") >= 0;
 
         public CoreLoopSmokeTest(SurvivalcraftGame game, string output)
@@ -69,12 +70,23 @@ namespace SCUnity.Runtime
                 world.Tick();
                 if (world.Complete) { finished = true; game.StartCoroutine(Capture()); }
             }
+            else if (phase == 6)
+            {
+                community.Tick();
+                if (community.Complete) NextScenario();
+            }
             if ((DateTime.UtcNow - started).TotalSeconds > (worldRequested ? 240 : 90))
                 throw new TimeoutException("Core loop smoke test timed out. Phase: " + phase);
         }
 
         void NextScenario()
         {
+            if (community == null && Array.IndexOf(Environment.GetCommandLineArgs(), "-scunity-community-test") >= 0)
+            {
+                community = new CommunitySearchSmokeTest(game, output, mouse);
+                phase = 6;
+                return;
+            }
             if (worldRequested) { world = new WorldSmokeTest(game, output); phase = 5; }
             else { finished = true; game.StartCoroutine(Capture()); }
         }
@@ -112,6 +124,7 @@ namespace SCUnity.Runtime
                 entryPoint = typeof(SurvivalcraftGame).FullName
             };
             result.worldChecks = world?.Checks.ToArray();
+            result.communityChecks = community?.Checks.ToArray();
             result.audioBlocks = game.AudioBlocks;
             result.audioChecks = audio?.Checks.ToArray();
             try { game.Stop(); }
@@ -127,6 +140,7 @@ namespace SCUnity.Runtime
             disposed = true;
             audio?.Dispose();
             world?.Dispose();
+            community?.Dispose();
             InputSystem.RemoveDevice(mouse);
             InputSystem.RemoveDevice(keyboard);
         }
@@ -138,6 +152,7 @@ namespace SCUnity.Runtime
             public long executedDraws, draws, uploads;
             public long audioBlocks;
             public string[] audioChecks, worldChecks;
+            public string[] communityChecks;
             public string screen, unityVersion, platform, entryPoint, error;
         }
     }
